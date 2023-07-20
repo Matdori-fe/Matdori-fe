@@ -1,6 +1,6 @@
 const Home = () => {
   return (
-    <>초기</>
+    <><div className="m-[20px] w-96 bg-black">ss</div></>
   )
 }
 
