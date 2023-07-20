@@ -25,7 +25,6 @@ module.exports = {
         Regular: ["Pretendard"],
         Bold: ['Pretendard-Bold'],
       },
-      
     },
     
   },
