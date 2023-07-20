@@ -7,12 +7,27 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+     colors: {
+        // 100~10 => 맛도리 메인 색깔
+        100: "#e73b3b",
+        80: "#ec6262",
+        30: "#f8c5c5",
+        10: "#fdecec",
+        black: "#e73b3b",
+        white: "#FFFFFF",
+        gray: "#b3b3b3",
+        lightgray: "#e6e6e6",
+        darkgray: "#595959"
       },
+      fontFamily: {
+        // 폰트 설정 => (font-이름) 으로 적용
+        Light: ['Pretendard-Light'],
+        Regular: ["Pretendard"],
+        Bold: ['Pretendard-Bold'],
+      },
+      
     },
+    
   },
   plugins: [],
 }
