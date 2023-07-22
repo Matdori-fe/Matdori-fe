@@ -8,7 +8,9 @@ const Home = () => {
 			<div className='w-100 bg-100'>ss</div>
 			<div className='w-100 bg-80'>ss</div>
 			<div className='font-sm'>ss</div>
-			<Text>hi</Text>
+			<Text size='xxs' color='30'>
+				hi
+			</Text>
 		</>
 	);
 };

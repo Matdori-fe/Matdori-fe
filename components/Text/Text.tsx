@@ -1,5 +1,3 @@
-import tw from 'tailwind-styled-components';
-
 interface TextProps {
 	size?: 'xxs' | 'xs' | 'sm' | 'base' | 'lg'; // 9, 12, 14, 16, 18
 	color?: string;
@@ -7,16 +5,41 @@ interface TextProps {
 	children: React.ReactNode;
 }
 
-type SizeType = {
+type Type = {
 	[key: string]: string;
 };
 
-const Size: SizeType = {
+type ColorType = {
+	[key: number]: string;
+	[key: string]: string;
+};
+
+const Size: Type = {
 	xxs: 'text-xxs',
 	xs: 'text-xs',
 	sm: 'text-sm',
 	base: 'text-base',
 	lg: 'text-lg',
+};
+
+const Color: ColorType = {
+	100: 'text-100',
+	80: 'text-80',
+	30: 'text-30',
+	10: 'text-10',
+	black: 'text-black',
+	white: 'text-white',
+	gray: 'text-gray',
+	lightGray: 'text-lightGray',
+	darkGray: 'text-darkGray',
+	blue: 'text-blue',
+};
+
+const FontWeight: Type = {
+	normal: 'text-normal',
+	medium: 'text-medium',
+	semibold: 'text-semibold',
+	bold: 'text-bold',
 };
 
 export default function Text({
@@ -26,12 +49,8 @@ export default function Text({
 	children,
 }: TextProps) {
 	return (
-		<StyledText size={size} color={color} fontWeight={fontWeight}>
+		<p className={`${Size[size]} ${Color[color]} ${FontWeight[fontWeight]}`}>
 			{children}
-		</StyledText>
+		</p>
 	);
 }
-
-const StyledText = tw.p`
-  ${(p: TextProps) => p.size && Size[p.size]}
-`;
