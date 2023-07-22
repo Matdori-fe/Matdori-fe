@@ -13,7 +13,7 @@ module.exports = {
         80: "#ec6262",
         30: "#f8c5c5",
         10: "#fdecec",
-        black: "#e73b3b",
+        black: "#000000",
         white: "#FFFFFF",
         gray: "#b3b3b3",
         lightgray: "#e6e6e6",
