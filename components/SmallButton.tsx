@@ -67,10 +67,10 @@ const SmallButtonBar:React.FC<{ type: ButtonType }> = (props) => {
     if(type === "myActivity"){
         return(
             <>
-                 {/*내 좋아요 컴포넌트*/}
+                 {/*내 활동 컴포넌트*/}
                 <div className="w-[155px] h-[40px] bg-white rounded-[15px] flex items-center justify-between border-lightgray border-[1px] px-5">
-                    <img src={`heartWoman.svg`} className="h-[36px] mt-1.4"/>
-                    <p className="font-Regular text-[12px] text-darkgray">내 좋아요</p>
+                    <p className="font-Regular text-[12px] text-darkgray">내 활동</p>
+                    <img src={`smartPhone.svg`} className="h-[36px] mt-1.4"/>
                 </div>  
             </>
         )
