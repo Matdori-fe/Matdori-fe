@@ -11,6 +11,8 @@ const Home = () => {
 			<div className='w-100 bg-100'>ss</div>
 			<div className='w-100 bg-100'>ss</div>
 			<div className='w-100 bg-80'>ss</div>
+			<div className='w-100 bg-30'>ss</div>
+			{/* <div className='w-100 bg-blue'>ss</div> */}
 			<Margin height={10} />
 			<Text size='xxs' color='30'>
 				hi

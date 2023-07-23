@@ -10,8 +10,13 @@ const config: StorybookConfig = {
 		'@storybook/addon-onboarding',
 		'@storybook/addon-interactions',
 		{
-			name: '@storybook/addon-styling',
-			options: {},
+			name: '@storybook/addon-post',
+			options: {
+
+        postcssLoaderOptions: {
+          implementation: require('postcss'),
+        },
+      },
 		},
 	],
 	framework: {
