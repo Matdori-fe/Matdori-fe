@@ -24,6 +24,8 @@ module.exports = {
         Light: ['Pretendard-Light'],
         Regular: ["Pretendard"],
         Bold: ['Pretendard-Bold'],
+        SemiBold: ['Pretendard-Semibold'],
+        Medium: ['Pretendard-Medium']
       },
     },
     
