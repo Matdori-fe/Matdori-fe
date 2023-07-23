@@ -20,7 +20,6 @@ export default function RootLayout({
 			<body className={inter.className}>
 				{/*스마트폰 전체 프레임 잡기*/}
 				<div className='flex justify-center'>
-					{/*전체 크기 개발 이후에 변경 필요*/}
 					<div className='md:w-[768px] w-full h-auto'>{children}</div>
 				</div>
 			</body>
