@@ -8,8 +8,9 @@ type InputType = {
   placeHolder?: string;
 };
 
-const Input: React.FC<{ info?: InputType }> = (props) => {
-  const { info } = props;
+const Input: React.FC<InputType> = ({width,height,placeHolder}) => {
+  
+  const info:InputType = {width, height, placeHolder}
 
   // Input Default 값
   const defaultInputSize: InputType = {
