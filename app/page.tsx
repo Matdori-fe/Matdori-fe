@@ -17,6 +17,7 @@ const Home = () => {
 			<Text size='xxs' color='30'>
 				hi
 			</Text>
+			<Text fontWeight='bold'>hi</Text>
 			<Button
 				name={'Hello Tailwind CSS'}
 				className={'bg-teal-400 text-white'}

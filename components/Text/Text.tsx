@@ -36,10 +36,10 @@ const Color: ColorType = {
 };
 
 const FontWeight: Type = {
-	normal: 'text-normal',
-	medium: 'text-medium',
-	semibold: 'text-semibold',
-	bold: 'text-bold',
+	normal: 'font-normal',
+	medium: 'font-medium',
+	semibold: 'font-semibold',
+	bold: 'font-bold',
 };
 
 export default function Text({
