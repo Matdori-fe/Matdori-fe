@@ -1,3 +1,4 @@
+import RecoilRootWrapper from '@/utils/RecoilRootWrapper';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -18,10 +19,14 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={inter.className}>
-				{/*스마트폰 전체 프레임 잡기*/}
-				<div className='flex justify-center'>
-					<div className='md:w-[768px] w-full h-auto'>{children}</div>
-				</div>
+
+				<RecoilRootWrapper>
+					{/*스마트폰 전체 프레임 잡기*/}
+					<div className='flex justify-center'>
+						{/*전체 크기 개발 이후에 변경 필요*/}
+						<div className='md:w-[768px] w-full h-auto'>{children}</div>
+					</div>
+				</RecoilRootWrapper>
 			</body>
 		</html>
 	);
