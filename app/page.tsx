@@ -1,8 +1,8 @@
 'use client'
-import NavigationBar from "@/components/NavigationBar";
+import NavigationBar from "@/components/NavigationBar/NavigationBar";
 import { RecoilRoot } from "recoil";
-import Review from "@/components/Review";
-import Input from "@/components/Input";
+import Review from "@/components/Review/Review";
+import Input from "@/components/Input/Input";
 import BigTitle from "@/components/Title/BigTitle";
 import SmallTitle from "@/components/Title/SmallTitle";
 
