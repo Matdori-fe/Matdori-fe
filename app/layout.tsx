@@ -19,6 +19,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={inter.className}>
+
 				<RecoilRootWrapper>
 					{/*스마트폰 전체 프레임 잡기*/}
 					<div className='flex justify-center'>
