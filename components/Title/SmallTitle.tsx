@@ -1,14 +1,18 @@
-// 사용법 => <SmallTitle>제목 내용</SmallTitle>
+// 사용법 => <SmallTitle sideComponent={들어갈 컴포넌트}>제목</SmallTitle>
 
 type childrenProps = {
+    sideComponent?: React.ReactElement,
     children: React.ReactNode;
+    className?:string
   };
   
-  const SmallTitle: React.FunctionComponent<childrenProps> = ({ children }) => {
+  const SmallTitle: React.FunctionComponent<childrenProps> = ({ sideComponent,children, className }) => {
     return (
-      <p className={`font-SemiBold text-[14px]`}>{children}</p>
+      <div className={`w-full flex justify-between ${className}`}>
+        <p className={`font-SemiBold text-[14px]`}>{children}</p>
+        {sideComponent}
+      </div>
     );
   };
   
   export default SmallTitle; 
-  
