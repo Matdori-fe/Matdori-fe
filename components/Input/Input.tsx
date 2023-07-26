@@ -1,15 +1,21 @@
-// 사용법 => <Input info={{width:"500px",height:"200px",placeHolder:"placeHolder 설정"}}/>
-// info에 width, height, placeHolder 값 입력하면 됨. 
+import { useState } from "react";
+
+// 사용법 => <Input width="400px" height="40px" placeHolder="뭐 좀 입력해봐"/>
+// info에 width, height, placeHolder 값 입력하면 됨. 추가 css를 원하면 className에 tailWind적용해주세요.
 // 안하면 default값으로 들어감.
 
 type InputType = {
   width?: string;
   height?: string;
   placeHolder?: string;
+  className?:string;
 };
 
-const Input: React.FC<{ info?: InputType }> = (props) => {
-  const { info } = props;
+const Input: React.FC<InputType> = ({width,height,placeHolder,className}) => {
+  
+  const info:InputType = {width, height, placeHolder}
+
+  const [isFocused, setIsFocused] = useState(false);
 
   // Input Default 값
   const defaultInputSize: InputType = {
@@ -28,13 +34,17 @@ const Input: React.FC<{ info?: InputType }> = (props) => {
     backgroundColor: 'lightgray',
     borderRadius: '15px',
     paddingLeft: '30px',
+    boxShadow: isFocused ? "0px 2px 0px rgba(0, 0, 0, 0.2)" : "none",
   };
 
   return (
     <>
       <input
-        style={inputStyle} // 동적으로 생성한 스타일 객체를 적용
+        style={inputStyle} 
         placeholder={mergedInputSize.placeHolder}
+        className={`${className}`}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
       />
     </>
   );

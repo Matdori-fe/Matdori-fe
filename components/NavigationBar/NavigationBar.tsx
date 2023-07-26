@@ -37,7 +37,7 @@ const NavigationBar:React.FC = () =>{
 
     return(
     <>
-        <div className="w-full h-auto flex justify-around border-t border-lightgray pt-[10px] fixed bottom-5">
+        <div className="w-full h-auto flex justify-around border-t border-lightGray pt-[10px] fixed bottom-5">
             {/*홈 컴포넌트*/}
             <div className='w-[24px] h-[39px] flex flex-wrap justify-center items-center' onClick={()=>clickFun(0)}>
                 {navigationState[0]===true? 
@@ -46,8 +46,8 @@ const NavigationBar:React.FC = () =>{
                     <p className='font-Regular text-100'>홈</p>
                 </>
                 :<>
-                    <RiHome5Line className='w-[24px] h-[24px] text-darkgray'/>
-                    <p className='font-Regular text-darkgray'>홈</p>
+                    <RiHome5Line className='w-[24px] h-[24px] text-darkGray'/>
+                    <p className='font-Regular text-darkGray'>홈</p>
                 </>
                 }
             </div>
@@ -60,8 +60,8 @@ const NavigationBar:React.FC = () =>{
                     <p className='font-Regular text-100 whitespace-nowrap'>검색</p>
                 </>
                 :<>
-                    <RiSearch2Line className='w-[24px] h-[24px] text-darkgray'/>
-                    <p className='font-Regular text-darkgray'>검색</p>
+                    <RiSearch2Line className='w-[24px] h-[24px] text-darkGray'/>
+                    <p className='font-Regular text-darkGray'>검색</p>
                 </>
                 }
             </div>
@@ -74,8 +74,8 @@ const NavigationBar:React.FC = () =>{
                     <p className='font-Regular text-100'>족보</p>
                 </>
                 :<>
-                    <RiBook3Line className='w-[24px] h-[24px] text-darkgray'/>
-                    <p className='font-Regular text-darkgray'>족보</p>
+                    <RiBook3Line className='w-[24px] h-[24px] text-darkGray'/>
+                    <p className='font-Regular text-darkGray'>족보</p>
                 </>
                 }
             </div>
@@ -88,8 +88,8 @@ const NavigationBar:React.FC = () =>{
                     <p className='font-Regular text-100'>My</p>
                 </>
                 :<>
-                    <RiUser2Line className='w-[24px] h-[24px] text-darkgray'/>
-                    <p className='font-Regular text-darkgray'>My</p>
+                    <RiUser2Line className='w-[24px] h-[24px] text-darkGray'/>
+                    <p className='font-Regular text-darkGray'>My</p>
                 </>
                 }
             </div>

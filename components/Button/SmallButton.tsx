@@ -14,7 +14,7 @@ const SmallButtonBar:React.FC<{ type: ButtonType }> = (props) => {
                 {/*가게 추천받기 red버전*/}
                 <div className="w-[155px] h-[40px] bg-100 rounded-[15px] flex items-center">
                     <img src= {`recommendImg.svg`}/>
-                    <p className="font-Bold text-[14px] text-white">가게 추천받기</p>
+                    <p className="font-Bold text-[14px] text-white relative right-2">가게 추천받기</p>
                 </div>
             </>
         )
@@ -36,7 +36,7 @@ const SmallButtonBar:React.FC<{ type: ButtonType }> = (props) => {
             <>
                 {/* 메뉴 추천받기 red버전*/}
                 <div className="w-[155px] h-[40px] bg-100 rounded-[15px] flex items-center justify-between overflow-hidden">  
-                    <p className="font-Bold text-[14px] text-white ml-4">메뉴 추천받기</p>
+                    <p className="font-Bold text-[14px] text-white relative left-4">메뉴 추천받기</p>
                     <img src= {`foodBarImg.svg`}/>
                 </div>
             </>

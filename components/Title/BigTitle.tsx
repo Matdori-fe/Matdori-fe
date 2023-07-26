@@ -1,12 +1,17 @@
-// 사용법 => <BigTitle>제목 내용</BigTitle>
+// 사용법 => <BigTitle sideComponent={들어갈 컴포넌트}>제목</BigTitle>
 
 type childrenProps = {
+  sideComponent?: React.ReactElement,
   children: React.ReactNode;
+  className?:string
 };
 
-const BigTitle: React.FunctionComponent<childrenProps> = ({ children }) => {
+const BigTitle: React.FunctionComponent<childrenProps> = ({ sideComponent,children,className }) => {
   return (
-    <p className={`font-Bold text-[18px]`}>{children}</p>
+    <div className={`w-full flex justify-between ${className}`}>
+      <p className={`font-Bold text-[18px]`}>{children}</p>
+      {sideComponent}
+    </div>
   );
 };
 
