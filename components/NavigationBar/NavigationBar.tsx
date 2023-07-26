@@ -37,7 +37,7 @@ const NavigationBar:React.FC = () =>{
 
     return(
     <>
-        <div className="w-full h-auto flex justify-around border-t border-darkGray pt-[10px] fixed bottom-5">
+        <div className="w-full h-auto flex justify-around border-t border-lightGray pt-[10px] fixed bottom-5">
             {/*홈 컴포넌트*/}
             <div className='w-[24px] h-[39px] flex flex-wrap justify-center items-center' onClick={()=>clickFun(0)}>
                 {navigationState[0]===true? 
