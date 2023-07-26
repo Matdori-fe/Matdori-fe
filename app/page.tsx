@@ -20,6 +20,7 @@ const Home = () => {
 	<>
 		{/*작은 버튼 바*/}
 		<SmallButtonBar type="redStoreRecommend"/>
+		<SmallButtonBar type="redMenuRecommend"/>
 
 		{/*내비게이션 바*/}
 		<NavigationBar/>
@@ -52,20 +53,7 @@ const Home = () => {
 		<JokboInfo kind="heartScore" count={12.5}/>
 		<JokboInfo kind="chatScore" count={12.5}/>
 
-			<div className='w-100 bg-100'>ss</div>
-			<div className='w-100 bg-100'>ss</div>
-			<div className='w-100 bg-80'>ss</div>
-			<div className='w-100 bg-30'>ss</div>
-			{/* <div className='w-100 bg-blue'>ss</div> */}
-			<Margin height={10} />
-			<Text size='xxs' color='30'>
-				hi
-			</Text>
-			<Text fontWeight='bold'>hi</Text>
-			<Button
-				name={'Hello Tailwind CSS'}
-				className={'bg-teal-400 text-white'}
-			/>
+			
 		</>
 	);
 };
