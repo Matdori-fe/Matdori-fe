@@ -10,23 +10,23 @@ export type Right =
 	| 'more'
 	| 'trashCan'
 	| 'check'
+	| 'roundButton'
 	| undefined;
 
 interface HeaderProps {
 	left?: Left;
 	right?: Right[] | Right;
-	button?: React.ReactNode;
 	title?: string;
 }
 
-export default function Header({ left, right, button, title }: HeaderProps) {
+export default function Header({ left, right, title }: HeaderProps) {
 	return (
-		<div className='w-full h-[60px] flex items-center px-4 gap-3.5 [&_p]:flex-1 fixed top-0 bg-white'>
+		<div className='w-full md:w-[768px] h-[60px] flex items-center px-4 gap-3.5 [&_p]:flex-1 fixed top-0 bg-white peer:mt-[60px] [&+*]:pt-[60px]'>
 			<HeaderLeft left={left} />
 			<Text size='lg' fontWeight='bold'>
 				{title}
 			</Text>
-			<HeaderRight right={right} button={button} />
+			<HeaderRight right={right} />
 		</div>
 	);
 }
