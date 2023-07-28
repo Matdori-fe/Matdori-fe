@@ -7,67 +7,66 @@ import BigTitle from '@/components/Title/BigTitle';
 import SmallTitle from '@/components/Title/SmallTitle';
 
 import Button from '@/components/Button/Button';
-import Margin from '@/components/Margin/Margin';
-import RoundButton from '@/components/RoundButton/RoundButton';
 import Text from '@/components/Text/Text';
-import SmallButtonBar from '@/components/Button/SmallButton';
-import HorizonBar from '@/components/HorizonBar/HorizonBar';
-import ImageBox from '@/components/ImageBox/ImageBox';
-import JokboInfo from '@/components/JokboInfo/JokboInfo';
+import Header from '@/components/Header/Header';
+import RoundButton from '@/components/RoundButton/RoundButton';
 
 const Home = () => {
 	return (
-		<RecoilRoot>
-			{' '}
-			<Review
-				review={{
-					title: '미련한 컴공',
-					content: '이건 댓글. 니가 뭔데 가메이를 혼자 알려고 함? ㅋㅋㅋ',
-					writeDay: '23/04/20 22:22',
-					heartCount: 5,
-				}}
-			/>
-			<Review
-				review={{
-					title: '미련한 컴공',
-					content: '이건 댓글. 니가 뭔데 가메이를 혼자 알려고 함? ㅋㅋㅋ',
-					writeDay: '23/04/20 22:22',
-					heartCount: 5,
-				}}
-			/>
-			<Review
-				review={{
-					title: '미련한 컴공',
-					content: '이건 댓글. 니가 뭔데 가메이를 혼자 알려고 함? ㅋㅋㅋ',
-					writeDay: '23/04/20 22:22',
-					heartCount: 5,
-				}}
-			/>
-			<Input
-				info={{
-					width: '500px',
-					height: '50px',
-					placeHolder: 'placeHolder 설정',
-				}}
-			/>
-			<BigTitle>컴퓨터공학과의 맛도리</BigTitle>
-			<SmallTitle>맛도리에게 추천받기</SmallTitle>
-			<div className='w-100 bg-100'>ss</div>
-			<div className='w-100 bg-100'>ss</div>
-			<div className='w-100 bg-80'>ss</div>
-			<div className='w-100 bg-30'>ss</div>
-			{/* <div className='w-100 bg-blue'>ss</div> */}
-			<Margin height={10} />
-			<Text size='xxs' color='30'>
-				hi
-			</Text>
-			<Text fontWeight='bold'>hi</Text>
-			<Button
-				name={'Hello Tailwind CSS'}
-				className={'bg-teal-400 text-white'}
-			/>
-			<RoundButton label='hi' />
-		</RecoilRoot>
+		<div>
+			<Header right='roundButton' title='hdafi' left='back' />
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Button label='hi' variant='inactive' errorMessage='hihi' />
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			{/* <button onClick={() => 'hi'}>hi</button> */}
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+			<Text>hi</Text>
+		</div>
 	);
 };
 
