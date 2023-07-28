@@ -21,7 +21,7 @@ interface HeaderProps {
 
 export default function Header({ left, right, title }: HeaderProps) {
 	return (
-		<div className='w-full md:w-[768px] h-[60px] flex items-center px-4 gap-3.5 [&_p]:flex-1 fixed top-0 bg-white peer:mt-[60px] [&+*]:pt-[60px]'>
+		<div className='w-full md:w-[768px] h-[60px] flex items-center px-4 gap-3.5 [&_p]:flex-1 fixed top-0 bg-white [&+*]:mt-[60px]'>
 			<HeaderLeft left={left} />
 			<Text size='lg' fontWeight='bold'>
 				{title}
