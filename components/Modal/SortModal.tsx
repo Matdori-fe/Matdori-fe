@@ -4,9 +4,16 @@ import { AnimatePresence } from 'framer-motion';
 import ModalLayout from './ModalLayout';
 import { SelectedSortAtom, SortListAtom } from '@/app/status/sortAtom';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
-export default function SortModal({ showModal }: { showModal: boolean }) {
+export default function SortModal({
+	showModal,
+	href,
+}: {
+	showModal: boolean;
+	href: string;
+}) {
+	const router = useRouter();
 	const sortList = useRecoilValue(SortListAtom);
 	const [selectedSort, setSelectedSort] = useRecoilState(SelectedSortAtom);
 
@@ -22,17 +29,19 @@ export default function SortModal({ showModal }: { showModal: boolean }) {
 	return (
 		<AnimatePresence>
 			{showModal && (
-				<ModalLayout title='정렬' href='/'>
+				<ModalLayout title='정렬' href={href}>
 					<ul className='flex-col w-full'>
 						{sortList.map((sortType, i) => (
-							<Link href='/' key={sortType} scroll={false}>
-								<li
-									className={`mb-[32px] ${selectedSort[i] && 'text-100'}`}
-									onClick={() => setSelectedSort(() => handleSelectSort(i))}
-								>
-									{sortType}
-								</li>
-							</Link>
+							<li
+								key={sortType}
+								className={`mb-[32px] ${selectedSort[i] && 'text-100'}`}
+								onClick={() => {
+									router.push(href, { scroll: false });
+									setSelectedSort(() => handleSelectSort(i));
+								}}
+							>
+								{sortType}
+							</li>
 						))}
 					</ul>
 				</ModalLayout>
