@@ -37,6 +37,9 @@ module.exports = {
 			borderRadius: {
 				basic: '15px',
 			},
+			screens: {
+				sm: '412px',
+			},
 		},
 	},
 	plugins: [],

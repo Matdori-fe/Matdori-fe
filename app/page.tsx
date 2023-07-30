@@ -10,8 +10,20 @@ import Button from '@/components/Button/Button';
 import Text from '@/components/Text/Text';
 import Header from '@/components/Header/Header';
 import RoundButton from '@/components/RoundButton/RoundButton';
+import Background from '@/components/Background/Background';
+import Modal from '@/components/Modal/ModalLayout';
+import Link from 'next/link';
+import { AnimatePresence } from 'framer-motion';
+import SortModal from '@/components/Modal/SortModal';
+import ShopModal from '@/components/Modal/ShopModal';
 
-const Home = () => {
+type Props = {
+	searchParams: Record<string, string> | null | undefined;
+};
+
+const Home = ({ searchParams }: Props) => {
+	const showModal = searchParams?.modal;
+
 	return (
 		<div>
 			<Header right='roundButton' title='hdafi' left='back' />
@@ -21,9 +33,13 @@ const Home = () => {
 			<Text>hi</Text>
 			<Text>hi</Text>
 			<Text>hi</Text>
+
 			<Text>hi</Text>
 			<Text>hi</Text>
-			<Button label='hi' variant='inactive' errorMessage='hihi' />
+			<Button label='hi' variant='active' href='/?modal=true' />
+			<Link scroll={false} href='/?modal=true'>
+				OPEN MODAL, LINK
+			</Link>
 			<Text>hi</Text>
 			<Text>hi</Text>
 			<Text>hi</Text>
@@ -66,6 +82,8 @@ const Home = () => {
 			<Text>hi</Text>
 			<Text>hi</Text>
 			<Text>hi</Text>
+
+			<ShopModal showModal={showModal} href='/' />
 		</div>
 	);
 };

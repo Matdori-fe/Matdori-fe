@@ -12,12 +12,14 @@ interface ModalLayoutProps {
 	children: React.ReactNode;
 	href?: string;
 	title: string;
+	variant?: 'normal' | 'large';
 }
 // Modal Layout
 export default function ModalLayout({
 	children,
 	href = '',
 	title,
+	variant = 'normal',
 }: ModalLayoutProps) {
 	const router = useRouter();
 	const [start, setStart] = useState<number>(0);
@@ -44,6 +46,7 @@ export default function ModalLayout({
 		}
 	};
 
+	// FIXME: refactoring
 	// 아래로 스크롤이 많으면 내려간다.
 	return (
 		<Background onClick={() => router.push(href, { scroll: false })}>
@@ -61,7 +64,9 @@ export default function ModalLayout({
 				onDragEnd={handleDragEnd}
 				dragMomentum={false}
 				onClick={(e) => e.preventDefault()}
-				className='relative gap-[42px] md:w-[768px] w-full h-[400px] bg-white rounded-t-basic p-[20px] pt-[11px] flex flex-col items-center justify-start'
+				className={`relative  md:w-[768px] w-full ${
+					variant === 'large' ? 'h-[514px]' : 'h-[400px]'
+				} bg-white rounded-t-basic p-[20px] pt-[11px] flex flex-col items-center justify-start`}
 				transition={{ duration: 0.5, ease: 'easeInOut' }}
 				initial={{ y: 400 }}
 				animate={{ y: 0 }}
@@ -73,9 +78,11 @@ export default function ModalLayout({
 					onClick={() => router.push(href, { scroll: false })}
 				/>
 				<motion.div className='bg-lightGray w-[30px] h-[4px] rounded-basic' />
+				<div className='mb-[42px]' />
 				<Text size='lg' fontWeight='bold'>
 					{title}
 				</Text>
+				<div className='mb-[30px]' />
 				{children}
 			</motion.div>
 		</Background>

@@ -50,6 +50,7 @@ export default function HeaderRight({ right }: HeaderRightProps) {
 	);
 }
 
+// TODO: 하트 누르고 취소하고 가능하게 로직 만들기
 /**
  * 주어진 아이콘 배열을 디자인대로 정렬합니다.
  */
