@@ -9,8 +9,9 @@ import logo from '../../assets/image/logo.svg';
 import Image from 'next/image';
 import Text from '../Text/Text';
 import Button from '../Button/Button';
-import BorderNotification from '../BorderNotification/BorderNotification';
 import { useEffect, useState } from 'react';
+import JokboInfo from '../JokboInfo/JokboInfo';
+import BorderNotification from '../BorderNotification/BorderNotification';
 
 export default function ShopModal({
 	showModal,
@@ -25,10 +26,18 @@ export default function ShopModal({
 
 	const [loading, setLoading] = useState(true);
 
-	// TODO: 가게 3초 찾기. 컴포넌트가 새로 만들어지지 않는 것 같음. 그래서 useEffect가 의도대로 동작하지 않는다.
+	// TODO: 가게 3초 찾기.
 	useEffect(() => {
-		if (showModal) setTimeout(() => setLoading(false), 3000);
-	}, []);
+		// NOTE: 조건문이 없으면 먼저 렌더링되서 이 코드가 실행되는 것 같음.
+		if (showModal) {
+			setTimeout(() => {
+				setLoading(false);
+			}, 1000);
+		}
+		return () => {
+			setLoading(true);
+		};
+	}, [showModal]);
 
 	// TODO: 선택된 정렬을 서버로 보내서 데이터를 받아오는 로직이 필요
 	return (
@@ -50,7 +59,7 @@ export default function ShopModal({
 									/>
 									<div className='flex f-full justify-between p-[6px]'>
 										<Text fontWeight='semibold'>가메이</Text>
-										<Text>⭐️ 4.8</Text>
+										<JokboInfo kind='starScore' count={4.5} />
 									</div>
 								</div>
 							))}
