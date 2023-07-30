@@ -63,7 +63,8 @@ export default function ModalLayout({
 				onDragStart={handleDragStart}
 				onDragEnd={handleDragEnd}
 				dragMomentum={false}
-				onClick={(e) => e.preventDefault()}
+				// 자식으로 전파 방지
+				onClick={(e) => e.stopPropagation()}
 				className={`relative  md:w-[768px] w-full ${
 					variant === 'large' ? 'h-[514px]' : 'h-[400px]'
 				} bg-white rounded-t-basic p-[20px] pt-[11px] flex flex-col items-center justify-start`}
@@ -71,6 +72,8 @@ export default function ModalLayout({
 				initial={{ y: 400 }}
 				animate={{ y: 0 }}
 				exit={{ y: 400 }}
+				// FIXME: 다시 추천받기를 누르면 모션이 이상함
+				layout
 			>
 				<RiCloseFill
 					className='absolute right-6 top-6'
