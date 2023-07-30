@@ -10,9 +10,9 @@ interface ButtonProps {
 	label: string;
 	variant: 'active' | 'inactive';
 	writeIcon?: boolean;
-	href?: string;
 	errorMessage?: string;
 	modal: boolean;
+	onClick?: () => void;
 }
 
 const BASE_BUTTON_CLASSES =
@@ -27,19 +27,15 @@ const Button = ({
 	label,
 	variant = 'active',
 	writeIcon,
-	href = '',
 	errorMessage = '',
 	modal = false,
+	onClick,
 }: ButtonProps) => {
-	const router = useRouter();
-
 	return (
 		<div className='flex justify-center w-full'>
 			<button
 				onClick={
-					variant === 'inactive'
-						? () => Toast(errorMessage)
-						: () => router.push(href)
+					variant === 'inactive' ? () => Toast(errorMessage) : () => onClick()
 				}
 				className={`${BASE_BUTTON_CLASSES} ${variantClass[variant]} ${
 					modal ? 'mx-0 w-[100%-40px] absolute bottom-0' : 'fixed bottom-0'
