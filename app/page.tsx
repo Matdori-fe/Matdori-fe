@@ -16,6 +16,7 @@ import Link from 'next/link';
 import { AnimatePresence } from 'framer-motion';
 import SortModal from '@/components/Modal/SortModal';
 import ShopModal from '@/components/Modal/ShopModal';
+import MenuModal from '@/components/Modal/MenuModal';
 
 type Props = {
 	searchParams: Record<string, string> | null | undefined;
@@ -26,7 +27,11 @@ const Home = ({ searchParams }: Props) => {
 
 	return (
 		<div>
-			<Header right='roundButton' title='hdafi' left='back' />
+			<Header
+				right='roundButton'
+				title={showModal ? 'true' : 'false'}
+				left='back'
+			/>
 			<Text>hi</Text>
 			<Text>hi</Text>
 			<Text>hi</Text>
@@ -83,7 +88,7 @@ const Home = ({ searchParams }: Props) => {
 			<Text>hi</Text>
 			<Text>hi</Text>
 
-			<ShopModal showModal={showModal} href='/' />
+			<MenuModal showModal={showModal} href='/' />
 		</div>
 	);
 };
