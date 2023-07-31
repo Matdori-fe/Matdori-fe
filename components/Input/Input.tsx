@@ -8,12 +8,16 @@ type InputType = {
   width?: string;
   height?: string;
   placeHolder?: string;
-  className?:string;
+  className?: string;
 };
 
-const Input: React.FC<InputType> = ({width,height,placeHolder,className}) => {
-  
-  const info:InputType = {width, height, placeHolder}
+const Input: React.FC<InputType> = ({
+  width,
+  height,
+  placeHolder,
+  className,
+}) => {
+  const info: InputType = { width, height, placeHolder };
 
   const [isFocused, setIsFocused] = useState(false);
 
@@ -21,7 +25,7 @@ const Input: React.FC<InputType> = ({width,height,placeHolder,className}) => {
   const defaultInputSize: InputType = {
     width: "320px",
     height: "40px",
-    placeHolder: ""
+    placeHolder: "",
   };
 
   // 기본 값과 info props를 병합하여 최종 스타일과 플레이스홀더 설정
@@ -31,18 +35,17 @@ const Input: React.FC<InputType> = ({width,height,placeHolder,className}) => {
   const inputStyle = {
     width: mergedInputSize.width,
     height: mergedInputSize.height,
-    backgroundColor: 'lightgray',
-    borderRadius: '15px',
-    paddingLeft: '30px',
+    borderRadius: "15px",
+    paddingLeft: "20px",
     boxShadow: isFocused ? "0px 2px 0px rgba(0, 0, 0, 0.2)" : "none",
   };
 
   return (
     <>
       <input
-        style={inputStyle} 
+        style={inputStyle}
         placeholder={mergedInputSize.placeHolder}
-        className={`${className}`}
+        className={`bg-lightGray text-black placeholder-gray ${className}`}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
