@@ -49,7 +49,9 @@ export default function Text({
 	children,
 }: TextProps) {
 	return (
-		<p className={`${Size[size]} ${Color[color]} ${FontWeight[fontWeight]} `}>
+		<p
+			className={`mt-[1px] ${Size[size]} ${Color[color]} ${FontWeight[fontWeight]} `}
+		>
 			{children}
 		</p>
 	);
