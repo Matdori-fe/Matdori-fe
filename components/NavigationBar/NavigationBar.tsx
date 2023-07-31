@@ -1,3 +1,6 @@
+// FIXME - 리코일 문제 해결
+// 현재 페이지를 새로고침 시, 값이 초기화 되는 문제는 해결, 그러나 그 값이 페이지에 반영이 안됨. 이유 더 찾아봐야함.
+
 "use client";
 import {
   RiHome5Line,
@@ -11,7 +14,7 @@ import {
 } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
-import { NavigationAtom } from "@/app/recoil/NavigationAtom";
+import { NavigationAtom } from "@/app/status/NavigationAtom";
 
 const NavigationBar: React.FC = () => {
   // 하단 바에 대한 state => true면 그 페이지로 이동
