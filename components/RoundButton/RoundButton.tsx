@@ -17,3 +17,5 @@ export default function RoundButton({ label, onClick }: ButtonProps) {
 		</button>
 	);
 }
+
+// BUG: 아이폰 사파리에서 이 컴포넌트 안의 글씨가 조금 위로 간 오류
