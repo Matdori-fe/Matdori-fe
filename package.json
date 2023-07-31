@@ -28,7 +28,11 @@
     "react-simple-toast": "^1.0.10",
     "react-simple-toasts": "^5.5.0",
     "recoil": "^0.7.7",
+<<<<<<< HEAD
     "styled-components": "^6.0.5",
+=======
+    "recoil-persist": "^5.1.0",
+>>>>>>> 2483b57 ([MATDORI-54] feature: recoilPersist 기능 추가)
     "typescript": "5.1.6"
   },
   "devDependencies": {
