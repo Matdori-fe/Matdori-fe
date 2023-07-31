@@ -9,6 +9,7 @@ interface SortButtonProps {
 	href: string;
 }
 
+// TODO: 어떤 항목들을 정렬 모달에 띄울 것인지 생각해봐야함
 export default function SortButton({ label, href = '' }: SortButtonProps) {
 	const router = useRouter();
 
