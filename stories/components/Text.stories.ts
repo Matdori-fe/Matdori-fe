@@ -4,6 +4,7 @@ import Text from '../../components/Text/Text';
 const meta: Meta<typeof Text> = {
 	title: 'Test/Text',
 	component: Text,
+	tags: ['autodocs'],
 };
 
 export default meta;

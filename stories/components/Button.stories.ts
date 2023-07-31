@@ -4,14 +4,26 @@ import Button from '@/components/Button/Button';
 const meta: Meta<typeof Button> = {
 	title: 'Test/Button',
 	component: Button,
+	tags: ['autodocs'],
 };
 
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Primary: Story = {
+export const Active: Story = {
 	args: {
-		name: 'sehyun',
+		label: '나도 족보 작성하기',
+		variant: 'active',
+		writeIcon: true,
+		href: '/hi',
+	},
+};
+
+export const Inactive: Story = {
+	args: {
+		label: '닉네임 변경하기',
+		variant: 'inactive',
+		errorMessage: '창이 비어있다고오',
 	},
 };
 // export default {

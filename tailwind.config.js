@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-
+	mode: 'jit',
 	content: [
 		'./pages/**/*.{js,ts,jsx,tsx,mdx}',
 		'./components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -21,6 +21,7 @@ module.exports = {
 				lightGray: '#e6e6e6',
 				darkGray: '#595959',
 				blue: '#54A3FF',
+				transparent: 'rgba(89, 89, 89, 0.50)',
 			},
 			fontFamily: {
 				// 폰트 설정 => (font-이름) 으로 적용
@@ -32,6 +33,12 @@ module.exports = {
 			},
 			fontSize: {
 				xxs: '0.5625rem',
+			},
+			borderRadius: {
+				basic: '15px',
+			},
+			screens: {
+				sm: '412px',
 			},
 		},
 	},
