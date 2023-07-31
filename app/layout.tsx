@@ -3,6 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import RoundButton from '@/components/RoundButton/RoundButton';
+import StyledComponentsRegistry from '@/assets/style';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,7 +26,7 @@ export default function RootLayout({
 					<div className='flex justify-center'>
 						{/*전체 크기 개발 이후에 변경 필요*/}
 						<div className='md:w-[768px] w-full h-auto border border-gray'>
-							{children}
+							<StyledComponentsRegistry>{children}</StyledComponentsRegistry>
 						</div>
 					</div>
 				</RecoilRootWrapper>
