@@ -85,7 +85,7 @@ export default function ModalLayout({
 				<Text size='lg' fontWeight='bold'>
 					{title}
 				</Text>
-				<div className='mb-[30px]' />
+				<div className={variant === 'large' ? 'mb-[20px]' : 'mb-[30px]'} />
 				{children}
 			</motion.div>
 		</Background>
