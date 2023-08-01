@@ -32,7 +32,7 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
         {/*가게 추천받기 white버전*/}
         <div className="w-[155px] h-[40px] bg-white rounded-[15px] flex items-center border-lightGray border-[1px]">
           <img src={`recommendImg.svg`} />
-          <p className="font-Regular text-[12px] text-darkGray">
+          <p className="font-Regular text-[12px] text-darkGray mt-[2px]">
             가게 추천받기
           </p>
         </div>
@@ -55,7 +55,7 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
       <>
         {/*메뉴 추천받기 white버전*/}
         <div className="w-[155px] h-[40px] bg-white rounded-[15px] flex items-center justify-between border-lightGray border-[1px] overflow-hidden">
-          <p className="font-Regular text-[12px] text-darkGray ml-5">
+          <p className="font-Regular text-[12px] text-darkGray ml-5 mt-[2px]">
             메뉴 추천받기
           </p>
           <img src={`foodBarImg.svg`} />
@@ -69,7 +69,9 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
         {/*내 좋아요 컴포넌트*/}
         <div className="w-[155px] h-[40px] bg-white rounded-[15px] flex items-center justify-between border-lightGray border-[1px] px-5">
           <img src={`heartWoman.svg`} className="h-[36px] mt-1.4" />
-          <p className="font-Regular text-[12px] text-darkGray">내 좋아요</p>
+          <p className="font-Regular text-[12px] text-darkGray mt-[2px]">
+            내 좋아요
+          </p>
         </div>
       </>
     );
@@ -79,7 +81,9 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
       <>
         {/*내 활동 컴포넌트*/}
         <div className="w-[155px] h-[40px] bg-white rounded-[15px] flex items-center justify-between border-lightGray border-[1px] px-5">
-          <p className="font-Regular text-[12px] text-darkGray">내 활동</p>
+          <p className="font-Regular text-[12px] text-darkGray mt-[2px]">
+            내 활동
+          </p>
           <img src={`smartPhone.svg`} className="h-[36px] mt-1.4" />
         </div>
       </>

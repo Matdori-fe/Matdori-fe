@@ -15,6 +15,7 @@ const Home = ({ searchParams }: Props) => {
   const { modal, sortModal } = searchParams;
 
   return (
+<<<<<<< HEAD
     <div>
       <Header
         right="roundButton"
@@ -87,6 +88,24 @@ const Home = ({ searchParams }: Props) => {
       <MenuModal showModal={modal} href="/" />
       <SortModal showModal={sortModal} href="/" />
     </div>
+=======
+    <>
+      Home
+      <SmallButtonBar type="redStoreRecommend" />
+      <SmallButtonBar type="whiteStoreRecommend" />
+      <SmallButtonBar type="redMenuRecommend" />
+      <SmallButtonBar type="whiteMenuRecommend" />
+      <SmallButtonBar type="myLike" />
+      <SmallButtonBar type="myActivity" />
+      <Review
+        title="미련한 컴공"
+        content="이건 댓글. 니가 뭔데 가메이를 혼자 알려고 함? ㅋㅋㅋ"
+        writeDay="23/04/20 22:22"
+        heartCount={5}
+      />
+      <NavigationBar />
+    </>
+>>>>>>> 1b34eef ([MATDORI-54] design: Review CSS 완료)
   );
 };
 
