@@ -1,4 +1,5 @@
 // TODO: width 반응형 설정 필요
+// TODO: onChange 연결 필요
 
 export default function TextArea() {
 	return (
