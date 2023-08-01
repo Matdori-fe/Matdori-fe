@@ -29,11 +29,8 @@
     "react-simple-toast": "^1.0.10",
     "react-simple-toasts": "^5.5.0",
     "recoil": "^0.7.7",
-<<<<<<< HEAD
     "styled-components": "^6.0.5",
-=======
     "recoil-persist": "^5.1.0",
->>>>>>> 2483b57 ([MATDORI-54] feature: recoilPersist 기능 추가)
     "typescript": "5.1.6"
   },
   "devDependencies": {
@@ -46,6 +43,7 @@
     "@storybook/nextjs": "^7.2.0",
     "@storybook/react": "^7.1.1",
     "@storybook/testing-library": "^0.2.0",
+    "@svgr/webpack": "^8.0.1",
     "autoprefixer": "^10.4.14",
     "eslint-plugin-storybook": "^0.6.13",
     "husky": "^8.0.3",
