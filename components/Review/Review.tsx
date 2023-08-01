@@ -23,7 +23,7 @@ const Review: React.FC<ReviewType> = ({
 
   return (
     <>
-      <div className="w-full h-[73.89px] border-b-[1.5px] border-lightGray mt-[13px]">
+      <div className="w-full h-auto border-b-[1.5px] border-lightGray mt-[13px] pb-[10px]">
         <div className="flex items-center justify-between">
           <p className="font-SemiBold text-[14px]">{title}</p>
           <div className="flex">
@@ -41,7 +41,7 @@ const Review: React.FC<ReviewType> = ({
             <FiMoreVertical className="w-[12px] h-[12px] ml-[5px]" />
           </div>
         </div>
-        <p className="font-Regular text-[12px] text-darkGray mt-[5px] mb-[3px]">
+        <p className="font-Regular text-[12px] text-darkGray mt-[5px] mb-[3px] mr-[7px]">
           {content}{" "}
         </p>
         <div className="flex items-center">

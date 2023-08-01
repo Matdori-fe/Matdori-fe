@@ -3,6 +3,7 @@ import { useState } from "react";
 // 사용법 => <Input width="400px" height="40px" placeHolder="뭐 좀 입력해봐"/>
 // info에 width, height, placeHolder 값 입력하면 됨. 추가 css를 원하면 className에 tailWind적용해주세요.
 // 안하면 default값으로 들어감.
+// TODO - Input컴포들 체크해서 추가할 사항 세현이한테 물어보자. 지금꺼는 약간 재사용성 떨어짐
 
 type InputType = {
   width?: string;
