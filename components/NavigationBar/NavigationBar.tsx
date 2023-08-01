@@ -15,6 +15,7 @@ import {
 import { useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
 import { NavigationAtom } from "@/app/status/NavigationAtom";
+import { useEffect, useState } from "react";
 
 const NavigationBar: React.FC = () => {
   // 하단 바에 대한 state => true면 그 페이지로 이동
@@ -23,6 +24,10 @@ const NavigationBar: React.FC = () => {
   console.log(navigationState);
   const router = useRouter();
 
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
   //input: click한 컴포넌트의 번호 (배열의 인덱스 번호와 동일)
   function clickFun(clickComponent: number): void {
     let changeArr = new Array(4).fill(false);
@@ -46,77 +51,85 @@ const NavigationBar: React.FC = () => {
   return (
     <>
       <div className="w-full h-auto flex justify-around border-t border-lightGray pt-[10px] fixed bottom-5">
-        {/*홈 컴포넌트*/}
-        <div
-          className="w-[24px] h-[39px] flex flex-wrap justify-center items-center"
-          onClick={() => clickFun(0)}
-        >
-          {navigationState[0] === true ? (
-            <>
-              <RiHome5Fill className="w-[24px] h-[24px] text-100" />
-              <p className="font-Regular text-100">홈</p>
-            </>
-          ) : (
-            <>
-              <RiHome5Line className="w-[24px] h-[24px] text-darkGray" />
-              <p className="font-Regular text-darkGray">홈</p>
-            </>
-          )}
-        </div>
+        {loaded ? (
+          <>
+            {/*홈 컴포넌트*/}
+            <div
+              className="w-[24px] h-[39px] flex flex-wrap justify-center items-center"
+              onClick={() => clickFun(0)}
+            >
+              {navigationState[0] === true ? (
+                <>
+                  <RiHome5Fill className="w-[24px] h-[24px] text-100" />
+                  <p className="font-Regular text-100">홈</p>
+                </>
+              ) : (
+                <>
+                  <RiHome5Line className="w-[24px] h-[24px] text-darkGray" />
+                  <p className="font-Regular text-darkGray">홈</p>
+                </>
+              )}
+            </div>
 
-        {/*검색 컴포넌트*/}
-        <div
-          className="w-[28px] h-[39px] flex flex-wrap justify-center items-center"
-          onClick={() => clickFun(1)}
-        >
-          {navigationState[1] === true ? (
-            <>
-              <RiSearch2Fill className="w-[24px] h-[24px] text-100" />
-              <p className="font-Regular text-100 whitespace-nowrap">검색</p>
-            </>
-          ) : (
-            <>
-              <RiSearch2Line className="w-[24px] h-[24px] text-darkGray" />
-              <p className="font-Regular text-darkGray">검색</p>
-            </>
-          )}
-        </div>
+            {/*검색 컴포넌트*/}
+            <div
+              className="w-[28px] h-[39px] flex flex-wrap justify-center items-center"
+              onClick={() => clickFun(1)}
+            >
+              {navigationState[1] === true ? (
+                <>
+                  <RiSearch2Fill className="w-[24px] h-[24px] text-100" />
+                  <p className="font-Regular text-100 whitespace-nowrap">
+                    검색
+                  </p>
+                </>
+              ) : (
+                <>
+                  <RiSearch2Line className="w-[24px] h-[24px] text-darkGray" />
+                  <p className="font-Regular text-darkGray">검색</p>
+                </>
+              )}
+            </div>
 
-        {/*족보 컴포넌트*/}
-        <div
-          className="w-[28px] h-[39px] flex flex-wrap justify-center items-center"
-          onClick={() => clickFun(2)}
-        >
-          {navigationState[2] === true ? (
-            <>
-              <RiBook3Fill className="w-[24px] h-[24px] text-100" />
-              <p className="font-Regular text-100">족보</p>
-            </>
-          ) : (
-            <>
-              <RiBook3Line className="w-[24px] h-[24px] text-darkGray" />
-              <p className="font-Regular text-darkGray">족보</p>
-            </>
-          )}
-        </div>
+            {/*족보 컴포넌트*/}
+            <div
+              className="w-[28px] h-[39px] flex flex-wrap justify-center items-center"
+              onClick={() => clickFun(2)}
+            >
+              {navigationState[2] === true ? (
+                <>
+                  <RiBook3Fill className="w-[24px] h-[24px] text-100" />
+                  <p className="font-Regular text-100">족보</p>
+                </>
+              ) : (
+                <>
+                  <RiBook3Line className="w-[24px] h-[24px] text-darkGray" />
+                  <p className="font-Regular text-darkGray">족보</p>
+                </>
+              )}
+            </div>
 
-        {/*My 컴포넌트*/}
-        <div
-          className="w-[24px] h-[39px] flex flex-wrap justify-center items-center"
-          onClick={() => clickFun(3)}
-        >
-          {navigationState[3] === true ? (
-            <>
-              <RiUser2Fill className="w-[24px] h-[24px] text-100" />
-              <p className="font-Regular text-100">My</p>
-            </>
-          ) : (
-            <>
-              <RiUser2Line className="w-[24px] h-[24px] text-darkGray" />
-              <p className="font-Regular text-darkGray">My</p>
-            </>
-          )}
-        </div>
+            {/*My 컴포넌트*/}
+            <div
+              className="w-[24px] h-[39px] flex flex-wrap justify-center items-center"
+              onClick={() => clickFun(3)}
+            >
+              {navigationState[3] === true ? (
+                <>
+                  <RiUser2Fill className="w-[24px] h-[24px] text-100" />
+                  <p className="font-Regular text-100">My</p>
+                </>
+              ) : (
+                <>
+                  <RiUser2Line className="w-[24px] h-[24px] text-darkGray" />
+                  <p className="font-Regular text-darkGray">My</p>
+                </>
+              )}
+            </div>
+          </>
+        ) : (
+          <>loading</>
+        )}
       </div>
     </>
   );

@@ -91,38 +91,6 @@ const Home = ({ searchParams }: Props) => {
 =======
     <>
       Home
-      <SmallButtonBar type="redStoreRecommend" />
-      <SmallButtonBar type="whiteStoreRecommend" />
-      <SmallButtonBar type="redMenuRecommend" />
-      <SmallButtonBar type="whiteMenuRecommend" />
-      <SmallButtonBar type="myLike" />
-      <SmallButtonBar type="myActivity" />
-      <Review
-        title="미련한 컴공"
-        content="이건 댓글. 니가 뭔데 가메이를 혼자 알려고 함? ㅋㅋㅋ이건 댓글. 니가 뭔데 가메이를 혼자 알려고 함? ㅋㅋㅋ이건 댓글. 니가 뭔데 가메이를 혼자 알려고 함? ㅋㅋㅋ이건 댓글. 니가 뭔데 가메이를 혼자 알려고 함? ㅋㅋㅋ이건 댓글. 니가 뭔데 가메이를 혼자 알려고 함? ㅋㅋㅋ이건 댓글. 니가 뭔데 가메이를 혼자 알려고 함? ㅋㅋㅋ "
-        writeDay="23/04/20 22:22"
-        heartCount={5}
-      />
-      <Input width="400px" height="40px" placeHolder="뭐 좀 입력해봐" />
-      <BigTitle
-        sideComponent={
-          <>
-            <SmallButtonBar type="myActivity" />
-          </>
-        }
-      >
-        큰 제목
-      </BigTitle>
-      <SmallTitle
-        sideComponent={
-          <>
-            <SmallButtonBar type="myActivity" />
-          </>
-        }
-      >
-        큰 제목
-      </SmallTitle>
-      <HorizonBar className="border-t-[5px]" />
       <NavigationBar />
     </>
 >>>>>>> 1b34eef ([MATDORI-54] design: Review CSS 완료)
