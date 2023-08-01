@@ -18,7 +18,9 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
         {/*가게 추천받기 red버전*/}
         <div className="w-[155px] h-[40px] bg-100 rounded-[15px] flex items-center">
           <img src={`recommendImg.svg`} />
-          <p className="font-Bold text-[14px] text-white">가게 추천받기</p>
+          <p className="font-Bold text-[14px] text-white relative right-1.5">
+            가게 추천받기
+          </p>
         </div>
       </>
     );
