@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil';
 import Text from '../Text/Text';
-import { SelectTabAtom, SelectTabVariant } from '@/app/status/SelectBarAtom';
+import { SelectTabAtom, SelectTabVariant } from '@/app/status/SelectTabAtom';
 import { motion } from 'framer-motion';
 import { styled } from 'styled-components';
 
