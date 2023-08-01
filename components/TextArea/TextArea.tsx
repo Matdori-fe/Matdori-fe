@@ -4,7 +4,7 @@
 export default function TextArea() {
 	return (
 		<textarea
-			className='w-full border border-lightGray rounded-basic py-[10px] px-[12px] resize-none placeholder-gray'
+			className='sm:w-[calc(412px-40px)] w-full border border-lightGray rounded-basic py-[10px] px-[12px] resize-none placeholder-gray'
 			placeholder='내용을 작성해주세요.'
 		></textarea>
 	);
