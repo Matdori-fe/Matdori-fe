@@ -10,7 +10,7 @@ export default function Gage({ score }: { score: number }) {
 	return (
 		<StyledGage
 			score={score}
-			className='absolute h-[4px] bg-100 rounded-basic'
+			className='absolute h-[4px] bg-80 rounded-basic'
 		/>
 	);
 }
