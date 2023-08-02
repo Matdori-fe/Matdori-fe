@@ -32,7 +32,7 @@ export default async function StatusBar({
 	// const testData = await fetchData();
 
 	return (
-		<div className='w-[121px] h-[42px] border border-gray'>
+		<div className='w-[121px] h-[42px]'>
 			{testRatingList.map((name, i) => (
 				<div className='flex justify-between' key={name}>
 					<Text size='xxs' color='darkGray' fontWeight='normal'>
