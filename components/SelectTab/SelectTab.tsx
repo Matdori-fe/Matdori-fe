@@ -1,8 +1,9 @@
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import Text from '../Text/Text';
 import { SelectTabAtom, SelectTabVariant } from '@/app/status/SelectTabAtom';
 import { motion } from 'framer-motion';
 import { styled } from 'styled-components';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface SelectBarProps {
 	variant: SelectTabVariant;
@@ -23,37 +24,38 @@ const Underline = styled(motion.div)<{
 `;
 
 export default function SelectTab({ variant }: SelectBarProps) {
-	const [tab, setTab] = useRecoilState(SelectTabAtom(variant));
+	const router = useRouter();
+	const searchParams = useSearchParams();
+	const tab = searchParams.get('tab');
+	const section = searchParams.get('section');
+	console.log(tab);
+	console.log(section);
 
-	const handleSelected = (e: React.MouseEvent<HTMLLIElement>) => {
-		setTab(({ variant, lists, selected }) => ({
-			variant,
-			lists,
-			selected: e.currentTarget.innerText,
-		}));
-	};
+	const sectionList = useRecoilValue(SelectTabAtom(tab));
+	console.log(sectionList);
 
 	return (
 		<div className='sm:w-[412px] w-full border-b-[2px] py-[13px] border-gray'>
 			<ul className='flex'>
-				{tab.lists.map((name) => (
+				{sectionList.map(({ id, name }) => (
 					<li
-						key={name}
+						key={id}
 						className='relative flex justify-center grow'
-						onClick={(e) => handleSelected(e)}
+						onClick={() => router.push(`/?tab=${tab}&section=${id}`)}
 					>
 						<Text
 							size='sm'
 							fontWeight='bold'
-							color={tab.selected === name ? '100' : 'gray'}
+							color={section === id ? '100' : 'gray'}
 						>
 							{name}
+							<div></div>
 						</Text>
-						{tab.selected === name && (
+						{section === id && (
 							<Underline
-								listLength={tab.lists.length}
+								listLength={sectionList.length}
 								layoutId='underline'
-								className='absolute border-b-[2px] border-100 top-[34px]'
+								className='absolute border-b-[2px] border-100 top-[34px] w-full'
 							/>
 						)}
 					</li>
