@@ -1,3 +1,5 @@
+'use client';
+
 import { useRecoilState, useRecoilValue } from 'recoil';
 import Text from '../Text/Text';
 import { SelectTabAtom, SelectTabVariant } from '@/app/status/SelectTabAtom';
@@ -8,10 +10,6 @@ import { useRouter, useSearchParams } from 'next/navigation';
 interface SelectBarProps {
 	variant: SelectTabVariant;
 }
-
-const StarWrapper = styled.div<{ score: number }>`
-	width: ${(props) => props.score * 12}px;
-`;
 
 const Underline = styled(motion.div)<{
 	listLength: number;
@@ -28,11 +26,9 @@ export default function SelectTab({ variant }: SelectBarProps) {
 	const searchParams = useSearchParams();
 	const tab = searchParams.get('tab');
 	const section = searchParams.get('section');
-	console.log(tab);
-	console.log(section);
 
+	// FIXME: ~ 형식의 인수는 어쩌고
 	const sectionList = useRecoilValue(SelectTabAtom(tab));
-	console.log(sectionList);
 
 	return (
 		<div className='sm:w-[412px] w-full border-b-[2px] py-[13px] border-gray'>
