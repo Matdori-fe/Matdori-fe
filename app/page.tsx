@@ -17,6 +17,8 @@ const Home = ({ searchParams }: Props) => {
 
 =======
 // NOTE:
+"use client";
+import { useState } from "react";
 import NavigationBar from "@/components/NavigationBar/NavigationBar";
 import { RecoilRoot } from "recoil";
 import Review from "@/components/Review/Review";
@@ -30,8 +32,14 @@ import SmallButtonBar from "@/components/Button/SmallButton";
 import HorizonBar from "@/components/HorizonBar/HorizonBar";
 import ImageBox from "@/components/ImageBox/ImageBox";
 import JokboInfo from "@/components/JokboInfo/JokboInfo";
+
 const Home = () => {
+<<<<<<< HEAD
 >>>>>>> 2271613 ([MATDORI-54] feat:input박스 left,right컴포 수정)
+=======
+  const [goTime, setGoTime] = useState<boolean>(false);
+
+>>>>>>> b993270 ([MATDORI-54] feat:Input FiveMinTimer 생성)
   return (
 <<<<<<< HEAD
     <div>
@@ -110,12 +118,20 @@ const Home = () => {
     <>
       <div className="w-full h-[500px] bg-white">
         <Input
-          inputSize="big"
+          inputSize="small"
           placeHolder="뭐좀 입력해봐!"
           left="back"
-          right="cancel"
+          right="fiveMinTimer"
+          goTime={goTime}
         />
       </div>
+      <button
+        onClick={() => {
+          setGoTime(!goTime);
+        }}
+      >
+        타이머 시작
+      </button>
       <NavigationBar />
     </>
 >>>>>>> 1b34eef ([MATDORI-54] design: Review CSS 완료)

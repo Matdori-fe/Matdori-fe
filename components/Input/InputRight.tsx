@@ -1,5 +1,5 @@
+"use client";
 import { RiCloseFill, RiSendPlane2Fill } from "react-icons/ri";
-
 type Right = {
   cancel: React.ReactNode;
   redArrow: React.ReactNode;

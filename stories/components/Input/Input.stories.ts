@@ -17,6 +17,9 @@ type Story = StoryObj<typeof Input>;
 
 export const Basic: Story = {
   args: {
-    placeHolder: "뭐 좀 입력해봐",
+    inputSize: "small",
+    placeHolder: "뭐좀 입력해봐!",
+    left: "back",
+    right: "cancel",
   },
 };
