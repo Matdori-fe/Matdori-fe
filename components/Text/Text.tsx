@@ -3,6 +3,7 @@ interface TextProps {
 	color?: string;
 	fontWeight?: 'normal' | 'medium' | 'semibold' | 'bold';
 	children: React.ReactNode;
+	className?: string;
 }
 
 type Type = {
@@ -47,9 +48,12 @@ export default function Text({
 	color = 'black',
 	fontWeight = 'normal',
 	children,
+	className,
 }: TextProps) {
 	return (
-		<p className={`${Size[size]} ${Color[color]} ${FontWeight[fontWeight]} `}>
+		<p
+			className={`mt-[1px] ${Size[size]} ${Color[color]} ${FontWeight[fontWeight]} ${className}`}
+		>
 			{children}
 		</p>
 	);

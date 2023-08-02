@@ -22,14 +22,15 @@ module.exports = {
 				darkGray: '#595959',
 				blue: '#54A3FF',
 				transparent: 'rgba(89, 89, 89, 0.50)',
+				yellow: '#FFD600',
 			},
 			fontFamily: {
 				// 폰트 설정 => (font-이름) 으로 적용
 				Light: ['Pretendard-Light'],
 				Regular: ['Pretendard'],
 				Bold: ['Pretendard-Bold'],
-				SemiBold:['Pretendard-Semibold'],
-				Medium:['Pretendard-Medium']
+				SemiBold: ['Pretendard-Semibold'],
+				Medium: ['Pretendard-Medium'],
 			},
 			fontSize: {
 				xxs: '0.5625rem',
