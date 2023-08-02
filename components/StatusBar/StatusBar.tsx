@@ -1,17 +1,5 @@
-// import { styled } from 'styled-components';
-
 import Text from '../Text/Text';
 import Gage from './Gage';
-
-// const Gage = styled.div<{
-// 	listLength: number;
-// 	layoutId: string;
-// 	className: string;
-// }>`
-// 	@media (min-width: 412px) {
-// 		width: calc(412px / ${({ listLength }) => listLength});
-// 	}
-// `;
 
 interface StatusBarProps {
 	cleanRating: number;
@@ -19,39 +7,40 @@ interface StatusBarProps {
 	underPricedRating: number;
 }
 
+// FIXME: Refactoring
+function NormalGage({ name, score }: { name: string; score: number }) {
+	return (
+		<div className='flex justify-between' key={name}>
+			<Text size='xxs' color='darkGray' fontWeight='normal'>
+				{name}
+			</Text>
+			<div className='flex items-center gap-[10px] '>
+				<div className='w-[60px] h-[4px] bg-lightGray rounded-basic' />
+				<Gage score={score} />
+				<Text
+					size='xxs'
+					color='darkGray'
+					fontWeight='medium'
+					className='w-[16px] flex justify-center'
+				>
+					{score}
+				</Text>
+			</div>
+		</div>
+	);
+}
+// TODO: async를 함수 이름앞에 적어줘야 fetch할 수 있다.
 // TODO: 이 점수를 서버에서 직접 가져오는게 될까?
-export default async function StatusBar({
+export default function StatusBar({
 	flavorRating,
 	underPricedRating,
 	cleanRating,
 }: StatusBarProps) {
-	const testRatingList = ['음식 맛', '가성비', '청결'];
-
-	// TODO: test 데이터 다 지우기
-	const testNumber = [1.1, 2.2, 4.4];
-	// const testData = await fetchData();
-
 	return (
 		<div className='w-[121px] h-[42px]'>
-			{testRatingList.map((name, i) => (
-				<div className='flex justify-between' key={name}>
-					<Text size='xxs' color='darkGray' fontWeight='normal'>
-						{name}
-					</Text>
-					<div className='flex items-center gap-[10px] '>
-						<div className='w-[60px] h-[4px] bg-lightGray rounded-basic' />
-						<Gage score={testNumber[i]} />
-						<Text
-							size='xxs'
-							color='darkGray'
-							fontWeight='medium'
-							className='w-[16px] flex justify-center'
-						>
-							{testNumber[i]}
-						</Text>
-					</div>
-				</div>
-			))}
+			<NormalGage name='음식 맛' score={flavorRating} />
+			<NormalGage name='가성비' score={underPricedRating} />
+			<NormalGage name='청결' score={cleanRating} />
 		</div>
 	);
 }
