@@ -2,9 +2,9 @@ import { atom, atomFamily } from 'recoil';
 
 const selectList = {
 	shop: [
-		{ id: 'info', kr: '정보' },
-		{ id: 'menu', kr: '메뉴' },
-		{ id: 'jokbo', kr: '족보' },
+		{ id: 'info', name: '정보' },
+		{ id: 'menu', name: '메뉴' },
+		{ id: 'jokbo', name: '족보' },
 	],
 	mypage: [
 		{ id: 'myjokbo', name: '내 족보' },
