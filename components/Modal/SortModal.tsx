@@ -1,10 +1,10 @@
 "use client";
+import { AnimatePresence } from 'framer-motion';
+import ModalLayout from './ModalLayout';
+import { SelectedSortAtom, SortListAtom } from '@/app/status/SortAtom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRouter } from 'next/navigation';
 
-import { AnimatePresence } from "framer-motion";
-import ModalLayout from "./ModalLayout";
-import { SelectedSortAtom, SortListAtom } from "@/app/status/sortAtom";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { useRouter } from "next/navigation";
 
 export default function SortModal({
   showModal,

@@ -8,15 +8,18 @@ initialize();
 
 
 const preview: Preview = {
-  parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/,
-      },
-    },
-  },
+	parameters: {
+		nextjs: {
+			appDirectory: true,
+		},
+		actions: { argTypesRegex: '^on[A-Z].*' },
+		controls: {
+			matchers: {
+				color: /(background|color)$/i,
+				date: /Date$/,
+			},
+		},
+	},
 };
 
 // NOTE: recoil과 storybook 함께 사용
