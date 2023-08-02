@@ -4,12 +4,7 @@ const Home = () => {
   return (
     <>
       Home
-      <Input
-        inputSize="small"
-        placeHolder="입력해주세요."
-        left="back"
-        right="cancel"
-      />
+      <Input inputSize="big" placeHolder="입력해주세요." left="back" />
     </>
   );
 };
