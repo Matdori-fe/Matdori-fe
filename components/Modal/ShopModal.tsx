@@ -2,7 +2,7 @@
 
 import { AnimatePresence } from 'framer-motion';
 import ModalLayout from './ModalLayout';
-import { SelectedSortAtom, SortListAtom } from '@/app/status/sortAtom';
+import { SelectedSortAtom, SortListAtom } from '@/app/status/SortAtom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useRouter } from 'next/navigation';
 import logo from '../../assets/image/logo.svg';
