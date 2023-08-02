@@ -1,55 +1,65 @@
+"use client";
 import { useState } from "react";
-
-// 사용법 => <Input width="400px" height="40px" placeHolder="뭐 좀 입력해봐"/>
-// info에 width, height, placeHolder 값 입력하면 됨. 추가 css를 원하면 className에 tailWind적용해주세요.
-// 안하면 default값으로 들어감.
-// TODO - Input컴포들 체크해서 추가할 사항 세현이한테 물어보자. 지금꺼는 약간 재사용성 떨어짐
+import leftContent from "./InputLeft";
+import rightContent from "./InputRight";
+type InputSize = "small" | "big";
+type LeftKind = "lense" | "back";
+type RightKind = "cancel" | "redArrow" | "studentNumEmail";
 
 type InputType = {
-  width?: string;
-  height?: string;
+  inputSize: InputSize;
   placeHolder?: string;
-  className?: string;
+  left?: LeftKind;
+  right?: RightKind;
 };
 
 const Input: React.FC<InputType> = ({
-  width,
-  height,
+  inputSize,
   placeHolder,
-  className,
+  left,
+  right,
 }) => {
-  const info: InputType = { width, height, placeHolder };
+  // input에 들어갈 값을 받아줄 state
+  const [inputValue, setInputValue] = useState("");
 
-  const [isFocused, setIsFocused] = useState(false);
-
-  // Input Default 값
-  const defaultInputSize: InputType = {
-    width: "320px",
-    height: "40px",
-    placeHolder: "",
-  };
-
-  // 기본 값과 info props를 병합하여 최종 스타일과 플레이스홀더 설정
-  const mergedInputSize: InputType = { ...defaultInputSize, ...info };
-
-  // 스타일 객체 생성
-  const inputStyle = {
-    width: mergedInputSize.width,
-    height: mergedInputSize.height,
-    borderRadius: "15px",
-    paddingLeft: "20px",
-    boxShadow: isFocused ? "0px 2px 0px rgba(0, 0, 0, 0.2)" : "none",
-  };
-
+  //제일 상위 박스 CSS 정의
+  var boxCSS = "";
+  if (inputSize === "small") {
+    boxCSS =
+      "w-[500px] md:w-[320px] h-[40px] bg-lightGray flex justify-between rounded-xl px-[20px] flex items-center";
+  } else {
+    boxCSS =
+      "w-[500px] md:w-[320px] h-[100px] bg-lightGray flex justify-between rounded-xl px-[20px] flex items-center";
+  }
   return (
     <>
-      <input
-        style={inputStyle}
-        placeholder={mergedInputSize.placeHolder}
-        className={`bg-lightGray text-black placeholder-gray ${className}`}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-      />
+      <div className={boxCSS}>
+        <div className="flex items-center">
+          {left === "lense" ? leftContent.lense : <></>}
+          {left === "back" ? leftContent.back : <></>}
+          <input
+            className={`bg-lightGray text-black placeholder-gray rounded-xl w-[300px]`}
+            value={inputValue}
+            placeholder={placeHolder}
+            onChange={(e) => {
+              setInputValue(e.target.value);
+            }}
+          />
+        </div>
+        {right === "cancel" ? (
+          <div
+            onClick={() => {
+              setInputValue("");
+            }}
+          >
+            {rightContent.cancel}
+          </div>
+        ) : (
+          <></>
+        )}
+        {right === "redArrow" ? rightContent.redArrow : <></>}
+        {right === "studentNumEmail" ? rightContent.studentNumEmail : <></>}
+      </div>
     </>
   );
 };

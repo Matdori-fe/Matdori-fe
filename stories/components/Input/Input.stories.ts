@@ -17,8 +17,6 @@ type Story = StoryObj<typeof Input>;
 
 export const Basic: Story = {
   args: {
-    width: "400px",
-    height: "40px",
     placeHolder: "뭐 좀 입력해봐",
   },
 };
