@@ -28,8 +28,9 @@ const Input: React.FC<InputType> = ({
   //제일 상위 박스 CSS 정의
   var boxCSS = "";
   if (inputSize === "small") {
+    //sm:w-[412px] w-full h-[60px] flex items-center px-4
     boxCSS =
-      "w-full sm:w-[380px] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-[20px]";
+      "w-full ssm:w-[320px] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4";
   } else if (inputSize === "big") {
     boxCSS =
       "w-full md:w-[340px] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-[20px]";
@@ -37,11 +38,11 @@ const Input: React.FC<InputType> = ({
   return (
     <>
       <div className={boxCSS}>
-        <div className="flex items-center">
+        <div className="flex items-center w-11/12">
           {left === "lense" ? leftContent.lense : null}
           {left === "back" ? leftContent.back : null}
           <input
-            className={`h-[40px] bg-lightGray text-black placeholder-gray rounded-xl w-[300px]`}
+            className={`w-full h-[40px] bg-lightGray text-black placeholder-gray rounded-xl`}
             value={inputValue}
             placeholder={placeHolder}
             onChange={(e) => {
