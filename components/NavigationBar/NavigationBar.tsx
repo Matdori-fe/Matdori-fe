@@ -20,10 +20,11 @@ const NavigationBar: React.FC = () => {
   useEffect(() => {
     setTabValue(key);
   }, [key]);
+  //sm:w-[412px] w-full h-[60px] flex items-center px-4
 
   return (
     <>
-      <div className="w-full h-auto flex justify-around border-t border-lightGray pt-[10px] fixed bottom-5">
+      <div className="w-full sm:w-[412px] h-[65px] flex justify-around border-t border-x border-lightGray pt-[10px] fixed bottom-0">
         <>
           {/*홈 컴포넌트*/}
           <Link

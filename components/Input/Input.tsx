@@ -28,7 +28,6 @@ const Input: React.FC<InputType> = ({
   //제일 상위 박스 CSS 정의
   var boxCSS = "";
   if (inputSize === "small") {
-    //sm:w-[412px] w-full h-[60px] flex items-center px-4
     boxCSS =
       "w-full ssm:w-[320px] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4";
   } else if (inputSize === "big") {
