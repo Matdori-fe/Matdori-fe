@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import Background from '@/components/Background/Background';
+import type { Meta, StoryObj } from "@storybook/react";
+import Background from "@/components/Background/Background";
 
 const meta: Meta<typeof Background> = {
-	title: 'Test/Background',
-	component: Background,
-	tags: ['autodocs'],
+  title: "Test/Background",
+  component: Background,
+  tags: ["autodocs"],
 };
 
 export default meta;

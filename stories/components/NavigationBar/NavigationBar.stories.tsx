@@ -1,4 +1,6 @@
 "use client";
+import type { Meta, StoryObj } from "@storybook/react";
+
 import {
   RiHome5Line,
   RiHome5Fill,
@@ -20,11 +22,10 @@ const NavigationBar: React.FC = () => {
   useEffect(() => {
     setTabValue(key);
   }, [key]);
-  //sm:w-[412px] w-full h-[60px] flex items-center px-4
 
   return (
     <>
-      <div className="w-full sm:w-[412px] h-[65px] flex justify-around border-t border-x border-lightGray pt-[10px] fixed bottom-0">
+      <div className="w-full h-auto flex justify-around border-t border-lightGray pt-[10px] fixed bottom-5">
         <>
           {/*홈 컴포넌트*/}
           <Link
@@ -100,4 +101,15 @@ const NavigationBar: React.FC = () => {
   );
 };
 
-export default NavigationBar;
+const meta: Meta<typeof NavigationBar> = {
+  title: "Test/NavigationBar",
+  component: NavigationBar,
+  tags: ["autodocs"],
+};
+
+export default meta;
+type Story = StoryObj<typeof NavigationBar>;
+
+export const Basic: Story = {
+  args: {},
+};

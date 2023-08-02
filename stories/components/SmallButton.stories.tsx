@@ -1,3 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/react";
+import RecommendSVG from "../assets/recommendimg.svg";
+import FoodBar from "../assets/foodBarImg.svg";
+import SmartPhone from "../assets/smartPhone.svg";
+import HeartWoman from "../assets/heartWoman.svg";
 // props=> type: redStoreRecommend | whiteStoreRecommend | redMenuRecommend | whiteMenuRecommend
 // myLike | myActivity
 
@@ -17,7 +22,7 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
       <>
         {/*가게 추천받기 red버전*/}
         <div className="w-[155px] h-[40px] bg-100 rounded-[15px] flex items-center">
-          <img src={`recommendImg.svg`} />
+          <RecommendSVG />
           <p className="font-Bold text-[14px] text-white relative right-1.5">
             가게 추천받기
           </p>
@@ -31,7 +36,7 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
       <>
         {/*가게 추천받기 white버전*/}
         <div className="w-[155px] h-[40px] bg-white rounded-[15px] flex items-center border-lightGray border-[1px]">
-          <img src={`recommendImg.svg`} />
+          <RecommendSVG />
           <p className="font-Regular text-[12px] text-darkGray mt-[2px]">
             가게 추천받기
           </p>
@@ -45,7 +50,7 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
         {/* 메뉴 추천받기 red버전*/}
         <div className="w-[155px] h-[40px] bg-100 rounded-[15px] flex items-center justify-between overflow-hidden">
           <p className="font-Bold text-[14px] text-white ml-4">메뉴 추천받기</p>
-          <img src={`foodBarImg.svg`} />
+          <FoodBar />
         </div>
       </>
     );
@@ -58,7 +63,7 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
           <p className="font-Regular text-[12px] text-darkGray ml-5 mt-[2px]">
             메뉴 추천받기
           </p>
-          <img src={`foodBarImg.svg`} />
+          <FoodBar />
         </div>
       </>
     );
@@ -68,7 +73,7 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
       <>
         {/*내 좋아요 컴포넌트*/}
         <div className="w-[155px] h-[40px] bg-white rounded-[15px] flex items-center justify-between border-lightGray border-[1px] px-5">
-          <img src={`heartWoman.svg`} className="h-[36px] mt-1.4" />
+          <HeartWoman />
           <p className="font-Regular text-[12px] text-darkGray mt-[2px]">
             내 좋아요
           </p>
@@ -84,7 +89,7 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
           <p className="font-Regular text-[12px] text-darkGray mt-[2px]">
             내 활동
           </p>
-          <img src={`smartPhone.svg`} className="h-[36px] mt-1.4" />
+          <SmartPhone />
         </div>
       </>
     );
@@ -93,4 +98,49 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
   return <>잘못된 type 입력</>;
 };
 
-export default SmallButtonBar;
+const meta: Meta<typeof SmallButtonBar> = {
+  title: "Test/SmallButtonBar",
+  component: SmallButtonBar,
+  tags: ["autodocs"],
+};
+
+export default meta;
+
+// props=> type: redStoreRecommend | whiteStoreRecommend | redMenuRecommend | whiteMenuRecommend
+type Story = StoryObj<typeof SmallButtonBar>;
+
+export const redStoreRecommend: Story = {
+  args: {
+    type: "redStoreRecommend",
+  },
+};
+
+export const whiteStoreRecommend: Story = {
+  args: {
+    type: "whiteStoreRecommend",
+  },
+};
+
+export const redMenuRecommend: Story = {
+  args: {
+    type: "redMenuRecommend",
+  },
+};
+
+export const whiteMenuRecommend: Story = {
+  args: {
+    type: "whiteMenuRecommend",
+  },
+};
+
+export const myLike: Story = {
+  args: {
+    type: "myLike",
+  },
+};
+
+export const myActivity: Story = {
+  args: {
+    type: "myActivity",
+  },
+};

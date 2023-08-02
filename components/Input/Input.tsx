@@ -1,51 +1,69 @@
+"use client";
 import { useState } from "react";
-
-// 사용법 => <Input width="400px" height="40px" placeHolder="뭐 좀 입력해봐"/>
-// info에 width, height, placeHolder 값 입력하면 됨. 추가 css를 원하면 className에 tailWind적용해주세요.
-// 안하면 default값으로 들어감.
+import leftContent from "./InputLeft";
+import rightContent from "./InputRight";
+import FiveMinTimer from "./Timer";
+type InputSize = "small" | "big";
+type LeftKind = "lense" | "back";
+type RightKind = "cancel" | "redArrow" | "studentNumEmail" | "fiveMinTimer";
 
 type InputType = {
-  width?: string;
-  height?: string;
+  inputSize: InputSize;
   placeHolder?: string;
-  className?:string;
+  left?: LeftKind;
+  right?: RightKind;
+  goTime?: boolean;
 };
 
-const Input: React.FC<InputType> = ({width,height,placeHolder,className}) => {
-  
-  const info:InputType = {width, height, placeHolder}
+const Input: React.FC<InputType> = ({
+  inputSize,
+  placeHolder,
+  left,
+  right,
+  goTime = false,
+}) => {
+  // input에 들어갈 값을 받아줄 state
+  const [inputValue, setInputValue] = useState("");
 
-  const [isFocused, setIsFocused] = useState(false);
-
-  // Input Default 값
-  const defaultInputSize: InputType = {
-    width: "320px",
-    height: "40px",
-    placeHolder: ""
-  };
-
-  // 기본 값과 info props를 병합하여 최종 스타일과 플레이스홀더 설정
-  const mergedInputSize: InputType = { ...defaultInputSize, ...info };
-
-  // 스타일 객체 생성
-  const inputStyle = {
-    width: mergedInputSize.width,
-    height: mergedInputSize.height,
-    backgroundColor: 'lightgray',
-    borderRadius: '15px',
-    paddingLeft: '30px',
-    boxShadow: isFocused ? "0px 2px 0px rgba(0, 0, 0, 0.2)" : "none",
-  };
-
+  //제일 상위 박스 CSS 정의
+  var boxCSS = "";
+  if (inputSize === "small") {
+    boxCSS =
+      "w-full ssm:w-[320px] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4";
+  } else if (inputSize === "big") {
+    boxCSS =
+      "w-full lm:w-[340px] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4";
+  }
   return (
     <>
-      <input
-        style={inputStyle} 
-        placeholder={mergedInputSize.placeHolder}
-        className={`${className}`}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-      />
+      <div className={boxCSS}>
+        <div className="flex items-center w-11/12">
+          {left === "lense" ? leftContent.lense : null}
+          {left === "back" ? leftContent.back : null}
+          <input
+            className={`w-full h-[40px] bg-lightGray text-black placeholder-gray rounded-xl`}
+            value={inputValue}
+            placeholder={placeHolder}
+            onChange={(e) => {
+              setInputValue(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          {right === "cancel" ? (
+            <div
+              onClick={() => {
+                setInputValue("");
+              }}
+            >
+              {rightContent.cancel}
+            </div>
+          ) : null}
+          {right === "redArrow" ? rightContent.redArrow : null}
+          {right === "studentNumEmail" ? rightContent.studentNumEmail : null}
+          {right === "fiveMinTimer" ? <FiveMinTimer goTime={goTime} /> : null}
+        </div>
+      </div>
     </>
   );
 };

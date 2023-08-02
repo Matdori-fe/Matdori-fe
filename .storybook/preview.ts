@@ -6,6 +6,7 @@ import RecoilRootWrapper from '../utils/RecoilRootWrapper';
 
 initialize();
 
+
 const preview: Preview = {
 	parameters: {
 		nextjs: {
