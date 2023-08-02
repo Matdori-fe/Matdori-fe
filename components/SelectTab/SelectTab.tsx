@@ -21,7 +21,7 @@ const Underline = styled(motion.div)<{
 	}
 `;
 
-export default function SelectTab({ variant }: SelectBarProps) {
+export default function SelectTab() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const tab = searchParams.get('tab');
