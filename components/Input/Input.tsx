@@ -15,6 +15,7 @@ type InputType = {
   left?: LeftKind;
   right?: RightKind;
   goTime?: boolean;
+  onChange?: (value: string) => void;
 };
 
 const Input: React.FC<InputType> = ({
@@ -23,6 +24,7 @@ const Input: React.FC<InputType> = ({
   left,
   right,
   goTime = false,
+  onChange,
 }) => {
   // input에 들어갈 값을 받아줄 state
   const [inputValue, setInputValue] = useState("");
@@ -31,13 +33,13 @@ const Input: React.FC<InputType> = ({
   var boxCSS = "";
   if (inputSize === "small") {
     boxCSS =
-      "w-full ssm:w-[calc(320px)] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4";
+      "w-[78%] sm:w-[calc(320px)] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4";
   } else if (inputSize === "big") {
     boxCSS =
-      "w-full lm:w-[340px] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4";
+      "w-[80%] sm:w-[calc(340px)] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4";
   }
   return (
-    <>
+    <div className="flex justify-center w-full">
       <div className={boxCSS}>
         <div className="flex items-center w-11/12">
           {left === "lense" ? leftContent.lense : null}
@@ -48,6 +50,10 @@ const Input: React.FC<InputType> = ({
             placeholder={placeHolder}
             onChange={(e) => {
               setInputValue(e.target.value);
+              // 콜백 함수 호출하여 입력 값 외부로 전달
+              if (onChange) {
+                onChange(e.target.value);
+              }
             }}
           />
         </div>
@@ -56,6 +62,10 @@ const Input: React.FC<InputType> = ({
             <div
               onClick={() => {
                 setInputValue("");
+                // 콜백 함수 호출하여 입력 값 외부로 빈 값 전달
+                if (onChange) {
+                  onChange("");
+                }
               }}
             >
               {rightContent.cancel}
@@ -65,7 +75,7 @@ const Input: React.FC<InputType> = ({
           {right === "fiveMinTimer" ? <FiveMinTimer goTime={goTime} /> : null}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
