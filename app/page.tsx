@@ -10,13 +10,28 @@ import StarRate from "@/components/StarRate/StarRate";
 import TextArea from "@/components/TextArea/TextArea";
 import SelectTab from "@/components/SelectTab/SelectTab";
 import StatusBar from "@/components/StatusBar/StatusBar";
-
+import Input from "@/components/Input/Input";
 type Props = {
   searchParams: Record<string, string> | null | undefined;
 };
 
 const Home = ({ searchParams }: Props) => {
-  return <div></div>;
+  return (
+    <div>
+      <Input
+        inputSize="small"
+        left="back"
+        placeHolder="뭐좀 입력해봐!"
+        right="cancel"
+      />
+      <Input
+        inputSize="big"
+        left="back"
+        placeHolder="뭐좀 입력해봐!"
+        right="cancel"
+      />
+    </div>
+  );
 };
 
 export default Home;
