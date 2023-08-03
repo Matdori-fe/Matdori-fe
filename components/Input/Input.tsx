@@ -3,9 +3,11 @@ import { useState } from "react";
 import leftContent from "./InputLeft";
 import rightContent from "./InputRight";
 import FiveMinTimer from "./Timer";
+
+// Input에 props로 줄 값 제한
 type InputSize = "small" | "big";
 type LeftKind = "lense" | "back";
-type RightKind = "cancel" | "redArrow" | "studentNumEmail" | "fiveMinTimer";
+type RightKind = "cancel" | "redArrow" | "fiveMinTimer";
 
 type InputType = {
   inputSize: InputSize;
@@ -60,7 +62,6 @@ const Input: React.FC<InputType> = ({
             </div>
           ) : null}
           {right === "redArrow" ? rightContent.redArrow : null}
-          {right === "studentNumEmail" ? rightContent.studentNumEmail : null}
           {right === "fiveMinTimer" ? <FiveMinTimer goTime={goTime} /> : null}
         </div>
       </div>
