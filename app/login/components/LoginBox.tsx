@@ -3,12 +3,16 @@ import Input from "@/components/Input/Input";
 import SmallTitle from "@/components/Title/SmallTitle";
 import Button from "@/components/Button/Button";
 import RoundButton from "@/components/RoundButton/RoundButton";
-import { use, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import { UserAtom } from "@/app/status/UserAtom";
+import { useRouter } from "next/navigation";
+import Toast from "@/components/Toast/Toast";
+
+const pattern = /(inha\.edu|inha\.ac\.kr)$/;
 
 const LoginBox: React.FC = () => {
   const [id, setId] = useState<string>("");
@@ -16,8 +20,9 @@ const LoginBox: React.FC = () => {
 
   const [user, setUser] = useRecoilState(UserAtom);
 
+  const router = useRouter();
+
   const handleIdChange = (value: string) => {
-    console.log(user);
     setId(value);
   };
 
@@ -27,20 +32,29 @@ const LoginBox: React.FC = () => {
 
   //로그인 실행 함수
   const loginFun = (): void => {
-    axios
-      .post(`${process.env.NEXT_PUBLIC_API}/login`, {
-        email: id,
-        password: password,
-      })
-      .then((response) => {
-        console.log(response);
-        if (response.status === 200) {
-          setUser(response.data.result.data);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (id === "") {
+      Toast("아이디를 입력해주세요.");
+    } else if (!pattern.test(id)) {
+      Toast("유효하지 않은 이메일 형식입니다.");
+    } else if (password === "") {
+      Toast("비밀번호를 입력해주세요.");
+    } else {
+      axios
+        .post(`${process.env.NEXT_PUBLIC_API}/login`, {
+          email: id,
+          password: password,
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.status === 200) {
+            setUser(response.data.result.data);
+            router.push("/");
+          }
+        })
+        .catch((error) => {
+          Toast(error.response.data.resultCode);
+        });
+    }
   };
 
   return (
