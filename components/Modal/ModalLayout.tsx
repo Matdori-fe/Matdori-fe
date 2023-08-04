@@ -65,9 +65,9 @@ export default function ModalLayout({
 				dragMomentum={false}
 				// 자식으로 전파 방지
 				onClick={(e) => e.stopPropagation()}
-				className={`relative  md:w-[768px] w-full ${
+				className={`relative w-full ${
 					variant === 'large' ? 'h-[514px]' : 'h-[400px]'
-				} bg-white rounded-t-basic p-[20px] pt-[11px] flex flex-col items-center justify-start`}
+				} bg-white rounded-t-basic pt-[11px] flex flex-col items-center justify-start`}
 				transition={{ duration: 0.5, ease: 'easeInOut' }}
 				initial={{ y: 400 }}
 				animate={{ y: 0 }}
@@ -86,7 +86,9 @@ export default function ModalLayout({
 					{title}
 				</Text>
 				<div className={variant === 'large' ? 'mb-[20px]' : 'mb-[30px]'} />
-				{children}
+				<div className='flex flex-col sm:w-[412px] w-full px-[20px]'>
+					{children}
+				</div>
 			</motion.div>
 		</Background>
 	);
