@@ -86,7 +86,7 @@ const LoginBox: React.FC = () => {
       <Input
         inputSize="small"
         placeHolder="비밀번호를 입력해주세요."
-        right="cancel"
+        right="fiveMinTimer"
         onChange={handlePasswordChange}
       />
 

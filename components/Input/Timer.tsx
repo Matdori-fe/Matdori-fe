@@ -31,13 +31,9 @@ const FiveMinTimer: React.FC<TimerBoolean> = ({ goTime }) => {
   return (
     <>
       {goTime === true ? (
-        <div className="text-100 font-Medium mr-[10px]">
-          {showTime(seconds)}
-        </div>
+        <div className="text-100 font-Medium">{showTime(seconds)}</div>
       ) : (
-        <div className="text-gray font-Medium mr-[10px]">
-          {showTime(seconds)}
-        </div>
+        <div className="text-gray font-Medium">{showTime(seconds)}</div>
       )}
     </>
   );
