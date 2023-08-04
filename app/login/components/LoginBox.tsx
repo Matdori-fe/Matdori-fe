@@ -65,6 +65,7 @@ const LoginBox: React.FC = () => {
         inputSize="small"
         placeHolder="학번을 입력해주세요."
         right="cancel"
+        type="email"
         onChange={handleIdChange}
       />
       <div className="w-full ml-[20px]">
@@ -86,7 +87,8 @@ const LoginBox: React.FC = () => {
       <Input
         inputSize="small"
         placeHolder="비밀번호를 입력해주세요."
-        right="fiveMinTimer"
+        right="cancel"
+        type="password"
         onChange={handlePasswordChange}
       />
 

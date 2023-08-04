@@ -10,6 +10,7 @@ type LeftKind = "lense" | "back";
 type RightKind = "cancel" | "redArrow" | "fiveMinTimer";
 
 type InputType = {
+  type?: string;
   inputSize: InputSize;
   placeHolder?: string;
   left?: LeftKind;
@@ -19,6 +20,7 @@ type InputType = {
 };
 
 const Input: React.FC<InputType> = ({
+  type = "text",
   inputSize,
   placeHolder,
   left,
@@ -47,6 +49,7 @@ const Input: React.FC<InputType> = ({
           <input
             className={`w-full h-[40px] bg-lightGray text-black placeholder-gray rounded-xl text-[14px] font-Medium`}
             value={inputValue}
+            type={type}
             placeholder={placeHolder}
             onChange={(e) => {
               setInputValue(e.target.value);
