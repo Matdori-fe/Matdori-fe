@@ -3,21 +3,35 @@ import Input from "@/components/Input/Input";
 import SmallTitle from "@/components/Title/SmallTitle";
 import Button from "@/components/Button/Button";
 import { useState } from "react";
+import Link from "next/link";
+import { AiOutlineArrowRight } from "react-icons/ai";
+import axios from "axios";
 
 const Login: React.FC = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const handleIdChange = (value: string) => {
-    // 학번 입력 값 변경시 이 함수가 호출됩니다.
-    console.log("학번 입력 값:", value);
-    // 이곳에서 받아온 입력 값을 원하는 로직으로 처리할 수 있습니다.
+    setId(value);
   };
 
   const handlePasswordChange = (value: string) => {
-    // 비밀번호 입력 값 변경시 이 함수가 호출됩니다.
-    console.log("비밀번호 입력 값:", value);
-    // 이곳에서 받아온 입력 값을 원하는 로직으로 처리할 수 있습니다.
+    setPassword(value);
+  };
+
+  //로그인 실행 함수
+  const loginFun = (): void => {
+    axios
+      .post(`${process.env.NEXT_PUBLIC_API}/login`, {
+        email: id,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -29,17 +43,24 @@ const Login: React.FC = () => {
         <p className="w-fit font-Bold text-[15px] text-100">MATDORI</p>
       </div>
 
-      <div className="w-full ml-[40px]">
-        <SmallTitle className="mb-3">학번 이메일</SmallTitle>
+      <div className="w-full ml-[40px] mb-3">
+        <SmallTitle className="ml-2">학번 이메일</SmallTitle>
       </div>
+
       <Input
         inputSize="small"
         placeHolder="학번을 입력해주세요."
         right="cancel"
         onChange={handleIdChange}
       />
+      <div className="w-full ml-[40px]">
+        <div className="font-SemiBold text-[12px] text-100 ml-2 mt-2">
+          학교 메일: @inha.ac.kr | @inha.edu
+        </div>
+      </div>
+
       <div className="w-full ml-[40px] mt-4">
-        <SmallTitle className="mb-3">비밀번호</SmallTitle>
+        <SmallTitle className="mb-3 ml-2">비밀번호</SmallTitle>
       </div>
       <Input
         inputSize="small"
@@ -47,6 +68,21 @@ const Login: React.FC = () => {
         right="cancel"
         onChange={handlePasswordChange}
       />
+
+      <div className="flex mt-20 mb-16">
+        <p className="font-Regular text-[12px] text-darkGray mr-3">
+          아직 회원이 아니신가요?
+        </p>
+        <Link
+          href={"/signup"}
+          className="font-Regular text-[12px] text-100 flex"
+        >
+          회원가입
+          <AiOutlineArrowRight className="text-[14px] mt-[1.5px] ml-[1px]" />
+        </Link>
+      </div>
+
+      <button onClick={loginFun}>로그인 실행</button>
     </div>
   );
 };

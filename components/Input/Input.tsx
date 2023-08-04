@@ -36,7 +36,7 @@ const Input: React.FC<InputType> = ({
       "w-[78%] sm:w-[calc(320px)] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4";
   } else if (inputSize === "big") {
     boxCSS =
-      "w-[80%] sm:w-[calc(340px)] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4";
+      "w-[82%] sm:w-[calc(340px)] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4";
   }
   return (
     <div className="flex justify-center w-full">
@@ -45,7 +45,7 @@ const Input: React.FC<InputType> = ({
           {left === "lense" ? leftContent.lense : null}
           {left === "back" ? leftContent.back : null}
           <input
-            className={`w-full h-[40px] bg-lightGray text-black placeholder-gray rounded-xl`}
+            className={`w-full h-[40px] bg-lightGray text-black placeholder-gray rounded-xl text-[14px] font-Medium`}
             value={inputValue}
             placeholder={placeHolder}
             onChange={(e) => {
