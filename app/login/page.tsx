@@ -69,7 +69,7 @@ const Login: React.FC = () => {
         onChange={handlePasswordChange}
       />
 
-      <div className="flex mt-20 mb-16">
+      <div className="flex mt-20 mb-24">
         <p className="font-Regular text-[12px] text-darkGray mr-3">
           아직 회원이 아니신가요?
         </p>
@@ -82,7 +82,14 @@ const Login: React.FC = () => {
         </Link>
       </div>
 
-      <button onClick={loginFun}>로그인 실행</button>
+      <Button
+        label="로그인"
+        onClick={() => {
+          loginFun();
+        }}
+        variant="active"
+        modal={false}
+      />
     </div>
   );
 };
