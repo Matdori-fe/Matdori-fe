@@ -10,7 +10,7 @@ export default function Background({
 	return (
 		<div
 			onClick={onClick}
-			className={`fixed md:w-[768px] w-full h-full bg-transparent z-1 top-0 ${className} flex items-end`}
+			className={`fixed w-screen h-full bg-transparent z-1 top-0 left-0 ${className} flex items-end`}
 		>
 			{children}
 		</div>
