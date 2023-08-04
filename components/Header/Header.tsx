@@ -21,8 +21,8 @@ interface HeaderProps {
 
 export default function Header({ left, right, title }: HeaderProps) {
 	return (
-		<div className='flex justify-center'>
-			<div className='sm:w-[412px] w-full h-[60px] flex items-center px-4 gap-3.5 [&_p]:flex-1 fixed top-0 bg-white [&+*]:mt-[60px]'>
+		<div className='flex justify-center [&+*]:mt-[60px]'>
+			<div className='sm:w-[412px] w-full h-[60px] flex items-center px-4 gap-3.5 [&_p]:flex-1 fixed top-0 bg-white'>
 				<HeaderLeft left={left} />
 				<Text size='lg' fontWeight='bold'>
 					{title}
