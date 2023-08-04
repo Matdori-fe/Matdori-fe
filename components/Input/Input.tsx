@@ -33,10 +33,10 @@ const Input: React.FC<InputType> = ({
   var boxCSS = "";
   if (inputSize === "small") {
     boxCSS =
-      "w-[320px] sm:w-[calc(100%-92px)] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4 mx-[46px]";
+      "w-[372px] sm:w-[calc(100%-40px)] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4 mx-[20px]";
   } else if (inputSize === "big") {
     boxCSS =
-      "w-[340px] sm:w-[calc(100%-82px)] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4 mx-[41px]";
+      "w-[392px] sm:w-[calc(100%-20px)] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4 mx-[10px]";
   }
   return (
     <div className="flex justify-center w-full">
