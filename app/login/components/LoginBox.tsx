@@ -7,11 +7,17 @@ import { use, useState } from "react";
 import Link from "next/link";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import axios from "axios";
+import { useRecoilState } from "recoil";
+import { UserAtom } from "@/app/status/UserAtom";
 
 const LoginBox: React.FC = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const [user, setUser] = useRecoilState(UserAtom);
+
   const handleIdChange = (value: string) => {
+    console.log(user);
     setId(value);
   };
 
@@ -28,6 +34,9 @@ const LoginBox: React.FC = () => {
       })
       .then((response) => {
         console.log(response);
+        if (response.status === 200) {
+          setUser(response.data.result.data);
+        }
       })
       .catch((error) => {
         console.log(error);

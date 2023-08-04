@@ -31,6 +31,7 @@
     "react-simple-toast": "^1.0.10",
     "react-simple-toasts": "^5.5.0",
     "recoil": "^0.7.7",
+    "recoil-persist": "^5.1.0",
     "styled-components": "^6.0.5",
     "typescript": "5.1.6"
   },
