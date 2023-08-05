@@ -20,6 +20,9 @@ type InputType = {
 	onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 	leftOnClick?: () => void;
 	rightOnClick?: () => void;
+	value: string;
+	onClick?: () => void;
+	inputmode?: string;
 };
 
 const Input: React.FC<InputType> = ({
@@ -31,6 +34,9 @@ const Input: React.FC<InputType> = ({
 	leftOnClick,
 	rightOnClick,
 	onChange,
+	value,
+	onClick,
+	inputmode,
 }) => {
 	// input에 들어갈 값을 받아줄 state
 	const [inputValue, setInputValue] = useState('');
@@ -39,13 +45,13 @@ const Input: React.FC<InputType> = ({
 	var boxCSS = '';
 	if (inputSize === 'small') {
 		boxCSS =
-			'w-[372px] sm:w-[calc(100%-40px)] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4 mx-[20px]';
+			'w-[372px] sm:w-[calc(100%)] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4';
 	} else if (inputSize === 'big') {
 		boxCSS =
 			'w-[392px] sm:w-[calc(100%-20px)] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4 mx-[10px]';
 	}
 	return (
-		<div className='flex justify-center w-full'>
+		<div className='flex justify-center w-full' onClick={onClick}>
 			<div className={boxCSS}>
 				<div className='flex items-center w-11/12'>
 					{left === 'lense' ? (
@@ -53,8 +59,9 @@ const Input: React.FC<InputType> = ({
 					) : null}
 					{left === 'back' ? leftContent.back : null}
 					<input
+						inputmode={inputmode}
 						className={`w-full h-[40px] bg-lightGray text-black placeholder-gray rounded-xl text-[14px] font-Medium`}
-						value={inputValue}
+						value={value}
 						type={type}
 						placeholder={placeHolder}
 						onChange={(e) => {
