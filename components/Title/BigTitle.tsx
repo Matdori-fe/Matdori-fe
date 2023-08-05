@@ -12,9 +12,9 @@ const BigTitle: React.FunctionComponent<childrenProps> = ({
   className,
 }) => {
   return (
-    <div className={`w-full flex justify-between items-center	 ${className}`}>
+    <div className={`w-full flex justify-between items-center ${className}`}>
       <p className={`font-Bold text-[18px]`}>{children}</p>
-      {sideComponent}
+      {sideComponent ? sideComponent : <div> </div>}
     </div>
   );
 };
