@@ -28,7 +28,8 @@ const Home = ({ searchParams }: Props) => {
         inputSize="big"
         left="back"
         placeHolder="뭐좀 입력해봐!"
-        right="cancel"
+        right="fiveMinTimer"
+        goTime={true}
       />
     </div>
   );
