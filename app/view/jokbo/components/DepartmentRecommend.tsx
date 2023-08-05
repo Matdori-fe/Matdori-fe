@@ -1,4 +1,5 @@
 "use client";
+import sadIcon from "../../../../public/sadIcon.svg";
 import { useRecoilValue } from "recoil";
 import { UserAtom } from "@/app/status/UserAtom";
 import { useState, useEffect } from "react";
@@ -34,45 +35,51 @@ const DepartMentRecommened: React.FC = () => {
       <Text size="xs" color="gray" fontWeight="medium">
         우리 학과 사람들이 가장 많이 찾는 맛도리만 모아봤어요.
       </Text>
-      <div className="w-full flex overflow-x-scroll mt-3">
-        <div className="flex">
-          <SmallStoreComponent
-            storeIndex={0}
-            name="가메이"
-            imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-            totalRating={4.9}
-            kind="starScore"
-          />
-          <SmallStoreComponent
-            storeIndex={0}
-            name="가메이"
-            imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-            totalRating={4.9}
-            kind="starScore"
-          />
-          <SmallStoreComponent
-            storeIndex={0}
-            name="가메이"
-            imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-            totalRating={4.9}
-            kind="starScore"
-          />
-          <SmallStoreComponent
-            storeIndex={0}
-            name="가메이"
-            imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-            totalRating={4.9}
-            kind="starScore"
-          />
-          <SmallStoreComponent
-            storeIndex={0}
-            name="가메이"
-            imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-            totalRating={4.9}
-            kind="starScore"
-          />
+      {list.length === 1 ? (
+        <>
+          <img src={"/NoData.svg"} />
+        </>
+      ) : (
+        <div className="w-full flex overflow-x-scroll mt-3">
+          <div className="flex">
+            <SmallStoreComponent
+              storeIndex={0}
+              name="가메이"
+              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+              totalRating={4.9}
+              kind="starScore"
+            />
+            <SmallStoreComponent
+              storeIndex={0}
+              name="가메이"
+              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+              totalRating={4.9}
+              kind="starScore"
+            />
+            <SmallStoreComponent
+              storeIndex={0}
+              name="가메이"
+              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+              totalRating={4.9}
+              kind="starScore"
+            />
+            <SmallStoreComponent
+              storeIndex={0}
+              name="가메이"
+              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+              totalRating={4.9}
+              kind="starScore"
+            />
+            <SmallStoreComponent
+              storeIndex={0}
+              name="가메이"
+              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+              totalRating={4.9}
+              kind="starScore"
+            />
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

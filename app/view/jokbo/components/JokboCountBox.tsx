@@ -1,9 +1,21 @@
 "use client";
 import Text from "@/components/Text/Text";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const JokboCountBox: React.FC = () => {
-  const [count, setCount] = useState(132);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API}/jokbo-count`)
+      .then((response) => {
+        setCount(response.data.result.count);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   return (
     <>
