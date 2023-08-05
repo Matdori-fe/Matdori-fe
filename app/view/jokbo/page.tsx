@@ -1,6 +1,7 @@
 import JokboTitle from "./components/JokboTitle";
 import JokboCountBox from "./components/JokboCountBox";
 import DepartMentRecommened from "./components/DepartmentRecommend";
+import PopularJokbo from "./components/PopularJokbo";
 
 const Jokbo = () => {
   return (
@@ -8,6 +9,7 @@ const Jokbo = () => {
       <JokboTitle />
       <JokboCountBox />
       <DepartMentRecommened />
+      <PopularJokbo />
     </div>
   );
 };

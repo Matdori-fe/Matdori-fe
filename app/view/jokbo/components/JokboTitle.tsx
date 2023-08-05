@@ -10,7 +10,7 @@ const SearchBtn: React.FC = () => {
   );
 };
 
-const JokboTitle = () => {
+const JokboTitle: React.FC = () => {
   return (
     <BigTitle className="mt-[48px]" sideComponent={<SearchBtn />}>
       맛도리 족보
