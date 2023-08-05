@@ -18,6 +18,8 @@ type InputType = {
   left?: LeftKind;
   right?: RightKind;
   onChange?: (value: string) => void;
+  leftOnClick?: () => void;
+  rightOnClick?: () => void;
 };
 
 const Input: React.FC<InputType> = ({
@@ -26,6 +28,8 @@ const Input: React.FC<InputType> = ({
   placeHolder,
   left,
   right,
+  leftOnClick,
+  rightOnClick,
   onChange,
 }) => {
   // input에 들어갈 값을 받아줄 state
@@ -44,7 +48,9 @@ const Input: React.FC<InputType> = ({
     <div className="flex justify-center w-full">
       <div className={boxCSS}>
         <div className="flex items-center w-11/12">
-          {left === "lense" ? leftContent.lense : null}
+          {left === "lense" ? (
+            <div onClick={leftOnClick}>{leftContent.lense}</div>
+          ) : null}
           {left === "back" ? leftContent.back : null}
           <input
             className={`w-full h-[40px] bg-lightGray text-black placeholder-gray rounded-xl text-[14px] font-Medium`}
@@ -74,8 +80,10 @@ const Input: React.FC<InputType> = ({
               {rightContent.cancel}
             </div>
           ) : null}
-          {right === "redArrow" ? rightContent.redArrow : null}
-          {right === "fiveMinTimer" ? <FiveMinTimer goTime={goTime} /> : null}
+          {right === "redArrow" ? (
+            <div onClick={rightOnClick}>{rightContent.redArrow}</div>
+          ) : null}
+          {right === "fiveMinTimer" ? <FiveMinTimer /> : null}
         </div>
       </div>
     </div>
