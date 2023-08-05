@@ -11,6 +11,7 @@ import { useRecoilState } from "recoil";
 import { UserAtom } from "@/app/status/UserAtom";
 import { useRouter } from "next/navigation";
 import Toast from "@/components/Toast/Toast";
+import { ChangeEvent } from "react";
 
 const pattern = /(inha\.edu|inha\.ac\.kr)$/;
 
@@ -22,12 +23,12 @@ const LoginBox: React.FC = () => {
 
   const router = useRouter();
 
-  const handleIdChange = (value: string) => {
-    setId(value);
+  const handleIdChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setId(e.target.value);
   };
 
-  const handlePasswordChange = (value: string) => {
-    setPassword(value);
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
   };
 
   //로그인 실행 함수

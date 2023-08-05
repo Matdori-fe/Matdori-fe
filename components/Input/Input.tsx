@@ -5,7 +5,7 @@ import rightContent from "./InputRight";
 import FiveMinTimer from "./Timer";
 import { IsGoTimer } from "@/app/status/TimerAtom";
 import { useRecoilValue } from "recoil";
-
+import { ChangeEvent } from "react";
 // Input에 props로 줄 값 제한
 type InputSize = "small" | "big";
 type LeftKind = "lense" | "back";
@@ -17,7 +17,7 @@ type InputType = {
   placeHolder?: string;
   left?: LeftKind;
   right?: RightKind;
-  onChange?: (value: string) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   leftOnClick?: () => void;
   rightOnClick?: () => void;
 };
@@ -61,7 +61,7 @@ const Input: React.FC<InputType> = ({
               setInputValue(e.target.value);
               // 콜백 함수 호출하여 입력 값 외부로 전달
               if (onChange) {
-                onChange(e.target.value);
+                onChange(e);
               }
             }}
           />
@@ -69,11 +69,13 @@ const Input: React.FC<InputType> = ({
         <div>
           {right === "cancel" ? (
             <div
-              onClick={() => {
+              onClick={(e) => {
                 setInputValue("");
-                // 콜백 함수 호출하여 입력 값 외부로 빈 값 전달
                 if (onChange) {
-                  onChange("");
+                  //값을 초기화
+                  onChange({
+                    target: { value: "" },
+                  } as ChangeEvent<HTMLInputElement>);
                 }
               }}
             >
