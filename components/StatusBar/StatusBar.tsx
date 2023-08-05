@@ -44,6 +44,7 @@ export default function StatusBar({
 		</div>
 	);
 }
+// REFACTOR: 
 
 // export async function fetchData() {
 // 	const res = await fetch(`${process.env.MATDORI_API}/stores/20/info-header`, {

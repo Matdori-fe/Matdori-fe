@@ -1,4 +1,4 @@
-import { modalState } from '@/app/status/modalAtom';
+import { modalState } from '@/app/status/ModalAtom';
 import { useRecoilState } from 'recoil';
 
 type OpenModalType = {
