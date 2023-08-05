@@ -1,19 +1,24 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { TimerAtom } from "@/app/status/TimerAtom";
+import { IsGoTimer } from "@/app/status/TimerAtom";
 
-type TimerBoolean = {
-  goTime: boolean;
-};
-
-const FiveMinTimer: React.FC<TimerBoolean> = ({ goTime }) => {
+const FiveMinTimer: React.FC = () => {
   //5분을 세주는 타이머 => state는 초 기준, 5분은 300초
-  const [seconds, setSeconds] = useState<number>(300);
+  const [seconds, setSeconds] = useRecoilState(TimerAtom);
   //true:측정 시작, false면 측정 안함
+  const [goTime, setGoTime] = useRecoilState(IsGoTimer);
 
   useEffect(() => {
     if (goTime === true) {
       const timer = setInterval(() => {
-        setSeconds((prev) => prev - 1);
+        setSeconds((prev) => {
+          if (prev === 0) {
+            return 0;
+          }
+          return prev - 1;
+        });
       }, 1000);
       return () => clearInterval(timer);
     }
@@ -28,17 +33,21 @@ const FiveMinTimer: React.FC<TimerBoolean> = ({ goTime }) => {
     return minute + ":0" + second;
   }
 
+  const Timer: React.FC = () => {
+    return (
+      <>
+        {goTime === true ? (
+          <div className="text-100 font-Medium">{showTime(seconds)}</div>
+        ) : (
+          <div className="text-gray font-Medium">{showTime(seconds)}</div>
+        )}
+      </>
+    );
+  };
+
   return (
     <>
-      {goTime === true ? (
-        <div className="text-100 font-Medium mr-[10px]">
-          {showTime(seconds)}
-        </div>
-      ) : (
-        <div className="text-gray font-Medium mr-[10px]">
-          {showTime(seconds)}
-        </div>
-      )}
+      <Timer />
     </>
   );
 };

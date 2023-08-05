@@ -19,16 +19,10 @@ const Home = ({ searchParams }: Props) => {
   return (
     <div>
       <Input
-        inputSize="small"
-        left="back"
-        placeHolder="뭐좀 입력해봐!"
-        right="cancel"
-      />
-      <Input
         inputSize="big"
         left="back"
         placeHolder="뭐좀 입력해봐!"
-        right="cancel"
+        right="fiveMinTimer"
       />
     </div>
   );
