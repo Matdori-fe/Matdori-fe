@@ -2,21 +2,22 @@
 import { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { TimerAtom } from "@/app/status/TimerAtom";
+import { IsGoTimer } from "@/app/status/TimerAtom";
 type TimerBoolean = {
   goTime: boolean;
 };
 
-const FiveMinTimer: React.FC<TimerBoolean> = ({ goTime }) => {
+const FiveMinTimer: React.FC<TimerBoolean> = () => {
   //5분을 세주는 타이머 => state는 초 기준, 5분은 300초
   const [seconds, setSeconds] = useRecoilState(TimerAtom);
   //true:측정 시작, false면 측정 안함
+  const [goTime, setGoTime] = useRecoilState(IsGoTimer);
 
   useEffect(() => {
     if (goTime === true) {
       const timer = setInterval(() => {
         setSeconds((prev) => {
           if (prev === 0) {
-            goTime = false;
             return 0;
           }
           return prev - 1;

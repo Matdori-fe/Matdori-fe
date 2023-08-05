@@ -3,6 +3,8 @@ import { useState } from "react";
 import leftContent from "./InputLeft";
 import rightContent from "./InputRight";
 import FiveMinTimer from "./Timer";
+import { IsGoTimer } from "@/app/status/TimerAtom";
+import { useRecoilValue } from "recoil";
 
 // Input에 props로 줄 값 제한
 type InputSize = "small" | "big";
@@ -15,7 +17,6 @@ type InputType = {
   placeHolder?: string;
   left?: LeftKind;
   right?: RightKind;
-  goTime?: boolean;
   onChange?: (value: string) => void;
 };
 
@@ -25,12 +26,11 @@ const Input: React.FC<InputType> = ({
   placeHolder,
   left,
   right,
-  goTime = false,
   onChange,
 }) => {
   // input에 들어갈 값을 받아줄 state
   const [inputValue, setInputValue] = useState("");
-
+  const goTime = useRecoilValue(IsGoTimer);
   //제일 상위 박스 CSS 정의
   var boxCSS = "";
   if (inputSize === "small") {
