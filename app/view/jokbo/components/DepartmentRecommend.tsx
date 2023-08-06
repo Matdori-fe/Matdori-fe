@@ -8,7 +8,7 @@ import BigTitle from "@/components/Title/BigTitle";
 import Text from "@/components/Text/Text";
 import SmallStoreComponent from "./StoreCompoents/SmallStoreComponent";
 
-// TODO => list에 값 담아서 map으로 뿌려주는 작업 필요. 지금은 그냥 넣어놓음.
+// FIXME => list에 값 담아서 map으로 뿌려주는 작업 필요. 지금은 그냥 넣어놓음.
 
 const DepartMentRecommened: React.FC = () => {
   const myDepartMent = useRecoilValue(UserAtom).department;
@@ -37,10 +37,11 @@ const DepartMentRecommened: React.FC = () => {
       </Text>
       {list.length === 1 ? (
         <>
+          {/*데이터가 하나도 없을 시 보여줄 부분 => 일단 임의의 이미지 넣어놓음 */}
           <img src={"/NoData.svg"} />
         </>
       ) : (
-        <div className="w-full flex overflow-x-scroll mt-3">
+        <div className="w-full flex overflow-x-scroll mt-3 hide-scroll">
           <div className="flex">
             <SmallStoreComponent
               storeIndex={0}
