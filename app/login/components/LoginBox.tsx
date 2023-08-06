@@ -46,14 +46,21 @@ const LoginBox: React.FC = () => {
           password: password,
         })
         .then((response) => {
-          console.log(response);
           if (response.status === 200) {
             setUser(response.data.result.data);
             router.push("/");
           }
         })
         .catch((error) => {
-          Toast(error.response.data.resultCode);
+          if (error.response.status === 500) {
+            Toast("네트워크 오류");
+          } else if (error.response.status === 401) {
+            Toast("아이디, 비밀번호가 잘못되었습니다.");
+          } else if (error.response.status === 400) {
+            Toast("아이디, 비밀번호가 누락되었습니다.");
+          }
+
+          console.log(error);
         });
     }
   };

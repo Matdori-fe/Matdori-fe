@@ -2,6 +2,7 @@
 import Text from "@/components/Text/Text";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Toast from "@/components/Toast/Toast";
 
 const JokboCountBox: React.FC = () => {
   const [count, setCount] = useState(0);
@@ -13,7 +14,7 @@ const JokboCountBox: React.FC = () => {
         setCount(response.data.result.count);
       })
       .catch((error) => {
-        console.error(error);
+        Toast(error);
       });
   }, []);
 
