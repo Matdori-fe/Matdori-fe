@@ -3,16 +3,20 @@ import JokboCountBox from "./components/JokboCountBox";
 import DepartMentRecommened from "./components/DepartmentRecommend";
 import PopularJokbo from "./components/PopularJokbo";
 import MatdoriPick from "./components/MatdoriPick";
-import { Skeleton } from "antd";
+import JokboManyReview from "./components/StoreCompoents/JokboManyReview";
+import Button from "@/components/Button/Button";
 
 const Jokbo = () => {
   return (
-    <div className="w-full px-[20px] h-[2000px]">
+    <div className="w-full px-[20px] mb-[200px]">
       <JokboTitle />
       <JokboCountBox />
       <DepartMentRecommened />
-      <MatdoriPick />
       <PopularJokbo />
+      <MatdoriPick />
+      <JokboManyReview />
+
+      <Button label="나만의 족보 작성하기" variant="active" modal={false} />
     </div>
   );
 };

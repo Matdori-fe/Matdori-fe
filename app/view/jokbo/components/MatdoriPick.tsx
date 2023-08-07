@@ -35,7 +35,7 @@ const MatdoriPick = () => {
       <Text size="xs" color="gray" fontWeight="medium">
         맛도리에서 추천하는 가게들을 살펴보세요.
       </Text>
-      <div className="w-full flex overflow-x-scroll mt-3 hide-scroll">
+      <div className="w-full flex overflow-x-scroll mt-3 hide-scroll justify-center">
         {loading === true ? (
           <div className="flex">
             <SmallStoreSkeleton />
