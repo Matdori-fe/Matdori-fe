@@ -8,7 +8,7 @@ const SmallStoreSkeleton = () => {
           active
           size={100}
           shape="square"
-          style={{ borderRadius: "8px", marginRight: "1rem" }}
+          style={{ borderRadius: "15px", marginRight: "1rem" }}
         />
 
         <Skeleton
