@@ -15,6 +15,7 @@ const PopularJokbo = () => {
       {/*데이터 불러와서 처리해야됨 => 아직 API 미완성*/}
       <div>
         <BigStoreComponent
+          key={1}
           storeIndex={1}
           name="족보 제목"
           imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
