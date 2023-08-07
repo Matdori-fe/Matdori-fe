@@ -24,7 +24,12 @@ const BigStoreComponent: React.FC<StoreInfo> = ({
     >
       <ImageBox size="large" url={imgUrl} />
       <div className="w-8/12 h-full ml-[10px] mt-7">
-        <Text size="sm" color="black" fontWeight="semibold">
+        <Text
+          size="sm"
+          color="black"
+          fontWeight="semibold"
+          className="line-clamp-1"
+        >
           {name}
         </Text>
         <JokboInfo kind="starScore" count={totalRating} className="mb-1" />

@@ -23,7 +23,12 @@ const SmallStoreComponent: React.FC<StoreInfo> = ({
     <Link href={`/view/jokbo/${storeIndex}`} className="w-[100px] mx-[8px]">
       <ImageBox size="large" url={imgUrl} />
       <div className="flex justify-between px-1 mt-1">
-        <Text size="sm" color="black" fontWeight="semibold">
+        <Text
+          size="sm"
+          color="black"
+          fontWeight="semibold"
+          className="line-clamp-1"
+        >
           {name}
         </Text>
         <JokboInfo count={totalRating} kind={kind} />
