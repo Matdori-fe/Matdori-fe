@@ -3,12 +3,11 @@ import JokboCountBox from "./components/JokboCountBox";
 import DepartMentRecommened from "./components/DepartmentRecommend";
 import PopularJokbo from "./components/PopularJokbo";
 import MatdoriPick from "./components/MatdoriPick";
-import JokboManyReview from "./components/StoreCompoents/JokboManyReview";
-import Button from "@/components/Button/Button";
-
+import JokboManyReview from "./components/JokboManyReview";
+import BottomButton from "./components/BottomButton";
 const Jokbo = () => {
   return (
-    <div className="w-full px-[20px] mb-[200px]">
+    <div className="w-full px-[20px] mb-[160px]">
       <JokboTitle />
       <JokboCountBox />
       <DepartMentRecommened />
@@ -16,7 +15,7 @@ const Jokbo = () => {
       <MatdoriPick />
       <JokboManyReview />
 
-      <Button label="나만의 족보 작성하기" variant="active" modal={false} />
+      <BottomButton />
     </div>
   );
 };
