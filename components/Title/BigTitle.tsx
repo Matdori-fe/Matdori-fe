@@ -12,9 +12,13 @@ const BigTitle: React.FunctionComponent<childrenProps> = ({
   className,
 }) => {
   return (
-    <div className={`w-full flex justify-between items-center ${className}`}>
-      <p className={`font-Bold text-[18px]`}>{children}</p>
-      {sideComponent ? sideComponent : <div> </div>}
+    <div className="flex justify-center w-full">
+      <div
+        className={`w-full sm:w-[calc(100%)] flex justify-between items-center px-4 ${className}`}
+      >
+        <p className={`font-Bold text-[18px]`}>{children}</p>
+        {sideComponent ? sideComponent : <div> </div>}
+      </div>
     </div>
   );
 };

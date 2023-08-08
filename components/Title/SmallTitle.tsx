@@ -6,17 +6,20 @@ type childrenProps = {
   className?: string;
 };
 
+// "w-[372px] sm:w-[calc(100%)] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4";
 const SmallTitle: React.FunctionComponent<childrenProps> = ({
   sideComponent,
   children,
   className,
 }) => {
   return (
-    <div
-      className={`w-[372px] sm:w-[calc(100%)] flex justify-between items-center px-1 ${className}`}
-    >
-      <p className={`font-SemiBold text-[14px]`}>{children}</p>
-      {sideComponent}
+    <div className="flex justify-center w-full">
+      <div
+        className={`w-[412px] sm:w-[calc(100%)] flex justify-between items-center px-4 ${className}`}
+      >
+        <p className={`font-SemiBold text-[14px]`}>{children}</p>
+        {sideComponent}
+      </div>
     </div>
   );
 };
