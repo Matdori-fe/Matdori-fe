@@ -17,7 +17,7 @@ const SmallTitle: React.FunctionComponent<childrenProps> = ({
       <div
         className={`w-[412px] sm:w-[calc(100%)] flex justify-between items-center px-4 ${className}`}
       >
-        <p className={`font-SemiBold text-[14px]`}>{children}</p>
+        <p className={`font-SemiBold text-[14px] line-clamp-1`}>{children}</p>
         {sideComponent}
       </div>
     </div>

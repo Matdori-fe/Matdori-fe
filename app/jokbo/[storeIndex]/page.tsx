@@ -9,7 +9,6 @@ const JokboIntroPage = ({ params }: PageProps) => {
     <>
       <Header left="back" right={["share", "like"]} title="" />
       <StoreInfo storeIndex={params.storeIndex} />
-      {params.storeIndex}
     </>
   );
 };
