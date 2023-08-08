@@ -13,11 +13,13 @@ const SmallTitle: React.FunctionComponent<childrenProps> = ({
   className,
 }) => {
   return (
-    <div
-      className={`w-[372px] sm:w-[calc(100%)] flex justify-between items-center px-1 ${className}`}
-    >
-      <p className={`font-SemiBold text-[14px]`}>{children}</p>
-      {sideComponent}
+    <div className="flex justify-center w-full">
+      <div
+        className={`w-[412px] sm:w-[calc(100%)] flex justify-between items-center px-4 ${className}`}
+      >
+        <p className={`font-SemiBold text-[14px]`}>{children}</p>
+        {sideComponent}
+      </div>
     </div>
   );
 };
