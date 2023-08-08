@@ -1,7 +1,7 @@
 "use client";
 import BigTitle from "@/components/Title/BigTitle";
 import Text from "@/components/Text/Text";
-import SmallStoreComponent from "./SmallStoreComponent";
+import SmallStoreComponent from "./StoreCompoents/SmallStoreComponent";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import SmallStoreSkeleton from "@/app/Skeleton/SmallStoreSkeleton";
