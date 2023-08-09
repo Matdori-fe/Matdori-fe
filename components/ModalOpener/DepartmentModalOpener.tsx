@@ -10,6 +10,7 @@ export default function DepartmentModalOpener() {
 
 	return (
 		<Input
+			readonly=''
 			placeHolder='전공을 선택해주세요.'
 			inputSize='small'
 			value={department}
