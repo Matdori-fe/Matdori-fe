@@ -19,17 +19,7 @@ type Props = {
 const Home = ({ searchParams }: Props) => {
 	const { modal } = searchParams;
 
-	return (
-		<div>
-			<Input
-				inputSize='big'
-				left='back'
-				placeHolder='뭐좀 입력해봐!'
-				right='fiveMinTimer'
-			/>
-			<SortModal showModal={modal} />
-		</div>
-	);
+	return <div>main</div>;
 };
 
 export default Home;

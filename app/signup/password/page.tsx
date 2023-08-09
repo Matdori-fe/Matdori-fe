@@ -1,25 +1,17 @@
 'use client';
 
-import BorderNotification from '@/components/BorderNotification/BorderNotification';
-import HorizonBar from '@/components/HorizonBar/HorizonBar';
 import Input from '@/components/Input/Input';
-import RoundButton from '@/components/RoundButton/RoundButton';
 import SmallTitle from '@/components/Title/SmallTitle';
 import { useEffect, useState } from 'react';
 import CheckNotification from '@/components/CheckNotification/CheckNotification';
 import axios from 'axios';
-import DepartmentModal from '@/components/Modal/DepartmentModal';
-import ShopModal from '@/components/Modal/ShopModal';
 import { Validation, validationNotification } from './passwordValidation';
-import SortButton from '@/components/SortButton/SortButton';
 import Button from '@/components/Button/Button';
 import { useRouter } from 'next/navigation';
-import Header from '@/components/Header/Header';
 import ModalContainer, {
 	modals,
 } from '@/components/ModalContainer/ModalContainer';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { ModalsAtom } from '@/app/status/ModalsAtom';
 import DepartmentModalOpener from '@/components/ModalOpener/DepartmentModalOpener';
 import { useModal } from '@/hooks/useModal';
 import { DepartmentAtom } from '@/app/status/DepartmentAtom';

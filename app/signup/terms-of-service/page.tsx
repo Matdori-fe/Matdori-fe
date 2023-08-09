@@ -1,7 +1,6 @@
 import HorizonBar from '@/components/HorizonBar/HorizonBar';
 import Text from '@/components/Text/Text';
 import SmallTitle from '@/components/Title/SmallTitle';
-import Agree from './Agree';
 import Agrees from './Agrees';
 
 // TODO: api 호출해서 약관 내용 받아오기

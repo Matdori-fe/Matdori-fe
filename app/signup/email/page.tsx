@@ -1,22 +1,17 @@
 'use client';
 
 import BorderNotification from '@/components/BorderNotification/BorderNotification';
-import HorizonBar from '@/components/HorizonBar/HorizonBar';
 import Input from '@/components/Input/Input';
 import RoundButton from '@/components/RoundButton/RoundButton';
 import SmallTitle from '@/components/Title/SmallTitle';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { RegisterEmailAtom } from '../../status/RegisterEmailAtom';
 import { useCallback, useEffect, useState } from 'react';
 import CheckNotification from '@/components/CheckNotification/CheckNotification';
 import axios from 'axios';
-import DepartmentModal from '@/components/Modal/DepartmentModal';
-import ShopModal from '@/components/Modal/ShopModal';
 import Button from '@/components/Button/Button';
 import { IsGoTimer, TimerAtom } from '../../status/TimerAtom';
 import { Validation, validationNotification } from './validation';
-import Background from '@/components/Background/Background';
-import Header from '@/components/Header/Header';
 import { useRouter } from 'next/navigation';
 import Toast from '@/components/Toast/Toast';
 
@@ -81,7 +76,7 @@ export default function Registration({ searchParams }: Props) {
 
 			if (handleTimer === true) setSeconds(300);
 			setHandleTimer(true);
-		} catch (error) {
+		} catch (error: any) {
 			const status = error.response.status;
 
 			// 이메일란이 비어있는 경우
@@ -119,6 +114,7 @@ export default function Registration({ searchParams }: Props) {
 
 			setValid((prev) => ({ ...prev, code: 'valid' }));
 		} catch (error) {
+			console.log(error);
 			// TODO: 잘못된 인증번호 구분
 
 			if (error.response.status === 400) {
@@ -133,7 +129,7 @@ export default function Registration({ searchParams }: Props) {
 				else setValid((prev) => ({ ...prev, code: 'timeOver' }));
 			}
 
-			if (status === 500) {
+			if (error.response.status === 500) {
 				Toast('서버 에러');
 			}
 		}

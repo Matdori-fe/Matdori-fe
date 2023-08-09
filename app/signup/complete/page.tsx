@@ -1,23 +1,5 @@
-import BorderNotification from '@/components/BorderNotification/BorderNotification';
-import HorizonBar from '@/components/HorizonBar/HorizonBar';
-import Input from '@/components/Input/Input';
-import RoundButton from '@/components/RoundButton/RoundButton';
-import SmallTitle from '@/components/Title/SmallTitle';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { RegisterEmailAtom } from '../../status/RegisterEmailAtom';
-import { useCallback, useEffect, useState } from 'react';
-import CheckNotification from '@/components/CheckNotification/CheckNotification';
-import axios from 'axios';
-import DepartmentModal from '@/components/Modal/DepartmentModal';
-import ShopModal from '@/components/Modal/ShopModal';
 import Button from '@/components/Button/Button';
-import { IsGoTimer, TimerAtom } from '../../status/TimerAtom';
-import { Validation, validationNotification } from './validation';
-import Background from '@/components/Background/Background';
-import Header from '@/components/Header/Header';
 import Text from '@/components/Text/Text';
-import AWS from 'aws-sdk';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 export default async function Registration() {
