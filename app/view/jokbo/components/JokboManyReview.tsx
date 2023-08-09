@@ -35,36 +35,37 @@ const JokboManyReview = () => {
         족보가 많은 가게들만 모아서 한 눈에 확인해보세요.
       </Text>
       <div className="w-full flex overflow-x-scroll mt-3 hide-scroll justify-center">
-        {loading === true ? (
-          <div className="flex">
-            <SmallStoreSkeleton />
-            <SmallStoreSkeleton />
-            <SmallStoreSkeleton />
-          </div>
-        ) : (
-          <div className="flex">
-            <SmallStoreComponent
-              storeIndex={0}
-              name="가메이"
-              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-              totalRating={1250}
-              kind="bookMark"
-            />
-            <SmallStoreComponent
-              storeIndex={0}
-              name="가메이"
-              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-              totalRating={125}
-              kind="bookMark"
-            />
-            <SmallStoreComponent
-              storeIndex={0}
-              name="가메이"
-              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-              totalRating={100}
-              kind="bookMark"
-            />
-            {/* {list.map(({ storeIndex, name, imgUrl,jokboCnt }) => {
+        <div className="w-full flex overflow-x-scroll mt-3 hide-scroll">
+          {loading === true ? (
+            <div className="flex">
+              <SmallStoreSkeleton />
+              <SmallStoreSkeleton />
+              <SmallStoreSkeleton />
+            </div>
+          ) : (
+            <div className="flex">
+              <SmallStoreComponent
+                storeIndex={0}
+                name="가메이"
+                imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+                totalRating={1250}
+                kind="bookMark"
+              />
+              <SmallStoreComponent
+                storeIndex={0}
+                name="가메이"
+                imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+                totalRating={125}
+                kind="bookMark"
+              />
+              <SmallStoreComponent
+                storeIndex={0}
+                name="가메이"
+                imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+                totalRating={100}
+                kind="bookMark"
+              />
+              {/* {list.map(({ storeIndex, name, imgUrl,jokboCnt }) => {
               return (
                 <SmallStoreComponent
                   key={storeIndex}
@@ -76,8 +77,9 @@ const JokboManyReview = () => {
                 />
               );
             })} */}
-          </div>
-        )}
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

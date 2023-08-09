@@ -19,7 +19,7 @@ const BigStoreComponent: React.FC<StoreInfo> = ({
 }) => {
   return (
     <Link
-      href={`/view/jokbo/${storeIndex}`}
+      href={`/jokbo/${storeIndex}?tab=shop&section=info`}
       className="w-full h-[120px] rounded-[15px] border-[1px] border-lightGray flex items-center justify-between px-[15px] my-[12px]"
     >
       <ImageBox size="large" url={imgUrl} />

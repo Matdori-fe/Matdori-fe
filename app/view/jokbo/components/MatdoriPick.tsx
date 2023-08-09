@@ -36,28 +36,30 @@ const MatdoriPick = () => {
         맛도리에서 추천하는 가게들을 살펴보세요.
       </Text>
       <div className="w-full flex overflow-x-scroll mt-3 hide-scroll justify-center">
-        {loading === true ? (
-          <div className="flex">
-            <SmallStoreSkeleton />
-            <SmallStoreSkeleton />
-            <SmallStoreSkeleton />
-          </div>
-        ) : (
-          <div className="flex">
-            {list.map(({ storeIndex, name, imgUrl }) => {
-              return (
-                <SmallStoreComponent
-                  key={storeIndex}
-                  storeIndex={storeIndex}
-                  name={name}
-                  imgUrl={imgUrl}
-                  totalRating={4.9}
-                  kind="starScore"
-                />
-              );
-            })}
-          </div>
-        )}
+        <div className="w-full flex overflow-x-scroll mt-3 hide-scroll">
+          {loading === true ? (
+            <div className="flex">
+              <SmallStoreSkeleton />
+              <SmallStoreSkeleton />
+              <SmallStoreSkeleton />
+            </div>
+          ) : (
+            <div className="flex">
+              {list.map(({ storeIndex, name, imgUrl }) => {
+                return (
+                  <SmallStoreComponent
+                    key={storeIndex}
+                    storeIndex={storeIndex}
+                    name={name}
+                    imgUrl={imgUrl}
+                    totalRating={4.9}
+                    kind="starScore"
+                  />
+                );
+              })}
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
