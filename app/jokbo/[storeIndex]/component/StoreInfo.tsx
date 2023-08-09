@@ -7,7 +7,9 @@ import BigTitle from "@/components/Title/BigTitle";
 import RoundButton from "@/components/RoundButton/RoundButton";
 import { RiAwardFill } from "react-icons/ri";
 import { useEffect, useState } from "react";
+import StoreInfoSkeleton from "@/app/Skeleton/StoreInfoSkeleton";
 import axios from "axios";
+import BigStoreSkeleton from "@/app/Skeleton/BigStoreSkeleton";
 
 type StoreInfoHeader = {
   name: string;
@@ -38,7 +40,6 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
         const result = await axios.get(
           `${process.env.NEXT_PUBLIC_API}/stores/${storeIndex}/info-header`
         );
-        console.log(result.data.result);
         setStoreData(result.data.result);
         setLoading(false);
       } catch (error) {
@@ -51,41 +52,50 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
   }, [storeIndex]);
 
   return (
-    <div className="mt-[70px] flex mx-5 flex-wrap">
-      <div className="w-full flex justify-center">
-        <ImageBox size="large" url={storeData?.imgUrl} />
+    <div className="mt-[70px] flex mx-5 flex-wrap outline-none">
+      {loading ? (
+        <StoreInfoSkeleton />
+      ) : (
+        <>
+          <div className="w-full flex justify-center">
+            <ImageBox size="large" url={storeData?.imgUrl} />
 
-        <div className="w-full ml-3 mt-3">
-          <div className="flex w-full justify-between">
-            <BigTitle totalWidth="w-1/2">{storeData.name}</BigTitle>
+            <div className="w-full ml-3 mt-3">
+              <div className="flex w-full justify-between pr-[20px]">
+                <BigTitle totalWidth="w-6/12">{storeData.name}</BigTitle>
 
-            <RoundButton label="정보 수정 요청" onClick={fixInfo} />
-          </div>
-          <div className="flex justify-between mx-4 mt-1">
-            <div className="w-full flex flex-wrap justify-center w-[50px]">
-              <Text
-                className="text-[24px] mb-2"
-                fontWeight="medium"
-                color="black"
-              >
-                {storeData?.totalRating}
-              </Text>
-              <StarRate score={storeData?.totalRating} isShowScore={false} />
+                <RoundButton label="정보 수정 요청" onClick={fixInfo} />
+              </div>
+              <div className="flex justify-between mx-4 mt-1">
+                <div className=" flex flex-wrap justify-center w-[50px]">
+                  <Text
+                    className="text-[24px] mb-2"
+                    fontWeight="medium"
+                    color="black"
+                  >
+                    {storeData?.totalRating}
+                  </Text>
+                  <StarRate
+                    score={storeData?.totalRating}
+                    isShowScore={false}
+                  />
+                </div>
+                <StatusBar
+                  flavorRating={storeData.flavorRating}
+                  underPricedRating={storeData.underPricedRating}
+                  cleanRating={storeData.cleanRating}
+                />
+              </div>
             </div>
-            <StatusBar
-              flavorRating={storeData.flavorRating}
-              underPricedRating={storeData.underPricedRating}
-              cleanRating={storeData.cleanRating}
-            />
           </div>
-        </div>
-      </div>
-      <div className="bg-white rounded-2xl border border-lightGray w-full p-2 flex mt-4">
-        <RiAwardFill className="w-[12px] text-100 mx-1 mr-2 mt-[0.5px]" />
-        <Text fontWeight="medium" size="xs" className="line-clamp-1">
-          이건 가장 인기가 많은 족보. 와 여기 이 집 잘하네 크~ 개...
-        </Text>
-      </div>
+          <div className="bg-white rounded-2xl border border-lightGray w-full p-2 flex mt-4">
+            <RiAwardFill className="w-[12px] text-100 mx-1 mr-2 mt-[0.5px]" />
+            <Text fontWeight="medium" size="xs" className="line-clamp-1">
+              이건 가장 인기가 많은 족보. 와 여기 이 집 잘하네 크~ 개...
+            </Text>
+          </div>
+        </>
+      )}
     </div>
   );
 };

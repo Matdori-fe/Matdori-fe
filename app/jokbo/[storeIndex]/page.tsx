@@ -1,5 +1,8 @@
 import Header from "@/components/Header/Header";
 import StoreInfo from "./component/StoreInfo";
+import StoreInfoSkeleton from "@/app/Skeleton/StoreInfoSkeleton";
+import SelectTab from "@/components/SelectTab/SelectTab";
+
 interface PageProps {
   params: { storeIndex: number };
 }
@@ -7,8 +10,8 @@ interface PageProps {
 const JokboIntroPage = ({ params }: PageProps) => {
   return (
     <>
-      <Header left="back" right={["share", "like"]} title="" />
-      <StoreInfo storeIndex={params.storeIndex} />
+      <SelectTab />
+      <div className="h-[1000px]">ss</div>
     </>
   );
 };

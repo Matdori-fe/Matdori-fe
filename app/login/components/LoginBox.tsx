@@ -41,11 +41,18 @@ const LoginBox: React.FC = () => {
       Toast("비밀번호를 입력해주세요.");
     } else {
       axios
-        .post(`${process.env.NEXT_PUBLIC_API}/login`, {
-          email: id,
-          password: password,
-        })
+        .post(
+          `${process.env.NEXT_PUBLIC_API}/login`,
+          {
+            email: id,
+            password: password,
+          },
+          {
+            withCredentials: true,
+          }
+        )
         .then((response) => {
+          console.log(response);
           if (response.status === 200) {
             setUser(response.data.result.data);
             router.push("/");
