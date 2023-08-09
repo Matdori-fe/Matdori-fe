@@ -1,3 +1,5 @@
+'use client';
+
 import { RiArrowLeftLine } from 'react-icons/ri';
 import { Left } from './Header';
 import Image from 'next/image';
