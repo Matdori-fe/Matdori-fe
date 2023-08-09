@@ -23,10 +23,10 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<body className={inter.className}>
+			<body id='root' className={inter.className}>
 				<RecoilRootWrapper>
 					{/*스마트폰 전체 프레임 잡기*/}
-					<div className='flex justify-center h-[calc(100dvh)]'>
+					<div className='flex justify-center h-full'>
 						{/*전체 크기 개발 이후에 변경 필요*/}
 						<div className='relative inset-0 sm:w-[412px] w-full border border-gray overflow-y-scroll overflow-x-hidden scrollbar-hide'>
 							<StyledComponentsRegistry>{children}</StyledComponentsRegistry>
