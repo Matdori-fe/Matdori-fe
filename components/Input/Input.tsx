@@ -23,7 +23,7 @@ type InputType = {
 	value: string;
 	onClick?: () => void;
 	inputmode?: string;
-	readonly: string;
+	readonly?: string;
 };
 
 const Input: React.FC<InputType> = ({
@@ -61,8 +61,8 @@ const Input: React.FC<InputType> = ({
 					) : null}
 					{left === 'back' ? leftContent.back : null}
 					<input
-						readonly={readonly && ''}
-						inputmode={inputmode}
+						readOnly={readonly && ''}
+						inputMode={inputmode}
 						className={`w-full h-[40px] bg-lightGray text-black placeholder-gray rounded-xl text-[14px] font-Medium`}
 						value={value}
 						type={type}
