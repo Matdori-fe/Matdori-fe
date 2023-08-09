@@ -113,8 +113,7 @@ export default function Registration({ searchParams }: Props) {
 			);
 
 			setValid((prev) => ({ ...prev, code: 'valid' }));
-		} catch (error) {
-			console.log(error);
+		} catch (error: any) {
 			// TODO: 잘못된 인증번호 구분
 
 			if (error.response.status === 400) {

@@ -17,7 +17,7 @@ type Props = {
 };
 
 const Home = ({ searchParams }: Props) => {
-	const { modal } = searchParams;
+	// const { modal } = searchParams;
 
 	return <div>main</div>;
 };

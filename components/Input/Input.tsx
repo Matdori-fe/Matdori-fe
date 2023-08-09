@@ -22,7 +22,16 @@ type InputType = {
 	rightOnClick?: () => void;
 	value: string;
 	onClick?: () => void;
-	inputmode?: string;
+	inputmode?:
+		| 'text'
+		| 'search'
+		| 'none'
+		| 'tel'
+		| 'url'
+		| 'email'
+		| 'numeric'
+		| 'decimal'
+		| undefined;
 	readonly?: string;
 };
 
@@ -61,7 +70,7 @@ const Input: React.FC<InputType> = ({
 					) : null}
 					{left === 'back' ? leftContent.back : null}
 					<input
-						readOnly={readonly && ''}
+						readOnly={readonly ? true : false}
 						inputMode={inputmode}
 						className={`w-full h-[40px] bg-lightGray text-black placeholder-gray rounded-xl text-[14px] font-Medium`}
 						value={value}
