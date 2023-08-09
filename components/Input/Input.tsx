@@ -23,6 +23,7 @@ type InputType = {
 	value: string;
 	onClick?: () => void;
 	inputmode?: string;
+	readonly: string;
 };
 
 const Input: React.FC<InputType> = ({
@@ -37,6 +38,7 @@ const Input: React.FC<InputType> = ({
 	value,
 	onClick,
 	inputmode,
+	readonly,
 }) => {
 	// input에 들어갈 값을 받아줄 state
 	const [inputValue, setInputValue] = useState('');
@@ -45,10 +47,10 @@ const Input: React.FC<InputType> = ({
 	var boxCSS = '';
 	if (inputSize === 'small') {
 		boxCSS =
-			'w-[372px] sm:w-[calc(100%)] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4';
+			'w-[372px] sm:w-[calc(100%)] h-[40px] bg-lightGray flex justify-between items-center rounded-basic px-4 cursor-';
 	} else if (inputSize === 'big') {
 		boxCSS =
-			'w-[392px] sm:w-[calc(100%-20px)] h-[40px] bg-lightGray flex justify-between items-center rounded-xl px-4 mx-[10px]';
+			'w-[392px] sm:w-[calc(100%-20px)] h-[40px] bg-lightGray flex justify-between items-center rounded-basic px-4 mx-[10px]';
 	}
 	return (
 		<div className='flex justify-center w-full' onClick={onClick}>
@@ -59,6 +61,7 @@ const Input: React.FC<InputType> = ({
 					) : null}
 					{left === 'back' ? leftContent.back : null}
 					<input
+						readonly={readonly && ''}
 						inputmode={inputmode}
 						className={`w-full h-[40px] bg-lightGray text-black placeholder-gray rounded-xl text-[14px] font-Medium`}
 						value={value}
