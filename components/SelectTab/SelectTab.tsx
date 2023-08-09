@@ -24,7 +24,7 @@ const Underline = styled(motion.div)<{
 export default function SelectTab() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
-	const tab = searchParams.get('tab');
+	const tab = searchParams.get('tab') as SelectTabVariant;
 	const section = searchParams.get('section');
 
 	// FIXME: ~ 형식의 인수는 어쩌고
