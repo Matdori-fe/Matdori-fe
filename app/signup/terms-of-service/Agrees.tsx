@@ -54,6 +54,10 @@ export default function Agrees() {
 			if (status === 409) {
 				Toast('이미 존재하는 회원입니다.');
 			}
+
+			if (status === 500) {
+				Toast('서버 오류');
+			}
 		}
 
 		// const { status } = result.data;
