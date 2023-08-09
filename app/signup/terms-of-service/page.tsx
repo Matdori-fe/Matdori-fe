@@ -9,24 +9,10 @@ export default async function Registration() {
 
 	return (
 		<div className='w-full [&>*]:mb-[14px]'>
-			{data.map((rule) => (
+			{data.map(({ title, contents }: { title: string; contents: string }) => (
 				<>
-					<SmallTitle>{rule.title}</SmallTitle>
-					<Text>{rule.contents}</Text>
-					<HorizonBar />
-				</>
-			))}
-			{data.map((rule) => (
-				<>
-					<SmallTitle>{rule.title}</SmallTitle>
-					<Text>{rule.contents}</Text>
-					<HorizonBar />
-				</>
-			))}
-			{data.map((rule) => (
-				<>
-					<SmallTitle>{rule.title}</SmallTitle>
-					<Text>{rule.contents}</Text>
+					<SmallTitle>{title}</SmallTitle>
+					<Text>{contents}</Text>
 					<HorizonBar />
 				</>
 			))}

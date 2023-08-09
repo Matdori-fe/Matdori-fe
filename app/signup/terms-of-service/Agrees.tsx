@@ -42,7 +42,7 @@ export default function Agrees() {
 			);
 
 			router.push('/signup/complete');
-		} catch (error) {
+		} catch (error: any) {
 			// console.log(error.response.status);
 			const status = error.response.status;
 
