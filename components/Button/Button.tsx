@@ -11,8 +11,9 @@ interface ButtonProps {
 	variant: 'active' | 'inactive';
 	writeIcon?: boolean;
 	errorMessage?: string;
-	modal: boolean;
+	modal?: boolean;
 	onClick?: () => void;
+	href?: string;
 }
 
 const BASE_BUTTON_CLASSES =
@@ -27,16 +28,26 @@ const Button = ({
 	label,
 	variant = 'active',
 	writeIcon,
-	errorMessage = '',
+	errorMessage,
 	modal = false,
 	onClick,
+	href = '',
 }: ButtonProps) => {
+	const router = useRouter();
+
+	// FIXME: 로직 정리
 	return (
 		<div className='flex justify-center w-full'>
 			<button
-				onClick={
-					variant === 'inactive' ? () => Toast(errorMessage) : () => onClick()
-				}
+				onClick={() => {
+					if (variant === 'active' && href) router.push(href);
+					if (variant === 'active' && onClick) onClick();
+
+					// 비활성화 && 오류메세지
+					if (variant === 'inactive' && errorMessage) {
+						Toast(errorMessage);
+					}
+				}}
 				className={`${BASE_BUTTON_CLASSES} ${variantClass[variant]} ${
 					modal ? 'mx-0 w-[100%-40px] absolute bottom-0' : 'fixed bottom-0'
 				}`}

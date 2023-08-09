@@ -1,16 +1,16 @@
 export default function Background({
 	className,
 	children,
-	onClick,
+	onClose,
 }: {
 	className?: string;
 	children?: React.ReactNode;
-	onClick?: () => void;
+	onClose?: () => void;
 }) {
 	return (
 		<div
-			onClick={onClick}
-			className={`fixed md:w-[768px] w-full h-full bg-transparent z-1 top-0 ${className} flex items-end`}
+			onClick={onClose}
+			className={`fixed w-screen h-full bg-transparent z-1 top-0 left-0 ${className} flex items-end`}
 		>
 			{children}
 		</div>

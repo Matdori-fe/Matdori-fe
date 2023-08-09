@@ -1,5 +1,4 @@
 'use client';
-// NOTE: 이거 안써줘도 클라이언트로 동작하는 것 같은데 왜그렇지?
 
 import { RiArrowLeftLine } from 'react-icons/ri';
 import { Left } from './Header';
