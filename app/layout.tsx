@@ -22,7 +22,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang='en'>
+		<html lang='en' suppressHydrationWarning>
 			<body id='root' className={inter.className}>
 				<RecoilRootWrapper>
 					{/*스마트폰 전체 프레임 잡기*/}
