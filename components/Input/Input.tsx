@@ -32,7 +32,7 @@ type InputType = {
 		| 'numeric'
 		| 'decimal'
 		| undefined;
-	readonly?: string;
+	readonly?: boolean;
 };
 
 const Input: React.FC<InputType> = ({
