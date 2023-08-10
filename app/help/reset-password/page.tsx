@@ -6,13 +6,13 @@ import { useEffect, useState } from 'react';
 import CheckNotification from '@/components/CheckNotification/CheckNotification';
 import Button from '@/components/Button/Button';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { PasswordAtom } from '@/app/status/PasswordAtom';
+import { PasswordAtom } from '@/status/PasswordAtom';
 import {
 	Validation,
 	validationNotification,
 } from '@/app/signup/password/passwordValidation';
 import axios from 'axios';
-import { RegisterEmailAtom } from '@/app/status/RegisterEmailAtom';
+import { RegisterEmailAtom } from '@/status/RegisterEmailAtom';
 import { useRouter } from 'next/navigation';
 import Toast from '@/components/Toast/Toast';
 
@@ -63,14 +63,21 @@ export default function Registration() {
 
 	const resetPassword = async () => {
 		try {
-			await axios.put(`${process.env.NEXT_PUBLIC_API}/password`, {
-				email,
-				password: input.password,
-			});
+			const result = await axios.put(
+				`${process.env.NEXT_PUBLIC_API}/password`,
+				{
+					email,
+					password: input.password,
+				},
+				{
+					withCredentials: true,
+				}
+			);
 
 			// 성공하면 이동
 			router.push('/login');
 		} catch (error: any) {
+			console.log(error);
 			const status = error.response.status;
 
 			// TODO: 이메일 인증 안된거 \
@@ -78,9 +85,7 @@ export default function Registration() {
 			// 이메일 또는 비밀번호 누락 또는 형식안맞음
 			if (status === 400) {
 				Toast('email 또는 password의 누락 혹은 형식 안 맞음.');
-			}
-
-			if (status === 500) {
+			} else if (status === 500) {
 				Toast('서버 에러');
 			} else {
 				Toast('서버 에러');
@@ -90,6 +95,8 @@ export default function Registration() {
 
 	return (
 		<div className='w-full [&>*]:mb-[12px]'>
+			<div>{email}</div>
+
 			<SmallTitle>새 비밀번호</SmallTitle>
 			<Input
 				type='password'

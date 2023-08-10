@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import Agree from './Agree';
 import Button from '@/components/Button/Button';
-import { RegisterEmailAtom } from '@/app/status/RegisterEmailAtom';
+import { RegisterEmailAtom } from '@/status/RegisterEmailAtom';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { PasswordAtom } from '@/app/status/PasswordAtom';
-import { DepartmentAtom } from '@/app/status/DepartmentAtom';
+import { PasswordAtom } from '@/status/PasswordAtom';
+import { DepartmentAtom } from '@/status/DepartmentAtom';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Toast from '@/components/Toast/Toast';
@@ -53,13 +53,9 @@ export default function Agrees() {
 			// 다시 인증
 			if (status === 400) {
 				Toast('입력되지 않은 항목이 있습니다.');
-			}
-
-			if (status === 409) {
+			} else if (status === 409) {
 				Toast('이미 존재하는 회원입니다.');
-			}
-
-			if (status === 500) {
+			} else if (status === 500) {
 				Toast('서버 오류');
 			} else {
 				Toast('서버 에러');

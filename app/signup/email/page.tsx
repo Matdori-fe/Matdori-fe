@@ -5,12 +5,12 @@ import Input from '@/components/Input/Input';
 import RoundButton from '@/components/RoundButton/RoundButton';
 import SmallTitle from '@/components/Title/SmallTitle';
 import { useRecoilState } from 'recoil';
-import { RegisterEmailAtom } from '../../status/RegisterEmailAtom';
+import { RegisterEmailAtom } from '../../../status/RegisterEmailAtom';
 import { useCallback, useEffect, useState } from 'react';
 import CheckNotification from '@/components/CheckNotification/CheckNotification';
 import axios from 'axios';
 import Button from '@/components/Button/Button';
-import { IsGoTimer, TimerAtom } from '../../status/TimerAtom';
+import { IsGoTimer, TimerAtom } from '../../../status/TimerAtom';
 import { Validation, validationNotification } from './validation';
 import { useRouter } from 'next/navigation';
 import Toast from '@/components/Toast/Toast';
@@ -70,6 +70,7 @@ export default function Registration({ searchParams }: Props) {
 				`${process.env.NEXT_PUBLIC_API}/email-authentication`,
 				{
 					email,
+					type: 'SIGNUP',
 				},
 				{ withCredentials: true }
 			);
@@ -84,11 +85,9 @@ export default function Registration({ searchParams }: Props) {
 				setValid((prev) => ({ ...prev, email: 'empty' }));
 			}
 			// 중복된 이메일인 경우
-			if (status === 409) {
+			else if (status === 409) {
 				setValid((prev) => ({ ...prev, email: 'duplication' }));
-			}
-
-			if (status === 500) {
+			} else if (status === 500) {
 				Toast('서버 에러');
 			} else {
 				Toast('서버 에러');
@@ -123,14 +122,14 @@ export default function Registration({ searchParams }: Props) {
 			}
 
 			// 시간초과
-			if (error.response.status === 401) {
+			else if (error.response.status === 401) {
 				// FIXME: 임시로 잘못된 인증번호 구분
 				if (code.length !== 10)
 					setValid((prev) => ({ ...prev, code: 'invalidCode' }));
 				else setValid((prev) => ({ ...prev, code: 'timeOver' }));
-			}
-
-			if (error.response.status === 500) {
+			} else if (error.response.status === 500) {
+				Toast('서버 에러');
+			} else {
 				Toast('서버 에러');
 			}
 		}

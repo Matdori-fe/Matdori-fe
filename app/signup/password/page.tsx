@@ -11,8 +11,8 @@ import ModalContainer, {
 } from '@/components/ModalContainer/ModalContainer';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import DepartmentModalOpener from '@/components/ModalOpener/DepartmentModalOpener';
-import { DepartmentAtom } from '@/app/status/DepartmentAtom';
-import { PasswordAtom } from '@/app/status/PasswordAtom';
+import { DepartmentAtom } from '@/status/DepartmentAtom';
+import { PasswordAtom } from '@/status/PasswordAtom';
 import { useModal } from '@/hooks/useModal';
 import DepartmentModal from '@/components/Modal/DepartmentModal';
 
