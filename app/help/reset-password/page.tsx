@@ -58,7 +58,7 @@ export default function Registration() {
 		}
 	};
 
-	const email = useRecoilValue(RegisterEmailAtom);
+	const [email, setEmail] = useRecoilState(RegisterEmailAtom);
 	const router = useRouter();
 
 	const resetPassword = async () => {
@@ -73,6 +73,10 @@ export default function Registration() {
 					withCredentials: true,
 				}
 			);
+
+			// 초기화
+			setInput({ password: '', rePassword: '' });
+			setEmail('');
 
 			Toast('비밀번호가 변경되었습니다.');
 			// 성공하면 이동
