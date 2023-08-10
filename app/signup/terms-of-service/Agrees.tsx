@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Agree from './Agree';
 import Button from '@/components/Button/Button';
 import { RegisterEmailAtom } from '@/app/status/RegisterEmailAtom';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { PasswordAtom } from '@/app/status/PasswordAtom';
 import { DepartmentAtom } from '@/app/status/DepartmentAtom';
 import axios from 'axios';
@@ -22,8 +22,8 @@ const agreeList = [
 export default function Agrees() {
 	const router = useRouter();
 	const [checkList, setCheckList] = useState<string[]>([]);
-	const email = useRecoilValue(RegisterEmailAtom);
-	const password = useRecoilValue(PasswordAtom);
+	const [email, setEmail] = useRecoilState(RegisterEmailAtom);
+	const [password, setPassword] = useRecoilState(PasswordAtom);
 	const department = useRecoilValue(DepartmentAtom);
 
 	const signup = async () => {
@@ -39,6 +39,12 @@ export default function Agrees() {
 					withCredentials: true,
 				}
 			);
+
+			// 메일, 비번 초기화
+			setEmail('');
+			setPassword({ password: '', rePassword: '' });
+
+			// 이동
 			router.push('/signup/complete');
 		} catch (error: any) {
 			// console.log(error.response.status);
@@ -55,6 +61,8 @@ export default function Agrees() {
 
 			if (status === 500) {
 				Toast('서버 오류');
+			} else {
+				Toast('서버 에러');
 			}
 		}
 
