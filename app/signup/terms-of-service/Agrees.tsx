@@ -25,7 +25,6 @@ export default function Agrees() {
 	const email = useRecoilValue(RegisterEmailAtom);
 	const password = useRecoilValue(PasswordAtom);
 	const department = useRecoilValue(DepartmentAtom);
-	const [error, setError] = useState('not');
 
 	const signup = async () => {
 		try {
@@ -40,15 +39,14 @@ export default function Agrees() {
 					withCredentials: true,
 				}
 			);
-
 			router.push('/signup/complete');
 		} catch (error: any) {
 			// console.log(error.response.status);
 			const status = error.response.status;
 
 			// 다시 인증
-			if (status === 401) {
-				Toast('메일 인증을 다시 진행해주세요.');
+			if (status === 400) {
+				Toast('입력되지 않은 항목이 있습니다.');
 			}
 
 			if (status === 409) {
@@ -104,7 +102,6 @@ export default function Agrees() {
 								signup();
 						  }
 						: () => {
-								console.log(document.body.scrollHeight);
 								scrollToBottom();
 
 								setCheckList([...agreeList]);
