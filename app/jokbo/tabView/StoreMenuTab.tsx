@@ -1,5 +1,9 @@
-const StoreMenuTab = () => {
-  return <>족보 메뉴 탭</>;
+type StoreIndexIn = {
+  storeIndex: number;
+};
+
+const StoreMenuTab = ({ storeIndex }: StoreIndexIn) => {
+  return <>{storeIndex}</>;
 };
 
 export default StoreMenuTab;
