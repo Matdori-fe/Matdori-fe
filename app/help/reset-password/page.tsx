@@ -74,6 +74,7 @@ export default function Registration() {
 				}
 			);
 
+			Toast('비밀번호가 변경되었습니다.');
 			// 성공하면 이동
 			router.push('/login');
 		} catch (error: any) {
@@ -95,8 +96,6 @@ export default function Registration() {
 
 	return (
 		<div className='w-full [&>*]:mb-[12px]'>
-			<div>{email}</div>
-
 			<SmallTitle>새 비밀번호</SmallTitle>
 			<Input
 				type='password'
