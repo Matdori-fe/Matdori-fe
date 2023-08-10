@@ -12,12 +12,14 @@ import { UserAtom } from "@/app/status/UserAtom";
 import { useRouter } from "next/navigation";
 import Toast from "@/components/Toast/Toast";
 import { ChangeEvent } from "react";
+import CheckNotification from "@/components/CheckNotification/CheckNotification";
 
 const pattern = /(inha\.edu|inha\.ac\.kr)$/;
 
 const LoginBox: React.FC = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [checkEmail, setCheckEmail] = useState<boolean>(false);
 
   const [user, setUser] = useRecoilState(UserAtom);
 
@@ -25,6 +27,12 @@ const LoginBox: React.FC = () => {
 
   const handleIdChange = (e: ChangeEvent<HTMLInputElement>) => {
     setId(e.target.value);
+    // email 형식 검사
+    if (!pattern.test(e.target.value)) {
+      setCheckEmail(false);
+    } else {
+      setCheckEmail(true);
+    }
   };
 
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -76,16 +84,24 @@ const LoginBox: React.FC = () => {
 
       <Input
         inputSize="small"
-        placeHolder="학번을 입력해주세요."
+        placeHolder="학번 이메일을 입력해주세요."
         right="cancel"
         type="email"
         value={id}
         onChange={handleIdChange}
       />
-      <div className="w-full ml-[20px]">
-        <div className="font-SemiBold text-[12px] text-100 ml-2 mt-2">
-          학교 메일: @inha.ac.kr | @inha.edu
-        </div>
+      <div className="w-full mt-2">
+        {checkEmail ? (
+          <CheckNotification
+            label="이메일 형식에 적합합니다."
+            variant="valid"
+          />
+        ) : (
+          <CheckNotification
+            label="@inha.ac.kr 또는 @inha.edu 메일 형식을 입력해주세요."
+            variant="invalid"
+          />
+        )}
       </div>
 
       <SmallTitle
@@ -112,7 +128,7 @@ const LoginBox: React.FC = () => {
           아직 회원이 아니신가요?
         </p>
         <Link
-          href={"/signup"}
+          href={"/signup/email"}
           className="font-Regular text-[12px] text-100 flex"
         >
           회원가입
