@@ -66,8 +66,6 @@ const LoginBox: React.FC = () => {
           } else if (error.response.status === 400) {
             Toast("아이디, 비밀번호가 누락되었습니다.");
           }
-
-          console.log(error);
         });
     }
   };
@@ -81,6 +79,7 @@ const LoginBox: React.FC = () => {
         placeHolder="학번을 입력해주세요."
         right="cancel"
         type="email"
+        value={id}
         onChange={handleIdChange}
       />
       <div className="w-full ml-[20px]">
@@ -101,6 +100,7 @@ const LoginBox: React.FC = () => {
       </SmallTitle>
       <Input
         inputSize="small"
+        value={password}
         placeHolder="비밀번호를 입력해주세요."
         right="cancel"
         type="password"
