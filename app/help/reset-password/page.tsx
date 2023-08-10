@@ -90,6 +90,8 @@ export default function Registration() {
 			// 이메일 또는 비밀번호 누락 또는 형식안맞음
 			if (status === 400) {
 				Toast('email 또는 password의 누락 혹은 형식 안 맞음.');
+			} else if (status === 401) {
+				Toast('이메일 인증을 진행 후 변경해주세요.');
 			} else if (status === 500) {
 				Toast('서버 에러');
 			} else {
