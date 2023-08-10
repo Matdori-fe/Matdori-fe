@@ -1,7 +1,7 @@
 import Header from "@/components/Header/Header";
-import StoreInfo from "./component/StoreInfo";
 import StoreInfoSkeleton from "@/app/Skeleton/StoreInfoSkeleton";
 import SelectTab from "@/components/SelectTab/SelectTab";
+import StoreInfo from "./component/StoreInfo";
 
 interface PageProps {
   params: { storeIndex: number };
