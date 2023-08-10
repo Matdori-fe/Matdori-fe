@@ -26,7 +26,6 @@ export default function DepartmentModal() {
 			title='정렬'
 			onClose={() => closeModal('department')}
 			variant='large'
-			key='department'
 		>
 			{/* TODO: 여기 높이 바꿔야함 */}
 			<ul className='flex-col w-full overflow-scroll h-[412px] scrollbar-hide'>
