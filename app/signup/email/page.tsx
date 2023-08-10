@@ -90,6 +90,8 @@ export default function Registration({ searchParams }: Props) {
 
 			if (status === 500) {
 				Toast('서버 에러');
+			} else {
+				Toast('서버 에러');
 			}
 		}
 	};
