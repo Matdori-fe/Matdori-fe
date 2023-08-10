@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import Agree from './Agree';
 import Button from '@/components/Button/Button';
-import { RegisterEmailAtom } from '@/app/status/RegisterEmailAtom';
-import { useRecoilValue } from 'recoil';
-import { PasswordAtom } from '@/app/status/PasswordAtom';
-import { DepartmentAtom } from '@/app/status/DepartmentAtom';
+import { RegisterEmailAtom } from '@/status/RegisterEmailAtom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { PasswordAtom } from '@/status/PasswordAtom';
+import { DepartmentAtom } from '@/status/DepartmentAtom';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Toast from '@/components/Toast/Toast';
@@ -22,10 +22,9 @@ const agreeList = [
 export default function Agrees() {
 	const router = useRouter();
 	const [checkList, setCheckList] = useState<string[]>([]);
-	const email = useRecoilValue(RegisterEmailAtom);
-	const password = useRecoilValue(PasswordAtom);
+	const [email, setEmail] = useRecoilState(RegisterEmailAtom);
+	const [password, setPassword] = useRecoilState(PasswordAtom);
 	const department = useRecoilValue(DepartmentAtom);
-	const [error, setError] = useState('not');
 
 	const signup = async () => {
 		try {
@@ -41,22 +40,25 @@ export default function Agrees() {
 				}
 			);
 
+			// 메일, 비번 초기화
+			setEmail('');
+			setPassword({ password: '', rePassword: '' });
+
+			// 이동
 			router.push('/signup/complete');
 		} catch (error: any) {
 			// console.log(error.response.status);
 			const status = error.response.status;
 
 			// 다시 인증
-			if (status === 401) {
-				Toast('메일 인증을 다시 진행해주세요.');
-			}
-
-			if (status === 409) {
+			if (status === 400) {
+				Toast('입력되지 않은 항목이 있습니다.');
+			} else if (status === 409) {
 				Toast('이미 존재하는 회원입니다.');
-			}
-
-			if (status === 500) {
+			} else if (status === 500) {
 				Toast('서버 오류');
+			} else {
+				Toast('서버 에러');
 			}
 		}
 
@@ -104,7 +106,6 @@ export default function Agrees() {
 								signup();
 						  }
 						: () => {
-								console.log(document.body.scrollHeight);
 								scrollToBottom();
 
 								setCheckList([...agreeList]);
