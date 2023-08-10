@@ -4,21 +4,19 @@ import Input from '@/components/Input/Input';
 import SmallTitle from '@/components/Title/SmallTitle';
 import { useEffect, useState } from 'react';
 import CheckNotification from '@/components/CheckNotification/CheckNotification';
-import axios from 'axios';
 import { Validation, validationNotification } from './passwordValidation';
 import Button from '@/components/Button/Button';
-import { useRouter } from 'next/navigation';
 import ModalContainer, {
 	modals,
 } from '@/components/ModalContainer/ModalContainer';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import DepartmentModalOpener from '@/components/ModalOpener/DepartmentModalOpener';
-import { useModal } from '@/hooks/useModal';
 import { DepartmentAtom } from '@/app/status/DepartmentAtom';
 import { PasswordAtom } from '@/app/status/PasswordAtom';
+import { useModal } from '@/hooks/useModal';
+import DepartmentModal from '@/components/Modal/DepartmentModal';
 
 export default function Registration() {
-	const router = useRouter();
 	// 비밀번호 상태
 	const [input, setInput] = useRecoilState(PasswordAtom);
 
@@ -60,12 +58,6 @@ export default function Registration() {
 		if (input.password === input.rePassword) {
 			setPasswordValidationType((prev) => ({ ...prev, rePassword: 'valid' }));
 		}
-	};
-
-	const { openModal } = useModal();
-
-	const signup = async () => {
-		const result = await axios(`${process.env.NEXT_PUBLIC_API}/sign-up`);
 	};
 
 	return (
@@ -119,6 +111,7 @@ export default function Registration() {
 			<div className='mb-[6px] h-[1px]' />
 
 			<SmallTitle>전공 선택</SmallTitle>
+
 			<DepartmentModalOpener />
 
 			<Button
@@ -129,7 +122,8 @@ export default function Registration() {
 						? 'active'
 						: 'inactive'
 				}
-				onClick={() => router.push('/signup/terms-of-service')}
+				// onClick={() => router.push('/signup/terms-of-service')}
+				href='/signup/terms-of-service'
 				errorMessage='모든 항목을 입력해주세요.'
 				label='다음 단계로 넘어가기'
 			/>
