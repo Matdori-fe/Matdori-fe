@@ -49,7 +49,7 @@ const Button = ({
           }
         }}
         className={`${BASE_BUTTON_CLASSES} ${variantClass[variant]} ${
-          modal ? "mx-0 w-[100%-40px] fixed  bottom-0" : "fixed bottom-0"
+          modal ? "mx-0 w-[100%-40px] fixed  bottom-0" : "fixed bottom-16"
         }`}
       >
         <div className="flex items-center gap-[8px]">

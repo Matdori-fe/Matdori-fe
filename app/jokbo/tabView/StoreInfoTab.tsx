@@ -1,4 +1,4 @@
 const StoreInfoTab = () => {
-  return <>ss</>;
+  return <>정보탭</>;
 };
 export default StoreInfoTab;

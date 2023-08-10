@@ -1,9 +1,11 @@
+"use client";
+import { useRouter, useSearchParams } from "next/navigation";
 import Header from "@/components/Header/Header";
 import StoreInfo from "./component/StoreInfo";
 import StoreInfoSkeleton from "@/app/Skeleton/StoreInfoSkeleton";
 import SelectTab from "@/components/SelectTab/SelectTab";
-import React from "react";
-import { NextPageContext } from "next";
+import React, { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
 interface StoreIndexType {
   storeIndex: number;
@@ -18,25 +20,21 @@ const JokboIntroPage = ({ storeIndex }: StoreIndexType) => {
   );
 };
 
-const JokboLayout = ({
-  children,
-  storeIndex,
-}: {
-  children: React.ReactNode;
-  storeIndex: number;
-}) => {
+const JokboLayout = ({ children }: { children: React.ReactNode }) => {
+  const params = useParams();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  useEffect(() => {
+    if (!Array.isArray(params.storeIndex)) {
+      setCurrentIndex(Number(params.storeIndex));
+    }
+  }, [params]);
+
   return (
     <>
-      <JokboIntroPage storeIndex={storeIndex} />
+      <JokboIntroPage storeIndex={currentIndex} />
       {children}
     </>
   );
-};
-
-JokboLayout.getInitialProps = async (context: NextPageContext) => {
-  const { storeIndex } = context.query;
-  console.log(storeIndex);
-  return { storeIndex: Number(storeIndex) };
 };
 
 export default JokboLayout;
