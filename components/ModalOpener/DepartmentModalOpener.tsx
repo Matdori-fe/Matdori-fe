@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil';
-import { DepartmentAtom } from '@/app/status/DepartmentAtom';
+import { DepartmentAtom } from '@/status/DepartmentAtom';
 import { useModal } from '@/hooks/useModal';
 import { modals } from '../ModalContainer/ModalContainer';
 import Input from '../Input/Input';

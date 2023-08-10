@@ -3,7 +3,7 @@ import { useState } from 'react';
 import leftContent from './InputLeft';
 import rightContent from './InputRight';
 import FiveMinTimer from './Timer';
-import { IsGoTimer } from '@/app/status/TimerAtom';
+import { IsGoTimer } from '@/status/TimerAtom';
 import { useRecoilValue } from 'recoil';
 import { ChangeEvent } from 'react';
 // Input에 props로 줄 값 제한

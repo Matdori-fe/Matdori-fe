@@ -1,7 +1,7 @@
 // import { modalState } from '@/app/status/ModalsAtom';
 // import { useRecoilState } from 'recoil';
 
-import { ModalsAtom } from '@/app/status/ModalsAtom';
+import { ModalsAtom } from '@/status/ModalsAtom';
 import { FunctionComponent } from 'react';
 import { useRecoilState } from 'recoil';
 
