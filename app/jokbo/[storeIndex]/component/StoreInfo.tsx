@@ -60,26 +60,29 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
           <div className="w-full flex justify-center">
             <ImageBox size="large" url={storeData?.imgUrl} />
 
-            <div className="w-full ml-3 mt-3">
-              <div className="flex w-full justify-between pr-[20px]">
-                <BigTitle totalWidth="w-6/12">{storeData.name}</BigTitle>
-
-                <RoundButton label="정보 수정 요청" onClick={fixInfo} />
-              </div>
-              <div className="flex justify-between mx-4 mt-1">
-                <div className=" flex flex-wrap justify-center w-[50px]">
+            <div className="w-full ml-3 mt-3 flex justify-between">
+              <div className="w-[100px] flex flex-wrap  justify-center">
+                <div className="w-full flex justify-center">
+                  <Text fontWeight="bold" color="black" size="lg">
+                    {storeData.name}
+                  </Text>
+                </div>
+                <div className="w-full flex justify-center">
                   <Text
-                    className="text-[24px] mb-2"
+                    className="text-[24px]"
                     fontWeight="medium"
                     color="black"
                   >
                     {storeData?.totalRating}
                   </Text>
-                  <StarRate
-                    score={storeData?.totalRating}
-                    isShowScore={false}
-                  />
                 </div>
+
+                <StarRate score={storeData?.totalRating} isShowScore={false} />
+              </div>
+              <div>
+                <RoundButton label="정보 수정 요청" onClick={fixInfo} />
+                <div className="w-full h-2" />
+
                 <StatusBar
                   flavorRating={storeData.flavorRating}
                   underPricedRating={storeData.underPricedRating}

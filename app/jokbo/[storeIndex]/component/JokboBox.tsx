@@ -11,7 +11,7 @@ type JokboInfo = {
   title: string;
   contents: string;
   imgUrl: string;
-  starScore: number;
+  totalRating: number;
   favoriteCnt: number;
   commentCnt: number;
 };
@@ -21,14 +21,13 @@ const JokboBox = ({
   title,
   contents,
   imgUrl,
-  starScore,
+  totalRating,
   favoriteCnt,
   commentCnt,
 }: JokboInfo) => {
   return (
-    <>
-      <div className="mt-2 mx-4">
-        <HorizonBar className="mb-3" />
+    <Link href={`/jokbo/detail/${jokboId}`}>
+      <div className="mt-3 mx-4">
         <div className="flex justify-between items-center">
           <div className="w-10/16 mr-4">
             <Text
@@ -39,7 +38,7 @@ const JokboBox = ({
             >
               {title}
             </Text>
-            <StarRate score={4.8} />
+            <StarRate score={totalRating} />
             <div className="w-full h-0.5" />
             <Text
               size="xs"
@@ -61,7 +60,8 @@ const JokboBox = ({
           <ImageBox size="medium" url={imgUrl} />
         </div>
       </div>
-    </>
+      <HorizonBar className="mt-3" />
+    </Link>
   );
 };
 

@@ -29,7 +29,7 @@ const JokboLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <JokboIntroPage storeIndex={currentIndex} />
-      {children}
+      <div className="overflow-auto w-full h-auto">{children}</div>
     </>
   );
 };
