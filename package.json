@@ -19,6 +19,7 @@
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
     "@types/styled-components": "^5.1.26",
+    "antd": "^5.8.3",
     "aws-sdk": "^2.1431.0",
     "axios": "^1.4.0",
     "D": "^1.0.0",

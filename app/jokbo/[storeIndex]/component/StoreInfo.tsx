@@ -52,7 +52,7 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
   }, [storeIndex]);
 
   return (
-    <div className="mt-[70px] flex mx-5 flex-wrap outline-none">
+    <div className="mt-[70px] flex mx-5 flex-wrap">
       {loading ? (
         <StoreInfoSkeleton />
       ) : (
@@ -62,8 +62,13 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
 
             <div className="w-full ml-3 mt-3 flex justify-between">
               <div className="w-[100px] flex flex-wrap  justify-center">
-                <div className="w-full flex justify-center">
-                  <Text fontWeight="bold" color="black" size="lg">
+                <div className="w-full h-[50px] flex justify-center">
+                  <Text
+                    fontWeight="bold"
+                    color="black"
+                    size="lg"
+                    className="line-clamp-1"
+                  >
                     {storeData.name}
                   </Text>
                 </div>
