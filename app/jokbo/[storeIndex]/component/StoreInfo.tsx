@@ -41,7 +41,6 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
         );
         setStoreData(result.data.result);
         setLoading(false);
-        console.log(result.data.result);
       } catch (error) {
         console.log(error);
         setLoading(false);
@@ -57,10 +56,10 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
         <StoreInfoSkeleton />
       ) : (
         <>
-          <div className="w-full flex justify-center">
+          <div className="w-full min-w-[295px] flex justify-center">
             <ImageBox size="large" url={storeData?.imgUrl} />
 
-            <div className="w-full ml-3 mt-3 flex justify-between">
+            <div className="w-8/12 min-w-[100px] mt-3 flex justify-between">
               <div className="w-[100px] flex flex-wrap  justify-center">
                 <div className="w-full flex justify-center">
                   <Text

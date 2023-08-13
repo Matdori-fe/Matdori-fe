@@ -23,7 +23,7 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
   const [isFixed, setIsFixed] = useState(false);
 
   const handleScroll = () => {
-    setIsFixed(window.scrollY >= 168);
+    setIsFixed(window.scrollY >= 175);
   };
 
   useEffect(() => {
@@ -80,12 +80,84 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
           <HorizonBar className="mt-2" />
         </div>
 
-        {totalCount === 0 ? (
+        {totalCount === 1 ? (
           <>
             <EmptyJokbo />
           </>
         ) : (
           <>
+            <JokboBox
+              jokboId={12}
+              title="이 집은 진짜 미쳤다"
+              contents="여기 진짜 미쳤어요. 너무 맛있다. 이렇게 정말 맜있네"
+              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+              totalRating={4.8}
+              favoriteCnt={12}
+              commentCnt={35}
+            />
+            <JokboBox
+              jokboId={12}
+              title="이 집은 진짜 미쳤다"
+              contents="여기 진짜 미쳤어요. 너무 맛있다. 이렇게 정말 맜있네"
+              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+              totalRating={4.8}
+              favoriteCnt={12}
+              commentCnt={35}
+            />
+            <JokboBox
+              jokboId={12}
+              title="이 집은 진짜 미쳤다"
+              contents="여기 진짜 미쳤어요. 너무 맛있다. 이렇게 정말 맜있네"
+              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+              totalRating={4.8}
+              favoriteCnt={12}
+              commentCnt={35}
+            />
+            <JokboBox
+              jokboId={12}
+              title="이 집은 진짜 미쳤다"
+              contents="여기 진짜 미쳤어요. 너무 맛있다. 이렇게 정말 맜있네"
+              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+              totalRating={4.8}
+              favoriteCnt={12}
+              commentCnt={35}
+            />
+            <JokboBox
+              jokboId={12}
+              title="이 집은 진짜 미쳤다"
+              contents="여기 진짜 미쳤어요. 너무 맛있다. 이렇게 정말 맜있네"
+              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+              totalRating={4.8}
+              favoriteCnt={12}
+              commentCnt={35}
+            />
+            <JokboBox
+              jokboId={12}
+              title="이 집은 진짜 미쳤다"
+              contents="여기 진짜 미쳤어요. 너무 맛있다. 이렇게 정말 맜있네"
+              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+              totalRating={4.8}
+              favoriteCnt={12}
+              commentCnt={35}
+            />
+            <JokboBox
+              jokboId={12}
+              title="이 집은 진짜 미쳤다"
+              contents="여기 진짜 미쳤어요. 너무 맛있다. 이렇게 정말 맜있네"
+              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+              totalRating={4.8}
+              favoriteCnt={12}
+              commentCnt={35}
+            />
+            <JokboBox
+              jokboId={12}
+              title="이 집은 진짜 미쳤다"
+              contents="여기 진짜 미쳤어요. 너무 맛있다. 이렇게 정말 맜있네"
+              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+              totalRating={4.8}
+              favoriteCnt={12}
+              commentCnt={35}
+            />
             {jokboList.map((element) => {
               return (
                 <JokboBox

@@ -66,13 +66,16 @@ const DepartMentRecommened: React.FC = () => {
         ) : (
           <>
             <div className="w-auto flex flex-nowrap overflow-x-scroll scrollbar-hide">
-              <SmallStoreComponent
-                storeIndex={0}
-                name="가메이"
-                imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-                totalRating={4.9}
-                kind="starScore"
-              />
+              {list.map(({ storeIndex, name, imgUrl, totalRating, kind }) => (
+                <SmallStoreComponent
+                  storeIndex={storeIndex}
+                  name={name}
+                  imgUrl={imgUrl}
+                  totalRating={totalRating}
+                  kind={kind}
+                />
+              ))}
+
               <SmallStoreComponent
                 storeIndex={0}
                 name="가메이"
