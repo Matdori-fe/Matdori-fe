@@ -9,7 +9,6 @@ import { RiAwardFill } from "react-icons/ri";
 import { useEffect, useState } from "react";
 import StoreInfoSkeleton from "@/app/Skeleton/StoreInfoSkeleton";
 import axios from "axios";
-import BigStoreSkeleton from "@/app/Skeleton/BigStoreSkeleton";
 
 type StoreInfoHeader = {
   name: string;
@@ -42,6 +41,7 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
         );
         setStoreData(result.data.result);
         setLoading(false);
+        console.log(result.data.result);
       } catch (error) {
         console.log(error);
         setLoading(false);
@@ -62,7 +62,7 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
 
             <div className="w-full ml-3 mt-3 flex justify-between">
               <div className="w-[100px] flex flex-wrap  justify-center">
-                <div className="w-full h-[50px] flex justify-center">
+                <div className="w-full flex justify-center">
                   <Text
                     fontWeight="bold"
                     color="black"
@@ -78,7 +78,7 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
                     fontWeight="medium"
                     color="black"
                   >
-                    {storeData?.totalRating}
+                    {storeData?.totalRating.toFixed(1)}
                   </Text>
                 </div>
 
@@ -89,9 +89,11 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
                 <div className="w-full h-2" />
 
                 <StatusBar
-                  flavorRating={storeData.flavorRating}
-                  underPricedRating={storeData.underPricedRating}
-                  cleanRating={storeData.cleanRating}
+                  flavorRating={Number(storeData.flavorRating.toFixed(1))}
+                  underPricedRating={Number(
+                    storeData.underPricedRating.toFixed(1)
+                  )}
+                  cleanRating={Number(storeData.cleanRating.toFixed(1))}
                 />
               </div>
             </div>
