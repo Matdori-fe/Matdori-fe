@@ -14,6 +14,7 @@ interface ButtonProps {
   modal?: boolean;
   onClick?: () => void;
   href?: string;
+  isNavigation?: boolean;
 }
 
 const BASE_BUTTON_CLASSES =
@@ -32,12 +33,14 @@ const Button = ({
   modal = false,
   onClick,
   href = "",
+  isNavigation = false,
 }: ButtonProps) => {
   const router = useRouter();
-
+  const fixedBottom = isNavigation ? "bottom-16" : "bottom-0";
   // FIXME: 로직 정리
   return (
     <div className="flex justify-center w-full">
+      {isNavigation ? <></> : <></>}
       <button
         onClick={() => {
           if (variant === "active" && href) router.push(href);
@@ -49,7 +52,9 @@ const Button = ({
           }
         }}
         className={`${BASE_BUTTON_CLASSES} ${variantClass[variant]} ${
-          modal ? "mx-0 w-[100%-40px] fixed  bottom-0" : "fixed bottom-16"
+          modal
+            ? `mx-0 w-[100%-40px] fixed  ${fixedBottom}`
+            : `fixed ${fixedBottom}`
         }`}
       >
         <div className="flex items-center gap-[8px]">

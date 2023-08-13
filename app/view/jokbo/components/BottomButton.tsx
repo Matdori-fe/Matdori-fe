@@ -15,6 +15,7 @@ const BottomButton = () => {
         variant="active"
         modal={false}
         onClick={moveWriteJokbo}
+        isNavigation={true}
       />
     </>
   );

@@ -18,6 +18,7 @@ const JokboManyReview = () => {
           `${process.env.NEXT_PUBLIC_API}/stores/best`
         );
         setList(result.data.result);
+        console.log(result.data);
         setLoading(false);
       } catch (error) {
         console.log(error);
