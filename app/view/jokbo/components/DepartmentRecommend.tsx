@@ -56,7 +56,7 @@ const DepartMentRecommened: React.FC = () => {
       <div className="w-full flex overflow-x-scroll mt-3 hide-scroll">
         {loading === true ? (
           <>
-            <div className="flex">
+            <div className="flex overflow-x-scroll scrollbar-hide">
               <SmallStoreSkeleton />
               <SmallStoreSkeleton />
               <SmallStoreSkeleton />
@@ -64,43 +64,45 @@ const DepartMentRecommened: React.FC = () => {
             </div>
           </>
         ) : (
-          <div className="flex">
-            <SmallStoreComponent
-              storeIndex={0}
-              name="가메이"
-              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-              totalRating={4.9}
-              kind="starScore"
-            />
-            <SmallStoreComponent
-              storeIndex={0}
-              name="가메이"
-              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-              totalRating={4.9}
-              kind="starScore"
-            />
-            <SmallStoreComponent
-              storeIndex={0}
-              name="가메이"
-              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-              totalRating={4.9}
-              kind="starScore"
-            />
-            <SmallStoreComponent
-              storeIndex={0}
-              name="가메이"
-              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-              totalRating={4.9}
-              kind="starScore"
-            />
-            <SmallStoreComponent
-              storeIndex={0}
-              name="가메이"
-              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-              totalRating={4.9}
-              kind="starScore"
-            />
-          </div>
+          <>
+            <div className="w-auto flex flex-nowrap overflow-x-scroll scrollbar-hide">
+              <SmallStoreComponent
+                storeIndex={0}
+                name="가메이"
+                imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+                totalRating={4.9}
+                kind="starScore"
+              />
+              <SmallStoreComponent
+                storeIndex={0}
+                name="가메이"
+                imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+                totalRating={4.9}
+                kind="starScore"
+              />
+              <SmallStoreComponent
+                storeIndex={0}
+                name="가메이"
+                imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+                totalRating={4.9}
+                kind="starScore"
+              />
+              <SmallStoreComponent
+                storeIndex={0}
+                name="가메이"
+                imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+                totalRating={4.9}
+                kind="starScore"
+              />
+              <SmallStoreComponent
+                storeIndex={0}
+                name="가메이"
+                imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
+                totalRating={4.9}
+                kind="starScore"
+              />
+            </div>
+          </>
         )}
       </div>
     </>

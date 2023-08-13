@@ -20,23 +20,22 @@ const SmallStoreComponent: React.FC<StoreInfo> = ({
   kind,
 }) => {
   return (
-    <Link
-      href={`/jokbo/${storeIndex}?tab=shop&section=info`}
-      className="w-[100px] mx-[8px]"
-    >
-      <ImageBox size="large" url={imgUrl} />
-      <div className="flex justify-between px-1 mt-1">
-        <Text
-          size="sm"
-          color="black"
-          fontWeight="semibold"
-          className="line-clamp-1"
-        >
-          {name}
-        </Text>
-        <JokboInfo count={totalRating} kind={kind} />
-      </div>
-    </Link>
+    <div className="w-[100px] mx-[8px] min-w-[100px]">
+      <Link href={`/jokbo/${storeIndex}?tab=shop&section=info`}>
+        <ImageBox size="large" url={imgUrl} />
+        <div className="flex justify-between px-1 mt-1">
+          <Text
+            size="sm"
+            color="black"
+            fontWeight="semibold"
+            className="line-clamp-1"
+          >
+            {name}
+          </Text>
+          <JokboInfo count={totalRating} kind={kind} />
+        </div>
+      </Link>
+    </div>
   );
 };
 
