@@ -17,6 +17,56 @@ body {
 	}
 }
 
+.test-css {
+	bottom: -25px;
+	width: 100%;
+	list-style: none;
+	text-align: center;
+	padding: 0;
+}
+
+.test-css li {
+	position: relative;
+	display: inline-block;
+	width: 4px;
+	height: 4px;
+	/*margin: 1px;*/
+	padding: 7px;
+	cursor: pointer;
+}
+
+.test-css li button {
+	font-size: 0;
+	line-height: 0;
+	display: block;
+	width: 4px;
+	height: 4px;
+	padding: 5px;
+	cursor: pointer;
+	color: transparent;
+	border: 0;
+	outline: 0;
+	background: 0 0;
+}
+
+.test-css li button:before {
+	font-size: 1.6rem;
+	line-height: 20px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 4px;
+	height: 4px;
+	content: '•';
+	text-align: center;
+	opacity: 0.75;
+	color: #e6e6e6;
+}
+
+.test-css li.slick-active button:before {
+	opacity: 0.75;
+	color: #e73b3b;
+}
 /* 폰트 가져오기 -> tailwind.config.js에서 적용 */
 @font-face {
   font-family: "Pretendard-Light";
