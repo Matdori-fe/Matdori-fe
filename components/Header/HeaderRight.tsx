@@ -24,7 +24,7 @@ const rightIcons = {
 	trashCan: <FiTrash2 size='20' className='text-100' />,
 	check: <RiCheckFill size='20' className='fill-100' />,
 	more: <RiMore2Fill size='20' />,
-	roundButton: <RoundButton label='내 정보 수정하기' onClick={} />,
+	roundButton: <RoundButton label='내 정보 수정하기' />,
 };
 
 interface HeaderRightProps {
