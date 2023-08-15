@@ -18,7 +18,6 @@ const JokboManyReview = () => {
           `${process.env.NEXT_PUBLIC_API}/stores/best`
         );
         setList(result.data.result);
-        console.log(result.data);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -45,39 +44,18 @@ const JokboManyReview = () => {
             </div>
           ) : (
             <div className="flex">
-              <SmallStoreComponent
-                storeIndex={0}
-                name="가메이"
-                imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-                totalRating={1250}
-                kind="bookMark"
-              />
-              <SmallStoreComponent
-                storeIndex={0}
-                name="가메이"
-                imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-                totalRating={125}
-                kind="bookMark"
-              />
-              <SmallStoreComponent
-                storeIndex={0}
-                name="가메이"
-                imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-                totalRating={100}
-                kind="bookMark"
-              />
-              {/* {list.map(({ storeIndex, name, imgUrl,jokboCnt }) => {
-              return (
-                <SmallStoreComponent
-                  key={storeIndex}
-                  storeIndex={storeIndex}
-                  name={name}
-                  imgUrl={imgUrl}
-                  totalRating={jokboCnt}
-                  kind="bookMark"
-                />
-              );
-            })} */}
+              {list.map(({ storeIndex, name, imgUrl, jokboCnt }) => {
+                return (
+                  <SmallStoreComponent
+                    key={storeIndex}
+                    storeIndex={storeIndex}
+                    name={name}
+                    imgUrl={imgUrl}
+                    totalRating={jokboCnt}
+                    kind="bookMark"
+                  />
+                );
+              })}
             </div>
           )}
         </div>

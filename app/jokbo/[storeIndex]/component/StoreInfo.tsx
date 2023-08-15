@@ -3,7 +3,6 @@ import Text from "@/components/Text/Text";
 import StatusBar from "@/components/StatusBar/StatusBar";
 import StarRate from "@/components/StarRate/StarRate";
 import ImageBox from "@/components/ImageBox/ImageBox";
-import BigTitle from "@/components/Title/BigTitle";
 import RoundButton from "@/components/RoundButton/RoundButton";
 import { RiAwardFill } from "react-icons/ri";
 import { useEffect, useState } from "react";
@@ -34,10 +33,8 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
     cleanRating: 0,
     imgUrl: "",
   });
+  const [storeContent, setStoreContent] = useState("");
   const [loading, setLoading] = useState(true);
-  const request = {
-    userIndex: Number(userInfo.userId),
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,6 +47,7 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
         );
         console.log(result);
         setStoreData(result.data.result.storeInformationHeader);
+        setStoreContent(result.data.result.contents);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -71,7 +69,7 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
 
             <div className="w-8/12 min-w-[100px] mt-3 flex justify-between">
               <div className="w-[100px] flex flex-wrap  justify-center">
-                <div className="w-full flex justify-center">
+                <div className="w-full h-[25px] flex ml-2 justify-center">
                   <Text
                     fontWeight="bold"
                     color="black"
@@ -110,7 +108,7 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
           <div className="bg-white rounded-2xl border border-lightGray w-full p-2 flex mt-4">
             <RiAwardFill className="w-[12px] text-100 mx-1 mr-2 mt-[0.5px]" />
             <Text fontWeight="medium" size="xs" className="line-clamp-1">
-              이건 가장 인기가 많은 족보. 와 여기 이 집 잘하네 크~ 개...
+              {storeContent}
             </Text>
           </div>
         </>

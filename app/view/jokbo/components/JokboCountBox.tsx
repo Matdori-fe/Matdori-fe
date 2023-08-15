@@ -14,7 +14,6 @@ const JokboCountBox: React.FC = () => {
       .get(`${process.env.NEXT_PUBLIC_API}/jokbo-count`)
       .then((response) => {
         setCount(response.data.result.count);
-        console.log(response.data.result);
       })
       .catch((error) => {
         Toast(error);

@@ -22,6 +22,7 @@ const DepartMentRecommened: React.FC = () => {
           `${process.env.NEXT_PUBLIC_API}/stores/department?department=${myDepartMent}`
         );
         setList(result.data.result);
+        console.log(result);
         setLoading(false);
       } catch (error) {
         console.log(error);

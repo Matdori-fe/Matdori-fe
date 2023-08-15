@@ -8,6 +8,7 @@ import Text from "@/components/Text/Text";
 import axios from "axios";
 import StoreTime from "./components/StoreTime";
 import Map from "./components/StoreMap";
+
 type StoreIndexIn = {
   storeIndex: number;
 };

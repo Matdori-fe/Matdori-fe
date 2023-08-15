@@ -73,8 +73,8 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
             }
           >
             <div className="flex items-center">
-              <RiBookmarkFill className="text-blue text-14" /> 족보{totalCount}{" "}
-              개
+              <RiBookmarkFill className="text-blue text-14 mr-1" /> 족보{" "}
+              {totalCount}개
             </div>
           </SmallTitle>
           <HorizonBar className="mt-2" />
@@ -86,91 +86,31 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
           </>
         ) : (
           <>
-            <JokboBox
-              jokboId={12}
-              title="이 집은 진짜 미쳤다"
-              contents="여기 진짜 미쳤어요. 너무 맛있다. 이렇게 정말 맜있네"
-              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-              totalRating={4.8}
-              favoriteCnt={12}
-              commentCnt={35}
-            />
-            <JokboBox
-              jokboId={12}
-              title="이 집은 진짜 미쳤다"
-              contents="여기 진짜 미쳤어요. 너무 맛있다. 이렇게 정말 맜있네"
-              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-              totalRating={4.8}
-              favoriteCnt={12}
-              commentCnt={35}
-            />
-            <JokboBox
-              jokboId={12}
-              title="이 집은 진짜 미쳤다"
-              contents="여기 진짜 미쳤어요. 너무 맛있다. 이렇게 정말 맜있네"
-              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-              totalRating={4.8}
-              favoriteCnt={12}
-              commentCnt={35}
-            />
-            <JokboBox
-              jokboId={12}
-              title="이 집은 진짜 미쳤다"
-              contents="여기 진짜 미쳤어요. 너무 맛있다. 이렇게 정말 맜있네"
-              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-              totalRating={4.8}
-              favoriteCnt={12}
-              commentCnt={35}
-            />
-            <JokboBox
-              jokboId={12}
-              title="이 집은 진짜 미쳤다"
-              contents="여기 진짜 미쳤어요. 너무 맛있다. 이렇게 정말 맜있네"
-              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-              totalRating={4.8}
-              favoriteCnt={12}
-              commentCnt={35}
-            />
-            <JokboBox
-              jokboId={12}
-              title="이 집은 진짜 미쳤다"
-              contents="여기 진짜 미쳤어요. 너무 맛있다. 이렇게 정말 맜있네"
-              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-              totalRating={4.8}
-              favoriteCnt={12}
-              commentCnt={35}
-            />
-            <JokboBox
-              jokboId={12}
-              title="이 집은 진짜 미쳤다"
-              contents="여기 진짜 미쳤어요. 너무 맛있다. 이렇게 정말 맜있네"
-              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-              totalRating={4.8}
-              favoriteCnt={12}
-              commentCnt={35}
-            />
-            <JokboBox
-              jokboId={12}
-              title="이 집은 진짜 미쳤다"
-              contents="여기 진짜 미쳤어요. 너무 맛있다. 이렇게 정말 맜있네"
-              imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-              totalRating={4.8}
-              favoriteCnt={12}
-              commentCnt={35}
-            />
-            {jokboList.map((element) => {
-              return (
-                <JokboBox
-                  jokboId={12}
-                  title="이 집은 진짜 미쳤다"
-                  contents="여기 진짜 미쳤어요. 너무 맛있다. 이렇게 정말 맜있네"
-                  imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-                  totalRating={4.8}
-                  favoriteCnt={12}
-                  commentCnt={35}
-                />
-              );
-            })}
+            {jokboList.map(
+              ({
+                jokboId,
+                title,
+                imgUrl,
+                contents,
+                totalRating,
+                favoriteCnt,
+                commentCnt,
+              }) => {
+                return (
+                  <>
+                    <JokboBox
+                      jokboId={jokboId}
+                      title={title}
+                      contents={contents}
+                      imgUrl={imgUrl}
+                      totalRating={totalRating}
+                      favoriteCnt={favoriteCnt}
+                      commentCnt={commentCnt}
+                    />
+                  </>
+                );
+              }
+            )}
           </>
         )}
       </div>
