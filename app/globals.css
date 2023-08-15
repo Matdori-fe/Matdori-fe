@@ -9,6 +9,14 @@
   padding: 0;
 }
 
+body {
+	min-height: 100vh;
+
+	@supports (-webkit-touch-callout: none) {
+		min-height: -webkit-fill-available;
+	}
+}
+
 /* 폰트 가져오기 -> tailwind.config.js에서 적용 */
 @font-face {
   font-family: "Pretendard-Light";
@@ -60,4 +68,3 @@
     scrollbar-width: none; /* Firefox */
   }
 }
-

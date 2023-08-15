@@ -4,17 +4,17 @@ import Input from '@/components/Input/Input';
 import SmallTitle from '@/components/Title/SmallTitle';
 import { useEffect, useState } from 'react';
 import CheckNotification from '@/components/CheckNotification/CheckNotification';
-import { Validation, validationNotification } from './passwordValidation';
 import Button from '@/components/Button/Button';
-import ModalContainer, {
-	modals,
-} from '@/components/ModalContainer/ModalContainer';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import DepartmentModalOpener from '@/components/ModalOpener/DepartmentModalOpener';
-import { DepartmentAtom } from '@/status/DepartmentAtom';
 import { PasswordAtom } from '@/status/PasswordAtom';
-import { useModal } from '@/hooks/useModal';
-import DepartmentModal from '@/components/Modal/DepartmentModal';
+import {
+	Validation,
+	validationNotification,
+} from '@/app/signup/password/passwordValidation';
+import axios from 'axios';
+import { RegisterEmailAtom } from '@/status/RegisterEmailAtom';
+import { useRouter } from 'next/navigation';
+import Toast from '@/components/Toast/Toast';
 
 export default function Registration() {
 	// 비밀번호 상태
@@ -26,8 +26,6 @@ export default function Registration() {
 			password: undefined,
 			rePassword: undefined,
 		});
-
-	const department = useRecoilValue(DepartmentAtom);
 
 	useEffect(() => {
 		validatePassword();
@@ -60,9 +58,51 @@ export default function Registration() {
 		}
 	};
 
+	const [email, setEmail] = useRecoilState(RegisterEmailAtom);
+	const router = useRouter();
+
+	const resetPassword = async () => {
+		try {
+			const result = await axios.put(
+				`${process.env.NEXT_PUBLIC_API}/password`,
+				{
+					email,
+					password: input.password,
+				},
+				{
+					withCredentials: true,
+				}
+			);
+
+			// 초기화
+			setInput({ password: '', rePassword: '' });
+			setEmail('');
+
+			Toast('비밀번호가 변경되었습니다.');
+			// 성공하면 이동
+			router.push('/login');
+		} catch (error: any) {
+			console.log(error);
+			const status = error.response.status;
+
+			// TODO: 이메일 인증 안된거 \
+
+			// 이메일 또는 비밀번호 누락 또는 형식안맞음
+			if (status === 400) {
+				Toast('email 또는 password의 누락 혹은 형식 안 맞음.');
+			} else if (status === 401) {
+				Toast('이메일 인증을 진행 후 변경해주세요.');
+			} else if (status === 500) {
+				Toast('서버 에러');
+			} else {
+				Toast('서버 에러');
+			}
+		}
+	};
+
 	return (
 		<div className='w-full [&>*]:mb-[12px]'>
-			<SmallTitle>비밀번호</SmallTitle>
+			<SmallTitle>새 비밀번호</SmallTitle>
 			<Input
 				type='password'
 				placeHolder='영어 + 숫자 + 특수문자 포함 8~16자'
@@ -86,7 +126,7 @@ export default function Registration() {
 			)}
 			<div className='mb-[6px] h-[1px]' />
 
-			<SmallTitle>비밀번호 확인</SmallTitle>
+			<SmallTitle>새 비밀번호 확인</SmallTitle>
 			<Input
 				type='password'
 				placeHolder='비밀번호를 한 번 더 입력해주세요.'
@@ -108,26 +148,20 @@ export default function Registration() {
 					}
 				/>
 			)}
-			<div className='mb-[6px] h-[1px]' />
-
-			<SmallTitle>전공 선택</SmallTitle>
-
-			<DepartmentModalOpener />
 
 			<Button
 				variant={
 					passwordValidationType.password === 'valid' &&
-					passwordValidationType.rePassword === 'valid' &&
-					department !== ''
+					passwordValidationType.rePassword === 'valid'
 						? 'active'
 						: 'inactive'
 				}
-				// onClick={() => router.push('/signup/terms-of-service')}
-				href='/signup/terms-of-service'
+				onClick={() => {
+					resetPassword();
+				}}
 				errorMessage='모든 항목을 입력해주세요.'
-				label='다음 단계로 넘어가기'
+				label='비밀번호 변경 완료하기'
 			/>
-			<ModalContainer />
 		</div>
 	);
 }

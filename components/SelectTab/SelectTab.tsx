@@ -1,11 +1,13 @@
 "use client";
 
+
 import { useRecoilState, useRecoilValue } from "recoil";
 import Text from "../Text/Text";
 import { SelectTabAtom, SelectTabVariant } from "@/app/status/SelectTabAtom";
 import { motion } from "framer-motion";
 import { styled } from "styled-components";
 import { useRouter, useSearchParams } from "next/navigation";
+
 
 interface SelectBarProps {
   variant: SelectTabVariant;

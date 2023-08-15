@@ -1,11 +1,12 @@
+'use client';
+
 import { FunctionComponent } from 'react';
 import DepartmentModal from '../Modal/DepartmentModal';
 import MenuModal from '../Modal/MenuModal';
 import ShopModal from '../Modal/ShopModal';
 import SortModal from '../Modal/SortModal';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { ModalsAtom } from '@/app/status/ModalsAtom';
 import { AnimatePresence } from 'framer-motion';
+import { useModal } from '@/hooks/useModal';
 
 interface Modals {
 	[key: string]: FunctionComponent;
@@ -18,13 +19,13 @@ export const modals: Modals = {
 };
 
 export default function ModalContainer() {
-	const modals = useRecoilValue(ModalsAtom);
+	const { modals } = useModal();
 
 	return (
 		<>
 			<AnimatePresence>
-				{modals.map((modal) => (
-					<modal.Component key={modal.id} />
+				{modals.map((Modal) => (
+					<Modal.Component key={Modal.id} />
 				))}
 			</AnimatePresence>
 		</>

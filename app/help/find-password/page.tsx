@@ -11,9 +11,12 @@ import CheckNotification from '@/components/CheckNotification/CheckNotification'
 import axios from 'axios';
 import Button from '@/components/Button/Button';
 import { IsGoTimer, TimerAtom } from '../../../status/TimerAtom';
-import { Validation, validationNotification } from './validation';
 import { useRouter } from 'next/navigation';
 import Toast from '@/components/Toast/Toast';
+import {
+	Validation,
+	validationNotification,
+} from '@/app/signup/email/validation';
 
 type Props = {
 	searchParams: { modal: boolean };
@@ -70,7 +73,7 @@ export default function Registration({ searchParams }: Props) {
 				`${process.env.NEXT_PUBLIC_API}/email-authentication`,
 				{
 					email,
-					type: 'SIGNUP',
+					type: 'UPDATEPASSWORD',
 				},
 				{ withCredentials: true }
 			);
@@ -106,7 +109,7 @@ export default function Registration({ searchParams }: Props) {
 				`${process.env.NEXT_PUBLIC_API}/authentication-number`,
 				{
 					number: code,
-					type: 'SIGNUP',
+					type: 'UPDATEPASSWORD',
 				},
 				{
 					withCredentials: true,
@@ -174,14 +177,20 @@ export default function Registration({ searchParams }: Props) {
 			<BorderNotification label='※ 입력한 이메일로 발송된 인증번호를 입력해주세요.' />
 			<Button
 				label='학교 이메일 인증하기'
+				variant='active'
+				// errorMessage='모든 항목을 입력해주세요.'
+				onClick={() => router.push('/help/reset-password')}
+			/>
+			{/* <Button
+				label='학교 이메일 인증하기'
 				variant={
 					valid.email === 'valid' && valid.code === 'valid'
 						? 'active'
 						: 'inactive'
 				}
-				errorMessage='모든 항목을 입력해주세요.'
-				onClick={() => router.push('/signup/password')}
-			/>
+				// errorMessage='모든 항목을 입력해주세요.'
+				onClick={() => router.push('/help/reset-password')}
+			/> */}
 		</div>
 	);
 }

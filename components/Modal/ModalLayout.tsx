@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Text from '../Text/Text';
 import { motion, useDragControls, useMotionValue } from 'framer-motion';
 import { RiCloseFill } from 'react-icons/ri';
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useModal } from '@/hooks/useModal';
 
@@ -32,26 +32,43 @@ export default function ModalLayout({
 	// 드래그 시작 위치 기록
 	const handleDragStart = () => setStart(y.get());
 
-	// 뒤 스크롤 방지
+	// // 뒤 스크롤 방지
 	useEffect(() => {
-		// const scrollPosition = window.pageYOffset;
+		const { body } = document;
 
-		document.body.classList.add('overflow-y-hidden');
-		document.body.style.overflow = 'hidden';
-		// document.body.style.pointerEvents = 'none';
-		// document.body.style.position = 'fixed';
-		// document.body.style.top = `-${scrollPosition}px`;
-		// document.body.style.left = '0';
-		// document.body.style.right = '0';
+		if (!body.getAttribute('scrollY')) {
+			const pageY = window.pageYOffset;
+
+			body.setAttribute('scrollY', pageY.toString());
+
+			body.style.overflow = 'hidden';
+			body.style.position = 'fixed';
+			body.style.left = '0px';
+			body.style.right = '0px';
+			body.style.bottom = '0px';
+			body.style.top = `-${pageY}px`;
+		}
+
 		return () => {
-			document.body.classList.remove('overflow-y-hidden');
-			// document.body.style.removeProperty('overflow');
-			// document.body.style.removeProperty('pointer-events');
-			// document.body.style.removeProperty('position');
-			// document.body.style.removeProperty('top');
-			// document.body.style.removeProperty('left');
-			// document.body.style.removeProperty('right');
+			if (body.getAttribute('scrollY')) {
+				body.style.removeProperty('overflow');
+				body.style.removeProperty('position');
+				body.style.removeProperty('top');
+				body.style.removeProperty('left');
+				body.style.removeProperty('right');
+				body.style.removeProperty('bottom');
+
+				window.scrollTo(0, Number(body.getAttribute('scrollY')));
+
+				body.removeAttribute('scrollY');
+			}
 		};
+	}, []);
+
+	useEffect(() => {
+		console.log('ji');
+
+		return () => console.log('bi');
 	}, []);
 
 	// 이동량이 많을 경우 이동
@@ -59,7 +76,7 @@ export default function ModalLayout({
 		const end = y.get();
 
 		if (end - start >= 100) {
-			router.push('/', { scroll: false });
+			onClose();
 		}
 	};
 

@@ -67,10 +67,7 @@ const LoginBox: React.FC = () => {
           }
         })
         .catch((error) => {
-<<<<<<< HEAD
           console.log(error);
-=======
->>>>>>> origin/MATDORI-60-jokbo
           if (error.response.status === 500) {
             Toast("네트워크 오류");
           } else if (error.response.status === 401) {
@@ -78,11 +75,6 @@ const LoginBox: React.FC = () => {
           } else if (error.response.status === 400) {
             Toast("아이디, 비밀번호가 누락되었습니다.");
           }
-<<<<<<< HEAD
-=======
-
-          console.log(error);
->>>>>>> origin/MATDORI-60-jokbo
         });
     }
   };
