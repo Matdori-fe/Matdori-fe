@@ -5,8 +5,8 @@ import { Inter } from 'next/font/google';
 import RoundButton from '@/components/RoundButton/RoundButton';
 import StyledComponentsRegistry from '@/assets/style';
 import Head from 'next/head';
-import QueryWrapper from '@/utils/QueryWrapper';
 import { Suspense } from 'react';
+import QueryWrapper from '@/utils/QueryWrapper';
 
 const inter = Inter({ subsets: ['latin'] });
 
