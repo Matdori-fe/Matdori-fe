@@ -5,6 +5,7 @@ import CustomSelect from '@/components/SelectBox/CustomSelect';
 import OlderSelectBox from '@/components/SelectBox/OrderSelectBox';
 import SortButton from '@/components/SortButton/SortButton';
 import Text from '@/components/Text/Text';
+import SortWrapper from './SortWrapper';
 
 export default async function TotalAndSortSection({
 	category,
@@ -18,6 +19,7 @@ export default async function TotalAndSortSection({
 			<Text size='sm' fontWeight='semibold'>
 				총 <span className='text-100'>{result.totalCount}</span>건
 			</Text>
+			<SortWrapper />
 		</div>
 	);
 }
