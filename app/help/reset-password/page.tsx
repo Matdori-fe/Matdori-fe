@@ -6,13 +6,13 @@ import { useEffect, useState } from 'react';
 import CheckNotification from '@/components/CheckNotification/CheckNotification';
 import Button from '@/components/Button/Button';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { PasswordAtom } from '@/status/PasswordAtom';
+import { PasswordAtom } from '@/atoms/PasswordAtom';
 import {
 	Validation,
 	validationNotification,
 } from '@/app/signup/password/passwordValidation';
 import axios from 'axios';
-import { RegisterEmailAtom } from '@/status/RegisterEmailAtom';
+import { RegisterEmailAtom } from '@/atoms/RegisterEmailAtom';
 import { useRouter } from 'next/navigation';
 import Toast from '@/components/Toast/Toast';
 

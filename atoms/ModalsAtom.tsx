@@ -1,8 +1,8 @@
 import { FunctionComponent } from 'react';
 import { atom } from 'recoil';
 
-interface Modal {
-	id: string;
+export interface Modal {
+	id: 'department' | 'shop' | 'menu';
 	Component: FunctionComponent;
 }
 

@@ -1,5 +1,7 @@
+'use client';
+
 import { useRecoilValue } from 'recoil';
-import { DepartmentAtom } from '@/status/DepartmentAtom';
+import { DepartmentAtom } from '@/atoms/DepartmentAtom';
 import { useModal } from '@/hooks/useModal';
 import { modals } from '../ModalContainer/ModalContainer';
 import Input from '../Input/Input';
@@ -14,7 +16,9 @@ export default function DepartmentModalOpener() {
 			placeHolder='전공을 선택해주세요.'
 			inputSize='small'
 			value={department}
-			onClick={() => openModal('department', modals.department)}
+			onClick={() =>
+				openModal({ id: 'department', Component: modals.department })
+			}
 			inputmode='none'
 		/>
 	);

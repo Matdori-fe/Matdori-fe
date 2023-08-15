@@ -1,8 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { TimerAtom } from '@/status/TimerAtom';
-import { IsGoTimer } from '@/status/TimerAtom';
+import { TimerAtom } from '@/atoms/TimerAtom';
+import { IsGoTimer } from '@/atoms/TimerAtom';
 
 const FiveMinTimer: React.FC = () => {
 	//5분을 세주는 타이머 => state는 초 기준, 5분은 300초

@@ -1,7 +1,7 @@
 // import { modalState } from '@/app/status/ModalsAtom';
 // import { useRecoilState } from 'recoil';
 
-import { ModalsAtom } from '@/status/ModalsAtom';
+import { Modal, ModalsAtom } from '@/atoms/ModalsAtom';
 import { FunctionComponent } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -29,7 +29,7 @@ import { useRecoilState } from 'recoil';
 export const useModal = () => {
 	const [modals, setModals] = useRecoilState(ModalsAtom);
 
-	const openModal = (id: string, Component: FunctionComponent) => {
+	const openModal = ({ id, Component }: Modal) => {
 		setModals((prev) => [...prev, { id, Component }]);
 	};
 

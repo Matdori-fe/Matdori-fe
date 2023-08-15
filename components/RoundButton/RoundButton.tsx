@@ -2,7 +2,7 @@ import Text from '../Text/Text';
 
 interface ButtonProps {
 	label: string;
-	onClick: () => void;
+	onClick?: () => void;
 }
 
 export default function RoundButton({ label, onClick }: ButtonProps) {

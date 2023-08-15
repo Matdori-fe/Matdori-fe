@@ -11,8 +11,8 @@ import ModalContainer, {
 } from '@/components/ModalContainer/ModalContainer';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import DepartmentModalOpener from '@/components/ModalOpener/DepartmentModalOpener';
-import { DepartmentAtom } from '@/status/DepartmentAtom';
-import { PasswordAtom } from '@/status/PasswordAtom';
+import { DepartmentAtom } from '@/atoms/DepartmentAtom';
+import { PasswordAtom } from '@/atoms/PasswordAtom';
 import { useModal } from '@/hooks/useModal';
 import DepartmentModal from '@/components/Modal/DepartmentModal';
 
@@ -39,7 +39,7 @@ export default function Registration() {
 		setPasswordValidationType((prev) => ({ ...prev, password: 'invalidForm' }));
 
 		const passwordPattern =
-			/^(?=.*[a-z])(?=.*\d)(?=.*[@$!^%*?&])[a-zA-Z\d@$!^%*?&]{8,16}$/;
+			/^(?=.*[a-z])(?=.*\d)(?=.*[\\\\\[\]\(\)\{\}\.\/:;"'<>,@`|+$!^%*?&#.~-])[a-zA-Z\d\\\\\[\]\(\)\{\}\.\/:;"'<>,@`|+$!^%*?&#.~-]{8,16}$/;
 
 		if (passwordPattern.test(input.password)) {
 			setPasswordValidationType((prev) => ({ ...prev, password: 'valid' }));

@@ -7,7 +7,10 @@ const nextConfig = {
 	},
 	images: {
 		formats: ['image/avif', 'image/webp'],
-		domains: ['matdori.s3.ap-northeast-2.amazonaws.com'],
+		domains: [
+			'matdori.s3.ap-northeast-2.amazonaws.com',
+			'matdori-repo.s3.ap-northeast-2.amazonaws.com',
+		],
 	},
 };
 
