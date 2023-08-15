@@ -4,11 +4,11 @@ import axios from "axios";
 import JokboBox from "../[storeIndex]/component/JokboBox";
 import Button from "@/components/Button/Button";
 import SmallTitle from "@/components/Title/SmallTitle";
-import { RiArrowDownLine, RiBookmarkFill } from "react-icons/ri";
+import { RiBookmarkFill } from "react-icons/ri";
 import HorizonBar from "@/components/HorizonBar/HorizonBar";
 import EmptyJokbo from "../[storeIndex]/component/EmptyJokbo";
 import SelectTab from "@/components/SelectTab/SelectTab";
-import OlderSelectBox from "@/components/SelectBox/OrderSelectBox";
+import CustomSelect from "@/components/SelectBox/CustomSelect";
 //FIXME - 아래 예시 컴포넌트 지워야함.
 
 type StoreIndexIn = {
@@ -48,7 +48,6 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
       .then((response) => {
         setTotalCount(response.data.result.jokboCnt);
         setJokboList(response.data.result.jokboList);
-        console.log(response.data.result);
       })
       .catch((error) => {
         console.log(error);
@@ -68,7 +67,7 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
             className="mt-3 mb-1"
             sideComponent={
               <>
-                <OlderSelectBox onSelectChange={setViewType} />
+                <CustomSelect onSelectChange={setViewType} />
               </>
             }
           >
