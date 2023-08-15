@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useModal } from '@/hooks/useModal';
-import { DepartmentAtom } from '@/status/DepartmentAtom';
+import { DepartmentAtom } from '@/atoms/DepartmentAtom';
 
 // TODO: 선택된 과를 어디에 저장해서 사용할지 생각해야 한다. 선택된건 빨간색으로 표시하고 화면에도 띄울 것이기 때문임
 export default function DepartmentModal() {

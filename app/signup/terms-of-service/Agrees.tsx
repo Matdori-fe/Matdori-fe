@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import Agree from './Agree';
 import Button from '@/components/Button/Button';
-import { RegisterEmailAtom } from '@/status/RegisterEmailAtom';
+import { RegisterEmailAtom } from '@/atoms/RegisterEmailAtom';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { PasswordAtom } from '@/status/PasswordAtom';
-import { DepartmentAtom } from '@/status/DepartmentAtom';
+import { PasswordAtom } from '@/atoms/PasswordAtom';
+import { DepartmentAtom } from '@/atoms/DepartmentAtom';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Toast from '@/components/Toast/Toast';
