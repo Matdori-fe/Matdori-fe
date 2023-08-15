@@ -5,11 +5,8 @@ import { Inter } from 'next/font/google';
 import RoundButton from '@/components/RoundButton/RoundButton';
 import StyledComponentsRegistry from '@/assets/style';
 import Head from 'next/head';
-<<<<<<< HEAD
 import { Suspense } from 'react';
 import QueryWrapper from '@/utils/QueryWrapper';
-=======
->>>>>>> 97de80c ([MATDORI-62] feat: category 페이지 완성)
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -29,7 +26,6 @@ export default function RootLayout({
 	return (
 		<html lang='en' suppressHydrationWarning>
 			<body id='root' className={inter.className}>
-<<<<<<< HEAD
 				<QueryWrapper>
 					<RecoilRootWrapper>
 						{/*스마트폰 전체 프레임 잡기*/}
@@ -41,17 +37,6 @@ export default function RootLayout({
 						</div>
 					</RecoilRootWrapper>
 				</QueryWrapper>
-=======
-				<RecoilRootWrapper>
-					{/*스마트폰 전체 프레임 잡기*/}
-					<div className='flex justify-center h-full'>
-						{/*전체 크기 개발 이후에 변경 필요*/}
-						<div className='relative inset-0 sm:w-[412px] w-full border border-gray overflow-y-scroll overflow-x-hidden scrollbar-hide'>
-							<StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-						</div>
-					</div>
-				</RecoilRootWrapper>
->>>>>>> 97de80c ([MATDORI-62] feat: category 페이지 완성)
 			</body>
 		</html>
 	);
