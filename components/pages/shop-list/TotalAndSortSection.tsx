@@ -7,10 +7,8 @@ import SortButton from '@/components/SortButton/SortButton';
 import Text from '@/components/Text/Text';
 
 export default async function TotalAndSortSection({
-	count,
 	category,
 }: {
-	count: number;
 	category: string;
 }) {
 	const { result } = await getTotalShopCount(category);
