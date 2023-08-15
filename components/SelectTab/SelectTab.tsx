@@ -30,6 +30,7 @@ export default function SelectTab() {
   // FIXME: ~ 형식의 인수는 어쩌고
   const sectionList = useRecoilValue(SelectTabAtom(tab));
 
+  console.log(tab, section);
   return (
     <div className="sm:w-[412px] w-full border-b-[2px] py-[13px] border-gray">
       <ul className="flex">

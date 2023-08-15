@@ -11,10 +11,15 @@ interface ButtonProps {
   variant: "active" | "inactive";
   writeIcon?: boolean;
   errorMessage?: string;
+<<<<<<< HEAD
   modal?: boolean;
   onClick?: () => void;
   href?: string;
   isNavigation?: boolean;
+=======
+  modal: boolean;
+  onClick?: () => void;
+>>>>>>> origin/MATDORI-60-jokbo
 }
 
 const BASE_BUTTON_CLASSES =
@@ -40,7 +45,7 @@ const Button = ({
   // FIXME: 로직 정리
   return (
     <div className="flex justify-center w-full">
-      {isNavigation ? <></> : <></>}
+    
       <button
         onClick={() => {
           if (variant === "active" && href) router.push(href);
