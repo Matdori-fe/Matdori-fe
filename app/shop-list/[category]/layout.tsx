@@ -14,7 +14,7 @@ export default async function NavigationLayout({
 		<>
 			<Header title={decodeURIComponent(params.category)} left='back' />
 			<div className='px-[20px]'>
-				<TotalAndSortSection count={10} />
+				<TotalAndSortSection category={decodeURIComponent(params.category)} />
 				{children}
 			</div>
 		</>
