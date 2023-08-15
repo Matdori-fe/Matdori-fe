@@ -124,7 +124,7 @@ const LoginBox: React.FC = () => {
         onChange={handlePasswordChange}
       />
 
-      <div className="flex mt-20 mb-24">
+      <div className="flex mt-20 mb-12">
         <p className="font-Regular text-[12px] text-darkGray mr-3">
           아직 회원이 아니신가요?
         </p>

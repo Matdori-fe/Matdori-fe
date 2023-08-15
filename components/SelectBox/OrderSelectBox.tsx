@@ -11,16 +11,16 @@ const OlderSelectBox = ({ onSelectChange }: InFunction) => {
 
   return (
     <select
-      className="text-12 text-black font-Regular bg-white"
+      className="text-[12px] text-black font-Regular bg-white"
       onChange={handleSelectChange}
     >
-      <option key="day" value="day">
+      <option key="day" value="day" className="accent-slate-50">
         최신순
       </option>
-      <option key="like" value="like">
+      <option key="like" value="like" className="bg-white">
         좋아요순
       </option>
-      <option key="review" value="review">
+      <option key="review" value="review" className="bg-100">
         리뷰순
       </option>
     </select>

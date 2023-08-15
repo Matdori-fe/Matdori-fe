@@ -69,7 +69,7 @@ const StoreInfoTab = ({ storeIndex }: StoreIndexIn) => {
 
   return (
     <>
-      <div className="mb-[150px] h-[1500px]">
+      <div className="mb-[100px] h-auto">
         <div
           className={`${
             isFixed ? "fixed left-6/12 top-12" : "w-full"
@@ -101,7 +101,7 @@ const StoreInfoTab = ({ storeIndex }: StoreIndexIn) => {
           />
           <div
             id="map"
-            className="w-11/12 h-[242px] rounded-basic border-lightGray border-1"
+            className="w-11/12 h-[242px] rounded-basic border-lightGray border-1 z-0"
           >
             <Map address={storeInfo.address} />
           </div>

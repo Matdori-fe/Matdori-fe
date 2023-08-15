@@ -8,6 +8,8 @@ import RoundButton from "@/components/RoundButton/RoundButton";
 import { RiAwardFill } from "react-icons/ri";
 import { useEffect, useState } from "react";
 import StoreInfoSkeleton from "@/app/Skeleton/StoreInfoSkeleton";
+import { useRecoilValue } from "recoil";
+import { UserAtom } from "@/app/status/UserAtom";
 import axios from "axios";
 
 type StoreInfoHeader = {
@@ -22,6 +24,7 @@ type StoreInfoHeader = {
 const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
   //정보 수정 요청 함수
   function fixInfo() {}
+  const userInfo = useRecoilValue(UserAtom);
 
   const [storeData, setStoreData] = useState<StoreInfoHeader>({
     name: "none",
@@ -32,14 +35,21 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
     imgUrl: "",
   });
   const [loading, setLoading] = useState(true);
+  const request = {
+    userIndex: Number(userInfo.userId),
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await axios.get(
-          `${process.env.NEXT_PUBLIC_API}/stores/${storeIndex}/info-header`
+          `${process.env.NEXT_PUBLIC_API}/stores/${storeIndex}/info-header?userIndex=${userInfo.userId}`,
+          {
+            withCredentials: true,
+          }
         );
-        setStoreData(result.data.result);
+        console.log(result);
+        setStoreData(result.data.result.storeInformationHeader);
         setLoading(false);
       } catch (error) {
         console.log(error);

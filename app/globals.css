@@ -60,3 +60,12 @@
     scrollbar-width: none; /* Firefox */
   }
 }
+
+select option:checked {
+  background-color: white;
+  color: black;
+}
+select option:focus {
+  background-color: white;
+  color: black;
+}
