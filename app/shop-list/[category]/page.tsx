@@ -11,15 +11,18 @@ import { useInfiniteQuery } from 'react-query';
 import axios from 'axios';
 import { useObserver } from '@/hooks/useObserver';
 import Loading from '@/components/Loading/Loading';
+import { selectedSort } from '@/atoms/shop-list/selectedSort';
 
 export default function Page({ params }: { params: { category: string } }) {
+	const sort = useRecoilValue(selectedSort);
+
 	const getShopList = ({ pageParam = null }) =>
 		axios
 			.get(`${process.env.NEXT_PUBLIC_API}/stores`, {
 				params: {
 					cursor: pageParam,
 					category: decodeURIComponent(params.category),
-					order: '기본순',
+					order: sort,
 				},
 			})
 			.then((res) => {
@@ -39,7 +42,8 @@ export default function Page({ params }: { params: { category: string } }) {
 		status,
 	} = useInfiniteQuery(
 		// 밑줄인 키가 없으면 사이드 이펙트 발생
-		[`shop-${decodeURIComponent(params.category)}`],
+		// REFACTOR: 쿼리키 수정
+		[`shop-${decodeURIComponent(params.category)}-${sort}`],
 		getShopList,
 		{
 			getNextPageParam: ({ hasNext, storeList }) => {
