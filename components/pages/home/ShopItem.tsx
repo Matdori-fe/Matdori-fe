@@ -8,7 +8,7 @@ import BestJokbo from '@/components/BestJokbo/BestJokbo';
 export default function ShopItem() {
 	return (
 		<>
-			<div className='w-full h-[116px] border border-lightGray rounded-basic flex flex-col'>
+			<div className='w-full h-[116px] border border-lightGray rounded-basic flex flex-col justify-between'>
 				<div className='flex justify-between'>
 					<span className='w-[43%] [&>img]:object-fit h-[75px] overflow-hidden relative'>
 						<Image
@@ -32,7 +32,7 @@ export default function ShopItem() {
 								size='large'
 							/>
 						</div>
-						<div className='flex'>
+						<div className='flex gap-[10px]'>
 							<StarRate score={3.3} />
 							<Text size='base' color='gray'>
 								3.3
@@ -40,11 +40,7 @@ export default function ShopItem() {
 						</div>
 					</div>
 				</div>
-				<BestJokbo
-					content={
-						'dㅁ아ㅣ러미ㅏ어리ㅏ멍니ㅏ러미ㅏㄴ어리ㅏㅁㄴ어리asdsadsdaaaaaaaㅏ너리ㅏㅁ어리ㅏ너dㅁ아ㅣ러미ㅏ어리ㅏ멍니ㅏ러미ㅏㄴ어리ㅏㅁㄴ어리asdsadsdaaaaaaaㅏ너리ㅏㅁ어리ㅏ너dㅁ아ㅣ러미ㅏ어리ㅏ멍니ㅏ러미ㅏㄴ어리ㅏㅁㄴ어리asdsadsdaaaaaaaㅏ너리ㅏㅁ어리ㅏ너dㅁ아ㅣ러미ㅏ어리ㅏ멍니ㅏ러미ㅏㄴ어리ㅏㅁㄴ어리asdsadsdaaaaaaaㅏ너리ㅏㅁ어리ㅏ너'
-					}
-				/>
+				<BestJokbo className='p-[10px]' content={'ahdifhaoi'} />
 			</div>
 		</>
 	);
