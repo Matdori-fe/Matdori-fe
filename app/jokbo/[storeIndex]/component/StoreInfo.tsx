@@ -1,15 +1,15 @@
-"use client";
-import Text from "@/components/Text/Text";
-import StatusBar from "@/components/StatusBar/StatusBar";
-import StarRate from "@/components/StarRate/StarRate";
-import ImageBox from "@/components/ImageBox/ImageBox";
-import RoundButton from "@/components/RoundButton/RoundButton";
-import { RiAwardFill } from "react-icons/ri";
-import { useEffect, useState } from "react";
-import StoreInfoSkeleton from "@/app/Skeleton/StoreInfoSkeleton";
-import { useRecoilValue } from "recoil";
-import { UserAtom } from "@/app/status/UserAtom";
-import axios from "axios";
+'use client';
+import Text from '@/components/Text/Text';
+import StatusBar from '@/components/StatusBar/StatusBar';
+import StarRate from '@/components/StarRate/StarRate';
+import ImageBox from '@/components/ImageBox/ImageBox';
+import RoundButton from '@/components/RoundButton/RoundButton';
+import { RiAwardFill } from 'react-icons/ri';
+import { useEffect, useState } from 'react';
+import StoreInfoSkeleton from '@/app/Skeleton/StoreInfoSkeleton';
+import { useRecoilValue } from 'recoil';
+import { UserAtom } from '@/atoms/UserAtom';
+import axios from 'axios';
 
 type StoreInfoHeader = {
   name: string;
@@ -26,14 +26,14 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
   const userInfo = useRecoilValue(UserAtom);
 
   const [storeData, setStoreData] = useState<StoreInfoHeader>({
-    name: "none",
+    name: 'none',
     totalRating: 0,
     flavorRating: 0,
     underPricedRating: 0,
     cleanRating: 0,
-    imgUrl: "",
+    imgUrl: '',
   });
-  const [storeContent, setStoreContent] = useState("");
+  const [storeContent, setStoreContent] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
