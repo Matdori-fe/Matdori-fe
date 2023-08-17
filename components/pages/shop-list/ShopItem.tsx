@@ -9,11 +9,13 @@ export default function ShopItem({
 	score,
 	jokboCnt,
 	img,
+	category,
 }: {
 	name: string;
 	score: number;
 	jokboCnt: number;
 	img: string;
+	category: string;
 }) {
 	return (
 		<div>
@@ -34,7 +36,7 @@ export default function ShopItem({
 				</div>
 				<div className='flex justify-between'>
 					<Text size='xxs' color='darkGray'>
-						한식
+						{category}
 					</Text>
 					<JokboInfo kind='bookMark' count={jokboCnt} />
 				</div>
