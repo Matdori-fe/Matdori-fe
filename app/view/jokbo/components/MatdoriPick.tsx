@@ -1,12 +1,12 @@
-"use client";
-import BigTitle from "@/components/Title/BigTitle";
-import Text from "@/components/Text/Text";
-import SmallStoreComponent from "./StoreCompoents/SmallStoreComponent";
-import { useState, useEffect } from "react";
-import { useRecoilValue } from "recoil";
-import { UserAtom } from "@/app/status/UserAtom";
-import axios from "axios";
-import SmallStoreSkeleton from "@/app/Skeleton/SmallStoreSkeleton";
+'use client';
+import BigTitle from '@/components/Title/BigTitle';
+import Text from '@/components/Text/Text';
+import SmallStoreComponent from './StoreCompoents/SmallStoreComponent';
+import { useState, useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
+import { UserAtom } from '@/atoms/UserAtom';
+import axios from 'axios';
+import SmallStoreSkeleton from '@/app/Skeleton/SmallStoreSkeleton';
 
 const MatdoriPick = () => {
   const [list, setList] = useState([]);
@@ -38,13 +38,13 @@ const MatdoriPick = () => {
       <div className="w-full flex overflow-x-scroll mt-3 hide-scroll justify-center">
         <div className="w-full flex overflow-x-scroll mt-3 hide-scroll">
           {loading === true ? (
-            <div className="flex">
+            <div className="flex scrollbar-hide">
               <SmallStoreSkeleton />
               <SmallStoreSkeleton />
               <SmallStoreSkeleton />
             </div>
           ) : (
-            <div className="flex">
+            <div className="w-auto flex flex-nowrap overflow-x-scroll scrollbar-hide">
               {list.map(({ storeIndex, name, imgUrl }) => {
                 return (
                   <SmallStoreComponent
