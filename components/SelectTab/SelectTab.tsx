@@ -5,7 +5,7 @@ import Text from '../Text/Text';
 import { motion } from 'framer-motion';
 import { styled } from 'styled-components';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { SelectTabAtom, SelectTabVariant } from '@/status/SelectTabAtom';
+import { SelectTabAtom, SelectTabVariant } from '@/atoms/SelectTabAtom';
 
 interface SelectBarProps {
 	variant: SelectTabVariant;
@@ -38,7 +38,7 @@ export default function SelectTab() {
 					<li
 						key={id}
 						className='relative flex justify-center grow'
-						onClick={() => router.push(`?tab=${tab}&section=${id}`)}
+						onClick={() => router.replace(`?tab=${tab}&section=${id}`)}
 					>
 						<Text
 							size='sm'
