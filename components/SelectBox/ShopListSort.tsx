@@ -11,14 +11,14 @@ type InFunction = {
 
 const selectList = [
 	{ value: 'day', label: '최신순' },
-	{ value: 'like', label: '좋아요순' },
-	{ value: 'jokbo', label: '족보순' },
+	{ value: 'like', label: '별점 높은 순' },
+	{ value: 'jokbo', label: '족보 많은 순' },
 ];
 //type ValueType = "day" | "like" | "jokbo";
 
-const CustomSelect = ({ onSelectChange }: InFunction) => {
+const ShopListSort = ({ onSelectChange }: InFunction) => {
 	const handleSelectChange = (selectedOption: any) => {
-		onSelectChange(selectedOption.value); // 선택된 옵션의 value를 onSelectChange에 전달
+		onSelectChange(selectedOption.label); // 선택된 옵션의 value를 onSelectChange에 전달
 	};
 
 	return (
@@ -56,4 +56,4 @@ const CustomSelect = ({ onSelectChange }: InFunction) => {
 	);
 };
 
-export default CustomSelect;
+export default ShopListSort;

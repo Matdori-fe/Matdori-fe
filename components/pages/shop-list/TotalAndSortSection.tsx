@@ -1,31 +1,35 @@
-<<<<<<< Updated upstream
-=======
 import ModalContainer from '@/components/ModalContainer/ModalContainer';
 import DepartmentModalOpener from '@/components/ModalOpener/DepartmentModalOpener';
 import ModalOpener from '@/components/ModalOpener/ModalOpener';
+import CustomSelect from '@/components/SelectBox/CustomSelect';
 import OlderSelectBox from '@/components/SelectBox/OrderSelectBox';
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 import SortButton from '@/components/SortButton/SortButton';
 import Text from '@/components/Text/Text';
+import SortWrapper from './SortWrapper';
 
-export default function TotalAndSortSection({ count }: { count: number }) {
+export default async function TotalAndSortSection({
+	category,
+}: {
+	category: string;
+}) {
+	const { result } = await getTotalShopCount(category);
+
 	return (
 		<div className='flex items-center justify-between mb-[10px]'>
 			<Text size='sm' fontWeight='semibold'>
-				총 <span className='text-100'>{count}</span>건
+				총 <span className='text-100'>{result.totalCount}</span>건
 			</Text>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-			<SortButton label='최신순' />
-=======
-=======
->>>>>>> Stashed changes
-			<OlderSelectBox />
-			<ModalContainer />
->>>>>>> Stashed changes
+			<SortWrapper />
 		</div>
 	);
 }
+
+// TODO: 총 개수 주는걸로 api바꾸기
+const getTotalShopCount = async (category: string) => {
+	const response = await fetch(
+		`${process.env.NEXT_PUBLIC_API}/store-count?category=${category}`,
+		{ cache: 'no-store' }
+	);
+
+	return response.json();
+};
