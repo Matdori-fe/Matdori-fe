@@ -50,8 +50,10 @@ const NavigationBar: React.FC = () => {
           >
             {tabValue === 'Search' ? (
               <>
-                <RiSearch2Fill className="w-[24px] h-[24px] text-100 text-[10px]" />
-                <p className="font-Regular text-100 whitespace-nowrap">검색</p>
+                <RiSearch2Fill className="w-[24px] h-[24px] text-100" />
+                <p className="font-Regular text-100 whitespace-nowrap text-[10px]">
+                  검색
+                </p>
               </>
             ) : (
               <>
