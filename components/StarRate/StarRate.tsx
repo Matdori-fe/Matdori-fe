@@ -43,7 +43,7 @@ export default function StarRate({
 			</StarWrapper>
 			{isShowScore && (
 				<Text color='darkGray' size='xs'>
-					{score}
+					{score.toFixed(1)}
 				</Text>
 			)}
 		</div>
