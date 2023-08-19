@@ -1,6 +1,8 @@
+import { deleteAtom } from '@/atoms/deleteAtom';
 import DeleteButton from '@/components/DeleteButton/DeleteButton';
 import axios from 'axios';
 import { useMutation, useQueryClient } from 'react-query';
+import { useRecoilValue } from 'recoil';
 
 interface IDeleteLikeJokbo {
 	userIndex: number;
@@ -76,12 +78,18 @@ export const useDelete = ({ query, queryKey }) => {
 	}: {
 		children: React.ReactNode;
 		itemId: number;
-	}) => (
-		<div className='relative'>
-			<DeleteButton onClick={() => mutate(itemId)} />
-			{children}
-		</div>
-	);
+	}) => {
+		const deleteState = useRecoilValue(deleteAtom);
+
+		if (!deleteState) return <>{children}</>;
+
+		return (
+			<div className='relative'>
+				<DeleteButton onClick={() => mutate(itemId)} />
+				{children}
+			</div>
+		);
+	};
 
 	return DeletableItemWrapper;
 };
