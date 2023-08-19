@@ -12,6 +12,7 @@ import { Right } from './Header';
 import { moveToBack } from '@/utils/page/moveToBack';
 import { FiTrash2 } from 'react-icons/fi';
 import RoundButton from '../RoundButton/RoundButton';
+import Like from '../Like/Like';
 import { useRouter } from 'next/navigation';
 
 // TODO: 라운드 버튼의 height가 큰거 수정
@@ -20,7 +21,7 @@ import { useRouter } from 'next/navigation';
 const rightIcons = {
   search: <RiSearch2Line onClick={moveToBack} size="24" />,
   share: <RiShareBoxLine size="20" />,
-  like: <RiHeartLine size="20" className="fill-100" />,
+  like: <Like kind="store" />,
   trashCan: <FiTrash2 size="20" className="text-100" />,
   check: <RiCheckFill size="20" className="fill-100" />,
   more: <RiMore2Fill size="20" />,
