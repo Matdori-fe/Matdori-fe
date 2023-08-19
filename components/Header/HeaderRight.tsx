@@ -21,27 +21,53 @@ import { useRouter } from 'next/navigation';
 const rightIcons = {
   search: <RiSearch2Line onClick={moveToBack} size="24" />,
   share: <RiShareBoxLine size="20" />,
-  like: <Like kind="store" />,
+  like: <Like kind="store" id={165} />,
   trashCan: <FiTrash2 size="20" className="text-100" />,
   check: <RiCheckFill size="20" className="fill-100" />,
   more: <RiMore2Fill size="20" />,
   roundButton: <RoundButton label="내 정보 수정하기" />,
 };
 
+type LikeKind = 'store' | 'jokbo' | 'review';
+
 interface HeaderRightProps {
   right: Right[] | Right;
+  kind: LikeKind;
+  //px기준으로 입력
+  size?: string;
+  //가게, 족보, 리뷰에 대한 개별 Index
+  id: number;
+  inFavoriteId?: number | null;
 }
 
-export default function HeaderRight({ right }: HeaderRightProps) {
+export default function HeaderRight({
+  right,
+  kind,
+  size,
+  id,
+  inFavoriteId,
+}: HeaderRightProps) {
   const desiredOrder: Right[] = ['share', 'like', 'more'];
 
   // TODO: 상단 고정 css
   return (
     <div className="flex gap-3.5">
       {Array.isArray(right) ? (
-        iconSort(right, desiredOrder).map(
-          (icon: Right) => icon && rightIcons[icon]
-        )
+        iconSort(right, desiredOrder).map((icon: Right) => {
+          if (icon === 'like') {
+            return (
+              <Like
+                key={icon}
+                kind={kind}
+                size={size}
+                id={id}
+                inFavoriteId={inFavoriteId}
+              />
+            );
+          } else {
+            return icon && rightIcons[icon];
+          }
+        })
       ) : (
         <>{right && rightIcons[right]}</>
       )}

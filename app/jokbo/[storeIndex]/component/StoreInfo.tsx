@@ -45,7 +45,6 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
             withCredentials: true,
           }
         );
-        console.log(result);
         setStoreData(result.data.result.storeInformationHeader);
         setStoreContent(result.data.result.contents);
         setLoading(false);

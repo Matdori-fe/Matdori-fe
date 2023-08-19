@@ -6,7 +6,7 @@ import ImageBox from '@/components/ImageBox/ImageBox';
 import StoreSummary from './StoreSummary';
 import { useRecoilValue } from 'recoil';
 import { UserAtom } from '@/atoms/UserAtom';
-
+import Header from '@/components/Header/Header';
 interface JokboDetailProps {
   jokboIndex: number;
 }
@@ -22,7 +22,7 @@ type DetailInfoType = {
   title: string;
   nickname: string;
   contents: string;
-  jokboFavoriteId: number;
+  jokboFavoriteId: number | null;
   createdAt: string;
   jokboImgUrlList: string[];
 };
@@ -39,7 +39,7 @@ const JokboDetailComponent: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
     title: '',
     nickname: '',
     contents: '',
-    jokboFavoriteId: 0,
+    jokboFavoriteId: null,
     createdAt: '',
     jokboImgUrlList: [],
   });
@@ -54,7 +54,6 @@ const JokboDetailComponent: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
           }
         );
         setDetailInfo(response.data.result);
-        console.log(response.data.result);
       } catch (error) {
         console.log(error);
       }
@@ -64,27 +63,36 @@ const JokboDetailComponent: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
   }, []);
   return (
     <>
-      <BigTitle>{detailInfo?.title}</BigTitle>
-      <div className="text-[10px] font-Regular text-gray mt-2">
-        {detailInfo?.createdAt} | {detailInfo?.nickname}
-      </div>
-
-      <div className="w-full text-[12px] font-Regular text-darkGray mt-4">
-        {detailInfo?.contents}
-      </div>
-      <div className="w-full flex flex-nowrap overflow-x-scroll scrollbar-hide mt-4 mb-6">
-        {detailInfo?.jokboImgUrlList.map((element) => (
-          <ImageBox className="w-[70px] h-[70px] mr-3" url={element} />
-        ))}
-      </div>
-      <StoreSummary
-        storeImgUrl={detailInfo.storeImgUrl}
-        storeName={detailInfo.storeName}
-        totalRating={detailInfo.totalRating}
-        flavorRating={detailInfo.flavorRating}
-        underPricedRating={detailInfo.underPricedRating}
-        cleanRating={detailInfo.cleanRating}
+      <Header
+        left="back"
+        right={['share', 'like', 'more']}
+        kind="jokbo"
+        id={detailInfo.storeIndex}
+        inFavoriteId={detailInfo.jokboFavoriteId}
       />
+      <div className="mx-3">
+        <BigTitle>{detailInfo?.title}</BigTitle>
+        <div className="text-[10px] font-Regular text-gray mt-2">
+          {detailInfo?.createdAt} | {detailInfo?.nickname}
+        </div>
+
+        <div className="w-full text-[12px] font-Regular text-darkGray mt-4">
+          {detailInfo?.contents}
+        </div>
+        <div className="w-full flex flex-nowrap overflow-x-scroll scrollbar-hide mt-4 mb-6">
+          {detailInfo?.jokboImgUrlList.map((element) => (
+            <ImageBox className="w-[70px] h-[70px] mr-3" url={element} />
+          ))}
+        </div>
+        <StoreSummary
+          storeImgUrl={detailInfo.storeImgUrl}
+          storeName={detailInfo.storeName}
+          totalRating={detailInfo.totalRating}
+          flavorRating={detailInfo.flavorRating}
+          underPricedRating={detailInfo.underPricedRating}
+          cleanRating={detailInfo.cleanRating}
+        />
+      </div>
     </>
   );
 };
