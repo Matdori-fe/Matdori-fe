@@ -1,47 +1,57 @@
+'use client';
+
 import Image from 'next/image';
 import logo from '../../../assets/image/logo.svg';
 import Text from '@/components/Text/Text';
 import StarRate from '@/components/StarRate/StarRate';
 import JokboInfo from '@/components/JokboInfo/JokboInfo';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function ShopItem({
+	shopId,
 	name,
 	score,
 	jokboCnt,
 	img,
 	category,
 }: {
+	shopId: number;
 	name: string;
 	score: number;
 	jokboCnt: number;
 	img: string;
 	category: string;
 }) {
+	const router = useRouter();
+
 	return (
-		<div>
-			<img
-				src={img}
-				className='w-full h-[100px] object-contain rounded-basic border border-solid border-lightGray'
-			/>
-			<div className='px-[5px] w-full pt-[6px]'>
-				<div className='flex justify-between'>
-					<Text
-						size='sm'
-						fontWeight='semibold'
-						className='overflow-hidden whitespace-nowrap overflow-ellipsis'
-					>
-						{name}
-					</Text>
-					<JokboInfo kind='starScore' count={score} />
-				</div>
-				<div className='flex justify-between'>
-					<Text size='xxs' color='darkGray'>
-						{category}
-					</Text>
-					<JokboInfo kind='bookMark' count={jokboCnt} />
+		<Link href={`/jokbo/${shopId}?tab=shop&section=info}`}>
+			<div onClick={() => router.push('')}>
+				<img
+					src={img}
+					className='w-full h-[100px] object-contain rounded-basic border border-solid border-lightGray'
+				/>
+				<div className='px-[5px] w-full pt-[6px]'>
+					<div className='flex justify-between'>
+						<Text
+							size='sm'
+							fontWeight='semibold'
+							className='overflow-hidden whitespace-nowrap overflow-ellipsis'
+						>
+							{name}
+						</Text>
+						<JokboInfo kind='starScore' count={score} />
+					</div>
+					<div className='flex justify-between'>
+						<Text size='xxs' color='darkGray'>
+							{category}
+						</Text>
+						<JokboInfo kind='bookMark' count={jokboCnt} />
+					</div>
 				</div>
 			</div>
-		</div>
+		</Link>
 	);
 }
 

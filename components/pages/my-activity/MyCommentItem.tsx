@@ -1,6 +1,7 @@
 import { deleteAtom } from '@/atoms/deleteAtom';
 import Text from '@/components/Text/Text';
 import { formatDate } from '@/lib/formatDate';
+import Link from 'next/link';
 import { RiHeartFill } from 'react-icons/ri';
 import { useRecoilValue } from 'recoil';
 
@@ -24,30 +25,32 @@ export default function MyCommentItem({
 	const deleteMode = useRecoilValue(deleteAtom);
 
 	return (
-		<div className='flex flex-col w-full py-[16px] border-b-lightGray border-b-[1px]'>
-			<Text
-				size='sm'
-				fontWeight='semibold'
-				className={`break-all truncate mb-[8px]  
+		<Link href={`/jokbo/${jokboId}?tab=shop&section=info`}>
+			<div className='flex flex-col w-full py-[16px] border-b-lightGray border-b-[1px]'>
+				<Text
+					size='sm'
+					fontWeight='semibold'
+					className={`break-all truncate mb-[8px]  
 				${deleteMode && 'w-[calc(100%-30px)]'}
 				`}
-			>
-				{contents}
-			</Text>
-			<Text size='xs' color='darkGray'>
-				{jokboTitle}
-			</Text>
-			<div className='flex gap-[10px]'>
-				<Text size='xxs' color='gray'>
-					{formatDate(writtenAt)}
+				>
+					{contents}
 				</Text>
-				<div className='flex items-center gap-[4px]'>
-					<RiHeartFill className='fill-gray text-xxs' />
+				<Text size='xs' color='darkGray'>
+					{jokboTitle}
+				</Text>
+				<div className='flex gap-[10px]'>
 					<Text size='xxs' color='gray'>
-						{commentLikes}
+						{formatDate(writtenAt)}
 					</Text>
+					<div className='flex items-center gap-[4px]'>
+						<RiHeartFill className='fill-gray text-xxs' />
+						<Text size='xxs' color='gray'>
+							{commentLikes}
+						</Text>
+					</div>
 				</div>
 			</div>
-		</div>
+		</Link>
 	);
 }
