@@ -1,6 +1,7 @@
 'use client';
 
 import JokboBox from '@/app/jokbo/[storeIndex]/component/JokboBox';
+import { deleteAtom } from '@/atoms/deleteAtom';
 import DeleteButton from '@/components/DeleteButton/DeleteButton';
 import ErrorPpok from '@/components/Error/ErrorPpok';
 import Loading from '@/components/Loading/Loading';
@@ -15,8 +16,10 @@ import {
 import { useFetcher } from '@/hooks/my-likes/useFetcher';
 import { useObserver } from '@/hooks/useObserver';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 import { useInfiniteQuery } from 'react-query';
+import { useRecoilState } from 'recoil';
 
 export default function LikeJokboList() {
 	const userIndex = JSON.parse(localStorage.getItem('recoil-persist')).user
@@ -76,7 +79,8 @@ export default function LikeJokboList() {
 		queryKey: ['likeJokbo'],
 	});
 
-	// TODO: Delete 버튼 위치 이동
+	const router = useRouter();
+	const [deleteMode, setDeleteMode] = useRecoilState(deleteAtom);
 
 	return (
 		<div className='mt-[110px]'>
@@ -97,15 +101,24 @@ export default function LikeJokboList() {
 									key={shop.favoriteJokboId}
 									itemId={shop.favoriteJokboId}
 								>
-									<JokboBox
-										contents={shop.contents}
-										imgUrl={shop.imgUrl}
-										title={shop.title}
-										totalRating={shop.totalRating}
-										jokboId={shop.jokboId}
-										favoriteCnt={shop.favoriteCnt}
-										commentCnt={shop.commentCnt}
-									/>
+									<div
+										onClick={
+											deleteMode
+												? () => setDeleteMode(!deleteMode)
+												: () => router.push('/')
+											// TODO: 여기에 족보로 이동하는 링크 추가
+										}
+									>
+										<JokboBox
+											contents={shop.contents}
+											imgUrl={shop.imgUrl}
+											title={shop.title}
+											totalRating={shop.totalRating}
+											jokboId={shop.jokboId}
+											favoriteCnt={shop.favoriteCnt}
+											commentCnt={shop.commentCnt}
+										/>
+									</div>
 								</DeletableItem>
 							))}
 						</>

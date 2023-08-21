@@ -124,6 +124,7 @@ export default function LikeShopList() {
 										key={shop.favoriteStoreId}
 									>
 										<ShopItem
+											shopId={shop.storeId}
 											category={shop.category}
 											key={shop.name}
 											name={shop.name}

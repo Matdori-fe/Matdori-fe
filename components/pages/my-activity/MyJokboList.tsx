@@ -1,6 +1,7 @@
 'use client';
 
 import JokboBox from '@/app/jokbo/[storeIndex]/component/JokboBox';
+import { deleteAtom } from '@/atoms/deleteAtom';
 import DeleteButton from '@/components/DeleteButton/DeleteButton';
 import ErrorPpok from '@/components/Error/ErrorPpok';
 import ErrorPPok from '@/components/Error/ErrorPpok';
@@ -18,8 +19,10 @@ import { useFetcher } from '@/hooks/my-likes/useFetcher';
 import { useObserver } from '@/hooks/useObserver';
 import { deleteMyComment } from '@/lib/jokbo/deleteMyComment';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { useInfiniteQuery, useMutation, useQueryClient } from 'react-query';
+import { useRecoilState } from 'recoil';
 
 // FIXME: +swif
 export default function MyJokboList() {
@@ -91,6 +94,9 @@ export default function MyJokboList() {
 
 	console.log(data);
 
+	const [deleteMode, setDeleteMode] = useRecoilState(deleteAtom);
+	const router = useRouter();
+
 	return (
 		<div className='mt-[110px]'>
 			{status === 'loading' && <Loading />}
@@ -111,15 +117,24 @@ export default function MyJokboList() {
 										itemId={shop.jokboId}
 										key={shop.jokboId}
 									>
-										<JokboBox
-											contents={shop.contents}
-											imgUrl={shop.imgUrl}
-											title={shop.title}
-											totalRating={shop.totalRating}
-											jokboId={shop.jokboId}
-											favoriteCnt={shop.favoriteCnt}
-											commentCnt={shop.commentCnt}
-										/>
+										<div
+											onClick={
+												deleteMode
+													? () => setDeleteMode(!deleteMode)
+													: () => router.push('')
+												// TODO: 여기에 족보로 이동하는 링크 추가
+											}
+										>
+											<JokboBox
+												contents={shop.contents}
+												imgUrl={shop.imgUrl}
+												title={shop.title}
+												totalRating={shop.totalRating}
+												jokboId={shop.jokboId}
+												favoriteCnt={shop.favoriteCnt}
+												commentCnt={shop.commentCnt}
+											/>
+										</div>
 									</DeletableItem>
 								</>
 							))}

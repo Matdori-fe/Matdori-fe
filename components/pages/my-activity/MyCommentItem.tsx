@@ -1,9 +1,12 @@
+'use client';
+
 import { deleteAtom } from '@/atoms/deleteAtom';
 import Text from '@/components/Text/Text';
 import { formatDate } from '@/lib/formatDate';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { RiHeartFill } from 'react-icons/ri';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 interface IMyCommentItem {
 	contents: string;
@@ -22,35 +25,41 @@ export default function MyCommentItem({
 	jokboId,
 	commentId,
 }: IMyCommentItem) {
-	const deleteMode = useRecoilValue(deleteAtom);
+	const [deleteMode, setDeleteMode] = useRecoilState(deleteAtom);
+	const router = useRouter();
 
 	return (
-		<Link href={`/jokbo/${jokboId}?tab=shop&section=info`}>
-			<div className='flex flex-col w-full py-[16px] border-b-lightGray border-b-[1px]'>
-				<Text
-					size='sm'
-					fontWeight='semibold'
-					className={`break-all truncate mb-[8px]  
+		<div
+			onClick={
+				deleteMode
+					? () => setDeleteMode(!deleteMode)
+					: () => router.push(`/jokbo/${jokboId}?tab=shop&section=info`)
+			}
+			className='flex flex-col w-full py-[16px] border-b-lightGray border-b-[1px]'
+		>
+			<Text
+				size='sm'
+				fontWeight='semibold'
+				className={`break-all truncate mb-[8px]  
 				${deleteMode && 'w-[calc(100%-30px)]'}
 				`}
-				>
-					{contents}
+			>
+				{contents}
+			</Text>
+			<Text size='xs' color='darkGray'>
+				{jokboTitle}
+			</Text>
+			<div className='flex gap-[10px]'>
+				<Text size='xxs' color='gray'>
+					{formatDate(writtenAt)}
 				</Text>
-				<Text size='xs' color='darkGray'>
-					{jokboTitle}
-				</Text>
-				<div className='flex gap-[10px]'>
+				<div className='flex items-center gap-[4px]'>
+					<RiHeartFill className='fill-gray text-xxs' />
 					<Text size='xxs' color='gray'>
-						{formatDate(writtenAt)}
+						{commentLikes}
 					</Text>
-					<div className='flex items-center gap-[4px]'>
-						<RiHeartFill className='fill-gray text-xxs' />
-						<Text size='xxs' color='gray'>
-							{commentLikes}
-						</Text>
-					</div>
 				</div>
 			</div>
-		</Link>
+		</div>
 	);
 }

@@ -19,6 +19,7 @@ import { useInfiniteQuery } from 'react-query';
 import MyCommentItem from './MyCommentItem';
 import { deleteMyComment } from '@/lib/jokbo/deleteMyComment';
 import ErrorPpok from '@/components/Error/ErrorPpok';
+import Link from 'next/link';
 
 export default function MyCommentList() {
 	const userIndex = JSON.parse(localStorage.getItem('recoil-persist')).user
