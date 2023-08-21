@@ -1,8 +1,10 @@
 import { RiCloseFill } from 'react-icons/ri';
 
+export type DeleteButtonPosition = 'shop' | 'jokbo' | 'comment';
+
 interface IDeleteButton {
 	onClick: () => void;
-	deleteBtnPosition: 'shop' | 'jokbo' | 'comment';
+	deleteBtnPosition: DeleteButtonPosition;
 }
 
 const positionVariant = {
