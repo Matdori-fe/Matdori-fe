@@ -31,13 +31,12 @@ type LikeInputProps = {
 const Like = ({ kind, size, id, inFavoriteId }: LikeInputProps) => {
   const [isClick, setIsClick] = useState(false);
   const user = useRecoilValue(UserAtom);
-  const heartSize = size ? size : '[20px]';
+  const heartSize = size ? size : 'text-[20px]';
   const idName = kind + 'Id';
   const [favoriteId, setFavoriteId] = useState<favoriteIdType>(null);
 
   // 처음 랜더링 될때 isLike값 반영
   useEffect(() => {
-    console.log(inFavoriteId);
     if (inFavoriteId != null) {
       setIsClick(true);
       setFavoriteId(inFavoriteId);
@@ -89,17 +88,11 @@ const Like = ({ kind, size, id, inFavoriteId }: LikeInputProps) => {
     <>
       {isClick ? (
         <>
-          <RiHeartFill
-            className={`text-${heartSize} text-100`}
-            onClick={LikeFun}
-          />
+          <RiHeartFill className={`${heartSize} text-100`} onClick={LikeFun} />
         </>
       ) : (
         <>
-          <RiHeartLine
-            className={`text-${heartSize} text-100`}
-            onClick={LikeFun}
-          />
+          <RiHeartLine className={`${heartSize} text-100`} onClick={LikeFun} />
         </>
       )}
     </>
