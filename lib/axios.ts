@@ -1,5 +1,7 @@
-import axios, { Axios } from 'axios';
+import axios, { Axios, AxiosResponse } from 'axios';
 
-export const instance: Axios = axios.create({
+const instance: Axios = axios.create({
 	baseURL: `${process.env.NEXT_PUBLIC_API}`,
 });
+
+export { instance as axios };
