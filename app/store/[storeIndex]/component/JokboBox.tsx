@@ -38,7 +38,7 @@ const JokboBox = ({
             >
               {title}
             </Text>
-            <StarRate score={totalRating} />
+            <StarRate score={totalRating} isShowScore={true} />
             <div className="w-full h-0.5" />
             <Text
               size="xs"
