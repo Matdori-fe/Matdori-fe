@@ -1,5 +1,7 @@
 import { deleteAtom } from '@/atoms/deleteAtom';
-import DeleteButton from '@/components/DeleteButton/DeleteButton';
+import DeleteButton, {
+	DeleteButtonPosition,
+} from '@/components/DeleteButton/DeleteButton';
 import axios from 'axios';
 import { useMutation, useQueryClient } from 'react-query';
 import { useRecoilValue } from 'recoil';
@@ -93,7 +95,7 @@ export const useDelete = ({ query, queryKey }) => {
 		children: React.ReactNode;
 		itemId: number;
 		secondId: number;
-		deleteBtnPosition: string;
+		deleteBtnPosition: DeleteButtonPosition;
 	}) => {
 		const deleteState = useRecoilValue(deleteAtom);
 
