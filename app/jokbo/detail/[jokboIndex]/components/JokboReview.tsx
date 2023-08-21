@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import axios from 'axios';
 import Review from '@/components/Review/Review';
-import EmptyJokbo from '@/app/jokbo/[storeIndex]/component/EmptyJokbo';
+import EmptyJokbo from '@/app/store/[storeIndex]/component/EmptyJokbo';
 
 type ReviewType = {
   commentIndex: number;
