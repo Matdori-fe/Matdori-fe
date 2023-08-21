@@ -1,7 +1,7 @@
-import React from "react"; // 반드시 React를 import해야 합니다.
-import DayTimeText from "./DayTimeText";
-import { useState } from "react";
-import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
+import React from 'react'; // 반드시 React를 import해야 합니다.
+import DayTimeText from './DayTimeText';
+import { useState } from 'react';
+import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 type StoreTimeArr = {
   monday: string;
   tuesday: string;
@@ -16,22 +16,22 @@ type StoreTimeProps = {
 };
 
 type Day =
-  | "monday"
-  | "tuesday"
-  | "wednesday"
-  | "thursday"
-  | "friday"
-  | "saturday"
-  | "sunday";
+  | 'monday'
+  | 'tuesday'
+  | 'wednesday'
+  | 'thursday'
+  | 'friday'
+  | 'saturday'
+  | 'sunday';
 
 const daysOfWeek: Day[] = [
-  "sunday",
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
+  'sunday',
+  'monday',
+  'tuesday',
+  'wednesday',
+  'thursday',
+  'friday',
+  'saturday',
 ];
 
 const StoreTime: React.FC<StoreTimeProps> = ({ storeTimeArr }) => {
@@ -46,12 +46,12 @@ const StoreTime: React.FC<StoreTimeProps> = ({ storeTimeArr }) => {
 
   return (
     <div className="w-full flex">
-      <div className="w-auto h-auto flex flex-wrap ml-2">
+      <div className="w-auto h-auto flex flex-wrap ">
         {isDetail ? (
           <>
             <div className="flex">
               <DayTimeText day="monday" time={storeTimeArr.monday} />
-              <RiArrowDownSLine
+              <RiArrowUpSLine
                 className="w-[16px] ml-1"
                 onClick={detailBtnFun}
               />
@@ -65,13 +65,13 @@ const StoreTime: React.FC<StoreTimeProps> = ({ storeTimeArr }) => {
           </>
         ) : (
           <>
-            {" "}
+            {' '}
             <div className="flex">
               <DayTimeText
                 day={todayDayOfWeek}
                 time={storeTimeArr[todayDayOfWeek]}
               />
-              <RiArrowUpSLine
+              <RiArrowDownSLine
                 className="w-[16px] ml-1"
                 onClick={detailBtnFun}
               />

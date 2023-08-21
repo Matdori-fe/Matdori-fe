@@ -67,7 +67,7 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
             <ImageBox size="large" url={storeData?.imgUrl} />
 
             <div className="w-8/12 min-w-[100px] mt-3 flex justify-between">
-              <div className="w-[100px] flex flex-wrap  justify-center">
+              <div className="w-6/12 flex flex-wrap  justify-center">
                 <div className="w-full h-[25px] flex ml-2 justify-center">
                   <Text
                     fontWeight="bold"
@@ -79,18 +79,14 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
                   </Text>
                 </div>
                 <div className="w-full flex justify-center">
-                  <Text
-                    className="text-[24px]"
-                    fontWeight="medium"
-                    color="black"
-                  >
+                  <div className="text-[24px] font-Medium" color="black">
                     {storeData?.totalRating.toFixed(1)}
-                  </Text>
+                  </div>
                 </div>
 
                 <StarRate score={storeData?.totalRating} isShowScore={false} />
               </div>
-              <div>
+              <div className=" flex flex-wrap justify-end">
                 <RoundButton label="정보 수정 요청" onClick={fixInfo} />
                 <div className="w-full h-2" />
 
@@ -104,7 +100,7 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-2xl border border-lightGray w-full p-2 flex mt-4">
+          <div className="bg-white rounded-2xl border border-lightGray w-full mx-2 p-2 flex mt-4">
             <RiAwardFill className="w-[12px] text-100 mx-1 mr-2 mt-[0.5px]" />
             <Text fontWeight="medium" size="xs" className="line-clamp-1">
               {storeContent}
