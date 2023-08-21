@@ -2,6 +2,7 @@
 
 import JokboBox from '@/app/jokbo/[storeIndex]/component/JokboBox';
 import DeleteButton from '@/components/DeleteButton/DeleteButton';
+import ErrorPpok from '@/components/Error/ErrorPpok';
 import Loading from '@/components/Loading/Loading';
 import PageNotification from '@/components/PageNotification/PageNotification';
 import ShopItem from '@/components/pages/shop-list/ShopItem';
@@ -80,7 +81,7 @@ export default function LikeJokboList() {
 	return (
 		<div className='mt-[110px]'>
 			{status === 'loading' && <Loading />}
-			{status === 'error' && <p>에러</p>}
+			{status === 'error' && <ErrorPpok />}
 			{status === 'success' && data?.pages[0].favoriteJokbos.length === 0 && (
 				<PageNotification
 					label={`좋아요한 족보가 없어요.\n내가 좋아하는 족보를 찾아볼까요?`}

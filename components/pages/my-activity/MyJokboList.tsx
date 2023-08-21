@@ -2,6 +2,8 @@
 
 import JokboBox from '@/app/jokbo/[storeIndex]/component/JokboBox';
 import DeleteButton from '@/components/DeleteButton/DeleteButton';
+import ErrorPpok from '@/components/Error/ErrorPpok';
+import ErrorPPok from '@/components/Error/ErrorPpok';
 import Loading from '@/components/Loading/Loading';
 import PageNotification from '@/components/PageNotification/PageNotification';
 import ShopItem from '@/components/pages/shop-list/ShopItem';
@@ -92,7 +94,7 @@ export default function MyJokboList() {
 	return (
 		<div className='mt-[110px]'>
 			{status === 'loading' && <Loading />}
-			{status === 'error' && <p>에러</p>}
+			{status === 'error' && <ErrorPpok />}
 			{status === 'success' && data?.pages[0].jokbos.length === 0 && (
 				<PageNotification
 					label={`작성한 족보가 없어요.\n족보를 작성하러 가볼까요?`}

@@ -18,6 +18,7 @@ import { useEffect, useRef } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import MyCommentItem from './MyCommentItem';
 import { deleteMyComment } from '@/lib/jokbo/deleteMyComment';
+import ErrorPpok from '@/components/Error/ErrorPpok';
 
 export default function MyCommentList() {
 	const userIndex = JSON.parse(localStorage.getItem('recoil-persist')).user
@@ -78,7 +79,7 @@ export default function MyCommentList() {
 	return (
 		<div className='mt-[110px]'>
 			{status === 'loading' && <Loading />}
-			{status === 'error' && <p>에러</p>}
+			{status === 'error' && <ErrorPpok />}
 			{status === 'success' && data?.pages[0].comments.length === 0 && (
 				<PageNotification
 					label={`작성한 댓글이 없어요.\n족보에 댓글을 작성해보세요.`}

@@ -16,6 +16,7 @@ import { useObserver } from '@/hooks/useObserver';
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { useInfiniteQuery, useMutation, useQueryClient } from 'react-query';
+import ErrorPpok from '@/components/Error/ErrorPpok';
 
 // FIXME: +swif
 export default function LikeShopList() {
@@ -106,7 +107,7 @@ export default function LikeShopList() {
 	return (
 		<div className='mt-[130px]'>
 			{status === 'loading' && <Loading />}
-			{status === 'error' && <p>에러</p>}
+			{status === 'error' && <ErrorPpok />}
 			{status === 'success' && data?.pages[0].favoriteStores.length === 0 && (
 				<PageNotification
 					label={`좋아요한 가게가 없어요.\n내가 좋아하는 가게를 찾아볼까요?`}
