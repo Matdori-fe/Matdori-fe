@@ -1,10 +1,10 @@
-"use client";
-import BigTitle from "@/components/Title/BigTitle";
-import Text from "@/components/Text/Text";
-import SmallStoreComponent from "./StoreCompoents/SmallStoreComponent";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import SmallStoreSkeleton from "@/app/Skeleton/SmallStoreSkeleton";
+'use client';
+import BigTitle from '@/components/Title/BigTitle';
+import Text from '@/components/Text/Text';
+import SmallStoreComponent from './StoreCompoents/SmallStoreComponent';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import SmallStoreSkeleton from '@/app/Skeleton/SmallStoreSkeleton';
 
 // FIXME - 백엔드 값 없어서 더미 데이터 넣어놓음.
 
@@ -34,7 +34,7 @@ const JokboManyReview = () => {
       <Text size="xs" color="gray" fontWeight="medium">
         족보가 많은 가게들만 모아서 한 눈에 확인해보세요.
       </Text>
-      <div className="w-full flex overflow-x-scroll mt-3 hide-scroll justify-center">
+      <div className="w-full">
         <div className="w-full flex overflow-x-scroll mt-3 hide-scroll">
           {loading === true ? (
             <div className="flex">
@@ -43,7 +43,7 @@ const JokboManyReview = () => {
               <SmallStoreSkeleton />
             </div>
           ) : (
-            <div className="flex">
+            <div className="w-auto flex flex-nowrap overflow-x-scroll scrollbar-hide">
               {list.map(({ storeIndex, name, imgUrl, jokboCnt }) => {
                 return (
                   <SmallStoreComponent

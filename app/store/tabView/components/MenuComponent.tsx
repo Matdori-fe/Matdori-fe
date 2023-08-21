@@ -1,10 +1,10 @@
-import ImageBox from "@/components/ImageBox/ImageBox";
-import Text from "@/components/Text/Text";
+import ImageBox from '@/components/ImageBox/ImageBox';
+import Text from '@/components/Text/Text';
 
 type MenuInput = {
-  name: "string";
-  price: "string";
-  imgUrl: "string";
+  name: string;
+  price: string;
+  imgUrl: string;
 };
 
 const MenuComponent = ({ name, price, imgUrl }: MenuInput) => {

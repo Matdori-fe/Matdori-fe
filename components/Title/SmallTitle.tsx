@@ -13,7 +13,7 @@ const SmallTitle: React.FunctionComponent<childrenProps> = ({
   className,
 }) => {
   return (
-    <div className="flex justify-center w-full">
+    <div className="flex justify-center w-full bg-white">
       <div
         className={`w-[412px] sm:w-[calc(100%)] flex justify-between items-center px-4 ${className}`}
       >

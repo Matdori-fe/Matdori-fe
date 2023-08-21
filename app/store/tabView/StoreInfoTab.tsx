@@ -1,13 +1,13 @@
-"use client";
-import SelectTab from "@/components/SelectTab/SelectTab";
-import { useState, useEffect } from "react";
-import Button from "@/components/Button/Button";
-import DayTimeText from "./components/DayTimeText";
-import BlockComponent from "./components/BlockComponent";
-import Text from "@/components/Text/Text";
-import axios from "axios";
-import StoreTime from "./components/StoreTime";
-import Map from "./components/StoreMap";
+'use client';
+import SelectTab from '@/components/SelectTab/SelectTab';
+import { useState, useEffect } from 'react';
+import Button from '@/components/Button/Button';
+import DayTimeText from './components/DayTimeText';
+import BlockComponent from './components/BlockComponent';
+import Text from '@/components/Text/Text';
+import axios from 'axios';
+import StoreTime from './components/StoreTime';
+import Map from './components/StoreMap';
 
 type StoreIndexIn = {
   storeIndex: number;
@@ -28,16 +28,16 @@ type StoreInfo = {
 };
 const StoreInfoTab = ({ storeIndex }: StoreIndexIn) => {
   const [storeInfo, setStoreInfo] = useState<StoreInfo>({
-    address: "",
-    phoneNumber: "",
+    address: '',
+    phoneNumber: '',
     time: {
-      monday: "",
-      tuesday: "",
-      wednesday: "",
-      thursday: "",
-      friday: "",
-      saturday: "",
-      sunday: "",
+      monday: '',
+      tuesday: '',
+      wednesday: '',
+      thursday: '',
+      friday: '',
+      saturday: '',
+      sunday: '',
     },
   });
   // 스크롤 감지 부분
@@ -46,9 +46,9 @@ const StoreInfoTab = ({ storeIndex }: StoreIndexIn) => {
     setIsFixed(window.scrollY >= 175);
   };
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -73,7 +73,7 @@ const StoreInfoTab = ({ storeIndex }: StoreIndexIn) => {
       <div className="mb-[100px] h-auto">
         <div
           className={`${
-            isFixed ? "fixed left-6/12 top-12" : "w-full"
+            isFixed ? 'fixed left-6/12 top-12' : 'w-full'
           } z-30 bg-white`}
         >
           <SelectTab />

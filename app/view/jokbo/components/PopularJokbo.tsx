@@ -1,10 +1,10 @@
-"use client";
+'use client';
 // FIXME - 데이터 불러와서 처리해야됨 => 아직 API 미완성
-import BigTitle from "@/components/Title/BigTitle";
-import Text from "@/components/Text/Text";
-import BigStoreComponent from "./StoreCompoents/BigStoreComponent";
-import BigStoreSkeleton from "@/app/Skeleton/BigStoreSkeleton";
-import { useEffect, useState } from "react";
+import BigTitle from '@/components/Title/BigTitle';
+import Text from '@/components/Text/Text';
+import BigStoreComponent from './StoreCompoents/BigStoreComponent';
+import BigStoreSkeleton from '@/app/Skeleton/BigStoreSkeleton';
+import { useEffect, useState } from 'react';
 
 const PopularJokbo = () => {
   const [loading, setLoading] = useState(false);

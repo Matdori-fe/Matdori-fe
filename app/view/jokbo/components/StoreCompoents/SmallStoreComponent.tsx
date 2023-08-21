@@ -1,8 +1,8 @@
-import ImageBox from "@/components/ImageBox/ImageBox";
-import Text from "@/components/Text/Text";
-import JokboInfo from "@/components/JokboInfo/JokboInfo";
-import Link from "next/link";
-type iconKind = "bookMark" | "starScore" | "heartScore" | "chatScore";
+import ImageBox from '@/components/ImageBox/ImageBox';
+import Text from '@/components/Text/Text';
+import JokboInfo from '@/components/JokboInfo/JokboInfo';
+import Link from 'next/link';
+type iconKind = 'bookMark' | 'starScore' | 'heartScore' | 'chatScore';
 
 type StoreInfo = {
   storeIndex: number;
@@ -21,7 +21,7 @@ const SmallStoreComponent: React.FC<StoreInfo> = ({
 }) => {
   return (
     <div className="w-[100px] mx-[8px] min-w-[100px]">
-      <Link href={`/jokbo/${storeIndex}?tab=shop&section=info`}>
+      <Link href={`/store/${storeIndex}?tab=shop&section=info`}>
         <ImageBox size="large" url={imgUrl} />
         <div className="flex justify-between px-1 mt-1">
           <Text

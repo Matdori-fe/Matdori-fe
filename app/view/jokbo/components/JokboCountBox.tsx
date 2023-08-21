@@ -1,9 +1,9 @@
-"use client";
-import Text from "@/components/Text/Text";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import Toast from "@/components/Toast/Toast";
-import EmptyJokbo from "@/app/jokbo/[storeIndex]/component/EmptyJokbo";
+'use client';
+import Text from '@/components/Text/Text';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Toast from '@/components/Toast/Toast';
+import EmptyJokbo from '@/app/store/[storeIndex]/component/EmptyJokbo';
 // FIXME - 족보 개수 불러와질때 0=>개수로 가는지 체크해서 그러면 스켈레톤 넣어야함.
 
 const JokboCountBox: React.FC = () => {
