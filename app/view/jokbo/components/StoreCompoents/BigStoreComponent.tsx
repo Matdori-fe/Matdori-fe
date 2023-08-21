@@ -1,17 +1,17 @@
-import ImageBox from "@/components/ImageBox/ImageBox";
-import Text from "@/components/Text/Text";
-import JokboInfo from "@/components/JokboInfo/JokboInfo";
-import Link from "next/link";
+import ImageBox from '@/components/ImageBox/ImageBox';
+import Text from '@/components/Text/Text';
+import JokboInfo from '@/components/JokboInfo/JokboInfo';
+import Link from 'next/link';
 
 type StoreInfo = {
-  storeIndex: number;
+  jokboIndex: number;
   name: string;
   imgUrl: string;
   totalRating: number;
   content: string;
 };
 const BigStoreComponent: React.FC<StoreInfo> = ({
-  storeIndex,
+  jokboIndex,
   name,
   imgUrl,
   totalRating,
@@ -19,7 +19,7 @@ const BigStoreComponent: React.FC<StoreInfo> = ({
 }) => {
   return (
     <Link
-      href={`/jokbo/${storeIndex}?tab=shop&section=info`}
+      href={`/jokbo/detail/${jokboIndex}`}
       className="w-full h-[120px] rounded-[15px] border-[1px] border-lightGray flex items-center justify-between px-[15px] my-[12px]"
     >
       <ImageBox size="large" url={imgUrl} />

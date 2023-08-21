@@ -1,10 +1,10 @@
-import Text from "@/components/Text/Text";
-import Link from "next/link";
-import StarRate from "@/components/StarRate/StarRate";
-import JokboInfo from "@/components/JokboInfo/JokboInfo";
-import ImageBox from "@/components/ImageBox/ImageBox";
-import HorizonBar from "@/components/HorizonBar/HorizonBar";
-import { url } from "inspector";
+import Text from '@/components/Text/Text';
+import Link from 'next/link';
+import StarRate from '@/components/StarRate/StarRate';
+import JokboInfo from '@/components/JokboInfo/JokboInfo';
+import ImageBox from '@/components/ImageBox/ImageBox';
+import HorizonBar from '@/components/HorizonBar/HorizonBar';
+import { url } from 'inspector';
 
 type JokboInfo = {
   jokboId: number;
@@ -27,7 +27,7 @@ const JokboBox = ({
 }: JokboInfo) => {
   return (
     <Link href={`/jokbo/detail/${jokboId}`}>
-      <div className="mt-3 mx-4">
+      <div className="mt-4 mx-6">
         <div className="flex justify-between items-center">
           <div className="w-10/16 mr-4">
             <Text

@@ -112,7 +112,7 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
         >
           <SelectTab />
           <SmallTitle
-            className="mt-3 mb-1"
+            className="mt-3 mb-3"
             sideComponent={
               <>
                 <CustomSelect onSelectChange={setViewType} />
@@ -124,7 +124,7 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
               {totalCount}개
             </div>
           </SmallTitle>
-          <HorizonBar className="mt-2" />
+          <HorizonBar />
         </div>
 
         <div>

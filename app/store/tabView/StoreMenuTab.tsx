@@ -50,7 +50,7 @@ const StoreMenuTab = ({ storeIndex }: StoreIndexIn) => {
       <div className="mb-[150px] h-auto flex flex-wrap justify-center">
         <div
           className={`${
-            isFixed ? 'fixed left-6/12 top-12 w-full' : 'w-full'
+            isFixed ? 'fixed left-6/12 top-12' : 'w-full'
           } z-30 bg-white`}
         >
           <SelectTab />
