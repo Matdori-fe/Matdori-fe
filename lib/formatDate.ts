@@ -1,4 +1,4 @@
-function formatDate(inputDate: string) {
+export function formatDate(inputDate: string) {
 	const date = new Date(inputDate);
 
 	const year = date.getUTCFullYear().toString().slice(2);
