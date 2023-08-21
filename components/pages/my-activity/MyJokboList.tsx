@@ -104,7 +104,11 @@ export default function MyJokboList() {
 						<>
 							{group.jokbos.map((shop) => (
 								<>
-									<DeletableItem itemId={shop.jokboId} key={shop.jokboId}>
+									<DeletableItem
+										deleteBtnPosition='jokbo'
+										itemId={shop.jokboId}
+										key={shop.jokboId}
+									>
 										<JokboBox
 											contents={shop.contents}
 											imgUrl={shop.imgUrl}

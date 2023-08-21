@@ -16,22 +16,22 @@ import { useObserver } from '@/hooks/useObserver';
 import axios from 'axios';
 import { useEffect, useRef } from 'react';
 import { useInfiniteQuery } from 'react-query';
-import MyCommentItem from './MyCommentItem';
-import { deleteMyComment } from '@/lib/jokbo/deleteMyComment';
 
-export default function MyCommentList() {
+export default function LikeJokboList() {
 	const userIndex = JSON.parse(localStorage.getItem('recoil-persist')).user
 		.userId;
 
-	// REFACTOR: 함수 분리
-	const getMyCommentList = ({ pageParam = null }) =>
+	const getJokboList = ({ pageParam = null }) =>
 		axios
-			.get(`${process.env.NEXT_PUBLIC_API}/users/${userIndex}/comments`, {
-				params: {
-					cursor: pageParam,
-				},
-				withCredentials: true,
-			})
+			.get(
+				`${process.env.NEXT_PUBLIC_API}/users/${userIndex}/favorite-jokbos`,
+				{
+					params: {
+						cursor: pageParam,
+					},
+					withCredentials: true,
+				}
+			)
 			.then((res) => {
 				console.log(res.data);
 				return res?.data.result;
@@ -42,13 +42,15 @@ export default function MyCommentList() {
 	const { data, fetchNextPage, isFetchingNextPage, status } = useInfiniteQuery(
 		// 밑줄인 키가 없으면 사이드 이펙트 발생
 		// REFACTOR: 쿼리키 수정
-		['mycomment'],
-		getMyCommentList,
+		['likeJokbo'],
+		getJokboList,
 		{
-			getNextPageParam: ({ hasNext, comments }) => {
+			getNextPageParam: ({ hasNext, favoriteJokbos }) => {
 				if (!hasNext) return undefined;
 
-				const finalJokboId = comments[comments.length - 1].jokboId;
+				const finalJokboId =
+					favoriteJokbos[favoriteJokbos.length - 1].favoriteJokboId;
+				if (!hasNext) return undefined;
 				return finalJokboId;
 				// cur는 현재 페이지
 				// if (Math.round(totalCnt / 15) === cur) return false;
@@ -69,8 +71,8 @@ export default function MyCommentList() {
 	console.log(data);
 
 	const DeletableItem = useDelete({
-		query: deleteMyComment,
-		queryKey: ['mycomment'],
+		query: deleteLikeJokbo,
+		queryKey: ['likeJokbo'],
 	});
 
 	// TODO: Delete 버튼 위치 이동
@@ -79,29 +81,29 @@ export default function MyCommentList() {
 		<div className='mt-[110px]'>
 			{status === 'loading' && <Loading />}
 			{status === 'error' && <p>에러</p>}
-			{status === 'success' && data?.pages[0].comments.length === 0 && (
+			{status === 'success' && data?.pages[0].favoriteJokbos.length === 0 && (
 				<PageNotification
-					label={`작성한 댓글이 없어요.\n족보에 댓글을 작성해보세요.`}
+					label={`좋아요한 족보가 없어요.\n내가 좋아하는 족보를 찾아볼까요?`}
 				/>
 			)}
-			<div className='grid grid-cols-1'>
+			<div className='grid grid-cols-1 gap-4 '>
 				{status === 'success' &&
 					data.pages.map((group) => (
 						<>
-							{group.comments.map((shop) => (
+							{group.favoriteJokbos.map((shop) => (
 								<DeletableItem
-									deleteBtnPosition='comment'
-									key={shop.jokboId}
-									secondId={shop.commentId}
-									itemId={shop.jokboId}
+									deleteBtnPosition='jokbo'
+									key={shop.favoriteJokboId}
+									itemId={shop.favoriteJokboId}
 								>
-									<MyCommentItem
-										commentId={shop.commentId}
+									<JokboBox
 										contents={shop.contents}
+										imgUrl={shop.imgUrl}
+										title={shop.title}
+										totalRating={shop.totalRating}
 										jokboId={shop.jokboId}
-										writtenAt={shop.writtenAt}
-										jokboTitle={shop.title}
-										commentLikes={shop.favoriteCnt}
+										favoriteCnt={shop.favoriteCnt}
+										commentCnt={shop.commentCnt}
 									/>
 								</DeletableItem>
 							))}
