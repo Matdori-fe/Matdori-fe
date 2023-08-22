@@ -127,7 +127,7 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
           <HorizonBar />
         </div>
 
-        <div>
+        <div className="mx-4">
           {totalCount === 0 ? (
             <>
               <EmptyJokbo />

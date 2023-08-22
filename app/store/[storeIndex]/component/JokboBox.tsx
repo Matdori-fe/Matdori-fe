@@ -27,7 +27,7 @@ const JokboBox = ({
 }: JokboInfo) => {
   return (
     <Link href={`/jokbo/detail/${jokboId}`}>
-      <div className="mt-4 mx-6">
+      <div className="mt-4">
         <div className="flex justify-between items-center">
           <div className="w-10/16 mr-4">
             <Text
