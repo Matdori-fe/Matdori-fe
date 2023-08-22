@@ -1,6 +1,6 @@
 'use client';
 
-import JokboBox from '@/app/jokbo/[storeIndex]/component/JokboBox';
+import JokboBox from '@/app/store/[storeIndex]/component/JokboBox';
 import { deleteAtom } from '@/atoms/deleteAtom';
 import DeleteButton from '@/components/DeleteButton/DeleteButton';
 import ErrorPpok from '@/components/Error/ErrorPpok';

@@ -1,6 +1,6 @@
 'use client';
 
-import JokboBox from '@/app/jokbo/[storeIndex]/component/JokboBox';
+import JokboBox from '@/app/store/[storeIndex]/component/JokboBox';
 import DeleteButton from '@/components/DeleteButton/DeleteButton';
 import Loading from '@/components/Loading/Loading';
 import PageNotification from '@/components/PageNotification/PageNotification';
