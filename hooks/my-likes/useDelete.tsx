@@ -1,10 +1,13 @@
-import { deleteAtom } from '@/atoms/deleteAtom';
+import { deleteAtom, deleteItemAtom, deleteListAtom } from '@/atoms/delete';
+import Checked from '@/components/Checked/Checked';
 import DeleteButton, {
 	DeleteButtonPosition,
 } from '@/components/DeleteButton/DeleteButton';
 import axios from 'axios';
+import { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { useDeleteList } from './useDeleteList';
 
 interface IDeleteLikeJokbo {
 	userIndex: number;
@@ -97,16 +100,33 @@ export const useDelete = ({ query, queryKey }) => {
 		secondId: number;
 		deleteBtnPosition: DeleteButtonPosition;
 	}) => {
-		const deleteState = useRecoilValue(deleteAtom);
+		const deleteMode = useRecoilValue(deleteAtom);
+		const [checked, setChecked] = useRecoilState<boolean>(
+			deleteItemAtom(`deleteItemAtom/${itemId}`)
+		);
+		const { pushItem, deleteItem } = useDeleteList();
 
-		console.log('hi' + itemId + secondId);
-		if (!deleteState) return <>{children}</>;
 		return (
-			<div className='relative'>
-				<DeleteButton
-					deleteBtnPosition={deleteBtnPosition}
-					onClick={() => mutate({ itemId, secondId })}
-				/>
+			<div
+				className='relative w-full h-full'
+				onClick={
+					deleteMode
+						? (e) => {
+								if (!checked) {
+									pushItem(itemId, secondId);
+									setChecked(!checked);
+									e.preventDefault();
+								} else {
+									console.log('de');
+									deleteItem(itemId, secondId);
+									setChecked(!checked);
+									e.preventDefault();
+								}
+						  }
+						: null
+				}
+			>
+				{checked && <Checked />}
 				{children}
 			</div>
 		);
