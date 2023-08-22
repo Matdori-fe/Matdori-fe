@@ -10,6 +10,7 @@ import smartPhone from '../../public/smartPhone.svg';
 import { useModal } from '@/hooks/useModal';
 import { modals } from '../ModalContainer/ModalContainer';
 import DepartmentModalOpener from '../ModalOpener/DepartmentModalOpener';
+import { useRouter } from 'next/navigation';
 
 type ButtonType =
 	| 'redStoreRecommend'
@@ -22,6 +23,8 @@ type ButtonType =
 const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
 	const { type } = props;
 	const { openModal } = useModal();
+	const router = useRouter();
+
 	if (type === 'redStoreRecommend') {
 		return (
 			<>
@@ -89,7 +92,12 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
 		return (
 			<>
 				{/*내 좋아요 컴포넌트*/}
-				<div className='w-full h-[40px] bg-white rounded-[15px] flex items-center justify-between border-lightGray border-[1px] px-5'>
+				<div
+					onClick={() =>
+						router.push('/my-likes/?tab=likes&section=favoriteshop')
+					}
+					className='w-full h-[40px] bg-white rounded-[15px] flex items-center justify-between border-lightGray border-[1px] px-5'
+				>
 					<Image src={heartWoman} className='h-[36px] mt-1.4' />
 					<p className='font-Regular text-[12px] text-darkGray mt-[2px]'>
 						내 좋아요
@@ -102,7 +110,12 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
 		return (
 			<>
 				{/*내 활동 컴포넌트*/}
-				<div className='w-full h-[40px] bg-white rounded-[15px] flex items-center justify-between border-lightGray border-[1px] px-5'>
+				<div
+					onClick={() =>
+						router.push('/my-activity/?tab=activity&section=myjokbo')
+					}
+					className='w-full h-[40px] bg-white rounded-[15px] flex items-center justify-between border-lightGray border-[1px] px-5'
+				>
 					<p className='font-Regular text-[12px] text-darkGray mt-[2px]'>
 						내 활동
 					</p>
