@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 import { axios } from '../axios';
 
 export async function logoutAxios() {
-	return await axios.post('/login', {}, { withCredentials: true });
+	return await axios.post('/logout', {}, { withCredentials: true });
 }
 
 export async function logout() {
