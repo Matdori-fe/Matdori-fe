@@ -39,13 +39,20 @@ export default function Header({
         <Text size="lg" fontWeight="bold">
           {title}
         </Text>
-        {right && kind && id && (
-          <HeaderRight
-            right={right}
-            kind={kind}
-            id={id}
-            inFavoriteId={inFavoriteId}
-          />
+        {/*좋아요라면, kind, id, inFavoriteId를 넘겨줘야함. */}
+        {right && kind && id && inFavoriteId ? (
+          <>
+            <HeaderRight
+              right={right}
+              kind={kind}
+              id={id}
+              inFavoriteId={inFavoriteId}
+            />
+          </>
+        ) : (
+          <>
+            <HeaderRight right={right} />
+          </>
         )}
       </div>
     </div>

@@ -32,11 +32,11 @@ type LikeKind = 'store' | 'jokbo' | 'review';
 
 interface HeaderRightProps {
   right: Right[] | Right;
-  kind: LikeKind;
+  kind?: LikeKind | undefined;
   //px기준으로 입력
   size?: string;
   //가게, 족보, 리뷰에 대한 개별 Index
-  id: number;
+  id?: number;
   inFavoriteId?: number | null;
 }
 

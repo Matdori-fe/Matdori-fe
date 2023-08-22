@@ -10,7 +10,7 @@ const WritePage = ({ params }: { params: { storeIndex: number } }) => {
 
   return (
     <>
-      <Header left="back" right="roundButton" title="족보 작성하기" />
+      <Header left="back" right="more" kind={undefined} title="족보 작성하기" />
       <SmallTitle
         className="mx-2"
         sideComponent={
