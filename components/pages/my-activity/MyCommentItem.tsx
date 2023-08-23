@@ -1,6 +1,6 @@
 'use client';
 
-import { deleteAtom } from '@/atoms/deleteAtom';
+import { deleteAtom } from '@/atoms/delete';
 import Text from '@/components/Text/Text';
 import { formatDate } from '@/lib/formatDate';
 import Link from 'next/link';
@@ -32,7 +32,7 @@ export default function MyCommentItem({
 		<div
 			onClick={
 				deleteMode
-					? () => setDeleteMode(!deleteMode)
+					? null
 					: () => router.push(`/jokbo/${jokboId}?tab=shop&section=info`)
 			}
 			className='flex flex-col w-full py-[16px] border-b-lightGray border-b-[1px]'

@@ -7,8 +7,8 @@ import StarRate from '@/components/StarRate/StarRate';
 import JokboInfo from '@/components/JokboInfo/JokboInfo';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { deleteAtom } from '@/atoms/deleteAtom';
 import { useRecoilState } from 'recoil';
+import { deleteAtom } from '@/atoms/delete';
 
 export default function ShopItem({
 	shopId,
@@ -32,7 +32,7 @@ export default function ShopItem({
 		<div
 			onClick={
 				deleteMode
-					? () => setDeleteMode(!deleteMode)
+					? null
 					: () => router.push(`/jokbo/${shopId}?tab=shop&section=info`)
 			}
 		>
