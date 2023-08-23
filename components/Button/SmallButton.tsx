@@ -93,9 +93,7 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
 			<>
 				{/*내 좋아요 컴포넌트*/}
 				<div
-					onClick={() =>
-						router.push('/my-likes/?tab=likes&section=favoriteshop')
-					}
+					onClick={() => router.push('/my-likes/?tab=likes&section=shop')}
 					className='w-full h-[40px] bg-white rounded-[15px] flex items-center justify-between border-lightGray border-[1px] px-5'
 				>
 					<Image src={heartWoman} className='h-[36px] mt-1.4' />
