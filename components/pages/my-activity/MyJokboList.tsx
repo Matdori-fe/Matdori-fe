@@ -1,7 +1,7 @@
 'use client';
 
 import JokboBox from '@/app/store/[storeIndex]/component/JokboBox';
-import { deleteAtom } from '@/atoms/deleteAtom';
+import { checkedListAtom, deleteAtom, deleteListAtom } from '@/atoms/delete';
 import DeleteButton from '@/components/DeleteButton/DeleteButton';
 import ErrorPpok from '@/components/Error/ErrorPpok';
 import ErrorPPok from '@/components/Error/ErrorPpok';
@@ -14,6 +14,7 @@ import {
 	deleteLikeShop,
 	useDelete,
 } from '@/hooks/my-likes/useDelete';
+import { useDeleteList } from '@/hooks/my-likes/useDeleteList';
 
 import { useFetcher } from '@/hooks/my-likes/useFetcher';
 import { useObserver } from '@/hooks/useObserver';
@@ -22,7 +23,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { useInfiniteQuery, useMutation, useQueryClient } from 'react-query';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 // FIXME: +swif
 export default function MyJokboList() {
@@ -96,6 +97,17 @@ export default function MyJokboList() {
 
 	const [deleteMode, setDeleteMode] = useRecoilState(deleteAtom);
 	const router = useRouter();
+	const deleteList = useRecoilValue(deleteListAtom);
+	const checkedList = useRecoilValue(checkedListAtom);
+	const { resetItems } = useDeleteList();
+
+	// 페이지 이동하면 삭제 모드 꺼지고, 저장했던 항목들 삭제
+	useEffect(() => {
+		return () => {
+			setDeleteMode(false);
+			resetItems();
+		};
+	}, []);
 
 	return (
 		<div className='mt-[110px]'>
@@ -106,6 +118,11 @@ export default function MyJokboList() {
 					label={`작성한 족보가 없어요.\n족보를 작성하러 가볼까요?`}
 				/>
 			)}
+			<div>
+				{[...deleteList].map((i) => (
+					<div>{i}</div>
+				))}
+			</div>
 			<div className='grid grid-cols-1 gap-4 '>
 				{status === 'success' &&
 					data.pages.map((group, i) => (
@@ -117,24 +134,15 @@ export default function MyJokboList() {
 										itemId={shop.jokboId}
 										key={shop.jokboId}
 									>
-										<div
-											onClick={
-												deleteMode
-													? () => setDeleteMode(!deleteMode)
-													: () => router.push('')
-												// TODO: 여기에 족보로 이동하는 링크 추가
-											}
-										>
-											<JokboBox
-												contents={shop.contents}
-												imgUrl={shop.imgUrl}
-												title={shop.title}
-												totalRating={shop.totalRating}
-												jokboId={shop.jokboId}
-												favoriteCnt={shop.favoriteCnt}
-												commentCnt={shop.commentCnt}
-											/>
-										</div>
+										<JokboBox
+											contents={shop.contents}
+											imgUrl={shop.imgUrl}
+											title={shop.title}
+											totalRating={shop.totalRating}
+											jokboId={shop.jokboId}
+											favoriteCnt={shop.favoriteCnt}
+											commentCnt={shop.commentCnt}
+										/>
 									</DeletableItem>
 								</>
 							))}

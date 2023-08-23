@@ -17,6 +17,9 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { useInfiniteQuery, useMutation, useQueryClient } from 'react-query';
 import ErrorPpok from '@/components/Error/ErrorPpok';
+import { useDeleteList } from '@/hooks/my-likes/useDeleteList';
+import { useRecoilState } from 'recoil';
+import { deleteAtom } from '@/atoms/delete';
 
 // FIXME: +swif
 export default function LikeShopList() {
@@ -56,7 +59,6 @@ export default function LikeShopList() {
 	// 		});
 
 	let bottom = useRef(null);
-	console.log(queryClient);
 
 	const {
 		data,
@@ -102,6 +104,17 @@ export default function LikeShopList() {
 	});
 
 	console.log(data);
+
+	const [deleteMode, setDeleteMode] = useRecoilState(deleteAtom);
+	const { resetItems } = useDeleteList();
+
+	// 페이지 이동하면 삭제 모드 꺼지고, 저장했던 항목들 삭제
+	useEffect(() => {
+		return () => {
+			setDeleteMode(false);
+			resetItems();
+		};
+	}, []);
 
 	// REFACTOR: 지워지면 슉하고 빈자리가 채워지는 모션
 	return (

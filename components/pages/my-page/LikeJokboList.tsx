@@ -1,7 +1,7 @@
 'use client';
 
 import JokboBox from '@/app/store/[storeIndex]/component/JokboBox';
-import { deleteAtom } from '@/atoms/deleteAtom';
+import { deleteAtom } from '@/atoms/delete';
 import DeleteButton from '@/components/DeleteButton/DeleteButton';
 import ErrorPpok from '@/components/Error/ErrorPpok';
 import Loading from '@/components/Loading/Loading';
@@ -13,6 +13,7 @@ import {
 	useDeleteLikeJokbo,
 	useTest,
 } from '@/hooks/my-likes/useDelete';
+import { useDeleteList } from '@/hooks/my-likes/useDeleteList';
 import { useFetcher } from '@/hooks/my-likes/useFetcher';
 import { useObserver } from '@/hooks/useObserver';
 import axios from 'axios';
@@ -81,6 +82,15 @@ export default function LikeJokboList() {
 
 	const router = useRouter();
 	const [deleteMode, setDeleteMode] = useRecoilState(deleteAtom);
+	const { resetItems } = useDeleteList();
+
+	// 페이지 이동하면 삭제 모드 꺼지고, 저장했던 항목들 삭제
+	useEffect(() => {
+		return () => {
+			setDeleteMode(false);
+			resetItems();
+		};
+	}, []);
 
 	return (
 		<div className='mt-[110px]'>
@@ -101,24 +111,15 @@ export default function LikeJokboList() {
 									key={shop.favoriteJokboId}
 									itemId={shop.favoriteJokboId}
 								>
-									<div
-										onClick={
-											deleteMode
-												? () => setDeleteMode(!deleteMode)
-												: () => router.push('/')
-											// TODO: 여기에 족보로 이동하는 링크 추가
-										}
-									>
-										<JokboBox
-											contents={shop.contents}
-											imgUrl={shop.imgUrl}
-											title={shop.title}
-											totalRating={shop.totalRating}
-											jokboId={shop.jokboId}
-											favoriteCnt={shop.favoriteCnt}
-											commentCnt={shop.commentCnt}
-										/>
-									</div>
+									<JokboBox
+										contents={shop.contents}
+										imgUrl={shop.imgUrl}
+										title={shop.title}
+										totalRating={shop.totalRating}
+										jokboId={shop.jokboId}
+										favoriteCnt={shop.favoriteCnt}
+										commentCnt={shop.commentCnt}
+									/>
 								</DeletableItem>
 							))}
 						</>

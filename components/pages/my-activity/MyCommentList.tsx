@@ -9,7 +9,6 @@ import {
 	deleteLikeJokbo,
 	useDelete,
 	useDeleteLikeJokbo,
-	useTest,
 } from '@/hooks/my-likes/useDelete';
 import { useFetcher } from '@/hooks/my-likes/useFetcher';
 import { useObserver } from '@/hooks/useObserver';
@@ -20,6 +19,9 @@ import MyCommentItem from './MyCommentItem';
 import { deleteMyComment } from '@/lib/jokbo/deleteMyComment';
 import ErrorPpok from '@/components/Error/ErrorPpok';
 import Link from 'next/link';
+import { useRecoilState } from 'recoil';
+import { deleteAtom, deleteListAtom } from '@/atoms/delete';
+import { useDeleteList } from '@/hooks/my-likes/useDeleteList';
 
 export default function MyCommentList() {
 	const userIndex = JSON.parse(localStorage.getItem('recoil-persist')).user
@@ -75,7 +77,16 @@ export default function MyCommentList() {
 		queryKey: ['mycomment'],
 	});
 
-	// TODO: Delete 버튼 위치 이동
+	const [deleteMode, setDeleteMode] = useRecoilState(deleteAtom);
+	const { resetItems } = useDeleteList();
+
+	// 페이지 이동하면 삭제 모드 꺼지고, 저장했던 항목들 삭제
+	useEffect(() => {
+		return () => {
+			setDeleteMode(false);
+			resetItems();
+		};
+	}, []);
 
 	return (
 		<div className='mt-[110px]'>
@@ -86,6 +97,11 @@ export default function MyCommentList() {
 					label={`작성한 댓글이 없어요.\n족보에 댓글을 작성해보세요.`}
 				/>
 			)}
+			{/* <div>
+				{[...deleteList].map((i) => (
+					<div>{i}</div>
+				))}
+			</div> */}
 			<div className='grid grid-cols-1'>
 				{status === 'success' &&
 					data.pages.map((group) => (
