@@ -43,11 +43,21 @@ const ChoiceStore = ({ storeIndex }: StoreIndex) => {
     <div className="w-full h-[80px] border-[1px] border-lightGray rounded-basic mt-[15px] flex px-4 items-center">
       <ImageBox size="small" url={storeData.imgUrl} />
       <div className="flex flex-wrap ml-3">
-        <Text fontWeight="semibold" size="sm" color="black">
+        <Text
+          fontWeight="semibold"
+          size="sm"
+          color="black"
+          className="line-clamp-2"
+        >
           {storeData.name}
         </Text>
         <div className="w-full h-1"></div>
-        <Text fontWeight="normal" size="xs" color="darkGray">
+        <Text
+          fontWeight="normal"
+          size="xs"
+          color="darkGray"
+          className="line-clamp-2"
+        >
           {storeData.name}
         </Text>
       </div>
