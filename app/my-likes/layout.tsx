@@ -1,3 +1,4 @@
+import DeleteListButton from '@/components/DeleteListButton/DeleteListButton';
 import Header from '@/components/Header/Header';
 import ModalContainer from '@/components/ModalContainer/ModalContainer';
 import NavigationBar from '@/components/NavigationBar/NavigationBar';
@@ -9,6 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 			<Header title='내가 한 좋아요' left='back' right='trashCan' />
 			<SelectTab type='sticky' />
 			<div className='px-[20px]'>{children}</div>
+			<DeleteListButton />
 		</>
 	);
 }

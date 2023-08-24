@@ -1,3 +1,4 @@
+import DeleteListButton from '@/components/DeleteListButton/DeleteListButton';
 import Header from '@/components/Header/Header';
 import ModalContainer from '@/components/ModalContainer/ModalContainer';
 import NavigationBar from '@/components/NavigationBar/NavigationBar';
@@ -13,6 +14,7 @@ export default function NavigationLayout({
 			<Header title='내 활동' left='back' right='trashCan' />
 			<SelectTab type='sticky' />
 			<div className='px-[20px]'>{children}</div>
+			<DeleteListButton />
 		</>
 	);
 }
