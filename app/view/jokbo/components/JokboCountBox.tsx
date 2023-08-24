@@ -22,13 +22,17 @@ const JokboCountBox: React.FC = () => {
 
   return (
     <>
-      <div className="w-full h-auto py-[20px] rounded-[15px] bg-30 mt-[28px] flex justify-between items-center px-[24px]">
-        <img src="/tableEating.svg" className="w-[120px]" />
+      <div className="w-full h-auto py-[20px] rounded-[15px] bg-30 mt-[28px] flex justify-center items-center px-[24px] flex-wrap md:flex-nowrap md:justify-between ">
+        <img
+          src="/tableEating.svg"
+          className="w-[120px] w-full max-w-[125px]"
+        />
 
-        <div className="w-full font-Regular text-[18px] text-black text-right leading-tight">
+        <div className="w-full font-Regular text-[18px] text-black text-right leading-tight flex flex-wrap md:flex-wrap justify-center md:justify-end mt-[15px] md:mt-0">
           <span>지금까지</span>
-          <br /> <span className="font-Bold text-100">{count}개의 족보</span>
-          가
+          <br />{' '}
+          <span className="font-Bold text-100 mt-[-2px]">{count}개의 족보</span>
+          <span>가</span>
           <br />
           <span> 작성되었어요.</span>
         </div>

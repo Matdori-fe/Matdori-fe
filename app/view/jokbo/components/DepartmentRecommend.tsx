@@ -76,35 +76,6 @@ const DepartMentRecommened: React.FC = () => {
                   kind={kind}
                 />
               ))}
-
-              <SmallStoreComponent
-                storeIndex={0}
-                name="가메이"
-                imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-                totalRating={4.9}
-                kind="starScore"
-              />
-              <SmallStoreComponent
-                storeIndex={2}
-                name="가메이"
-                imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-                totalRating={4.9}
-                kind="starScore"
-              />
-              <SmallStoreComponent
-                storeIndex={2}
-                name="가메이"
-                imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-                totalRating={4.9}
-                kind="starScore"
-              />
-              <SmallStoreComponent
-                storeIndex={2}
-                name="가메이"
-                imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
-                totalRating={4.9}
-                kind="starScore"
-              />
             </div>
           </>
         )}

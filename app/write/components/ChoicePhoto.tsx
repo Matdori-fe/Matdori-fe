@@ -2,7 +2,6 @@ import SmallTitle from '@/components/Title/SmallTitle';
 import Text from '@/components/Text/Text';
 import WriteImageBox from './ImageBox/WriteImageBox';
 import { ImageArrType } from '../Write_Type/Write_Type';
-import ImageBox from '@/components/ImageBox/ImageBox';
 import { useEffect, useState } from 'react';
 import { RiImage2Line } from 'react-icons/ri';
 const ChoicePhoto: React.FC<ImageArrType> = ({ setImageArr }) => {

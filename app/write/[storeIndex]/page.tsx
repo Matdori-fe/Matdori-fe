@@ -37,7 +37,6 @@ const WritePage = ({ params }: { params: { storeIndex: any } }) => {
     } else {
       setIsChoiceStore(true);
     }
-    console.log(isChoiceStore, storeIndex);
   }, [storeIndex]);
 
   //로그인 실행 함수
