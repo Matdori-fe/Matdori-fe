@@ -31,9 +31,7 @@ export default function MyCommentItem({
 	return (
 		<div
 			onClick={
-				deleteMode
-					? null
-					: () => router.push(`/jokbo/${jokboId}?tab=shop&section=info`)
+				deleteMode ? null : () => router.push(`/jokbo/detail/${jokboId}`)
 			}
 			className='flex flex-col w-full py-[16px] border-b-lightGray border-b-[1px]'
 		>
