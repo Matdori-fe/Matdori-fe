@@ -107,12 +107,6 @@ const StoreInfoTab = ({ storeIndex }: StoreIndexIn) => {
             <Map address={storeInfo.address} />
           </div>
         </div>
-        <Button
-          label="나만의 족보 작성하기"
-          variant="active"
-          modal={false}
-          onClick={() => {}}
-        />
       </div>
     </>
   );

@@ -9,7 +9,7 @@ export type Write_Type = {
 };
 
 export type StoreIndex = {
-  storeIndex: number | null;
+  storeIndex: number | string;
 };
 
 export type StoreInfoHeader = {

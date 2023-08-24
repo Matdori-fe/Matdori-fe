@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 import axios from 'axios';
 import { useRecoilValue } from 'recoil';
 import { UserAtom } from '@/atoms/UserAtom';
+import Button from '@/components/Button/Button';
 
 interface StoreIndexType {
   storeIndex: number;
@@ -43,6 +44,13 @@ const JokboIntroPage = ({ storeIndex }: StoreIndexType) => {
         inFavoriteId={inFavoriteId}
       />
       <StoreInfo storeIndex={storeIndex} />
+      <Button
+        label="나만의 족보 작성하기"
+        variant="active"
+        modal={false}
+        onClick={() => {}}
+        href={`/write/${storeIndex}`}
+      />
     </>
   );
 };

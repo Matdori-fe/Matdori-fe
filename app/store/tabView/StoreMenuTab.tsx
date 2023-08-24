@@ -74,12 +74,6 @@ const StoreMenuTab = ({ storeIndex }: StoreIndexIn) => {
             </Link>
           </div>
         </div>
-        <Button
-          label="나만의 족보 작성하기"
-          variant="active"
-          modal={false}
-          onClick={() => {}}
-        />
       </div>
     </>
   );

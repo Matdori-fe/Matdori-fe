@@ -4,8 +4,7 @@ import WriteImageBox from './ImageBox/WriteImageBox';
 import { ImageArrType } from '../Write_Type/Write_Type';
 import ImageBox from '@/components/ImageBox/ImageBox';
 import { useEffect, useState } from 'react';
-import EmptyImageBox from './ImageBox/EmptyImageBox';
-
+import { RiImage2Line } from 'react-icons/ri';
 const ChoicePhoto: React.FC<ImageArrType> = ({ setImageArr }) => {
   const [imageSrcList, setImageSrcList]: any = useState([]);
   const numToShow = Math.max(3, imageSrcList.length);
@@ -77,7 +76,18 @@ const ChoicePhoto: React.FC<ImageArrType> = ({ setImageArr }) => {
               />
             );
           } else {
-            return <EmptyImageBox key={index} />;
+            return (
+              <label className="bg-lightGray w-[100px] h-[100px] min-w-[100px] min-h-[100px] rounded-[15px] object-cover mx-2 flex justify-center items-center">
+                <input
+                  accept="image/*"
+                  multiple
+                  type="file"
+                  style={{ display: 'none' }} // input 요소 숨기기
+                  onChange={(e) => onUpload(e)}
+                />
+                <RiImage2Line className="text-[30px] text-gray" />
+              </label>
+            );
           }
         })}
       </div>

@@ -1,7 +1,9 @@
 'use client';
+// TODO => 검색 나오면, 값을 입력하고 이후에 가게를 선택할때 그 값을 가져가는 작업이 필요.
 import Header from '@/components/Header/Header';
 import { useEffect, useState } from 'react';
 import ChoiceStore from '../components/ChoiceStore';
+import EmptyChoiceStore from '../components/EmptyChoiceStore';
 import SmallTitle from '@/components/Title/SmallTitle';
 import ChoiceStarScore from '../components/ChoiceStarScore';
 import Text from '@/components/Text/Text';
@@ -12,8 +14,9 @@ import axios from 'axios';
 import Toast from '@/components/Toast/Toast';
 import { UserAtom } from '@/atoms/UserAtom';
 import { useRecoilValue } from 'recoil';
+import { StoreIndex } from '../Write_Type/Write_Type';
 
-const WritePage = ({ params }: { params: { storeIndex: number } }) => {
+const WritePage = ({ params }: { params: { storeIndex: any } }) => {
   const [storeIndex, setStoreIndex] = useState(params.storeIndex);
   const [flavorRating, setFlavorRating] = useState<number | null>(null);
   const [underPricedRating, setUnderPricedRating] = useState<number | null>(
@@ -23,16 +26,23 @@ const WritePage = ({ params }: { params: { storeIndex: number } }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [imageArr, setImageArr]: any = useState([]);
+  //가게가 선택되어져잇는지에 대한 state
+  const [isChoiceStore, setIsChoiceStore] = useState(false);
 
   const user = useRecoilValue(UserAtom);
 
   useEffect(() => {
-    console.log('이미지 배열', imageArr);
-  }, [imageArr]);
+    if (storeIndex === 'undefinded') {
+      setIsChoiceStore(false);
+    } else {
+      setIsChoiceStore(true);
+    }
+    console.log(isChoiceStore, storeIndex);
+  }, [storeIndex]);
 
   //로그인 실행 함수
   const WriteJokboFun = (): void => {
-    if (storeIndex === null) {
+    if (storeIndex === null || isChoiceStore === false) {
       Toast('가게를 선택해주세요.');
     } else if (
       flavorRating === null ||
@@ -53,7 +63,6 @@ const WritePage = ({ params }: { params: { storeIndex: number } }) => {
       formData.append('title', title);
       formData.append('contents', content);
 
-      // Append each image to formData
       for (const image of imageArr) {
         formData.append('images', image);
       }
@@ -75,9 +84,14 @@ const WritePage = ({ params }: { params: { storeIndex: number } }) => {
     }
   };
 
+  if (!params.storeIndex) {
+    // Render your default content or redirect as needed
+    return <div>Default Store Page</div>;
+  }
+
   return (
     <div className="mb-[100px]">
-      <Header left="back" right="more" kind={undefined} title="족보 작성하기" />
+      <Header left="back" kind={undefined} title="족보 작성하기" />
       <SmallTitle
         sideComponent={
           <>
@@ -92,7 +106,12 @@ const WritePage = ({ params }: { params: { storeIndex: number } }) => {
         선택한 가게
       </SmallTitle>
       <div className="flex flex-wrap justify-center">
-        <ChoiceStore storeIndex={storeIndex} />
+        {isChoiceStore === true ? (
+          <ChoiceStore storeIndex={storeIndex} />
+        ) : (
+          <EmptyChoiceStore />
+        )}
+
         <SmallTitle
           className="mt-4"
           sideComponent={
