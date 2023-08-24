@@ -16,12 +16,13 @@ import axios from 'axios';
 import { useEffect, useRef } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import MyCommentItem from './MyCommentItem';
-import { deleteMyComment } from '@/lib/jokbo/deleteMyComment';
+import { deleteMyComment } from '@/lib/comment/deleteMyCommentList';
 import ErrorPpok from '@/components/Error/ErrorPpok';
 import Link from 'next/link';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { deleteAtom, deleteListAtom } from '@/atoms/delete';
 import { useDeleteList } from '@/hooks/my-likes/useDeleteList';
+import { useSearchParams } from 'next/navigation';
 
 export default function MyCommentList() {
 	const userIndex = JSON.parse(localStorage.getItem('recoil-persist')).user
@@ -46,7 +47,7 @@ export default function MyCommentList() {
 	const { data, fetchNextPage, isFetchingNextPage, status } = useInfiniteQuery(
 		// 밑줄인 키가 없으면 사이드 이펙트 발생
 		// REFACTOR: 쿼리키 수정
-		['mycomment'],
+		['myComment'],
 		getMyCommentList,
 		{
 			getNextPageParam: ({ hasNext, comments }) => {
@@ -74,11 +75,12 @@ export default function MyCommentList() {
 
 	const DeletableItem = useDelete({
 		query: deleteMyComment,
-		queryKey: ['mycomment'],
+		queryKey: ['myComment'],
 	});
 
 	const [deleteMode, setDeleteMode] = useRecoilState(deleteAtom);
 	const { resetItems } = useDeleteList();
+	const deleteList = useRecoilValue(deleteListAtom);
 
 	// 페이지 이동하면 삭제 모드 꺼지고, 저장했던 항목들 삭제
 	useEffect(() => {
@@ -97,22 +99,17 @@ export default function MyCommentList() {
 					label={`작성한 댓글이 없어요.\n족보에 댓글을 작성해보세요.`}
 				/>
 			)}
-			{/* <div>
+			<div>
 				{[...deleteList].map((i) => (
 					<div>{i}</div>
 				))}
-			</div> */}
+			</div>
 			<div className='grid grid-cols-1'>
 				{status === 'success' &&
 					data.pages.map((group) => (
 						<>
 							{group.comments.map((shop) => (
-								<DeletableItem
-									deleteBtnPosition='comment'
-									key={shop.jokboId}
-									secondId={shop.commentId}
-									itemId={shop.jokboId}
-								>
+								<DeletableItem key={shop.commentId} itemId={shop.commentId}>
 									<MyCommentItem
 										commentId={shop.commentId}
 										contents={shop.contents}
