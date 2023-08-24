@@ -11,8 +11,8 @@ const selectList = {
 		{ id: 'mycomment', name: '내 댓글' },
 	],
 	likes: [
-		{ id: 'favoriteshop', name: '좋아요한 가게' },
-		{ id: 'favoritejokbo', name: '좋아요한 족보' },
+		{ id: 'shop', name: '좋아요한 가게' },
+		{ id: 'jokbo', name: '좋아요한 족보' },
 	],
 };
 
