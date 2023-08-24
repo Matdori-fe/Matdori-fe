@@ -1,4 +1,6 @@
 import Text from '../Text/Text';
+import HeaderTitle from './HeaderCount';
+import HeaderCount from './HeaderCount';
 import HeaderLeft from './HeaderLeft';
 import HeaderRight from './HeaderRight';
 
@@ -34,11 +36,9 @@ export default function Header({
 }: HeaderProps) {
 	return (
 		<div className='flex justify-center [&+*]:mt-[60px] bg-white'>
-			<div className='z-2 sm:w-[412px] w-full h-[60px] flex items-center px-[20px] gap-3.5 [&_p]:flex-1 fixed top-0 bg-white'>
+			<div className='z-10 sm:w-[412px] w-full h-[60px] flex items-center px-[20px] gap-3.5 [&_p]:flex-1 fixed top-0 bg-white'>
 				<HeaderLeft left={left} />
-				<Text size='lg' fontWeight='bold'>
-					{title}
-				</Text>
+				<HeaderTitle title={title} />
 				{/*좋아요라면, kind, id, inFavoriteId를 넘겨줘야함. */}
 				{right && kind && id && inFavoriteId ? (
 					<>
@@ -58,3 +58,24 @@ export default function Header({
 		</div>
 	);
 }
+
+// return (
+//   <div className='flex justify-center [&+*]:mt-[60px] bg-white'>
+//     <div className='z-2 sm:w-[412px] w-full h-[60px] flex items-center px-[20px] gap-3.5 [&_p]:flex-1 fixed top-0 bg-white'>
+//       <HeaderLeft left={left} />
+//       <Text size='lg' fontWeight='bold'>
+//         {title}
+//       </Text>
+//       {right && kind && id && (
+//         <HeaderRight
+//           right={right}
+//           kind={kind}
+//           id={id}
+//           inFavoriteId={inFavoriteId}
+//         />
+//       )}
+//     </div>
+//   </div>
+// );
+// >>>>>>> 58a7a7d ([MATDORI-71] feat: z-index 추가)
+// }
