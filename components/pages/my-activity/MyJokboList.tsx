@@ -18,7 +18,6 @@ import { useDeleteList } from '@/hooks/my-likes/useDeleteList';
 
 import { useFetcher } from '@/hooks/my-likes/useFetcher';
 import { useObserver } from '@/hooks/useObserver';
-import { deleteMyComment } from '@/lib/jokbo/deleteMyComment';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -64,7 +63,7 @@ export default function MyJokboList() {
 	const { data, fetchNextPage, isFetchingNextPage, status } = useInfiniteQuery(
 		// 밑줄인 키가 없으면 사이드 이펙트 발생
 		// REFACTOR: 쿼리키 수정
-		['myjokbo'],
+		['myJokbo'],
 		getMyJokboList,
 		{
 			getNextPageParam: ({ hasNext, jokbos }) => {
@@ -90,15 +89,12 @@ export default function MyJokboList() {
 
 	const DeletableItem = useDelete({
 		query: deleteMyJokbo,
-		queryKey: ['myjokbo'],
+		queryKey: ['myJokbo'],
 	});
 
 	console.log(data);
 
 	const [deleteMode, setDeleteMode] = useRecoilState(deleteAtom);
-	const router = useRouter();
-	const deleteList = useRecoilValue(deleteListAtom);
-	const checkedList = useRecoilValue(checkedListAtom);
 	const { resetItems } = useDeleteList();
 
 	// 페이지 이동하면 삭제 모드 꺼지고, 저장했던 항목들 삭제
@@ -118,11 +114,6 @@ export default function MyJokboList() {
 					label={`작성한 족보가 없어요.\n족보를 작성하러 가볼까요?`}
 				/>
 			)}
-			<div>
-				{[...deleteList].map((i) => (
-					<div>{i}</div>
-				))}
-			</div>
 			<div className='grid grid-cols-1 gap-4 '>
 				{status === 'success' &&
 					data.pages.map((group, i) => (
