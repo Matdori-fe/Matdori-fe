@@ -33,7 +33,7 @@ export default function ShopItem({
 			onClick={
 				deleteMode
 					? null
-					: () => router.push(`/jokbo/${shopId}?tab=shop&section=info`)
+					: () => router.push(`/store/${shopId}/?tab=shop&section=info`)
 			}
 		>
 			<img
