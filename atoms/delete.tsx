@@ -1,22 +1,27 @@
-import { atom, atomFamily } from 'recoil';
+import { atom, atomFamily, selector } from 'recoil';
 
 export const deleteAtom = atom<boolean>({
 	key: 'deleteAtom',
 	default: false,
 });
 
-type DeleteListItem = number | [number, number];
+export type TDeleteListItem = number | [number, number];
 
-export const deleteListAtom = atom<Set<DeleteListItem>>({
+export const deleteListAtom = atom<Set<TDeleteListItem>>({
 	key: 'deleteListAtom',
 	default: new Set(),
 });
 
-export const deleteItemAtom = atomFamily<boolean, string>({
-	key: 'deleteItemAtom',
+export const checkedItemAtom = atomFamily<boolean, string>({
+	key: 'checkedItemAtom',
 	default: (id) =>
 		atom<boolean>({
-			key: `deleteItemAtom/${id}`,
+			key: `checkedItemAtom/${id}`,
 			default: false,
 		}),
+});
+
+export const checkedListAtom = atom<number[]>({
+	key: 'checkedListAtom',
+	default: [],
 });

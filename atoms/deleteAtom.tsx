@@ -1,6 +1,6 @@
-import { atom } from 'recoil';
+// import { atom } from 'recoil';
 
-export const deleteAtom = atom<boolean>({
-	key: 'deleteAtom',
-	default: false,
-});
+// export const deleteAtom = atom<boolean>({
+// 	key: 'deleteAtom',
+// 	default: false,
+// });
