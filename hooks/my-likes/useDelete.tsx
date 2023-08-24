@@ -1,10 +1,15 @@
-import { deleteAtom, deleteItemAtom, deleteListAtom } from '@/atoms/delete';
+import {
+	checkedItemAtom,
+	deleteAtom,
+	deleteItemAtom,
+	deleteListAtom,
+} from '@/atoms/delete';
 import Checked from '@/components/Checked/Checked';
 import DeleteButton, {
 	DeleteButtonPosition,
 } from '@/components/DeleteButton/DeleteButton';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useDeleteList } from './useDeleteList';
@@ -102,9 +107,14 @@ export const useDelete = ({ query, queryKey }) => {
 	}) => {
 		const deleteMode = useRecoilValue(deleteAtom);
 		const [checked, setChecked] = useRecoilState<boolean>(
-			deleteItemAtom(`deleteItemAtom/${itemId}`)
+			checkedItemAtom(`checkedItemAtom/${itemId}`)
 		);
-		const { pushItem, deleteItem } = useDeleteList();
+
+		const { handleItem } = useDeleteList();
+
+		useEffect(() => {
+			if (!deleteMode) setChecked(false);
+		}, [deleteMode]);
 
 		return (
 			<div
@@ -112,16 +122,9 @@ export const useDelete = ({ query, queryKey }) => {
 				onClick={
 					deleteMode
 						? (e) => {
-								if (!checked) {
-									pushItem(itemId, secondId);
-									setChecked(!checked);
-									e.preventDefault();
-								} else {
-									console.log('de');
-									deleteItem(itemId, secondId);
-									setChecked(!checked);
-									e.preventDefault();
-								}
+								setChecked(!checked);
+								handleItem(itemId, secondId);
+								e.preventDefault();
 						  }
 						: null
 				}
