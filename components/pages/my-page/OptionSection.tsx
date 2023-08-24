@@ -9,7 +9,6 @@ import {
 	RiLoginBoxLine,
 } from 'react-icons/ri';
 import OptionItem from './OptionItem';
-import { logout } from '@/lib/user/logout';
 
 export const options = [
 	{
@@ -37,7 +36,7 @@ export const options = [
 	{
 		name: '로그아웃',
 		icon: <RiLoginBoxLine />,
-		// onClick: logout,
+		href: '/logout',
 	},
 	{
 		name: '버전 정보',
@@ -49,7 +48,7 @@ export interface IOption {
 	name: string;
 	icon: JSX.Element;
 	href?: string;
-	onClick?: () => void;
+	onClick?: JSX.Element;
 }
 
 export default function OptionSection() {
