@@ -99,11 +99,6 @@ export default function MyCommentList() {
 					label={`작성한 댓글이 없어요.\n족보에 댓글을 작성해보세요.`}
 				/>
 			)}
-			<div>
-				{[...deleteList].map((i) => (
-					<div>{i}</div>
-				))}
-			</div>
 			<div className='grid grid-cols-1'>
 				{status === 'success' &&
 					data.pages.map((group) => (
