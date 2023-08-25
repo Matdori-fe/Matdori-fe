@@ -1,8 +1,6 @@
 'use client';
 import SelectTab from '@/components/SelectTab/SelectTab';
-import HorizonBar from '@/components/HorizonBar/HorizonBar';
 import { useState, useEffect } from 'react';
-import Button from '@/components/Button/Button';
 import MenuBlock from './components/MenuBlock';
 import axios from 'axios';
 import Link from 'next/link';
@@ -16,7 +14,11 @@ const StoreMenuTab = ({ storeIndex }: StoreIndexIn) => {
   const [isFixed, setIsFixed] = useState(false);
 
   const handleScroll = () => {
-    setIsFixed(window.scrollY >= 175);
+    const selectTab = document.querySelector('.select-tab');
+    if (selectTab) {
+      const selectTabRect = selectTab.getBoundingClientRect();
+      setIsFixed(selectTabRect.top <= 60);
+    }
   };
 
   useEffect(() => {
@@ -50,13 +52,17 @@ const StoreMenuTab = ({ storeIndex }: StoreIndexIn) => {
       <div className="mb-[150px] h-auto flex flex-wrap justify-center">
         <div
           className={`${
-            isFixed ? 'fixed left-6/12 top-12' : 'w-full'
-          } z-30 bg-white`}
+            isFixed ? 'fixed left-6/12 top-[60px]' : 'w-full'
+          } z-30 bg-white select-tab`}
         >
           <SelectTab />
         </div>
 
-        <div className="w-full mx-4 flex flex-wrap justify-center">
+        <div
+          className={`w-full mx-4 flex flex-wrap justify-center ${
+            isFixed ? 'mt-[49px]' : ''
+          }`}
+        >
           {menuList.map(({ name, menus }) => {
             return <MenuBlock name={name} menus={menus} />;
           })}
