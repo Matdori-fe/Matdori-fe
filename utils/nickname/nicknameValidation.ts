@@ -9,7 +9,7 @@ export async function nicknameValidationFn(
 ) {
 	if (nickname.length < 2) setValidation('min');
 	else if (nickname.length > 50) setValidation('max');
-	else if (await isDuplication(nickname)) setValidation('duplication');
 	else if (isIncludeBadWord(nickname)) setValidation('badWord');
+	else if (await isDuplication(nickname)) setValidation('duplication');
 	else setValidation('valid');
 }
