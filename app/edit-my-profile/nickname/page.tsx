@@ -50,7 +50,7 @@ export default function Nickname() {
 						: 'inactive'
 				}
 				errorMessage='올바른 닉네임을 입력해주세요.'
-				onClick={() => changeNickname(nickname)}
+				onClick={() => changeNickname(nickname, setNicknameErrorType)}
 			/>
 		</div>
 	);
