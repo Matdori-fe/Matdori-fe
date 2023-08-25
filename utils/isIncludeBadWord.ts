@@ -1,4 +1,5 @@
 const badWordList = new Array(
+	'개새',
 	'시발',
 	'새끼',
 	'쌔끼',
@@ -2375,6 +2376,7 @@ const badWordList = new Array(
 );
 
 export function isIncludeBadWord(nickname: string): boolean {
+	console.log(nickname);
 	const lowerCaseNickname = nickname.toLowerCase(); // 비교를 위해 소문자로 변환
 	for (const badWord of badWordList) {
 		if (lowerCaseNickname.includes(badWord)) {
