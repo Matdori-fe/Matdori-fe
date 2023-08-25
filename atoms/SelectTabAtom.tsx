@@ -6,17 +6,17 @@ const selectList = {
 		{ id: 'menu', name: '메뉴' },
 		{ id: 'jokbo', name: '족보' },
 	],
-	mypage: [
+	activity: [
 		{ id: 'myjokbo', name: '내 족보' },
 		{ id: 'mycomment', name: '내 댓글' },
 	],
 	likes: [
-		{ id: 'favoriteshop', name: '좋아요한 가게' },
-		{ id: 'favoritejokbo', name: '좋아요한 족보' },
+		{ id: 'shop', name: '좋아요한 가게' },
+		{ id: 'jokbo', name: '좋아요한 족보' },
 	],
 };
 
-export type SelectTabVariant = 'shop' | 'mypage' | 'likes';
+export type SelectTabVariant = 'shop' | 'activity' | 'likes';
 
 export const SelectTabAtom = atomFamily<any[], SelectTabVariant>({
 	key: 'SelectTabAtom',

@@ -1,24 +1,41 @@
+'use client';
+
 import Image from 'next/image';
 import logo from '../../../assets/image/logo.svg';
 import Text from '@/components/Text/Text';
 import StarRate from '@/components/StarRate/StarRate';
 import JokboInfo from '@/components/JokboInfo/JokboInfo';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { useRecoilState } from 'recoil';
+import { deleteAtom } from '@/atoms/delete';
 
 export default function ShopItem({
+	shopId,
 	name,
 	score,
 	jokboCnt,
 	img,
 	category,
 }: {
+	shopId: number;
 	name: string;
 	score: number;
 	jokboCnt: number;
 	img: string;
 	category: string;
 }) {
+	const router = useRouter();
+	const [deleteMode, setDeleteMode] = useRecoilState(deleteAtom);
+
 	return (
-		<div>
+		<div
+			onClick={
+				deleteMode
+					? null
+					: () => router.push(`/store/${shopId}/?tab=shop&section=info`)
+			}
+		>
 			<img
 				src={img}
 				className='w-full h-[100px] object-contain rounded-basic border border-solid border-lightGray'
