@@ -38,7 +38,6 @@ const StoreMenuTab = ({ storeIndex }: StoreIndexIn) => {
           `${process.env.NEXT_PUBLIC_API}/stores/${storeIndex}/menu`
         );
         setMenuList(response.data.result);
-        console.log(response.data.result);
       } catch (error) {
         console.log(error);
       }

@@ -20,7 +20,7 @@ const SmallStoreComponent: React.FC<StoreInfo> = ({
   kind,
 }) => {
   return (
-    <div className="w-[100px] mx-[8px] min-w-[100px]">
+    <div className="w-[100px] min-w-[100px]">
       <Link href={`/store/${storeIndex}?tab=shop&section=info`}>
         <ImageBox size="large" url={imgUrl} />
         <div className="flex justify-between px-1 mt-1">

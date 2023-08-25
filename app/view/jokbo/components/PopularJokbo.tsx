@@ -29,21 +29,21 @@ const PopularJokbo = () => {
           <>
             <BigStoreComponent
               key={1}
-              storeIndex={1}
+              jokboIndex={1}
               name="족보 제목"
               imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
               totalRating={4.9}
               content="여기는 족보 내용을 작성하는 곳입니다. 이렇게 두줄까지 보여지기도 합니다."
             />
             <BigStoreComponent
-              storeIndex={1}
+              jokboIndex={1}
               name="족보 제목"
               imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
               totalRating={4.9}
               content="여기는 족보 내용을 작성하는 곳입니다. 이렇게 두줄까지 보여지기도 합니다."
             />
             <BigStoreComponent
-              storeIndex={1}
+              jokboIndex={1}
               name="족보 제목"
               imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeMqC_AL6OxqZoErED8V-6n0JJyHnvmr0QQ&usqp=CAU"
               totalRating={4.9}

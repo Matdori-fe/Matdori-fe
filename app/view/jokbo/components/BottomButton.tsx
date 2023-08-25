@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 const BottomButton = () => {
   const router = useRouter();
   function moveWriteJokbo() {
-    router.push('/write');
+    router.push('/write/undefinded');
   }
 
   return (

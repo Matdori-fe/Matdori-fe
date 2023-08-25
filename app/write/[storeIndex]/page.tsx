@@ -54,14 +54,23 @@ const WritePage = ({ params }: { params: { storeIndex: any } }) => {
     } else if (content === '') {
       Toast('내용을 작성해주세요.');
     } else {
+      //이미지를 제외한 데이터
+      const data = {
+        flavorRating: flavorRating,
+        underPricedRating: underPricedRating,
+        cleanRating: cleanRating,
+        storeIndex: storeIndex,
+        title: title,
+        contents: content,
+      };
       const formData = new FormData();
-      formData.append('flavorRating', flavorRating.toString());
-      formData.append('underPricedRating', underPricedRating.toString());
-      formData.append('cleanRating', cleanRating.toString());
-      formData.append('storeIndex', params.storeIndex.toString());
-      formData.append('title', title);
-      formData.append('contents', content);
+      // 이미지를 제외한 값 추가
+      formData.append(
+        'data',
+        new Blob([JSON.stringify(data)], { type: 'application/json' })
+      );
 
+      //이미지 추가
       for (const image of imageArr) {
         formData.append('images', image);
       }

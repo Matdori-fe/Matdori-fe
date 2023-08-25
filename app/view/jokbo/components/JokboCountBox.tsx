@@ -28,9 +28,9 @@ const JokboCountBox: React.FC = () => {
           className="w-[120px] w-full max-w-[125px]"
         />
 
-        <div className="w-full font-Regular text-[18px] text-black text-right leading-tight flex flex-wrap md:flex-wrap justify-center md:justify-end mt-[15px] md:mt-0">
+        <div className="w-full font-Regular text-[18px] text-black text-right leading-tight flex flex-wrap justify-center md:justify-end mt-[15px] md:mt-0  md:w-[100px]">
           <span>지금까지</span>
-          <br />{' '}
+
           <span className="font-Bold text-100 mt-[-2px]">
             {count}개의 족보
             <span className="font-Regular text-[18px] text-black">가</span>

@@ -7,6 +7,7 @@ import BigTitle from '@/components/Title/BigTitle';
 import Text from '@/components/Text/Text';
 import SmallStoreComponent from './StoreCompoents/SmallStoreComponent';
 import SmallStoreSkeleton from '@/app/Skeleton/SmallStoreSkeleton';
+import EmptySmallStoreComponent from './StoreCompoents/EmptySmallStoreComponent';
 import { Skeleton } from 'antd';
 // FIXME => list에 값 담아서 map으로 뿌려주는 작업 필요. 지금은 그냥 넣어놓음.
 
@@ -66,7 +67,7 @@ const DepartMentRecommened: React.FC = () => {
           </>
         ) : (
           <>
-            <div className="w-auto flex flex-nowrap overflow-x-scroll scrollbar-hide">
+            <div className="w-full flex flex-nowrap overflow-x-scroll scrollbar-hide">
               {list.map(({ storeIndex, name, imgUrl, totalRating, kind }) => (
                 <SmallStoreComponent
                   storeIndex={storeIndex}
@@ -76,6 +77,9 @@ const DepartMentRecommened: React.FC = () => {
                   kind={kind}
                 />
               ))}
+              {list.length < 3 && <EmptySmallStoreComponent />}
+              {list.length < 2 && <EmptySmallStoreComponent />}
+              {list.length < 1 && <EmptySmallStoreComponent />}
             </div>
           </>
         )}

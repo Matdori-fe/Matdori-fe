@@ -19,6 +19,7 @@ const MatdoriPick = () => {
           `${process.env.NEXT_PUBLIC_API}/stores/matdori-pick?department=${myDepartMent}`
         );
         setList(result.data.result);
+        console.log('맛도리픽', result.data.result);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -44,7 +45,7 @@ const MatdoriPick = () => {
               <SmallStoreSkeleton />
             </div>
           ) : (
-            <div className="w-auto flex flex-nowrap overflow-x-scroll scrollbar-hide">
+            <div className="w-full min-w-[310px] flex flex-nowrap overflow-x-scroll scrollbar-hide justify-between">
               {list.map(({ storeIndex, name, imgUrl }) => {
                 return (
                   <SmallStoreComponent
