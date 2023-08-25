@@ -3,7 +3,12 @@
 import Background from '../Background/Background';
 import Link from 'next/link';
 import Text from '../Text/Text';
-import { motion, useDragControls, useMotionValue } from 'framer-motion';
+import {
+	AnimatePresence,
+	motion,
+	useDragControls,
+	useMotionValue,
+} from 'framer-motion';
 import { RiCloseFill } from 'react-icons/ri';
 import { use, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -98,15 +103,16 @@ export default function ModalLayout({
 				onDragEnd={handleDragEnd}
 				dragMomentum={false}
 				// 자식으로 전파 방지
-				className={`relative w-full ${
-					variant === 'large' ? 'h-[514px]' : 'h-[400px]'
-				} bg-white rounded-t-basic pt-[11px] flex flex-col items-center justify-start w-full`}
+				className={`relative w-full bg-white rounded-t-basic pt-[11px] flex flex-col items-center justify-start w-full`}
 				transition={{ duration: 0.5, ease: 'easeInOut' }}
-				initial={{ y: 400 }}
-				animate={{ y: 0 }}
-				exit={{ y: 400 }}
+				initial={variant === 'large' ? { y: 800 } : { y: 400 }}
+				animate={
+					variant === 'large'
+						? { y: 0, height: '514px' }
+						: { y: 0, height: '400px' }
+				}
+				exit={variant === 'large' ? { y: 514 } : { y: 400 }}
 				// FIXME: 다시 추천받기를 누르면 모션이 이상함
-				layout
 			>
 				<RiCloseFill
 					className='absolute right-6 top-6'
@@ -125,7 +131,7 @@ export default function ModalLayout({
 					onClick={(e) => e.stopPropagation()}
 					className='flex flex-col sm:w-[412px] w-full px-[20px] h-full'
 				>
-					{children}
+					<AnimatePresence>{children}</AnimatePresence>
 				</motion.div>
 			</motion.div>
 		</Background>
