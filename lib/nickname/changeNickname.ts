@@ -1,12 +1,27 @@
 import { getUserIndex } from '@/hooks/my-likes/useDelete';
 import { axios } from '../axios';
 import { AxiosError } from 'axios';
-import { nicknameErrorMessage } from '@/app/edit-my-profile/nickname/nicknameErrorMessage';
+import {
+	INicknameValidationKey,
+	nicknameErrorMessage,
+} from '@/app/edit-my-profile/nickname/nicknameErrorMessage';
 import Toast from '@/components/Toast/Toast';
 import { useRouter } from 'next/navigation';
+import { Dispatch, SetStateAction } from 'react';
+import { isIncludeBadWord } from '@/utils/isIncludeBadWord';
 
-export async function changeNickname(nickname: string) {
+export async function changeNickname(
+	nickname: string,
+	setNicknameValidation: Dispatch<SetStateAction<INicknameValidationKey>>
+) {
 	try {
+		// 마지막 비속어 체크.
+		// FIXME: 비속어 타속이 빠르면 발리데이션에서 걸러지지않음. 왜일까?
+		if (isIncludeBadWord(nickname)) {
+			setNicknameValidation('badWord');
+			return;
+		}
+
 		const response = await axios.put(
 			`/users/${getUserIndex()}/nickname`,
 			{ nickname },
