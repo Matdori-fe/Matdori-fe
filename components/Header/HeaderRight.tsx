@@ -15,6 +15,7 @@ import RoundButton from '../RoundButton/RoundButton';
 import Like from '../Like/Like';
 import { useRouter } from 'next/navigation';
 import TrashCan from './TrashCan';
+import Link from 'next/link';
 
 // TODO: 라운드 버튼의 height가 큰거 수정
 // TODO: button의 onClick수정하기.
@@ -26,7 +27,11 @@ const rightIcons = {
 	trashCan: <TrashCan />,
 	check: <RiCheckFill size='20' className='fill-100' />,
 	more: <RiMore2Fill size='20' />,
-	roundButton: <RoundButton label='내 정보 수정하기' />,
+	roundButton: (
+		<Link href='/edit-my-profile'>
+			<RoundButton label='내 정보 수정하기' />
+		</Link>
+	),
 };
 
 type LikeKind = 'store' | 'jokbo' | 'review';
