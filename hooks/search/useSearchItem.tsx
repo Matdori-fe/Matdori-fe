@@ -37,6 +37,10 @@ export default function useSearchItem() {
 		setRecentSearchListList([searchString, ...popList]);
 	};
 
+	const resetItem = () => {
+		setRecentSearchListList([]);
+	};
+
 	useEffect(() => {
 		updateLocalStorage();
 	}, [resentSearchList]);
@@ -48,7 +52,7 @@ export default function useSearchItem() {
 		);
 	};
 
-	return { handleSearchItem, deleteItem };
+	return { handleSearchItem, deleteItem, resetItem };
 }
 
 /**
