@@ -5,7 +5,7 @@ import Text from '../Text/Text';
 import styled from 'styled-components';
 
 interface StarRateProps {
-	score: number;
+	score: number | string;
 	isShowScore?: boolean;
 }
 
