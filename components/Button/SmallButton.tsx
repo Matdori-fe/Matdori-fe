@@ -30,11 +30,11 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
 			<>
 				{/*가게 추천받기 red버전*/}
 				<div
-					onClick={() => openModal('shop', modals.shop)}
+					onClick={() => openModal({ id: 'shop', Component: modals.shop })}
 					className='w-full h-[40px] bg-100 rounded-[15px] flex items-center'
 				>
 					<Image src={recommendimg} />
-					<p className='font-Bold text-[14px] text-white relative right-1.5'>
+					<p className='font-Bold text-[14px] text-white relative right-1.5 flex justify-end w-full mr-[8px]'>
 						가게 추천받기
 					</p>
 				</div>
@@ -47,11 +47,11 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
 			<>
 				{/*가게 추천받기 white버전*/}
 				<div
-					onClick={() => openModal('shop', modals.shop)}
+					onClick={() => openModal({ id: 'shop', Component: modals.shop })}
 					className='w-full h-[40px] bg-white rounded-[15px] flex items-center border-lightGray border-[1px]'
 				>
 					<Image src={recommendimg} />
-					<p className='font-Regular text-[12px] text-darkGray mt-[2px]'>
+					<p className='font-Regular text-[12px] text-darkGray mt-[2px] flex justify-end w-full pr-[18px]'>
 						가게 추천받기
 					</p>
 				</div>
@@ -63,7 +63,7 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
 			<>
 				{/* 메뉴 추천받기 red버전*/}
 				<div
-					onClick={() => openModal('menu', modals.menu)}
+					onClick={() => openModal({ id: 'menu', Component: modals.menu })}
 					className='w-full h-[40px] bg-100 rounded-[15px] flex items-center justify-between overflow-hidden'
 				>
 					<p className='font-Bold text-[14px] text-white ml-4'>메뉴 추천받기</p>
@@ -77,7 +77,7 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
 			<>
 				{/*메뉴 추천받기 white버전*/}
 				<div
-					onClick={() => openModal('menu', modals.menu)}
+					onClick={() => openModal({ id: 'menu', Component: modals.menu })}
 					className='w-full h-[40px] bg-white rounded-[15px] flex items-center justify-between border-lightGray border-[1px] overflow-hidden'
 				>
 					<p className='font-Regular text-[12px] text-darkGray ml-5 mt-[2px]'>
