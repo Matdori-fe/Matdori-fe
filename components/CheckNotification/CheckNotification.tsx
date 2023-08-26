@@ -1,9 +1,10 @@
 import { RiCheckFill } from 'react-icons/ri';
 import Text from '../Text/Text';
+import { Variant } from '@/app/edit-my-profile/nickname/nicknameErrorMessage';
 
 interface CheckNotification {
 	label: string;
-	variant: 'valid' | 'invalid';
+	variant: Variant;
 }
 
 export default function CheckNotification({
