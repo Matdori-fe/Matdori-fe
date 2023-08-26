@@ -4,12 +4,12 @@ import RoundButton from '@/components/RoundButton/RoundButton';
 import Text from '@/components/Text/Text';
 import SmallTitle from '@/components/Title/SmallTitle';
 import RecentSearchItem from './RecentSearchItem';
+import { recentSearchListAtom } from '@/atoms/search/recentSearchListAtom';
+import { useRecoilValue } from 'recoil';
 
 export default function RecentSearchListSection() {
-	const recentSearchList = JSON.parse(
-		localStorage.getItem('recent-search-list')
-	);
-	console.log(recentSearchList);
+	const recentSearchList = useRecoilValue(recentSearchListAtom);
+
 	return (
 		<div>
 			<div className='flex justify-between w-full mb-[10px]'>
