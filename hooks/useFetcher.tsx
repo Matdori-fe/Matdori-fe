@@ -1,11 +1,25 @@
-import { useQuery } from 'react-query';
+import ErrorPpok from '@/components/Error/ErrorPpok';
+import Loading from '@/components/Loading/Loading';
+import { AxiosError, AxiosResponse } from 'axios';
+import { UseQueryResult, useQuery } from 'react-query';
 
-export const useFetcher = ({ query, children }) => {
-	const { isLoading, error, data } = useQuery('test', query);
+export function useFetcher<T>(query) {
+	const {
+		isLoading,
+		error,
+		data,
+		refetch,
+	}: UseQueryResult<AxiosResponse<T>, AxiosError> = useQuery('test', query);
 
-	if (isLoading) return <div>loading...</div>;
+	const Wrapper = ({ children }) => {
+		if (isLoading) return <Loading />;
 
-	if (error) return <div>error</div>;
+		if (error) return <ErrorPpok variant='small' />;
 
-	return children;
-};
+		return <>{children}</>;
+	};
+
+	const result = data?.data;
+
+	return { Wrapper, data: result, refetch };
+}
