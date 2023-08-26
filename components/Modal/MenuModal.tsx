@@ -79,7 +79,7 @@ export default function MenuModal() {
 							initial='start'
 							animate='end'
 							variants={BoxAnimation}
-							className='flex flex-col justify-between w-full gap-[17px]'
+							className='flex flex-col justify-between w-full gap-[17px] w-full'
 						>
 							<Wrapper>
 								{data &&
@@ -102,15 +102,20 @@ export default function MenuModal() {
 												alt='logo'
 												className='rounded-basic'
 											/>
-											<div className='p-[12px] px-[17px] flex flex-col gap-[8px]'>
-												<Text color='100' size='sm' fontWeight='semibold'>
+											<div className='w-[calc(100%-60px)] p-[12px] px-[17px] flex flex-col gap-[8px]'>
+												<Text
+													color='100'
+													size='sm'
+													fontWeight='semibold'
+													className='overflow-hidden whitespace-nowrap overflow-ellipsis'
+												>
 													{menu.menuName}
 												</Text>
-												<div className='flex justify-between f-full'>
+												<div className='flex w-[calc(100%)]'>
 													<Text
 														fontWeight='normal'
 														size='sm'
-														className='mr-[10px]'
+														className='mr-[10px] overflow-hidden whitespace-nowrap overflow-ellipsis'
 													>
 														{menu.storeName}
 													</Text>
