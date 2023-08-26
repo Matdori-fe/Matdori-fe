@@ -109,7 +109,7 @@ export default function ModalLayout({
 				animate={
 					variant === 'large'
 						? { y: 0, height: '514px' }
-						: { y: 0, height: '400px' }
+						: { y: 0, height: '410px' }
 				}
 				exit={variant === 'large' ? { y: 514 } : { y: 400 }}
 				// FIXME: 다시 추천받기를 누르면 모션이 이상함
