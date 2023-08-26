@@ -22,7 +22,7 @@ export default function useSearchItem() {
 	const pushItem = (searchString: string) => {
 		if (resentSearchList.length === 8) {
 			// 초과하지 않게 하나 빼기
-			const popList = [...resentSearchList].pop();
+			const popList = [...resentSearchList].slice(0, -1);
 
 			// 새로운 아이템 추가하기
 			setRecentSearchListList([searchString, ...popList]);
