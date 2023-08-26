@@ -6,16 +6,22 @@ import SmallTitle from '@/components/Title/SmallTitle';
 import RecentSearchItem from './RecentSearchItem';
 import { recentSearchListAtom } from '@/atoms/search/recentSearchListAtom';
 import { useRecoilValue } from 'recoil';
+import useSearchItem from '@/hooks/search/useSearchItem';
 
 export default function RecentSearchListSection() {
 	const recentSearchList = useRecoilValue(recentSearchListAtom);
+	const { resetItem } = useSearchItem();
 
 	return (
 		<div>
 			<div className='flex justify-between w-full mb-[10px]'>
 				<SmallTitle
 					sideComponent={
-						<RoundButton label='검색 기록 전체 삭제' variant='small' />
+						<RoundButton
+							label='검색 기록 전체 삭제'
+							variant='small'
+							onClick={resetItem}
+						/>
 					}
 				>
 					최근 검색어
