@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -19,7 +21,7 @@ const CarouselSection = () => {
 	const arr = [1, 2, 3, 4, 5];
 
 	return (
-		<div className='absolute left-0 top-[60px] w-full [&+*]:mt-[330px]'>
+		<div className='absolute left-0 top-[60px] w-full [&+*]:mt-[2px]'>
 			<Slider {...settings} dotsClass='test-css'>
 				{arr.map((i) => (
 					<div className='w-full h-[211px] bg-10'>{i}</div>
