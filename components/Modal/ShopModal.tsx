@@ -127,7 +127,9 @@ export default function ShopModal() {
 											<Text
 												fontWeight='semibold'
 												size='sm'
-												className='overflow-hidden w-[calc(100%-2px)] whitespace-nowrap overflow-ellipsis'
+												className={`overflow-hidden w-[calc(100%-2px)] whitespace-nowrap overflow-ellipsis ${
+													shop.name.length <= 7 && 'flex justify-center'
+												}`}
 											>
 												{shop.name}
 											</Text>
