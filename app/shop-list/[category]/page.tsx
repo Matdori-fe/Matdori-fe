@@ -99,6 +99,7 @@ export default function Page({ params }: { params: { category: string } }) {
 									score={shop.totalRating.toFixed(1)}
 									jokboCnt={shop.jokboCnt}
 									img={shop.imgUrl}
+									category={shop.category}
 								/>
 							))}
 						</>
