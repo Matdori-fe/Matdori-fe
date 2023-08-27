@@ -13,6 +13,7 @@ import ErrorPpok from '@/components/Error/ErrorPpok';
 import { useInfiniteQuery } from 'react-query';
 import { useObserver } from '@/hooks/useObserver';
 import Loading from '@/components/Loading/Loading';
+import JokboList from '@/components/ListComponent/JokboList';
 type StoreIndexIn = {
   storeIndex: number;
 };
@@ -29,9 +30,8 @@ type JokboInfoType = {
 
 const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
   const [totalCount, setTotalCount] = useState(0);
-  const [jokboList, setJokboList] = useState<JokboInfoType[]>([]);
   const [viewType, setViewType] = useState('최신순');
-  const [hasNext, setHasNext] = useState<boolean>(false);
+
   // 스크롤 감지 부분
   const [isFixed, setIsFixed] = useState(false);
   function handleScroll() {
@@ -76,8 +76,6 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
         const finalJokboId = jokboList[jokboList.length - 1].jokboId;
         return finalJokboId;
       },
-
-      // keepPreviousData: true, // 새 데이터를 요청해 갈아끼우기 직전까지 이전 데이터 유지
     }
   );
 
@@ -88,9 +86,8 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
     onIntersect,
   });
 
-  useEffect(() => {
-    console.log(status);
-  }, [status]);
+  // 페이지 이동하면 삭제 모드 꺼지고, 저장했던 항목들 삭제
+  useEffect(() => {}, []);
 
   //가게 당 족보 개수 불러오기
   useEffect(() => {
@@ -131,43 +128,9 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
 
         <div className="mx-4">
           <div className={`${isFixed ? 'pt-[110px]' : ''}  flex flex-wrap`}>
-            {status === 'loading' && <Loading />}
-            {status === 'error' && (
-              <ErrorPpok errorMessage="serverError" variant="normal" />
-            )}
-            {status === 'success' &&
-              data.pages.map((group, i) => (
-                <>
-                  {group.jokboList.map(
-                    ({
-                      jokboId,
-                      title,
-                      imgUrl,
-                      contents,
-                      totalRating,
-                      favoriteCnt,
-                      commentCnt,
-                    }: JokboInfoType) => (
-                      <>
-                        <JokboBox
-                          jokboId={jokboId}
-                          title={title}
-                          contents={contents}
-                          imgUrl={imgUrl}
-                          totalRating={totalRating}
-                          favoriteCnt={favoriteCnt}
-                          commentCnt={commentCnt}
-                        />
-                      </>
-                    )
-                  )}
-                </>
-              ))}
+            <JokboList storeIndex={storeIndex} />
           </div>
         </div>
-        <div ref={bottom} />
-        {/* {hasNextPage ? <div ref={bottom}></div> : <p>끝</p>} */}
-        {isFetchingNextPage && <Loading />}
       </div>
       <Button
         label="나만의 족보 작성하기"

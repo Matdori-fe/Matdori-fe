@@ -6,22 +6,20 @@ import { RiChat3Fill } from 'react-icons/ri';
 import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import axios from 'axios';
-import Review from '@/components/Review/Review';
-import EmptyJokbo from '@/app/store/[storeIndex]/component/EmptyJokbo';
 import Input from '@/components/Input/Input';
 import { ChangeEvent } from 'react';
 import WriteFun from './WriteFun';
 import { useRecoilValue } from 'recoil';
 import { UserAtom } from '@/atoms/UserAtom';
 import Toast from '@/components/Toast/Toast';
+import CommentList from '@/components/ListComponent/CommentList';
 
+//컴포넌트에서 쓰일 ReviewType
 type ReviewType = {
-  commentIndex: number;
-  createdAt: string;
-  contents: string;
-  checkDeleted: boolean;
-  userIndex: number;
-  nickname: string;
+  title: string;
+  content: string;
+  writeDay: string;
+  heartCount: number;
 };
 
 interface JokboDetailProps {
@@ -36,39 +34,7 @@ const JokboReview: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
   const user = useRecoilValue(UserAtom);
 
   const [kind, setKind] = useState('최신순');
-  const [pageCount, setPageCount] = useState(1);
-  const [ref, inView] = useInView();
-  const [commentList, setReviewList] = useState<ReviewType[]>([]);
   const [commentCount, setReviewCount] = useState(0);
-  // 무한 스크롤을 위해 다음 페이지를 불러오는 함수
-  const getReview = () => {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/jokbos/${jokboIndex}/comments`, {
-        params: {
-          order: kind,
-          pageCount: { pageCount },
-        },
-      })
-      .then((response) => {
-        console.log(response.data.result);
-        setReviewList([commentList, ...response.data.result.commentList]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  //getReview가 바뀌면 실행함.
-  useEffect(() => {
-    getReview();
-  }, [pageCount]);
-
-  useEffect(() => {
-    // 사용자가 마지막 요소를 보고 있을때
-    if (inView) {
-      setPageCount(pageCount + 1);
-    }
-  }, [inView]);
 
   //댓글 쓰는 로직
   const [writeReview, setWriteReview] = useState('');
@@ -87,6 +53,7 @@ const JokboReview: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
     if (response.response === 200) {
       Toast('댓글 작성에 성공하였습니다.');
       setWriteReview('');
+      window.location.reload();
     } else {
       Toast('댓글 작성에 실패하였습니다.');
     }
@@ -101,27 +68,9 @@ const JokboReview: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
         </div>
       </SmallTitle>
       <HorizonBar className="mt-2" />
-      <div className="mx-4 mt-2">
+      <div className="mx-4 mt-2 mb-[70px]">
         <div className="w-full h-1" />
-        {commentCount === 0 ? (
-          <>
-            <EmptyJokbo />
-          </>
-        ) : (
-          <>
-            {commentList.map((element, idx) => (
-              <div ref={ref}>
-                <Review
-                  key={idx}
-                  content={element.contents}
-                  heartCount={5}
-                  title={element.nickname}
-                  writeDay={element.createdAt}
-                />
-              </div>
-            ))}
-          </>
-        )}
+        <CommentList jokboIndex={jokboIndex} />
       </div>
       <div className="flex justify-center items-center">
         <div className="w-10/12 fixed bottom-4 mx-[20px]">
