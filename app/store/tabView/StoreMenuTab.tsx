@@ -17,7 +17,7 @@ const StoreMenuTab = ({ storeIndex }: StoreIndexIn) => {
     const selectTab = document.querySelector('.select-tab');
     if (selectTab) {
       const selectTabRect = selectTab.getBoundingClientRect();
-      setIsFixed(selectTabRect.top <= 60);
+      setIsFixed(selectTabRect.bottom >= 500);
     }
   };
 
@@ -48,11 +48,11 @@ const StoreMenuTab = ({ storeIndex }: StoreIndexIn) => {
 
   return (
     <>
-      <div className="mb-[150px] h-auto flex flex-wrap justify-center">
+      <div className="mb-[150px] h-auto flex flex-wrap justify-center select-tab">
         <div
           className={`${
             isFixed ? 'fixed left-6/12 top-[60px]' : 'w-full'
-          } z-30 bg-white select-tab`}
+          } z-30 bg-white`}
         >
           <SelectTab />
         </div>

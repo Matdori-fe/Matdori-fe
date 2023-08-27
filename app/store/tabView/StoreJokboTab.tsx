@@ -64,6 +64,7 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
       }
     );
     setHasNext(response.data.result.hasNext);
+    console.log(jokboList);
     setJokboList((prevList) => [
       ...prevList,
       ...response.data.result.jokboList,

@@ -14,7 +14,6 @@ import axios from 'axios';
 import Toast from '@/components/Toast/Toast';
 import { UserAtom } from '@/atoms/UserAtom';
 import { useRecoilValue } from 'recoil';
-import { StoreIndex } from '../Write_Type/Write_Type';
 
 const WritePage = ({ params }: { params: { storeIndex: any } }) => {
   const [storeIndex, setStoreIndex] = useState(params.storeIndex);
@@ -26,6 +25,11 @@ const WritePage = ({ params }: { params: { storeIndex: any } }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [imageArr, setImageArr]: any = useState([]);
+
+  useEffect(() => {
+    console.log(imageArr);
+  }, [imageArr]);
+
   //가게가 선택되어져잇는지에 대한 state
   const [isChoiceStore, setIsChoiceStore] = useState(false);
 
@@ -40,7 +44,7 @@ const WritePage = ({ params }: { params: { storeIndex: any } }) => {
   }, [storeIndex]);
 
   //로그인 실행 함수
-  const WriteJokboFun = (): void => {
+  const WriteJokboFun = (): any => {
     if (storeIndex === null || isChoiceStore === false) {
       Toast('가게를 선택해주세요.');
     } else if (
@@ -55,7 +59,7 @@ const WritePage = ({ params }: { params: { storeIndex: any } }) => {
       Toast('내용을 작성해주세요.');
     } else {
       //이미지를 제외한 데이터
-      const data = {
+      const request = {
         flavorRating: flavorRating,
         underPricedRating: underPricedRating,
         cleanRating: cleanRating,
@@ -66,36 +70,43 @@ const WritePage = ({ params }: { params: { storeIndex: any } }) => {
       const formData = new FormData();
       // 이미지를 제외한 값 추가
       formData.append(
-        'data',
-        new Blob([JSON.stringify(data)], { type: 'application/json' })
+        'request',
+        new Blob([JSON.stringify(request)], { type: 'application/json' })
       );
 
       //이미지 추가
-      for (const image of imageArr) {
-        formData.append('images', image);
-      }
-      axios
+      imageArr.forEach((element: any) => {
+        formData.append('images', element);
+      });
+
+      const axiosInstance = axios.create({
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          accept: 'application/json',
+        },
+        withCredentials: true,
+        timeout: 6000,
+      });
+      return axiosInstance
         .post(
           `${process.env.NEXT_PUBLIC_API}/users/${user.userId}/jokbo`,
-          formData,
-          {
-            headers: { 'Contest-Type': 'multipart/form-data' },
-            withCredentials: true,
-          }
+          formData
         )
         .then((response) => {
           console.log(response);
+          if (response.status === 200) {
+            Toast('족보 작성이 완료되었습니다.');
+            window.location.href = `/store/${storeIndex}/?tab=shop&section=jokbo`;
+          } else if (response.status === 401) {
+            Toast('세션이 만료되었습니다. 로그인을 다시 진행해 주세요.');
+            window.location.href = '/login';
+          }
         })
         .catch((error) => {
           console.log(error);
         });
     }
   };
-
-  if (!params.storeIndex) {
-    // Render your default content or redirect as needed
-    return <div>Default Store Page</div>;
-  }
 
   return (
     <div className="mb-[100px]">
@@ -161,6 +172,7 @@ const WritePage = ({ params }: { params: { storeIndex: any } }) => {
 
       <WriteJokbo setTitle={setTitle} setContent={setContent} />
       <ChoicePhoto setImageArr={setImageArr} />
+
       <Button
         label="족보 작성완료"
         onClick={WriteJokboFun}

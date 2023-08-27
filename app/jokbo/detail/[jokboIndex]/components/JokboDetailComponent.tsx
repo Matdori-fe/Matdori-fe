@@ -51,9 +51,11 @@ const JokboDetailComponent: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
           `${process.env.NEXT_PUBLIC_API}/jokbos/${jokboIndex}`,
           {
             headers: { userIndex: user.userId },
+            withCredentials: true,
           }
         );
         setDetailInfo(response.data.result);
+        console.log(response.data.result);
       } catch (error) {
         console.log(error);
       }
