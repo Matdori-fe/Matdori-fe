@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import axios from 'axios';
 import JokboBox from '../[storeIndex]/component/JokboBox';
 import Button from '@/components/Button/Button';
@@ -9,8 +9,10 @@ import HorizonBar from '@/components/HorizonBar/HorizonBar';
 import EmptyJokbo from '../[storeIndex]/component/EmptyJokbo';
 import SelectTab from '@/components/SelectTab/SelectTab';
 import CustomSelect from '@/components/SelectBox/CustomSelect';
-import { useInView } from 'react-intersection-observer';
-
+import ErrorPpok from '@/components/Error/ErrorPpok';
+import { useInfiniteQuery } from 'react-query';
+import { useObserver } from '@/hooks/useObserver';
+import Loading from '@/components/Loading/Loading';
 type StoreIndexIn = {
   storeIndex: number;
 };
@@ -48,51 +50,47 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
 
   ////////////////////////////////////////////////////////
 
-  //무한 스크롤로 값 불러오기
-  const [pageCount, setPageCount] = useState(1);
-  const [ref, inView] = useInView();
-  const [loading, setLoading] = useState(false);
-
-  // 무한 스크롤을 위해 다음 페이지를 불러오는 함수
-  const getReview = useCallback(async () => {
-    setLoading(true);
-
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API}/stores/${storeIndex}/jokbos`,
-      {
+  const getMyJokboList = ({ pageParam = null }: any) =>
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API}/stores/${storeIndex}/jokbos`, {
         params: {
-          order: viewType,
-          pageCount: pageCount,
+          cursor: pageParam,
+          order: '최신순',
         },
-      }
-    );
-    setHasNext(response.data.result.hasNext);
-    console.log(jokboList);
-    setJokboList((prevList) => [
-      ...prevList,
-      ...response.data.result.jokboList,
-    ]);
-    setLoading(false);
-  }, [pageCount]);
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data);
+        return res?.data.result;
+      });
 
-  //getReview가 바뀌면 실행함.
-  useEffect(() => {
-    getReview();
-  }, [getReview]);
+  let bottom = useRef(null);
 
-  useEffect(() => {
-    // 사용자가 마지막 요소를 보고 있을때
-    if (inView && !loading && hasNext) {
-      setPageCount((prevPageCount) => prevPageCount + 1);
+  const { data, fetchNextPage, isFetchingNextPage, status } = useInfiniteQuery(
+    ['jokboList'],
+    getMyJokboList,
+    {
+      getNextPageParam: ({ hasNext, jokboList }) => {
+        if (!hasNext) return undefined;
+
+        const finalJokboId = jokboList[jokboList.length - 1].jokboId;
+        return finalJokboId;
+      },
+
+      // keepPreviousData: true, // 새 데이터를 요청해 갈아끼우기 직전까지 이전 데이터 유지
     }
-  }, [inView, loading]);
+  );
 
-  //종류 변경시
+  const onIntersect = ([entry]: any) => entry.isIntersecting && fetchNextPage();
+
+  useObserver({
+    target: bottom,
+    onIntersect,
+  });
+
   useEffect(() => {
-    setJokboList([]);
-    setPageCount(1);
-  }, [viewType]);
-  ////////////////////////////////////////////////////////
+    console.log(status);
+  }, [status]);
 
   //가게 당 족보 개수 불러오기
   useEffect(() => {
@@ -132,40 +130,44 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
         </div>
 
         <div className="mx-4">
-          {totalCount === 0 ? (
-            <>
-              <EmptyJokbo />
-            </>
-          ) : (
-            <div className={`${isFixed ? 'pt-[110px]' : ''}`}>
-              {jokboList.map(
-                ({
-                  jokboId,
-                  title,
-                  imgUrl,
-                  contents,
-                  totalRating,
-                  favoriteCnt,
-                  commentCnt,
-                }) => {
-                  return (
-                    <div ref={ref}>
-                      <JokboBox
-                        jokboId={jokboId}
-                        title={title}
-                        contents={contents}
-                        imgUrl={imgUrl}
-                        totalRating={totalRating}
-                        favoriteCnt={favoriteCnt}
-                        commentCnt={commentCnt}
-                      />
-                    </div>
-                  );
-                }
-              )}
-            </div>
-          )}
+          <div className={`${isFixed ? 'pt-[110px]' : ''}  flex flex-wrap`}>
+            {status === 'loading' && <Loading />}
+            {status === 'error' && (
+              <ErrorPpok errorMessage="serverError" variant="normal" />
+            )}
+            {status === 'success' &&
+              data.pages.map((group, i) => (
+                <>
+                  {group.jokboList.map(
+                    ({
+                      jokboId,
+                      title,
+                      imgUrl,
+                      contents,
+                      totalRating,
+                      favoriteCnt,
+                      commentCnt,
+                    }: JokboInfoType) => (
+                      <>
+                        <JokboBox
+                          jokboId={jokboId}
+                          title={title}
+                          contents={contents}
+                          imgUrl={imgUrl}
+                          totalRating={totalRating}
+                          favoriteCnt={favoriteCnt}
+                          commentCnt={commentCnt}
+                        />
+                      </>
+                    )
+                  )}
+                </>
+              ))}
+          </div>
         </div>
+        <div ref={bottom} />
+        {/* {hasNextPage ? <div ref={bottom}></div> : <p>끝</p>} */}
+        {isFetchingNextPage && <Loading />}
       </div>
       <Button
         label="나만의 족보 작성하기"

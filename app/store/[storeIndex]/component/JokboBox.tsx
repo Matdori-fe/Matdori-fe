@@ -34,7 +34,7 @@ const JokboBox = ({
   return (
     <>
       <div
-        className="mt-4"
+        className="mt-2 pb-2 w-full border-b-[1px] border-lightGray"
         onClick={
           // 여기 수정했으니까 잊지마세현아
           deleteMode ? null : () => router.push(`/jokbo/detail/${jokboId}`)
@@ -72,7 +72,6 @@ const JokboBox = ({
           <ImageBox size="medium" url={imgUrl} />
         </div>
       </div>
-      <HorizonBar className="mt-3" />
     </>
   );
 };
