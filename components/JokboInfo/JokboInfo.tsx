@@ -13,7 +13,7 @@ type Size = 'small' | 'large';
 
 type JokboInfoType = {
 	kind: iconKind;
-	count: number;
+	count: number | string;
 	className?: string;
 	size?: 'small' | 'large';
 };

@@ -1,27 +1,32 @@
 'use client';
 
-import Header from '@/components/Header/Header';
-import { useShopListByCategory } from '@/hooks/view/pages/category';
-import { useEffect, useRef, useState } from 'react';
-import { useFetcher } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { useQuery } from 'react-query';
-import ShopItem from '@/components/pages/shop-list/ShopItem';
-import { useInfiniteQuery } from 'react-query';
-import axios from 'axios';
-import { useObserver } from '@/hooks/useObserver';
-import Loading from '@/components/Loading/Loading';
+import { searchAtom } from '@/atoms/search/searchAtom';
 import { selectedSort } from '@/atoms/shop-list/selectedSort';
+import Loading from '@/components/Loading/Loading';
+import Text from '@/components/Text/Text';
+import ShopItem from '@/components/pages/shop-list/ShopItem';
+import { useObserver } from '@/hooks/useObserver';
+import axios from 'axios';
+import { useEffect, useRef } from 'react';
+import { useInfiniteQuery } from 'react-query';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
-export default function Page({ params }: { params: { category: string } }) {
+export default function Page({ params }: { params: { searchString: string } }) {
 	const sort = useRecoilValue(selectedSort);
+	const [searchInput, setSearchInput] = useRecoilState(searchAtom);
+
+	useEffect(() => {
+		setSearchInput(
+			decodeURIComponent(window.location.pathname.slice('/search/'.length, -1))
+		);
+	}, []);
 
 	const getShopList = ({ pageParam = null }) =>
 		axios
 			.get(`${process.env.NEXT_PUBLIC_API}/stores`, {
 				params: {
 					cursor: pageParam,
-					category: decodeURIComponent(params.category),
+					category: '한식',
 					order: sort,
 				},
 			})
@@ -43,7 +48,7 @@ export default function Page({ params }: { params: { category: string } }) {
 	} = useInfiniteQuery(
 		// 밑줄인 키가 없으면 사이드 이펙트 발생
 		// REFACTOR: 쿼리키 수정
-		[`shop-${decodeURIComponent(params.category)}-${sort}`],
+		[`shop-${decodeURIComponent(params.searchString)}-${sort}`],
 		getShopList,
 		{
 			getNextPageParam: ({ hasNext, storeList }) => {
@@ -66,29 +71,22 @@ export default function Page({ params }: { params: { category: string } }) {
 		onIntersect,
 	});
 
-	// const [d, sd] = useState([]);
+	const searchString = useRecoilValue(searchAtom);
 
-	// useEffect(() => {
-	// 	axios
-	// 		.get(`${process.env.NEXT_PUBLIC_API}/stores`, {
-	// 			params: {
-	// 				pageCount: 1,
-	// 				category: decodeURIComponent(params.category),
-	// 			},
-	// 		})
-	// 		.then((res) => {
-	// 			sd(res.data.result.storeList);
-	// 			console.log(res.data);
-	// 			return res?.data.result;
-	// 		});
-	// }, []);
-
-	// TODO: 불러오는중, 에러 인 경우 두 가지 다른 컴포넌트 띄우기
 	return (
-		<>
+		<div>
+			{/* {decodeURIComponent(params.searchString)} */}
+			{status === 'loading' && <Loading />}
+			{status === 'success' && data.pages.length === 0 && (
+				<Text className='w-full pt-[100px] flex justify-center' size='sm'>
+					<span className='text-100 font-SemiBold'>{searchString}</span>에 대한
+					검색 결과가 존재하지 않아요.
+				</Text>
+			)}
 			<div className='grid grid-cols-2 gap-4'>
-				{status === 'loading' && <p>불러오는 중</p>}
 				{status === 'error' && <p>에러</p>}
+				{/* 검색 결과가 0이면 없다고 표시하는건데 잘 동작하는지는 테스트해봐야할 것 같다. */}
+
 				{status === 'success' &&
 					data.pages.map((group) => (
 						<>
@@ -110,16 +108,8 @@ export default function Page({ params }: { params: { category: string } }) {
 			{isFetchingNextPage && <Loading />}
 
 			<div className='mt-[30px]' />
-		</>
+		</div>
 	);
 }
 
-// const getShopListByCategory = async () => {
-// 	const response = await fetch(
-// 		`${process.env.NEXT_PUBLIC_API}/stores?pageCount=${1}&category=한식`,
-// 		{ cache: 'no-store' }
-// 	);
-
-// 	const data = await response.json();
-// 	return data.result;
-// };
+// TODO: 검색어에 대한 검색 결과 나열 필요

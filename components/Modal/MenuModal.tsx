@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import ModalLayout from './ModalLayout';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useRouter } from 'next/navigation';
@@ -23,6 +23,10 @@ export default function MenuModal() {
 	const router = useRouter();
 	const imageArr = new Array(3).fill(true);
 	const [loading, setLoading] = useState(true);
+	const { closeModal } = useModal();
+	const { data, Wrapper, refetch } = useFetcher<RecommendedMenuList>(
+		getRecommendedMenuList
+	);
 
 	useEffect(() => {
 		if (loading) {
@@ -40,11 +44,6 @@ export default function MenuModal() {
 		setLoading(true);
 	};
 
-	const { closeModal } = useModal();
-	const { data, Wrapper, refetch } = useFetcher<RecommendedMenuList>(
-		getRecommendedMenuList
-	);
-
 	const BoxAnimation = {
 		start: { opacity: 0.5 },
 		end: {
@@ -54,7 +53,7 @@ export default function MenuModal() {
 				type: 'spring',
 				stiffness: 110,
 				delayChildren: 0.3,
-				staggerChildren: 0.3,
+				staggerChildren: 0.2,
 			},
 		},
 	};
@@ -80,53 +79,60 @@ export default function MenuModal() {
 							initial='start'
 							animate='end'
 							variants={BoxAnimation}
-							className='flex flex-col justify-between w-full gap-[17px]'
+							className='flex flex-col justify-between w-full gap-[17px] w-full'
 						>
-							{data &&
-								data.result.map((menu) => (
-									// TODO: 이미지 누르면 가게페이지로 이동
-									<motion.div
-										variants={InnerAnimation}
-										key='1'
-										className='flex flex-row [&>img]:h-[75px]'
-										onClick={() =>
-											router.push(
-												`/store/${menu.storeId}/?tab=shop&section=menu`
-											)
-										}
-									>
-										<Image
-											src={menu.imgUrl}
-											width='75'
-											height='75'
-											alt='logo'
-											className='rounded-basic'
-										/>
-										<div className='p-[12px] px-[17px] flex flex-col gap-[8px]'>
-											<Text color='100' size='sm' fontWeight='semibold'>
-												{menu.menuName}
-											</Text>
-											<div className='flex justify-between f-full'>
+							<Wrapper>
+								{data &&
+									data.result.map((menu) => (
+										// TODO: 이미지 누르면 가게페이지로 이동
+										<motion.div
+											variants={InnerAnimation}
+											key='1'
+											className='flex flex-row [&>img]:h-[75px]'
+											onClick={() =>
+												router.push(
+													`/store/${menu.storeId}/?tab=shop&section=menu`
+												)
+											}
+										>
+											<Image
+												src={menu.imgUrl}
+												width='75'
+												height='75'
+												alt='logo'
+												className='rounded-basic'
+											/>
+											<div className='w-[calc(100%-60px)] p-[12px] px-[17px] flex flex-col gap-[8px]'>
 												<Text
-													fontWeight='normal'
+													color='100'
 													size='sm'
-													className='mr-[10px]'
+													fontWeight='semibold'
+													className='overflow-hidden whitespace-nowrap overflow-ellipsis'
 												>
-													{menu.storeName}
+													{menu.menuName}
 												</Text>
-												<JokboInfo
-													kind='starScore'
-													count={menu.totalRating.toFixed(1)}
-												/>
+												<div className='flex w-[calc(100%)]'>
+													<Text
+														fontWeight='normal'
+														size='sm'
+														className='mr-[10px] overflow-hidden whitespace-nowrap overflow-ellipsis'
+													>
+														{menu.storeName}
+													</Text>
+													<JokboInfo
+														kind='starScore'
+														count={menu.totalRating.toFixed(1)}
+													/>
+												</div>
 											</div>
-										</div>
-									</motion.div>
-								))}
+										</motion.div>
+									))}
+							</Wrapper>
 						</motion.div>
 						<div className='mb-[20px]' />
 						<BorderNotification
 							modal
-							label='※ 맛도리 추천 가게는 별점과 무관하게 랜덤으로 추천됩니다.'
+							label='※ 맛도리 추천 메뉴는 별점과 무관하게 랜덤으로 추천됩니다.'
 						/>
 					</div>
 					<Button

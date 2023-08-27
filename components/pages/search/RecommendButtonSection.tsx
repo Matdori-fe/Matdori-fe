@@ -1,6 +1,7 @@
 import SmallButtonBar from '@/components/Button/SmallButton';
 import Text from '@/components/Text/Text';
 import BigTitle from '@/components/Title/BigTitle';
+import SmallTitle from '@/components/Title/SmallTitle';
 import { useFetcher } from '@/hooks/useFetcher';
 import {
 	RecommendedMenuList,
@@ -12,13 +13,10 @@ import { useEffect } from 'react';
 export default function RecommendButtonsSection() {
 	return (
 		<div>
-			<BigTitle className='mt-[260px] mb-[10px]'>맛도리에게 추천받기</BigTitle>
-			<Text size='xs' color='gray' className='mb-[12px]'>
-				맛도리가 추천해주는 가게와 메뉴를 살펴보세요.
-			</Text>
+			<SmallTitle className='mb-[10px]'>맛도리에게 추천받기</SmallTitle>
 			<div className='flex justify-between gap-[10px]'>
-				<SmallButtonBar type='redStoreRecommend' />
-				<SmallButtonBar type='redMenuRecommend' />
+				<SmallButtonBar type='whiteStoreRecommend' />
+				<SmallButtonBar type='whiteMenuRecommend' />
 			</div>
 		</div>
 	);

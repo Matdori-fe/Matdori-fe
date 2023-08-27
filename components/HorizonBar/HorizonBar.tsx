@@ -20,3 +20,7 @@ const HorizonBar: React.FC<HorizonType> = ({
 };
 
 export default HorizonBar;
+
+{
+	/* <div className='bg-lightGray h-[7px] w-[100vw] relative left-[-20px]' /> */
+}
