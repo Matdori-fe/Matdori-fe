@@ -5,6 +5,7 @@ import CarouselSection from '@/components/pages/home/CarouselSection';
 import CategorySection from '@/components/pages/home/CategorySection';
 import InfiniteShopListSection from '@/components/pages/home/InfiniteShopListSection';
 import RecommendButtonsSection from '@/components/pages/home/RecommendButtonsSection';
+import Top3Section from '@/components/pages/home/Top3Section';
 import axios from 'axios';
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
 			<CarouselSection />
 			<RecommendButtonsSection />
 			<CategorySection />
+			<Top3Section />
 			<InfiniteShopListSection />
 		</div>
 	);

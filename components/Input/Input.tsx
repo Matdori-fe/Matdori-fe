@@ -6,6 +6,8 @@ import FiveMinTimer from './Timer';
 import { IsGoTimer } from '@/atoms/TimerAtom';
 import { useRecoilValue } from 'recoil';
 import { ChangeEvent } from 'react';
+import { useRouter } from 'next/navigation';
+import { moveToBack } from '@/utils/page/moveToBack';
 // Input에 props로 줄 값 제한
 type InputSize = 'small' | 'big';
 type LeftKind = 'lense' | 'back';
@@ -52,6 +54,8 @@ const Input: React.FC<InputType> = ({
 	// input에 들어갈 값을 받아줄 state
 	const [inputValue, setInputValue] = useState('');
 	const goTime = useRecoilValue(IsGoTimer);
+	const router = useRouter();
+
 	//제일 상위 박스 CSS 정의
 	var boxCSS = '';
 	if (inputSize === 'small') {
@@ -90,6 +94,7 @@ const Input: React.FC<InputType> = ({
 						<div
 							onClick={(e) => {
 								setInputValue('');
+
 								if (onChange) {
 									//값을 초기화
 									onChange({
