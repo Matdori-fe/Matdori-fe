@@ -32,17 +32,27 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
   const [hasNext, setHasNext] = useState<boolean>(false);
   // 스크롤 감지 부분
   const [isFixed, setIsFixed] = useState(false);
-
-  const handleScroll = () => {
-    setIsFixed(window.scrollY >= 175);
-  };
+  const [ScrollY, setScrollY] = useState(0); // window 의 pageYOffset값을 저장
+  function handleScroll() {
+    if (ScrollY > 161) {
+      setScrollY(window.pageYOffset);
+      setIsFixed(true);
+    } else {
+      setScrollY(window.pageYOffset);
+      setIsFixed(false);
+    }
+  }
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    function scrollListener() {
+      window.addEventListener('scroll', handleScroll);
+    } //  window 에서 스크롤을 감시 시작
+    scrollListener(); // window 에서 스크롤을 감시
     return () => {
       window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+    }; //  window 에서 스크롤을 감시를 종료
+  });
+
   ////////////////////////////////////////////////////////
 
   //무한 스크롤로 값 불러오기
@@ -134,7 +144,7 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
               <EmptyJokbo />
             </>
           ) : (
-            <div>
+            <div className={`${isFixed ? 'pt-[110px]' : ''}`}>
               {jokboList.map(
                 ({
                   jokboId,
