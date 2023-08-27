@@ -68,7 +68,7 @@ const JokboReview: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
         </div>
       </SmallTitle>
       <HorizonBar className="mt-2" />
-      <div className="mx-4 mt-2 mb-[70px]">
+      <div className="mt-2 mb-[70px]">
         <div className="w-full h-1" />
         <CommentList jokboIndex={jokboIndex} />
       </div>
