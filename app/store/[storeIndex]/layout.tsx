@@ -66,8 +66,10 @@ const JokboLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <JokboIntroPage storeIndex={currentIndex} />
-      {children}
+      <div className="z-40 relative">
+        <JokboIntroPage storeIndex={currentIndex} />
+      </div>
+      <div className="z-0 relative">{children}</div>
     </>
   );
 };

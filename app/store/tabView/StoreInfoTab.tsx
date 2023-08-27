@@ -105,7 +105,7 @@ const StoreInfoTab = ({ storeIndex }: StoreIndexIn) => {
           />
           <div
             id="map"
-            className="w-11/12 h-[242px] rounded-basic border-lightGray border-1 z-0"
+            className="w-11/12 h-[242px] rounded-basic border-lightGray border-1 relative z-0"
           >
             <Map address={storeInfo.address} />
           </div>

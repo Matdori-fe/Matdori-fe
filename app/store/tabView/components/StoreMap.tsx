@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-
 declare global {
   interface Window {
     kakao: any;
@@ -56,15 +55,15 @@ function Map({ address }: MapProps) {
   }, [address]);
 
   return (
-    <div
-      id="map"
-      style={{
-        width: '100%',
-        height: '400px',
-        position: 'relative',
-        zIndex: 1,
-      }}
-    />
+    <>
+      <div
+        id="map"
+        style={{
+          width: '100%',
+          height: '500px',
+        }}
+      />
+    </>
   );
 }
 
