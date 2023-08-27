@@ -21,7 +21,7 @@ const StoreSummary = ({
 }: StoreSummaryInfo) => {
   return (
     <>
-      <div className="w-full h-[80px] rounded-basic border-[1px] border-lightGray flex items-center px-2 min-w-[270px]">
+      <div className="w-full h-[80px] rounded-basic border-[1px] border-lightGray flex items-center min-w-[270px] px-2">
         <ImageBox size="small" url={storeImgUrl} />
         <div className="w-full flex justify-between mx-2">
           <div className="w-fit h-auto flex flex-wrap justify-center">
