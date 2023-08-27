@@ -42,16 +42,19 @@ const StoreInfoTab = ({ storeIndex }: StoreIndexIn) => {
   });
   // 스크롤 감지 부분
   const [isFixed, setIsFixed] = useState(false);
-  const handleScroll = () => {
-    setIsFixed(window.scrollY >= 175);
-  };
+  function handleScroll() {
+    const scrollTop = window.pageYOffset;
+    requestAnimationFrame(() => {
+      setIsFixed(scrollTop > 165);
+    });
+  }
+
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -73,7 +76,7 @@ const StoreInfoTab = ({ storeIndex }: StoreIndexIn) => {
       <div className="mb-[100px] h-auto">
         <div
           className={`${
-            isFixed ? 'fixed left-6/12 top-12' : 'w-full'
+            isFixed ? 'fixed left-6/12 top-[50px]' : 'w-full'
           } z-30 bg-white`}
         >
           <SelectTab />
