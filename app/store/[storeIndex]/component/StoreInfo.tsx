@@ -67,8 +67,8 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
             <ImageBox size="large" url={storeData?.imgUrl} />
 
             <div className="w-full flex flex-wrap flex-col justify-between ml-3">
-              <div className="flex justify-around">
-                <div className="w-[70px] h-auto flex flex-wrap justify-center items-center">
+              <div className="flex justify-around align-start">
+                <div className="h-auto flex flex-wrap justify-center items-center">
                   <div className="w-full text-center h-[35px] font-Medium text-[24px]">
                     {storeData?.totalRating.toFixed(1)}
                   </div>
@@ -78,7 +78,7 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
                     isShowScore={false}
                   />
                 </div>
-                <div className=" flex flex-wrap justify-end">
+                <div className=" flex flex-wrap justify-end mt-2">
                   <StatusBar
                     flavorRating={Number(storeData.flavorRating.toFixed(1))}
                     underPricedRating={Number(
@@ -89,7 +89,7 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl border border-lightGray w-full flex py-[4px]">
+              <div className="bg-white rounded-2xl border border-lightGray w-full flex py-[6px] pl-2">
                 <RiAwardFill className="w-[12px] text-100 mx-1 mr-2 mt-[0.5px]" />
                 <Text fontWeight="medium" size="xs" className="line-clamp-1">
                   {storeContent}

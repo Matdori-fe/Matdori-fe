@@ -16,6 +16,7 @@ const StoreShare: React.FC<StoreShareType> = ({
   storeContent,
 }) => {
   const [isKakaoLoaded, setIsKakaoLoaded] = useState(false);
+  const { Kakao, location } = window;
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -31,12 +32,14 @@ const StoreShare: React.FC<StoreShareType> = ({
     };
   }, []);
 
+  useEffect(() => {
+    if (isKakaoLoaded) {
+      Kakao.init(process.env.NEXT_PUBLIC_KAKAO_API_KEY);
+    }
+  }, [isKakaoLoaded]);
+
   const onClick = () => {
     if (isKakaoLoaded) {
-      const { Kakao, location } = window;
-
-      Kakao.init(process.env.NEXT_PUBLIC_KAKAO_API_KEY);
-      console.log(storeIndex, imgUrl, storeName, storeContent);
       Kakao.Link.sendScrap({
         requestUrl: location.href,
         templateId: 97765,
