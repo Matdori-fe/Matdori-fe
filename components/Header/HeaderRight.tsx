@@ -14,10 +14,14 @@ import { FiTrash2 } from 'react-icons/fi';
 import RoundButton from '../RoundButton/RoundButton';
 import Like from '../HeaderComponents/Like';
 import StoreShare from '../HeaderComponents/StoreShare';
+import JokboShare from '../HeaderComponents/JokboShare';
 import { useRouter } from 'next/navigation';
 import TrashCan from './TrashCan';
 import Link from 'next/link';
-import { StoreShareType } from '../HeaderComponents/type/HeaderComponentsType';
+import {
+  StoreShareType,
+  JokboShareType,
+} from '../HeaderComponents/type/HeaderComponentsType';
 
 // TODO: 라운드 버튼의 height가 큰거 수정
 // TODO: button의 onClick수정하기.
@@ -47,6 +51,7 @@ interface HeaderRightProps {
   id?: number;
   inFavoriteId?: number | null;
   storeShareInfo?: StoreShareType;
+  jokboShareInfo?: JokboShareType;
 }
 
 export default function HeaderRight({
@@ -56,6 +61,7 @@ export default function HeaderRight({
   id,
   inFavoriteId,
   storeShareInfo,
+  jokboShareInfo,
 }: HeaderRightProps) {
   const desiredOrder: Right[] = ['share', 'like', 'more'];
 
@@ -75,14 +81,26 @@ export default function HeaderRight({
               />
             );
           } else if (icon === 'share') {
-            return (
-              <StoreShare
-                storeContent={storeShareInfo?.storeContent}
-                storeName={storeShareInfo?.storeName}
-                storeIndex={storeShareInfo?.storeIndex}
-                imgUrl={storeShareInfo?.imgUrl}
-              />
-            );
+            if (kind === 'store') {
+              return (
+                <StoreShare
+                  storeContent={storeShareInfo?.storeContent}
+                  storeName={storeShareInfo?.storeName}
+                  storeIndex={storeShareInfo?.storeIndex}
+                  imgUrl={storeShareInfo?.imgUrl}
+                />
+              );
+            } else if (kind === 'jokbo') {
+              return (
+                <JokboShare
+                  jokboIndex={jokboShareInfo?.jokboIndex}
+                  jokboTitle={jokboShareInfo?.jokboTitle}
+                  storeName={jokboShareInfo?.storeName}
+                  nickName={jokboShareInfo?.nickName}
+                  imageUrl={jokboShareInfo?.imageUrl}
+                />
+              );
+            }
           } else {
             return icon && rightIcons[icon];
           }

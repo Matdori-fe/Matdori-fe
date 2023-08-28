@@ -3,7 +3,10 @@ import HeaderTitle from './HeaderCount';
 import HeaderCount from './HeaderCount';
 import HeaderLeft from './HeaderLeft';
 import HeaderRight from './HeaderRight';
-import { StoreShareType } from '../HeaderComponents/type/HeaderComponentsType';
+import {
+  StoreShareType,
+  JokboShareType,
+} from '../HeaderComponents/type/HeaderComponentsType';
 
 export type Left = 'back' | 'logo' | undefined;
 export type Right =
@@ -26,6 +29,7 @@ interface HeaderProps {
   id?: number;
   inFavoriteId?: number | null;
   storeShareInfo?: StoreShareType;
+  jokboShareInfo?: JokboShareType;
 }
 
 export default function Header({
@@ -36,6 +40,7 @@ export default function Header({
   id,
   inFavoriteId,
   storeShareInfo,
+  jokboShareInfo,
 }: HeaderProps) {
   return (
     <div className="flex justify-center [&+*]:mt-[60px] bg-white">
@@ -51,6 +56,7 @@ export default function Header({
           id={id}
           inFavoriteId={inFavoriteId}
           storeShareInfo={storeShareInfo}
+          jokboShareInfo={jokboShareInfo}
         />
       </div>
     </div>

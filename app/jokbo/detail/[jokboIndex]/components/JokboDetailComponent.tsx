@@ -55,7 +55,7 @@ const JokboDetailComponent: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
           }
         );
         setDetailInfo(response.data.result);
-        console.log(response.data.result);
+        console.log('족보 정보', response.data.result);
       } catch (error) {
         console.log(error);
       }
@@ -71,6 +71,13 @@ const JokboDetailComponent: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
         kind="jokbo"
         id={detailInfo.storeIndex}
         inFavoriteId={detailInfo.jokboFavoriteId}
+        jokboShareInfo={{
+          nickName: detailInfo.nickname,
+          storeName: detailInfo.storeName,
+          imageUrl: detailInfo.jokboImgUrlList,
+          jokboIndex: jokboIndex,
+          jokboTitle: detailInfo.title,
+        }}
       />
 
       <BigTitle>{detailInfo?.title}</BigTitle>
