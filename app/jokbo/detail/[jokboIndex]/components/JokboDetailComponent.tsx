@@ -83,7 +83,10 @@ const JokboDetailComponent: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
       </div>
       <div className="w-full flex flex-nowrap overflow-x-scroll scrollbar-hide mt-4 mb-6">
         {detailInfo?.jokboImgUrlList.map((element) => (
-          <ImageBox className="w-[70px] h-[70px] mr-3" url={element} />
+          <ImageBox
+            className="w-[70px] h-[70px] min-w-[70px] min-h-[70px]"
+            url={element}
+          />
         ))}
       </div>
       <StoreSummary

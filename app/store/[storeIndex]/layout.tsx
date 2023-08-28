@@ -12,8 +12,20 @@ interface StoreIndexType {
   storeIndex: number;
 }
 
+type StoreInformationType = {
+  category: string;
+  cleanRating: number;
+  flavorRating: number;
+  imgUrl: string;
+  name: string;
+  totalRating: number;
+  underPricedRating: number;
+};
+
 const JokboIntroPage = ({ storeIndex }: StoreIndexType) => {
   const [inFavoriteId, setInFavoriteId] = useState(null);
+  const [storeInformation, setStoreInformation] =
+    useState<StoreInformationType>();
 
   const userInfo = useRecoilValue(UserAtom);
   useEffect(() => {
@@ -25,6 +37,7 @@ const JokboIntroPage = ({ storeIndex }: StoreIndexType) => {
             withCredentials: true,
           }
         );
+        setStoreInformation(result.data.result.storeInformationHeader);
         setInFavoriteId(result.data.result.favoriteStoreIndex);
       } catch (error) {
         console.log(error);
@@ -40,8 +53,14 @@ const JokboIntroPage = ({ storeIndex }: StoreIndexType) => {
         right={['share', 'like']}
         kind="store"
         id={storeIndex}
-        title=""
+        title={storeInformation?.name}
         inFavoriteId={inFavoriteId}
+        storeShareInfo={{
+          storeIndex: storeIndex,
+          storeName: storeInformation?.name,
+          storeContent: storeInformation?.category,
+          imgUrl: storeInformation?.imgUrl,
+        }}
       />
       <StoreInfo storeIndex={storeIndex} />
       <Button

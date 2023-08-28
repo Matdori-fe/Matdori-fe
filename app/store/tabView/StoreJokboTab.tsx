@@ -103,7 +103,7 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
 
   return (
     <>
-      <div className="mb-[150px] h-auto">
+      <div className="mb-[50px] h-auto">
         <div
           className={`${
             isFixed ? 'fixed left-6/12 top-12' : 'w-full'

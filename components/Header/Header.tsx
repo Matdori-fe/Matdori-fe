@@ -3,6 +3,7 @@ import HeaderTitle from './HeaderCount';
 import HeaderCount from './HeaderCount';
 import HeaderLeft from './HeaderLeft';
 import HeaderRight from './HeaderRight';
+import { StoreShareType } from '../HeaderComponents/type/HeaderComponentsType';
 
 export type Left = 'back' | 'logo' | undefined;
 export type Right =
@@ -24,6 +25,7 @@ interface HeaderProps {
   kind?: LikeKind; // 추가: kind 값
   id?: number;
   inFavoriteId?: number | null;
+  storeShareInfo?: StoreShareType;
 }
 
 export default function Header({
@@ -33,6 +35,7 @@ export default function Header({
   kind,
   id,
   inFavoriteId,
+  storeShareInfo,
 }: HeaderProps) {
   return (
     <div className="flex justify-center [&+*]:mt-[60px] bg-white">
@@ -41,21 +44,14 @@ export default function Header({
         <Text size="lg" fontWeight="bold">
           {title}
         </Text>
-        {/*좋아요라면, kind, id */}
-        {right && kind && id ? (
-          <>
-            <HeaderRight
-              right={right}
-              kind={kind}
-              id={id}
-              inFavoriteId={inFavoriteId}
-            />
-          </>
-        ) : (
-          <>
-            <HeaderRight right={right} />
-          </>
-        )}
+
+        <HeaderRight
+          right={right}
+          kind={kind}
+          id={id}
+          inFavoriteId={inFavoriteId}
+          storeShareInfo={storeShareInfo}
+        />
       </div>
     </div>
   );
