@@ -51,9 +51,11 @@ const JokboDetailComponent: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
           `${process.env.NEXT_PUBLIC_API}/jokbos/${jokboIndex}`,
           {
             headers: { userIndex: user.userId },
+            withCredentials: true,
           }
         );
         setDetailInfo(response.data.result);
+        console.log('족보 정보', response.data.result);
       } catch (error) {
         console.log(error);
       }
@@ -69,30 +71,39 @@ const JokboDetailComponent: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
         kind="jokbo"
         id={detailInfo.storeIndex}
         inFavoriteId={detailInfo.jokboFavoriteId}
+        jokboShareInfo={{
+          nickName: detailInfo.nickname,
+          storeName: detailInfo.storeName,
+          imageUrl: detailInfo.jokboImgUrlList,
+          jokboIndex: jokboIndex,
+          jokboTitle: detailInfo.title,
+        }}
       />
-      <div className="mx-3">
-        <BigTitle>{detailInfo?.title}</BigTitle>
-        <div className="text-[10px] font-Regular text-gray mt-2">
-          {detailInfo?.createdAt} | {detailInfo?.nickname}
-        </div>
 
-        <div className="w-full text-[12px] font-Regular text-darkGray mt-4">
-          {detailInfo?.contents}
-        </div>
-        <div className="w-full flex flex-nowrap overflow-x-scroll scrollbar-hide mt-4 mb-6">
-          {detailInfo?.jokboImgUrlList.map((element) => (
-            <ImageBox className="w-[70px] h-[70px] mr-3" url={element} />
-          ))}
-        </div>
-        <StoreSummary
-          storeImgUrl={detailInfo.storeImgUrl}
-          storeName={detailInfo.storeName}
-          totalRating={detailInfo.totalRating}
-          flavorRating={detailInfo.flavorRating}
-          underPricedRating={detailInfo.underPricedRating}
-          cleanRating={detailInfo.cleanRating}
-        />
+      <BigTitle>{detailInfo?.title}</BigTitle>
+      <div className="text-[10px] font-Regular text-gray mt-2">
+        {detailInfo?.createdAt} | {detailInfo?.nickname}
       </div>
+
+      <div className="w-full text-[12px] font-Regular text-darkGray mt-4">
+        {detailInfo?.contents}
+      </div>
+      <div className="w-full flex flex-nowrap overflow-x-scroll scrollbar-hide mt-4 mb-6">
+        {detailInfo?.jokboImgUrlList.map((element) => (
+          <ImageBox
+            className="w-[70px] h-[70px] min-w-[70px] min-h-[70px]"
+            url={element}
+          />
+        ))}
+      </div>
+      <StoreSummary
+        storeImgUrl={detailInfo.storeImgUrl}
+        storeName={detailInfo.storeName}
+        totalRating={detailInfo.totalRating}
+        flavorRating={detailInfo.flavorRating}
+        underPricedRating={detailInfo.underPricedRating}
+        cleanRating={detailInfo.cleanRating}
+      />
     </>
   );
 };

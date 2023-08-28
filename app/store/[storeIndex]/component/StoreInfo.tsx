@@ -58,53 +58,44 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
   }, [storeIndex]);
 
   return (
-    <div className="mt-[70px] flex mx-5 flex-wrap">
+    <div className="mt-[100px] flex flex-wrap">
       {loading ? (
         <StoreInfoSkeleton />
       ) : (
         <>
-          <div className="w-full min-w-[295px] flex justify-center">
+          <div className="w-full min-w-[295px] mt-[20px] flex mx-4 justify-between">
             <ImageBox size="large" url={storeData?.imgUrl} />
 
-            <div className="w-8/12 min-w-[100px] mt-3 flex justify-between">
-              <div className="w-6/12 flex flex-wrap  justify-center">
-                <div className="w-full h-[25px] flex ml-2 justify-center">
-                  <Text
-                    fontWeight="bold"
-                    color="black"
-                    size="lg"
-                    className="line-clamp-1"
-                  >
-                    {storeData.name}
-                  </Text>
-                </div>
-                <div className="w-full flex justify-center">
-                  <div className="text-[24px] font-Medium" color="black">
+            <div className="w-full flex flex-wrap flex-col justify-between ml-3">
+              <div className="flex justify-around align-start">
+                <div className="h-auto flex flex-wrap justify-center items-center">
+                  <div className="w-full text-center h-[35px] font-Medium text-[24px]">
                     {storeData?.totalRating.toFixed(1)}
                   </div>
+
+                  <StarRate
+                    score={storeData?.totalRating}
+                    isShowScore={false}
+                  />
                 </div>
-
-                <StarRate score={storeData?.totalRating} isShowScore={false} />
+                <div className=" flex flex-wrap justify-end mt-2">
+                  <StatusBar
+                    flavorRating={Number(storeData.flavorRating.toFixed(1))}
+                    underPricedRating={Number(
+                      storeData.underPricedRating.toFixed(1)
+                    )}
+                    cleanRating={Number(storeData.cleanRating.toFixed(1))}
+                  />
+                </div>
               </div>
-              <div className=" flex flex-wrap justify-end">
-                <RoundButton label="정보 수정 요청" onClick={fixInfo} />
-                <div className="w-full h-2" />
 
-                <StatusBar
-                  flavorRating={Number(storeData.flavorRating.toFixed(1))}
-                  underPricedRating={Number(
-                    storeData.underPricedRating.toFixed(1)
-                  )}
-                  cleanRating={Number(storeData.cleanRating.toFixed(1))}
-                />
+              <div className="bg-white rounded-2xl border border-lightGray w-full flex py-[6px] pl-2">
+                <RiAwardFill className="w-[12px] text-100 mx-1 mr-2 mt-[0.5px]" />
+                <Text fontWeight="medium" size="xs" className="line-clamp-1">
+                  {storeContent}
+                </Text>
               </div>
             </div>
-          </div>
-          <div className="bg-white rounded-2xl border border-lightGray w-full mx-2 p-2 flex mt-4">
-            <RiAwardFill className="w-[12px] text-100 mx-1 mr-2 mt-[0.5px]" />
-            <Text fontWeight="medium" size="xs" className="line-clamp-1">
-              {storeContent}
-            </Text>
           </div>
         </>
       )}

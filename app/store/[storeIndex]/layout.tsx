@@ -6,13 +6,26 @@ import { useParams } from 'next/navigation';
 import axios from 'axios';
 import { useRecoilValue } from 'recoil';
 import { UserAtom } from '@/atoms/UserAtom';
+import Button from '@/components/Button/Button';
 
 interface StoreIndexType {
   storeIndex: number;
 }
 
+type StoreInformationType = {
+  category: string;
+  cleanRating: number;
+  flavorRating: number;
+  imgUrl: string;
+  name: string;
+  totalRating: number;
+  underPricedRating: number;
+};
+
 const JokboIntroPage = ({ storeIndex }: StoreIndexType) => {
   const [inFavoriteId, setInFavoriteId] = useState(null);
+  const [storeInformation, setStoreInformation] =
+    useState<StoreInformationType>();
 
   const userInfo = useRecoilValue(UserAtom);
   useEffect(() => {
@@ -24,6 +37,7 @@ const JokboIntroPage = ({ storeIndex }: StoreIndexType) => {
             withCredentials: true,
           }
         );
+        setStoreInformation(result.data.result.storeInformationHeader);
         setInFavoriteId(result.data.result.favoriteStoreIndex);
       } catch (error) {
         console.log(error);
@@ -39,10 +53,23 @@ const JokboIntroPage = ({ storeIndex }: StoreIndexType) => {
         right={['share', 'like']}
         kind="store"
         id={storeIndex}
-        title=""
+        title={storeInformation?.name}
         inFavoriteId={inFavoriteId}
+        storeShareInfo={{
+          storeIndex: storeIndex,
+          storeName: storeInformation?.name,
+          storeContent: storeInformation?.category,
+          imgUrl: storeInformation?.imgUrl,
+        }}
       />
       <StoreInfo storeIndex={storeIndex} />
+      <Button
+        label="나만의 족보 작성하기"
+        variant="active"
+        modal={false}
+        onClick={() => {}}
+        href={`/write/${storeIndex}`}
+      />
     </>
   );
 };
@@ -58,8 +85,10 @@ const JokboLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <JokboIntroPage storeIndex={currentIndex} />
-      {children}
+      <div className="z-40 relative">
+        <JokboIntroPage storeIndex={currentIndex} />
+      </div>
+      <div className="z-0 relative">{children}</div>
     </>
   );
 };

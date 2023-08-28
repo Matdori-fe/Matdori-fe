@@ -45,6 +45,7 @@ const Like = ({ kind, size, id, inFavoriteId }: LikeInputProps) => {
 
   // 좋아요 버튼 클릭할때마다 좋아요 / 삭제
   const LikeFun = async () => {
+    console.log(kind, size, id, favoriteId);
     console.log('함수 실행');
     console.log(idName);
     try {
@@ -70,8 +71,11 @@ const Like = ({ kind, size, id, inFavoriteId }: LikeInputProps) => {
       }
       // 좋아요 눌러있을때 => 좋아요 취소
       else {
-        const response = await axios.delete(
-          `${process.env.NEXT_PUBLIC_API}/users/${user.userId}/favorite-${kind}s/${favoriteId}`,
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_API}/users/${user.userId}/favorite-${kind}s`,
+          {
+            favoriteJokbosId: [favoriteId],
+          },
           {
             withCredentials: true,
           }

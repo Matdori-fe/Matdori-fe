@@ -63,7 +63,8 @@ const LoginBox: React.FC = () => {
           console.log(response);
           if (response.status === 200) {
             setUser(response.data.result.data);
-            router.push('/');
+            router.push('/view/home/?tab=Home');
+            Toast(`${response.data.result.data.nickname}님 환영합니다.`);
           }
         })
         .catch((error) => {

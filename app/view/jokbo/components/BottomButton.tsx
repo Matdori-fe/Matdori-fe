@@ -1,11 +1,11 @@
-"use client";
-import Button from "@/components/Button/Button";
-import { useRouter } from "next/navigation";
+'use client';
+import Button from '@/components/Button/Button';
+import { useRouter } from 'next/navigation';
 
 const BottomButton = () => {
   const router = useRouter();
   function moveWriteJokbo() {
-    router.push("/jokbo/write");
+    router.push('/write/undefinded');
   }
 
   return (

@@ -1,5 +1,5 @@
-import { Skeleton } from "antd";
-import RoundButton from "@/components/RoundButton/RoundButton";
+import { Skeleton } from 'antd';
+import RoundButton from '@/components/RoundButton/RoundButton';
 
 const StoreInfoSkeleton = () => {
   return (
@@ -10,7 +10,7 @@ const StoreInfoSkeleton = () => {
             active
             size={100}
             shape="square"
-            style={{ borderRadius: "15px", marginRight: "1rem" }}
+            style={{ borderRadius: '15px', marginRight: '1rem' }}
           />
 
           <div className="w-full ml-3 mt-3">
@@ -20,11 +20,10 @@ const StoreInfoSkeleton = () => {
                   active
                   avatar={false}
                   title={false}
-                  paragraph={{ width: "100%", rows: 1 }}
-                  style={{ marginTop: "2px" }}
+                  paragraph={{ width: '100%', rows: 1 }}
+                  style={{ marginTop: '2px' }}
                 />
               </div>
-              <RoundButton label="정보 수정 요청" onClick={() => {}} />
             </div>
             <div className="flex justify-between mx-2 mt-1">
               <div className="w-full flex flex-wrap justify-center w-[70px]">
@@ -33,8 +32,8 @@ const StoreInfoSkeleton = () => {
                     active
                     avatar={false}
                     title={false}
-                    paragraph={{ width: "70%", rows: 1 }}
-                    style={{ marginLeft: "10px" }}
+                    paragraph={{ width: '70%', rows: 1 }}
+                    style={{ marginLeft: '10px' }}
                   />
                 </div>
                 <div className="w-full">
@@ -42,8 +41,8 @@ const StoreInfoSkeleton = () => {
                     active
                     avatar={false}
                     title={false}
-                    paragraph={{ width: "100%", rows: 1 }}
-                    style={{ marginTop: "8px" }}
+                    paragraph={{ width: '100%', rows: 1 }}
+                    style={{ marginTop: '8px' }}
                   />
                 </div>
               </div>
@@ -52,35 +51,33 @@ const StoreInfoSkeleton = () => {
                   active
                   avatar={false}
                   title={false}
-                  paragraph={{ width: "90%", rows: 1 }}
-                  style={{ marginTop: "2px" }}
+                  paragraph={{ width: '90%', rows: 1 }}
+                  style={{ marginTop: '2px' }}
                 />
                 <Skeleton
                   active
                   avatar={false}
                   title={false}
-                  paragraph={{ width: "90%", rows: 1 }}
-                  style={{ marginTop: "2px" }}
+                  paragraph={{ width: '90%', rows: 1 }}
+                  style={{ marginTop: '2px' }}
                 />
                 <Skeleton
                   active
                   avatar={false}
                   title={false}
-                  paragraph={{ width: "90%", rows: 1 }}
-                  style={{ marginTop: "2px" }}
+                  paragraph={{ width: '90%', rows: 1 }}
+                  style={{ marginTop: '2px' }}
                 />
               </div>
             </div>
+            <Skeleton
+              active
+              avatar={false}
+              title={false}
+              paragraph={{ width: '100%', rows: 1 }}
+              style={{ marginTop: '2px' }}
+            />
           </div>
-        </div>
-        <div className="bg-white rounded-2xl border border-lightGray w-full p-2 flex mt-4">
-          <Skeleton
-            active
-            avatar={false}
-            title={false}
-            paragraph={{ width: "100%", rows: 1 }}
-            style={{ marginTop: "2px" }}
-          />
         </div>
       </div>
     </>
