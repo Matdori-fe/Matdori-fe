@@ -67,13 +67,12 @@ const JokboReview: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
           댓글 {commentCount}개
         </div>
       </SmallTitle>
-      <HorizonBar className="mt-2" />
-      <div className="mt-2 mb-[70px]">
-        <div className="w-full h-1" />
+      <div className="border-b-[1.5px] border-lightGray mt-2" />
+      <div>
         <CommentList jokboIndex={jokboIndex} />
       </div>
       <div className="flex justify-center items-center">
-        <div className="w-10/12 max-w-[412px] fixed bottom-4 mx-[20px]">
+        <div className="w-10/12 max-w-[350px] fixed bottom-4 mx-[20px]">
           <Input
             inputSize="small"
             inputmode="text"

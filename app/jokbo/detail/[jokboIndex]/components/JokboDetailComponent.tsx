@@ -7,6 +7,8 @@ import StoreSummary from './StoreSummary';
 import { useRecoilValue } from 'recoil';
 import { UserAtom } from '@/atoms/UserAtom';
 import Header from '@/components/Header/Header';
+import { formatDate } from '@/lib/formatDate';
+
 interface JokboDetailProps {
   jokboIndex: number;
 }
@@ -82,7 +84,7 @@ const JokboDetailComponent: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
 
       <BigTitle>{detailInfo?.title}</BigTitle>
       <div className="text-[10px] font-Regular text-gray mt-2">
-        {detailInfo?.createdAt} | {detailInfo?.nickname}
+        {formatDate(detailInfo?.createdAt)} | {detailInfo?.nickname}
       </div>
 
       <div className="w-full text-[12px] font-Regular text-darkGray mt-4">

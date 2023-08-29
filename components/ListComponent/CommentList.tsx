@@ -64,8 +64,6 @@ export default function CommentList({ jokboIndex }: JokboIndexType) {
     onIntersect,
   });
 
-  console.log(data);
-
   return (
     <div className="w-full">
       {status === 'loading' && <Loading />}
