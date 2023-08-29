@@ -76,7 +76,9 @@ const StoreInfoTab = ({ storeIndex }: StoreIndexIn) => {
       <div className="mb-[100px] h-auto">
         <div
           className={`${
-            isFixed ? 'fixed left-6/12 top-[50px]' : 'w-full'
+            isFixed
+              ? 'w-full max-w-[412px] fixed left-6/12 top-[50px]'
+              : 'w-full'
           } z-30 bg-white`}
         >
           <SelectTab />

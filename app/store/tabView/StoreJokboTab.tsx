@@ -106,7 +106,7 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
       <div className="mb-[50px] h-auto">
         <div
           className={`${
-            isFixed ? 'fixed left-6/12 top-12' : 'w-full'
+            isFixed ? 'w-full max-w-[412px] fixed left-6/12 top-12' : 'w-full'
           } z-30 bg-white`}
         >
           <SelectTab />

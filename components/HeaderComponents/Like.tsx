@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRecoilValue } from 'recoil';
 import { UserAtom } from '@/atoms/UserAtom';
+import Toast from '../Toast/Toast';
 
 type LikeKind = 'store' | 'jokbo' | 'review';
 
@@ -68,6 +69,7 @@ const Like = ({ kind, size, id, inFavoriteId }: LikeInputProps) => {
         }
         setIsClick(true);
         console.log('좋아요 성공');
+        Toast('좋아요 완료했습니다.');
       }
       // 좋아요 눌러있을때 => 좋아요 취소
       else {
@@ -82,6 +84,7 @@ const Like = ({ kind, size, id, inFavoriteId }: LikeInputProps) => {
         );
         setIsClick(false);
         console.log('좋아요 취소');
+        Toast('좋아요 취소했습니다.');
       }
     } catch (error) {
       console.log(error);
