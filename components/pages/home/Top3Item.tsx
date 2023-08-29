@@ -29,7 +29,7 @@ export default function Top3Item({
 				}`}
 			>
 				<div className='flex items-center gap-[16px] min-w-0'>
-					<div className='relative overflow-hidden border-[1px] border-lightGray rounded-[10px]'>
+					<div className='flex flex-shrink-0 min-w-[50px] min-h-[50px] relative overflow-hidden border-[1px] border-lightGray rounded-[10px]'>
 						<Text
 							size='xs'
 							color='white'
@@ -44,7 +44,7 @@ export default function Top3Item({
 							src={imgUrl}
 							width={50}
 							height={50}
-							className='object-cover h-[50px] min-w-[50px] bg-white'
+							className='h-[50px] min-w-[50px] bg-white'
 						/>
 					</div>
 					<Text
