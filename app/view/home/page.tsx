@@ -15,7 +15,8 @@ export default function Home() {
 			<RecommendButtonsSection />
 			<CategorySection />
 			<Top3Section />
-			<InfiniteShopListSection />
+			<div className='mb-[100px]' />
+			{/* <InfiniteShopListSection /> */}
 		</div>
 	);
 }
