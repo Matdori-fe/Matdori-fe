@@ -10,9 +10,10 @@ type InFunction = {
 };
 
 const selectList = [
-	{ value: 'day', label: '최신순' },
-	{ value: 'like', label: '별점 높은 순' },
-	{ value: 'jokbo', label: '족보 많은 순' },
+	{ value: 'star', label: '별점' },
+	{ value: 'taste', label: '음식 맛' },
+	{ value: 'underCost', label: '가성비' },
+	{ value: 'clean', label: '청결' },
 ];
 //type ValueType = "day" | "like" | "jokbo";
 

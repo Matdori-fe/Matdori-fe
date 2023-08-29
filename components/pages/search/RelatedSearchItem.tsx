@@ -1,3 +1,5 @@
+'use client';
+
 import { searchAtom } from '@/atoms/search/searchAtom';
 import Text from '@/components/Text/Text';
 import useSearchItem from '@/hooks/search/useSearchItem';

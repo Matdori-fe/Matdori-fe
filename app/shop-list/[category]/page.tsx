@@ -94,6 +94,7 @@ export default function Page({ params }: { params: { category: string } }) {
 						<>
 							{group.storeList.map((shop) => (
 								<ShopItem
+									shopId={shop.storeId}
 									key={shop.name}
 									name={shop.name}
 									score={shop.totalRating.toFixed(1)}
