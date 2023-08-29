@@ -67,7 +67,11 @@ const DepartMentRecommened: React.FC = () => {
           </>
         ) : (
           <>
-            <div className="w-full flex flex-nowrap overflow-x-scroll scrollbar-hide">
+            <div
+              className={`w-full flex flex-nowrap overflow-x-scroll scrollbar-hide ${
+                list.length <= 3 ? 'justify-between' : ''
+              }`}
+            >
               {list.map(({ storeIndex, name, imgUrl, totalRating, kind }) => (
                 <SmallStoreComponent
                   storeIndex={storeIndex}

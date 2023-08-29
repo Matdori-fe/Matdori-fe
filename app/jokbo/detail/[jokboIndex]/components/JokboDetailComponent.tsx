@@ -71,7 +71,7 @@ const JokboDetailComponent: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
         left="back"
         right={['share', 'like', 'more']}
         kind="jokbo"
-        id={detailInfo.storeIndex}
+        id={jokboIndex}
         inFavoriteId={detailInfo.jokboFavoriteId}
         jokboShareInfo={{
           nickName: detailInfo.nickname,

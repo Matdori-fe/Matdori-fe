@@ -5,11 +5,13 @@ import PageNotification from '@/components/PageNotification/PageNotification';
 
 import { useObserver } from '@/hooks/useObserver';
 import axios from 'axios';
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import ErrorPpok from '@/components/Error/ErrorPpok';
 import Review from '../Review/Review';
-
+import SmallTitle from '../Title/SmallTitle';
+import CustomSelect from '../SelectBox/CustomSelect';
+import { RiChat3Fill } from 'react-icons/ri';
 type JokboIndexType = {
   jokboIndex: number;
 };
@@ -24,18 +26,23 @@ type InReviewType = {
 };
 
 export default function CommentList({ jokboIndex }: JokboIndexType) {
+  const [kind, setKind] = useState('최신순');
+  const [commentCount, setCommentCount] = useState(0);
+
   // REFACTOR: 함수 분리
   const getCommentList = ({ pageParam = null }) =>
     axios
       .get(`${process.env.NEXT_PUBLIC_API}/jokbos/${jokboIndex}/comments`, {
         params: {
           cursor: pageParam,
-          order: '최신순',
+          order: kind,
         },
         withCredentials: true,
       })
       .then((res) => {
-        console.log(res.data);
+        console.log('댓글', res.data);
+        setCommentCount(res.data.result.commentCnt);
+
         return res?.data.result;
       });
 
@@ -66,6 +73,13 @@ export default function CommentList({ jokboIndex }: JokboIndexType) {
 
   return (
     <div className="w-full">
+      <SmallTitle sideComponent={<CustomSelect onSelectChange={setKind} />}>
+        <div className="flex">
+          <RiChat3Fill className="w-[14px] text-blue mt-0.5 mr-1" />
+          댓글 {commentCount}개
+        </div>
+      </SmallTitle>
+      <div className="border-b-[1.5px] border-lightGray mt-2" />
       {status === 'loading' && <Loading />}
       {status === 'error' && (
         <ErrorPpok errorMessage="serverError" variant="normal" />

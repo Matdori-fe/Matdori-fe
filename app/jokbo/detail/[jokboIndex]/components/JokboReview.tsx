@@ -2,7 +2,7 @@
 import HorizonBar from '@/components/HorizonBar/HorizonBar';
 import SmallTitle from '@/components/Title/SmallTitle';
 import CustomSelect from '@/components/SelectBox/CustomSelect';
-import { RiChat3Fill } from 'react-icons/ri';
+
 import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import axios from 'axios';
@@ -33,9 +33,6 @@ type ResponseType = {
 const JokboReview: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
   const user = useRecoilValue(UserAtom);
 
-  const [kind, setKind] = useState('최신순');
-  const [commentCount, setReviewCount] = useState(0);
-
   //댓글 쓰는 로직
   const [writeReview, setWriteReview] = useState('');
 
@@ -61,16 +58,7 @@ const JokboReview: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
 
   return (
     <>
-      <SmallTitle sideComponent={<CustomSelect onSelectChange={setKind} />}>
-        <div className="flex">
-          <RiChat3Fill className="w-[14px] text-blue mt-0.5 mr-1" />
-          댓글 {commentCount}개
-        </div>
-      </SmallTitle>
-      <div className="border-b-[1.5px] border-lightGray mt-2" />
-      <div>
-        <CommentList jokboIndex={jokboIndex} />
-      </div>
+      <CommentList jokboIndex={jokboIndex} />
       <div className="flex justify-center items-center">
         <div className="w-10/12 max-w-[350px] fixed bottom-4 mx-[20px]">
           <Input
