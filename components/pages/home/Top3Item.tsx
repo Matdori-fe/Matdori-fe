@@ -4,17 +4,12 @@ import StatusBar from '@/components/StatusBar/StatusBar';
 import Text from '@/components/Text/Text';
 import Image from 'next/image';
 import { RiStackFill, RiStarFill } from 'react-icons/ri';
-import first from '../../../public/first.svg';
-import second from '../../../public/second.svg';
-import third from '../../../public/third.svg';
 import { Top3Item } from '@/atoms/home/top3SortAtom';
 import Link from 'next/link';
 
 interface AddIdOnTop3Item extends Top3Item {
 	id: number;
 }
-
-const image = [first, second, third];
 
 export default function Top3Item({
 	imgUrl,
