@@ -10,10 +10,10 @@ type InFunction = {
 };
 
 const selectList = [
-	{ value: 'star', label: '별점순' },
-	{ value: 'taste', label: '음식맛' },
-	{ value: 'underCost', label: '가성비순' },
-	{ value: 'clean', label: '청결순' },
+	{ value: 'star', label: '별점' },
+	{ value: 'taste', label: '음식 맛' },
+	{ value: 'underCost', label: '가성비' },
+	{ value: 'clean', label: '청결' },
 ];
 //type ValueType = "day" | "like" | "jokbo";
 
