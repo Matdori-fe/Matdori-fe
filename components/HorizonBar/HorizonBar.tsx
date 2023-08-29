@@ -13,7 +13,7 @@ const HorizonBar: React.FC<HorizonType> = ({
 	return (
 		<>
 			<div
-				className={`absolute left-0 w-full border-t-[1px] border-lightGray bg-lightGray [&+*]:mt-[7px] ${className} z-1`}
+				className={`left-0 w-full border-t-[1px] border-lightGray bg-lightGray [&+*]:mt-[7px] ${className} z-1`}
 			></div>
 		</>
 	);

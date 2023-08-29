@@ -28,10 +28,12 @@ export const options = [
 	{
 		name: '이용약관',
 		icon: <RiListOrdered />,
+		href: '/terms-of-service',
 	},
 	{
 		name: '개인정보 처리방침',
 		icon: <RiListUnordered />,
+		href: '/privacy-policy',
 	},
 	{
 		name: '로그아웃',
@@ -41,6 +43,7 @@ export const options = [
 	{
 		name: '버전 정보',
 		icon: <RiBillLine />,
+		href: '/version',
 	},
 ];
 
