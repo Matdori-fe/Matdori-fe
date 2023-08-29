@@ -17,7 +17,10 @@ const ImageBox: React.FC<ImageBoxType> = ({ url, size, className }) => {
   if (!size) {
     return (
       <>
-        <img src={url} className={`rounded-[15px] object-cover ${className}`} />
+        <img
+          src={url}
+          className={`rounded-[15px] object-cover border-[1px] border-gray ${className}`}
+        />
       </>
     );
   } else if (size === 'small') {
@@ -25,7 +28,7 @@ const ImageBox: React.FC<ImageBoxType> = ({ url, size, className }) => {
       <>
         <img
           src={url}
-          className={`w-[60px] min-w-[60px] h-[60px] min-h-[60px] rounded-[15px] object-cover ${className}`}
+          className={`w-[60px] min-w-[60px] h-[60px] min-h-[60px] rounded-[15px] object-cover border-[1px] border-gray ${className}`}
         />
       </>
     );
@@ -34,7 +37,7 @@ const ImageBox: React.FC<ImageBoxType> = ({ url, size, className }) => {
       <>
         <img
           src={url}
-          className={`w-[75px] min-w-[75px] h-[75px] min-h-[75px] rounded-[15px] object-cover ${className}`}
+          className={`w-[75px] min-w-[75px] h-[75px] min-h-[75px] rounded-[15px] object-cover border-[1px] border-gray ${className}`}
         />
       </>
     );
@@ -43,7 +46,7 @@ const ImageBox: React.FC<ImageBoxType> = ({ url, size, className }) => {
       <>
         <img
           src={url}
-          className={`w-[100px] min-w-[100px] h-[100px] min-h-[100px] rounded-[15px] object-cover ${className}`}
+          className={`w-[100px] min-w-[100px] h-[100px] min-h-[100px] rounded-[15px] object-cover border-[1px] border-gray ${className}`}
         />
       </>
     );

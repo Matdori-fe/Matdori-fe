@@ -18,11 +18,11 @@ const ChoicePhoto: React.FC<ImageArrType> = ({ setImageArr }) => {
     for (let i = 0; i < files.length; i++) {
       const reader = new FileReader();
       reader.readAsDataURL(files[i]);
-      setImageArr((prev: any) => [...prev, files[i]]);
+      setImageArr((prev: any) => [files[i], ...prev]);
       reader.onload = () => {
         newImageSrcList.push(reader.result || null);
         if (newImageSrcList.length === files.length) {
-          setImageSrcList([...imageSrcList, ...newImageSrcList]);
+          setImageSrcList([...newImageSrcList, ...imageSrcList]);
         }
       };
     }
