@@ -77,7 +77,7 @@ const StoreInfoTab = ({ storeIndex }: StoreIndexIn) => {
         <div
           className={`${
             isFixed
-              ? 'w-full max-w-[412px] fixed left-6/12 top-[50px]'
+              ? 'w-full max-w-[412px] fixed h-auto -6/12 top-[50px]'
               : 'w-full'
           } z-30 bg-white`}
         >
