@@ -11,6 +11,8 @@ import Top3Item from './Top3Item';
 import SortWrapper from './SortWrapper';
 import { getTop3List } from '@/lib/home/getTop3List';
 import { Top3List, top3SortAtom } from '@/atoms/home/top3SortAtom';
+import Loading from '@/components/Loading/Loading';
+import ErrorPpok from '@/components/Error/ErrorPpok';
 
 export default function Top3Section() {
 	const sortType = useRecoilValue(top3SortAtom);
@@ -26,6 +28,8 @@ export default function Top3Section() {
 				<SortWrapper />
 			</div>
 			<div>
+				{isLoading && <Loading />}
+				{error && <ErrorPpok />}
 				{data?.data.result.map((item, i) => (
 					<Top3Item {...item} id={i} />
 				))}
