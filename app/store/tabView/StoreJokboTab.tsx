@@ -123,10 +123,11 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
               {totalCount}개
             </div>
           </SmallTitle>
-          <HorizonBar />
         </div>
 
         <div className="mx-4">
+          <HorizonBar className="mb-4" />
+
           <div className={`${isFixed ? 'pt-[110px]' : ''}  flex flex-wrap`}>
             <JokboList storeIndex={storeIndex} />
           </div>
