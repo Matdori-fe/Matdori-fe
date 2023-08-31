@@ -7,12 +7,13 @@ import HorizonBar from '@/components/HorizonBar/HorizonBar';
 type MenuBlockType = {
   name: string;
   menus: MenuType[];
+  firstShow: boolean;
 };
 
 type MenuType = { name: string; price: string; imgUrl: string };
 
-const MenuBlock = ({ name, menus }: MenuBlockType) => {
-  const [isShow, setIsShow] = useState<boolean>(false);
+const MenuBlock = ({ name, menus, firstShow }: MenuBlockType) => {
+  const [isShow, setIsShow] = useState<boolean>(firstShow);
 
   return (
     <>

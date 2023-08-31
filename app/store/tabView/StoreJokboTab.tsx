@@ -106,7 +106,7 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
       <div className="mb-[50px] h-auto">
         <div
           className={`${
-            isFixed ? 'fixed left-6/12 top-12' : 'w-full'
+            isFixed ? 'w-full max-w-[412px] fixed left-6/12 top-12' : 'w-full'
           } z-30 bg-white`}
         >
           <SelectTab />
@@ -123,10 +123,11 @@ const StoreJokboTab = ({ storeIndex }: StoreIndexIn) => {
               {totalCount}개
             </div>
           </SmallTitle>
-          <HorizonBar />
         </div>
 
         <div className="mx-4">
+          <HorizonBar className="mb-4" />
+
           <div className={`${isFixed ? 'pt-[110px]' : ''}  flex flex-wrap`}>
             <JokboList storeIndex={storeIndex} />
           </div>

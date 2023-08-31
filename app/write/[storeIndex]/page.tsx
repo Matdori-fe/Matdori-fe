@@ -14,6 +14,7 @@ import axios from 'axios';
 import Toast from '@/components/Toast/Toast';
 import { UserAtom } from '@/atoms/UserAtom';
 import { useRecoilValue } from 'recoil';
+import Link from 'next/link';
 
 const WritePage = ({ params }: { params: { storeIndex: any } }) => {
   const [storeIndex, setStoreIndex] = useState(params.storeIndex);
@@ -25,10 +26,6 @@ const WritePage = ({ params }: { params: { storeIndex: any } }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [imageArr, setImageArr]: any = useState([]);
-
-  useEffect(() => {
-    console.log(imageArr);
-  }, [imageArr]);
 
   //가게가 선택되어져잇는지에 대한 state
   const [isChoiceStore, setIsChoiceStore] = useState(false);
@@ -114,11 +111,13 @@ const WritePage = ({ params }: { params: { storeIndex: any } }) => {
       <SmallTitle
         sideComponent={
           <>
-            <div className="px-[10px] py-[3px] bg-white rounded-2xl border border-lightGray justify-center items-center inline-flex">
-              <Text color="darkGray" size="xxs" fontWeight="normal">
-                가게 변경하기
-              </Text>
-            </div>
+            <Link href={'/search/?writeStore=true'}>
+              <div className="px-[10px] py-[3px] bg-white rounded-2xl border border-lightGray justify-center items-center inline-flex">
+                <Text color="darkGray" size="xxs" fontWeight="normal">
+                  가게 변경하기
+                </Text>
+              </div>
+            </Link>
           </>
         }
       >

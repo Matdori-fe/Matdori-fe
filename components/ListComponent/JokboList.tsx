@@ -14,6 +14,7 @@ type StoreIndexType = {
 };
 
 export default function JokboList({ storeIndex }: StoreIndexType) {
+  const [loading, setLoading] = useState(false);
   const getJokboList = ({ pageParam = null }) =>
     axios
       .get(`${process.env.NEXT_PUBLIC_API}/stores/${storeIndex}/jokbos`, {
@@ -25,7 +26,11 @@ export default function JokboList({ storeIndex }: StoreIndexType) {
       })
       .then((res) => {
         console.log(res.data);
+        setLoading(true);
         return res?.data.result;
+      })
+      .catch((e) => {
+        setLoading(true);
       });
 
   let bottom = useRef(null);
@@ -33,7 +38,7 @@ export default function JokboList({ storeIndex }: StoreIndexType) {
   const { data, fetchNextPage, isFetchingNextPage, status } = useInfiniteQuery(
     // 밑줄인 키가 없으면 사이드 이펙트 발생
     // REFACTOR: 쿼리키 수정
-    ['jokboList'],
+    [`jokboList-${storeIndex}`],
     getJokboList,
     {
       getNextPageParam: ({ hasNext, jokboList }) => {
@@ -42,7 +47,7 @@ export default function JokboList({ storeIndex }: StoreIndexType) {
         const finalJokboId = jokboList[jokboList.length - 1].jokboId;
         return finalJokboId;
       },
-      keepPreviousData: true, // 새 데이터를 요청해 갈아끼우기 직전까지 이전 데이터 유지
+      keepPreviousData: true,
     }
   );
 
@@ -88,7 +93,7 @@ export default function JokboList({ storeIndex }: StoreIndexType) {
       </div>
       <div ref={bottom} />
       {/* {hasNextPage ? <div ref={bottom}></div> : <p>끝</p>} */}
-      {isFetchingNextPage && <Loading />}
+      {loading || (isFetchingNextPage && <Loading />)}
 
       <div className="mt-[60px]" />
     </div>

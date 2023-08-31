@@ -5,11 +5,13 @@ import PageNotification from '@/components/PageNotification/PageNotification';
 
 import { useObserver } from '@/hooks/useObserver';
 import axios from 'axios';
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import ErrorPpok from '@/components/Error/ErrorPpok';
 import Review from '../Review/Review';
-
+import SmallTitle from '../Title/SmallTitle';
+import CustomSelect from '../SelectBox/CustomSelect';
+import { RiChat3Fill } from 'react-icons/ri';
 type JokboIndexType = {
   jokboIndex: number;
 };
@@ -24,27 +26,38 @@ type InReviewType = {
 };
 
 export default function CommentList({ jokboIndex }: JokboIndexType) {
+  const [kind, setKind] = useState('최신순');
+  const [commentCount, setCommentCount] = useState(0);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    console.log(loading);
+  }, [loading]);
+
   // REFACTOR: 함수 분리
   const getCommentList = ({ pageParam = null }) =>
     axios
       .get(`${process.env.NEXT_PUBLIC_API}/jokbos/${jokboIndex}/comments`, {
         params: {
           cursor: pageParam,
-          order: '최신순',
+          order: kind,
         },
         withCredentials: true,
       })
       .then((res) => {
-        console.log(res.data);
+        console.log('댓글', res.data);
+        setCommentCount(res.data.result.commentCnt);
+        setLoading(true);
         return res?.data.result;
+      })
+      .catch((error) => {
+        setLoading(true);
       });
 
   let bottom = useRef(null);
 
   const { data, fetchNextPage, isFetchingNextPage, status } = useInfiniteQuery(
-    // 밑줄인 키가 없으면 사이드 이펙트 발생
-    // REFACTOR: 쿼리키 수정
-    ['commentList'],
+    [`commentList-${jokboIndex}`],
     getCommentList,
     {
       getNextPageParam: ({ hasNext, commentList }) => {
@@ -64,21 +77,30 @@ export default function CommentList({ jokboIndex }: JokboIndexType) {
     onIntersect,
   });
 
-  console.log(data);
-
   return (
     <div className="w-full">
-      {status === 'loading' && <Loading />}
+      <SmallTitle sideComponent={<CustomSelect onSelectChange={setKind} />}>
+        <div className="flex">
+          <RiChat3Fill className="w-[14px] text-blue mt-0.5 mr-1" />
+          댓글 {commentCount}개
+        </div>
+      </SmallTitle>
+      <div className="border-b-[1.5px] border-lightGray mt-2" />
+
       {status === 'error' && (
         <ErrorPpok errorMessage="serverError" variant="normal" />
       )}
-      {status === 'success' && data?.pages[0].commentList.length === 0 && (
-        <PageNotification
-          label={`작성한 댓글이 없어요.\n족보에 댓글을 작성해보세요.`}
-        />
-      )}
+      {status === 'success' &&
+        loading === true &&
+        data?.pages[0].commentList.length === 0 && (
+          <PageNotification
+            label={`작성한 댓글이 없어요.\n족보에 댓글을 작성해보세요.`}
+          />
+        )}
       <div className="grid grid-cols-1">
+        {loading === false && <Loading />}
         {status === 'success' &&
+          loading === true &&
           data.pages.map((group) => (
             <>
               {group.commentList.map((comment: InReviewType, idx: number) => (
@@ -95,7 +117,7 @@ export default function CommentList({ jokboIndex }: JokboIndexType) {
       </div>
       <div ref={bottom} />
       {/* {hasNextPage ? <div ref={bottom}></div> : <p>끝</p>} */}
-      {isFetchingNextPage && <Loading />}
+      {status === 'loading' || (isFetchingNextPage && <Loading />)}
 
       <div className="mt-[60px]" />
     </div>

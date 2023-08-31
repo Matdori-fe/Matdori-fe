@@ -43,7 +43,11 @@ const JokboManyReview = () => {
               <SmallStoreSkeleton />
             </div>
           ) : (
-            <div className="w-auto flex flex-nowrap overflow-x-scroll scrollbar-hide">
+            <div
+              className={`w-full flex flex-nowrap overflow-x-scroll scrollbar-hide ${
+                list.length <= 3 ? 'justify-between' : ''
+              }`}
+            >
               {list.map(({ storeIndex, name, imgUrl, jokboCnt }) => {
                 return (
                   <SmallStoreComponent
