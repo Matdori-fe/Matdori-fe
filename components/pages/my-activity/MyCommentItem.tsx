@@ -29,7 +29,7 @@ export default function MyCommentItem({
 	const router = useRouter();
 
 	const onClick = () => {
-		if (!deleteMode) () => router.push(`/jokbo/detail/${jokboId}`);
+		if (!deleteMode) router.push(`/jokbo/detail/${jokboId}`);
 	};
 
 	return (

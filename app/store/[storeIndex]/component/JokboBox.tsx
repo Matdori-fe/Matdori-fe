@@ -33,8 +33,9 @@ const JokboBox = ({
 
 	const onClick = () => {
 		// 여기 수정했으니까 잊지마세현아
-		if (!deleteMode) () => router.push(`/jokbo/detail/${jokboId}`);
+		if (!deleteMode) router.push(`/jokbo/detail/${jokboId}`);
 	};
+
 	return (
 		<>
 			<div
