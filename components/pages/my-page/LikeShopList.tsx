@@ -23,8 +23,6 @@ import { deleteAtom } from '@/atoms/delete';
 
 // FIXME: +swif
 export default function LikeShopList() {
-	const queryClient = useQueryClient();
-
 	const userIndex = JSON.parse(localStorage.getItem('recoil-persist') || '')
 		.user.userId;
 
