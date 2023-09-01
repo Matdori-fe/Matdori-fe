@@ -24,7 +24,9 @@ const CarouselSection = () => {
 		<div className='absolute left-0 top-[60px] w-full [&+*]:mt-[2px]'>
 			<Slider {...settings} dotsClass='test-css'>
 				{arr.map((i) => (
-					<div className='w-full h-[211px] bg-10'>{i}</div>
+					<div key={i} className='w-full h-[211px] bg-10'>
+						{i}
+					</div>
 				))}
 			</Slider>
 		</div>

@@ -31,7 +31,7 @@ export default function Top3Section() {
 				{isLoading && <Loading />}
 				{error && <ErrorPpok />}
 				{data?.data.result.map((item, i) => (
-					<Top3Item {...item} id={i} />
+					<Top3Item {...item} id={i} key={i} />
 				))}
 			</div>
 		</div>

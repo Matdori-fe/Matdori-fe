@@ -8,43 +8,44 @@ import { NoticeType } from '../Notice_Type/Notice_Type';
 import EmptyNotice from './EmptyNotice';
 
 const NoticeClass = () => {
-  let [noticeArr, setNoticeArr] = useState<NoticeType[]>([]);
+	let [noticeArr, setNoticeArr] = useState<NoticeType[]>([]);
 
-  const noticeCallFun = (): void => {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/notice`)
-      .then((response) => {
-        setNoticeArr(response.data.result);
-      })
-      .catch((error) => {
-        console.log(Toast('불러오는 실패하였습니다.'));
-      });
-  };
+	const noticeCallFun = (): void => {
+		axios
+			.get(`${process.env.NEXT_PUBLIC_API}/notice`)
+			.then((response) => {
+				setNoticeArr(response.data.result);
+			})
+			.catch((error) => {
+				console.log(Toast('불러오는 실패하였습니다.'));
+			});
+	};
 
-  useEffect(() => {
-    noticeCallFun();
-  }, []);
+	useEffect(() => {
+		noticeCallFun();
+	}, []);
 
-  return (
-    <div className="mx-6">
-      {noticeArr.length === 0 ? (
-        <>
-          <EmptyNotice />
-        </>
-      ) : (
-        <>
-          {noticeArr.map((element) => (
-            <NoticeTitle
-              noticeIndex={element.noticeIndex}
-              title={element.title}
-              contents={element.contents}
-              createdAt={element.createdAt}
-            />
-          ))}
-        </>
-      )}
-    </div>
-  );
+	return (
+		<div className='mx-6'>
+			{noticeArr.length === 0 ? (
+				<>
+					<EmptyNotice />
+				</>
+			) : (
+				<>
+					{noticeArr.map((element, i) => (
+						<NoticeTitle
+							key={i}
+							noticeIndex={element.noticeIndex}
+							title={element.title}
+							contents={element.contents}
+							createdAt={element.createdAt}
+						/>
+					))}
+				</>
+			)}
+		</div>
+	);
 };
 
 export default NoticeClass;

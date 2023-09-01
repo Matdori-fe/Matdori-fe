@@ -8,7 +8,7 @@ export default async function TermsOfPage() {
 	return (
 		<div className='w-full'>
 			{data.map(({ title, contents }: { title: string; contents: string }) => (
-				<div className='w-full [&>*]:mb-[14px]'>
+				<div className='w-full [&>*]:mb-[14px]' key={title}>
 					<SmallTitle>{title}</SmallTitle>
 					<Text size='xs' color='gray'>
 						{contents}
