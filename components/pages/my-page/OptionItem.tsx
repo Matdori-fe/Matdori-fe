@@ -11,8 +11,13 @@ import { useRouter } from 'next/navigation';
 export default function OptionItem(item: IOption) {
 	const router = useRouter();
 
+	const onClick = () => {
+		if (item.href) router.push(item.href);
+		else item.onClick;
+	};
+
 	return (
-		<div onClick={item.href ? () => router.push(item.href) : item.onClick}>
+		<div onClick={onClick}>
 			<div className='h-[48px] flex items-center gap-[10px] px-[10px]'>
 				<div className='text-sm text-100'>{item.icon}</div>
 				<Text size='sm' fontWeight='semibold'>

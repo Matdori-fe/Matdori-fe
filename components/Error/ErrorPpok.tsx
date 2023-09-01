@@ -3,8 +3,8 @@ import errorPpok from '../../public/error_ppok.png';
 import Text from '../Text/Text';
 
 interface IErrorPpok {
-	errorMessage: 'serverError' | 'unknownError';
-	variant: 'small' | 'normal';
+	errorMessage?: 'serverError' | 'unknownError';
+	variant?: 'small' | 'normal';
 }
 
 const errorMessageVariant = {
@@ -22,7 +22,7 @@ export default function ErrorPpok({
 				variant === 'small' ? 'h-[200px]' : 'h-[400px]'
 			}`}
 		>
-			<Image src={errorPpok} width='100' height='100' />
+			<Image src={errorPpok} width='100' height='100' alt='errorPpok' />
 			<Text size='sm' color='darkGray'>
 				{errorMessageVariant[errorMessage]}
 			</Text>

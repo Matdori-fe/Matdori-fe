@@ -6,7 +6,7 @@ import Select from 'react-select';
 
 // FIXME: 타입 수정 필요
 type InFunction = {
-	onSelectChange: (value: string) => void;
+	onSelectChange: any;
 };
 
 const selectList = [

@@ -3,7 +3,7 @@ import Loading from '@/components/Loading/Loading';
 import { AxiosError, AxiosResponse } from 'axios';
 import { UseQueryResult, useQuery } from 'react-query';
 
-export function useFetcher<T>(query) {
+export function useFetcher<T>(query: any) {
 	const {
 		isLoading,
 		error,
@@ -11,7 +11,7 @@ export function useFetcher<T>(query) {
 		refetch,
 	}: UseQueryResult<AxiosResponse<T>, AxiosError> = useQuery('test', query);
 
-	const Wrapper = ({ children }) => {
+	const Wrapper = ({ children }: { children: React.ReactNode }) => {
 		if (isLoading) return <Loading />;
 
 		if (error) return <ErrorPpok variant='small' />;

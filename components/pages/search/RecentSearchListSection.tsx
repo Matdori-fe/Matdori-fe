@@ -1,5 +1,7 @@
 'use client';
 
+/* eslint-disable */
+
 import RoundButton from '@/components/RoundButton/RoundButton';
 import Text from '@/components/Text/Text';
 import SmallTitle from '@/components/Title/SmallTitle';
@@ -30,7 +32,7 @@ export default function RecentSearchListSection() {
 
 			{recentSearchList.length !== 0 ? (
 				<div className='flex flex-wrap gap-[7px]'>
-					{recentSearchList.map((item) => (
+					{recentSearchList.map((item: any) => (
 						<RecentSearchItem label={item} />
 					))}
 				</div>

@@ -29,35 +29,41 @@ export default function Registration() {
 		});
 
 	useEffect(() => {
+		const validatePassword = () => {
+			if (input.password === '') return;
+
+			setPasswordValidationType((prev) => ({
+				...prev,
+				password: 'invalidForm',
+			}));
+
+			const passwordPattern =
+				/^(?=.*[a-z])(?=.*\d)(?=.*[@$!^%*?&])[a-zA-Z\d@$!^%*?&]{8,16}$/;
+
+			if (passwordPattern.test(input.password)) {
+				setPasswordValidationType((prev) => ({ ...prev, password: 'valid' }));
+			}
+		};
+
 		validatePassword();
 	}, [input.password]);
 
-	const validatePassword = () => {
-		if (input.password === '') return;
-
-		setPasswordValidationType((prev) => ({ ...prev, password: 'invalidForm' }));
-
-		const passwordPattern =
-			/^(?=.*[a-z])(?=.*\d)(?=.*[@$!^%*?&])[a-zA-Z\d@$!^%*?&]{8,16}$/;
-
-		if (passwordPattern.test(input.password)) {
-			setPasswordValidationType((prev) => ({ ...prev, password: 'valid' }));
-		}
-	};
-
 	useEffect(() => {
+		const validateRePassword = () => {
+			if (input.rePassword === '') return;
+
+			setPasswordValidationType((prev) => ({
+				...prev,
+				rePassword: 'notMatch',
+			}));
+
+			if (input.password === input.rePassword) {
+				setPasswordValidationType((prev) => ({ ...prev, rePassword: 'valid' }));
+			}
+		};
+
 		validateRePassword();
 	}, [input.password, input.rePassword]);
-
-	const validateRePassword = () => {
-		if (input.rePassword === '') return;
-
-		setPasswordValidationType((prev) => ({ ...prev, rePassword: 'notMatch' }));
-
-		if (input.password === input.rePassword) {
-			setPasswordValidationType((prev) => ({ ...prev, rePassword: 'valid' }));
-		}
-	};
 
 	const [email, setEmail] = useRecoilState(RegisterEmailAtom);
 	const router = useRouter();

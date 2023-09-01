@@ -5,7 +5,6 @@ import Button from '@/components/Button/Button';
 import CheckNotification from '@/components/CheckNotification/CheckNotification';
 import Input from '@/components/Input/Input';
 import SmallTitle from '@/components/Title/SmallTitle';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import {
 	INicknameValidationKey,
@@ -13,20 +12,15 @@ import {
 } from './nicknameErrorMessage';
 import { nicknameValidationFn } from '@/utils/nickname/nicknameValidation';
 import { changeNickname } from '@/lib/nickname/changeNickname';
-import { getNickname } from '@/utils/nickname/getNickname';
 
 export default function Nickname() {
 	const [nickname, setNickname] = useState<string>('');
 	const [nicknameErrorType, setNicknameErrorType] =
 		useState<INicknameValidationKey>('min');
 
-	const router = useRouter();
-
 	useEffect(() => {
 		nicknameValidationFn(nickname, setNicknameErrorType);
 	}, [nickname]);
-
-	const name = getNickname();
 
 	return (
 		<div className='flex flex-col gap-[16px]'>

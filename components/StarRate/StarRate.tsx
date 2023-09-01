@@ -24,7 +24,10 @@ export default function StarRate({
 			<RiStarFill className='fill-lightGray' size='12' />
 			<RiStarFill className='fill-lightGray' size='12' />
 			<RiStarFill className='fill-lightGray' size='12' />
-			<StarWrapper className='absolute flex overflow-hidden' score={score}>
+			<StarWrapper
+				className='absolute flex overflow-hidden'
+				score={parseInt(score.toString())}
+			>
 				<p>
 					<RiStarFill className='fill-yellow' size='12' />
 				</p>
@@ -43,7 +46,7 @@ export default function StarRate({
 			</StarWrapper>
 			{isShowScore && (
 				<Text color='darkGray' size='xs'>
-					{score.toFixed(1)}
+					{parseInt(score.toString()).toFixed(1)}
 				</Text>
 			)}
 		</div>

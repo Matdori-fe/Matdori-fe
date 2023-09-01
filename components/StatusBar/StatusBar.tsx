@@ -5,7 +5,7 @@ interface StatusBarProps {
 	cleanRating: number;
 	flavorRating: number;
 	underPricedRating: number;
-	showScore: boolean;
+	showScore?: boolean;
 }
 
 // FIXME: Refactoring

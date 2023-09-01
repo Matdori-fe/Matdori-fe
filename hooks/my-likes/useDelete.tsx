@@ -1,9 +1,6 @@
-import {
-	checkedItemAtom,
-	deleteAtom,
-	deleteItemAtom,
-	deleteListAtom,
-} from '@/atoms/delete';
+'use client';
+
+import { checkedItemAtom, deleteAtom, deleteListAtom } from '@/atoms/delete';
 import Checked from '@/components/Checked/Checked';
 import DeleteButton, {
 	DeleteButtonPosition,
@@ -31,16 +28,16 @@ interface IDeleteLikeJokbo {
 // 	);
 // };
 
-export const useDeleteLikeJokbo = ({
-	userIndex,
-	favoriteJokboIndex,
-}: IDeleteLikeJokbo) => {
-	return useMutation(() => deleteLikeJokbo({ userIndex, favoriteJokboIndex }));
-};
+// export const useDeleteLikeJokbo = ({
+// 	userIndex,
+// 	favoriteJokboIndex,
+// }: IDeleteLikeJokbo) => {
+// 	return useMutation(() => deleteLikeJokbo({ userIndex, favoriteJokboIndex }));
+// };
 
 export const useDeleteLikeShop = () => {};
 
-export const de = async (favoriteStoreId) => {
+export const de = async (favoriteStoreId: number) => {
 	return await axios.delete(
 		`${process.env.NEXT_PUBLIC_API}/users/143/favorite-stores/${favoriteStoreId}`,
 		{
@@ -56,7 +53,7 @@ export const useDe = () => {
 // ------------------------------------------
 
 export const getUserIndex = () =>
-	JSON.parse(localStorage.getItem('recoil-persist')).user.userId;
+	JSON.parse(localStorage.getItem('recoil-persist') || '').user.userId;
 
 export const deleteLikeShop = async (favoriteStoreIndex: number) => {
 	return await axios.delete(
@@ -81,7 +78,13 @@ export const deleteLikeJokbo = async (favoriteJokboIndex: number) => {
 };
 
 // REFACTOR: 함수가 길다. 2개의 id가 필요할때는 어떻게?
-export const useDelete = ({ query, queryKey }) => {
+export const useDelete = ({
+	query,
+	queryKey,
+}: {
+	query: any;
+	queryKey: any;
+}) => {
 	const queryClient = useQueryClient();
 
 	// onSuccess와 쿼리 실행을 위한 로직
@@ -98,12 +101,10 @@ export const useDelete = ({ query, queryKey }) => {
 		children,
 		itemId,
 		secondId,
-		deleteBtnPosition,
 	}: {
 		children: React.ReactNode;
 		itemId: number;
-		secondId: number;
-		deleteBtnPosition: DeleteButtonPosition;
+		secondId?: number;
 	}) => {
 		const deleteMode = useRecoilValue(deleteAtom);
 		const [checked, setChecked] = useRecoilState<boolean>(
@@ -116,19 +117,16 @@ export const useDelete = ({ query, queryKey }) => {
 			if (!deleteMode) setChecked(false);
 		}, [deleteMode]);
 
+		const onClick = (e: any) => {
+			if (deleteMode) {
+				setChecked(!checked);
+				handleItem(itemId, secondId);
+				e.preventDefault();
+			}
+		};
+
 		return (
-			<div
-				className='relative w-full h-full'
-				onClick={
-					deleteMode
-						? (e) => {
-								setChecked(!checked);
-								handleItem(itemId, secondId);
-								e.preventDefault();
-						  }
-						: null
-				}
-			>
+			<div className='relative w-full h-full' onClick={onClick}>
 				{checked && <Checked />}
 				{children}
 			</div>

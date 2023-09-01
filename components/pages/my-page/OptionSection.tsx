@@ -10,6 +10,7 @@ import {
 } from 'react-icons/ri';
 import OptionItem from './OptionItem';
 
+// REFACTOR: 굳이 href 방식이 아닌 다른 방식으로 해도될 것 같음. 불필요한 페이지가 만들어지기 때문임
 export const options = [
 	{
 		name: '공지사항',

@@ -156,7 +156,11 @@ export default function Registration({ searchParams }: Props) {
 			<div className='mb-[6px] h-[1px]' />
 			<SmallTitle
 				sideComponent={
-					<RoundButton label='인증번호 발송' onClick={postVerificationCode} />
+					<RoundButton
+						label='인증번호 발송'
+						onClick={postVerificationCode}
+						variant='normal'
+					/>
 				}
 			>
 				인증번호

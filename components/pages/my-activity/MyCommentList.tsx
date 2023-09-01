@@ -5,28 +5,24 @@ import DeleteButton from '@/components/DeleteButton/DeleteButton';
 import Loading from '@/components/Loading/Loading';
 import PageNotification from '@/components/PageNotification/PageNotification';
 import ShopItem from '@/components/pages/shop-list/ShopItem';
-import {
-	deleteLikeJokbo,
-	useDelete,
-	useDeleteLikeJokbo,
-} from '@/hooks/my-likes/useDelete';
+import { deleteLikeJokbo, useDelete } from '@/hooks/my-likes/useDelete';
 import { useFetcher } from '@/hooks/my-likes/useFetcher';
 import { useObserver } from '@/hooks/useObserver';
 import axios from 'axios';
 import { useEffect, useRef } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import MyCommentItem from './MyCommentItem';
-import { deleteMyComment } from '@/lib/comment/deleteMyCommentList';
 import ErrorPpok from '@/components/Error/ErrorPpok';
 import Link from 'next/link';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { deleteAtom, deleteListAtom } from '@/atoms/delete';
 import { useDeleteList } from '@/hooks/my-likes/useDeleteList';
 import { useSearchParams } from 'next/navigation';
+import { deleteMyCommentList } from '@/lib/comment/deleteMyCommentList';
 
 export default function MyCommentList() {
-	const userIndex = JSON.parse(localStorage.getItem('recoil-persist')).user
-		.userId;
+	const userIndex = JSON.parse(localStorage.getItem('recoil-persist') || '')
+		.user.userId;
 
 	// REFACTOR: 함수 분리
 	const getMyCommentList = ({ pageParam = null }) =>
@@ -47,7 +43,7 @@ export default function MyCommentList() {
 	const { data, fetchNextPage, isFetchingNextPage, status } = useInfiniteQuery(
 		// 밑줄인 키가 없으면 사이드 이펙트 발생
 		// REFACTOR: 쿼리키 수정
-		['myComment'],
+		['mycomment'],
 		getMyCommentList,
 		{
 			getNextPageParam: ({ hasNext, comments }) => {
@@ -64,7 +60,8 @@ export default function MyCommentList() {
 		}
 	);
 
-	const onIntersect = ([entry]) => entry.isIntersecting && fetchNextPage();
+	const onIntersect = ([entry]: IntersectionObserverEntry[]) =>
+		entry.isIntersecting && fetchNextPage();
 
 	useObserver({
 		target: bottom,
@@ -74,8 +71,8 @@ export default function MyCommentList() {
 	console.log(data);
 
 	const DeletableItem = useDelete({
-		query: deleteMyComment,
-		queryKey: ['myComment'],
+		query: deleteMyCommentList,
+		queryKey: ['mycomment'],
 	});
 
 	const [deleteMode, setDeleteMode] = useRecoilState(deleteAtom);
@@ -91,7 +88,7 @@ export default function MyCommentList() {
 	}, []);
 
 	return (
-		<div className='mt-[110px]'>
+		<div className='mt-[130px]'>
 			{status === 'loading' && <Loading />}
 			{status === 'error' && <ErrorPpok />}
 			{status === 'success' && data?.pages[0].comments.length === 0 && (
@@ -103,7 +100,7 @@ export default function MyCommentList() {
 				{status === 'success' &&
 					data.pages.map((group) => (
 						<>
-							{group.comments.map((shop) => (
+							{group.comments.map((shop: any) => (
 								<DeletableItem key={shop.commentId} itemId={shop.commentId}>
 									<MyCommentItem
 										commentId={shop.commentId}
