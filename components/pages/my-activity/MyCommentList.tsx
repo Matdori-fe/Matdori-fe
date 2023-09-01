@@ -16,13 +16,13 @@ import axios from 'axios';
 import { useEffect, useRef } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import MyCommentItem from './MyCommentItem';
-import { deleteMyComment } from '@/lib/comment/deleteMyCommentList';
 import ErrorPpok from '@/components/Error/ErrorPpok';
 import Link from 'next/link';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { deleteAtom, deleteListAtom } from '@/atoms/delete';
 import { useDeleteList } from '@/hooks/my-likes/useDeleteList';
 import { useSearchParams } from 'next/navigation';
+import { deleteMyCommentList } from '@/lib/comment/deleteMyCommentList';
 
 export default function MyCommentList() {
 	const userIndex = JSON.parse(localStorage.getItem('recoil-persist')).user
@@ -74,7 +74,7 @@ export default function MyCommentList() {
 	console.log(data);
 
 	const DeletableItem = useDelete({
-		query: deleteMyComment,
+		query: deleteMyCommentList,
 		queryKey: ['myComment'],
 	});
 
