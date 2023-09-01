@@ -33,7 +33,7 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
 					onClick={() => openModal({ id: 'shop', Component: modals.shop })}
 					className='w-full h-[40px] bg-100 rounded-[15px] flex items-center'
 				>
-					<Image src={recommendimg} />
+					<Image src={recommendimg} alt='recommendimg' />
 					<p className='font-Bold text-[14px] text-white relative right-1.5 flex justify-end w-full mr-[8px]'>
 						가게 추천받기
 					</p>
@@ -50,7 +50,7 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
 					onClick={() => openModal({ id: 'shop', Component: modals.shop })}
 					className='w-full h-[40px] bg-white rounded-[15px] flex items-center border-lightGray border-[1px]'
 				>
-					<Image src={recommendimg} />
+					<Image src={recommendimg} alt='recommendimg' />
 					<p className='font-Regular text-[12px] text-darkGray mt-[2px] flex justify-end w-full pr-[18px]'>
 						가게 추천받기
 					</p>
@@ -67,7 +67,7 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
 					className='w-full h-[40px] bg-100 rounded-[15px] flex items-center justify-between overflow-hidden'
 				>
 					<p className='font-Bold text-[14px] text-white ml-4'>메뉴 추천받기</p>
-					<Image src={foodBarImg} />
+					<Image src={foodBarImg} alt='foodBarImg' />
 				</div>
 			</>
 		);
@@ -83,7 +83,7 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
 					<p className='font-Regular text-[12px] text-darkGray ml-5 mt-[2px]'>
 						메뉴 추천받기
 					</p>
-					<Image src={foodBarImg} />
+					<Image src={foodBarImg} alt='foodBarImg' />
 				</div>
 			</>
 		);
@@ -96,7 +96,11 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
 					onClick={() => router.push('/my-likes/?tab=likes&section=shop')}
 					className='w-full h-[40px] bg-white rounded-[15px] flex items-center justify-between border-lightGray border-[1px] px-5'
 				>
-					<Image src={heartWoman} className='h-[36px] mt-1.4' />
+					<Image
+						src={heartWoman}
+						className='h-[36px] mt-1.4'
+						alt='heartWoman'
+					/>
 					<p className='font-Regular text-[12px] text-darkGray mt-[2px]'>
 						내 좋아요
 					</p>
@@ -117,7 +121,11 @@ const SmallButtonBar: React.FC<{ type: ButtonType }> = (props) => {
 					<p className='font-Regular text-[12px] text-darkGray mt-[2px]'>
 						내 활동
 					</p>
-					<Image src={smartPhone} className='h-[36px] mt-1.4' />
+					<Image
+						src={smartPhone}
+						className='h-[36px] mt-1.4'
+						alt='smartPhone'
+					/>
 				</div>
 			</>
 		);

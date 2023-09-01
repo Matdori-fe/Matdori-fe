@@ -59,7 +59,8 @@ export default function Page({ params }: { params: { category: string } }) {
 		}
 	);
 
-	const onIntersect = ([entry]) => entry.isIntersecting && fetchNextPage();
+	const onIntersect = ([entry]: IntersectionObserverEntry[]) =>
+		entry.isIntersecting && fetchNextPage();
 
 	useObserver({
 		target: bottom,
@@ -92,7 +93,7 @@ export default function Page({ params }: { params: { category: string } }) {
 				{status === 'success' &&
 					data.pages.map((group) => (
 						<>
-							{group.storeList.map((shop) => (
+							{group.storeList.map((shop: any) => (
 								<ShopItem
 									shopId={shop.storeId}
 									key={shop.name}

@@ -10,10 +10,10 @@ export const useDeleteList = () => {
 
 	const pushItem = (firstId: number, secondId?: number | undefined) => {
 		// 하나의 id만 있는 경우
-		if (secondId === undefined)
-			setDeleteList(() => new Set([...deleteList, firstId]));
-		// 두개의 id가 있는 경우
-		else setDeleteList(() => new Set([...deleteList, [firstId, secondId]]));
+		// if (secondId === undefined)
+		setDeleteList(() => new Set([...deleteList, firstId]));
+		// // 두개의 id가 있는 경우
+		// else setDeleteList(() => new Set([...deleteList, [firstId, secondId]]));
 
 		setCheckedList([...checkedList, firstId]);
 	};
@@ -55,7 +55,7 @@ export const useDeleteList = () => {
 		} else {
 			if (
 				setHasArr({
-					set: deleteList as Set<number[]>,
+					set: deleteList,
 					key: [firstId, secondId],
 				})
 			)

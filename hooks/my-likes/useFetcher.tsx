@@ -1,4 +1,4 @@
-export const useFetcher = (query) => {
+export const useFetcher = (query: any) => {
 	const { isLoading, error, data, mutate } = query();
 
 	const fetcher = ({ children }: { children: React.ReactNode }) => {

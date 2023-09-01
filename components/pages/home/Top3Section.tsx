@@ -21,6 +21,7 @@ export default function Top3Section() {
 		() => getTop3List(sortType)
 	);
 
+	// TODO: unknown 형식?
 	return (
 		<div>
 			<div className='flex items-center justify-between mb-[12px]'>
@@ -29,7 +30,7 @@ export default function Top3Section() {
 			</div>
 			<div>
 				{isLoading && <Loading />}
-				{error && <ErrorPpok />}
+				{/* {error && <ErrorPpok />} */}
 				{data?.data.result.map((item, i) => (
 					<Top3Item {...item} id={i} key={i} />
 				))}

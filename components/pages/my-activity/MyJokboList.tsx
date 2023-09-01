@@ -28,8 +28,8 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 export default function MyJokboList() {
 	const queryClient = useQueryClient();
 
-	const userIndex = JSON.parse(localStorage.getItem('recoil-persist')).user
-		.userId;
+	const userIndex = JSON.parse(localStorage.getItem('recoil-persist') || '')
+		.user.userId;
 
 	const getMyJokboList = ({ pageParam = null }) =>
 		axios
@@ -62,7 +62,7 @@ export default function MyJokboList() {
 	const { data, fetchNextPage, isFetchingNextPage, status } = useInfiniteQuery(
 		// 밑줄인 키가 없으면 사이드 이펙트 발생
 		// REFACTOR: 쿼리키 수정
-		['myJokbo'],
+		['myjokbo'],
 		getMyJokboList,
 		{
 			getNextPageParam: ({ hasNext, jokbos }) => {
@@ -79,7 +79,8 @@ export default function MyJokboList() {
 		}
 	);
 
-	const onIntersect = ([entry]) => entry.isIntersecting && fetchNextPage();
+	const onIntersect = ([entry]: IntersectionObserverEntry[]) =>
+		entry.isIntersecting && fetchNextPage();
 
 	useObserver({
 		target: bottom,
@@ -117,13 +118,9 @@ export default function MyJokboList() {
 				{status === 'success' &&
 					data.pages.map((group, i) => (
 						<>
-							{group.jokbos.map((shop) => (
+							{group.jokbos.map((shop: any) => (
 								<>
-									<DeletableItem
-										deleteBtnPosition='jokbo'
-										itemId={shop.jokboId}
-										key={shop.jokboId}
-									>
+									<DeletableItem itemId={shop.jokboId} key={shop.jokboId}>
 										<JokboBox
 											contents={shop.contents}
 											imgUrl={shop.imgUrl}

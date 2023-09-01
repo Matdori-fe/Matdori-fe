@@ -8,7 +8,7 @@ interface ButtonProps {
 	label: string;
 	onClick?: () => void;
 	href?: string;
-	variant: 'small' | 'normal';
+	variant?: 'small' | 'normal';
 }
 
 export default function RoundButton({

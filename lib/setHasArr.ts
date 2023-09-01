@@ -1,5 +1,5 @@
 interface ISetHasArr {
-	set: Set<number[]>;
+	set: Set<number>;
 	key: number[];
 }
 

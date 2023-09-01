@@ -1,10 +1,10 @@
 import ShopItem from './ShopItem';
 
-export default function ShopListContainer({ list }) {
+export default function ShopListContainer({ list }: { list: any }) {
 	return (
 		<div>
 			<div className='flex flex-col gap-[15px]'>
-				{list.map((_, i) => (
+				{list.map((_: any, i: number) => (
 					<ShopItem key={i} />
 				))}
 			</div>

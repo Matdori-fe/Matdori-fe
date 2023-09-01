@@ -7,12 +7,7 @@ import ErrorPpok from '@/components/Error/ErrorPpok';
 import Loading from '@/components/Loading/Loading';
 import PageNotification from '@/components/PageNotification/PageNotification';
 import ShopItem from '@/components/pages/shop-list/ShopItem';
-import {
-	deleteLikeJokbo,
-	useDelete,
-	useDeleteLikeJokbo,
-	useTest,
-} from '@/hooks/my-likes/useDelete';
+import { deleteLikeJokbo, useDelete } from '@/hooks/my-likes/useDelete';
 import { useDeleteList } from '@/hooks/my-likes/useDeleteList';
 import { useFetcher } from '@/hooks/my-likes/useFetcher';
 import { useObserver } from '@/hooks/useObserver';
@@ -23,8 +18,8 @@ import { useInfiniteQuery } from 'react-query';
 import { useRecoilState } from 'recoil';
 
 export default function LikeJokboList() {
-	const userIndex = JSON.parse(localStorage.getItem('recoil-persist')).user
-		.userId;
+	const userIndex = JSON.parse(localStorage.getItem('recoil-persist') || '')
+		.user.userId;
 
 	const getJokboList = ({ pageParam = null }) =>
 		axios
@@ -47,7 +42,7 @@ export default function LikeJokboList() {
 	const { data, fetchNextPage, isFetchingNextPage, status } = useInfiniteQuery(
 		// 밑줄인 키가 없으면 사이드 이펙트 발생
 		// REFACTOR: 쿼리키 수정
-		['likeJokbo'],
+		['jokbo'],
 		getJokboList,
 		{
 			getNextPageParam: ({ hasNext, favoriteJokbos }) => {
@@ -66,7 +61,8 @@ export default function LikeJokboList() {
 		}
 	);
 
-	const onIntersect = ([entry]) => entry.isIntersecting && fetchNextPage();
+	const onIntersect = ([entry]: IntersectionObserverEntry[]) =>
+		entry.isIntersecting && fetchNextPage();
 
 	useObserver({
 		target: bottom,
@@ -77,7 +73,7 @@ export default function LikeJokboList() {
 
 	const DeletableItem = useDelete({
 		query: deleteLikeJokbo,
-		queryKey: ['likeJokbo'],
+		queryKey: ['jokbo'],
 	});
 
 	const router = useRouter();
@@ -101,13 +97,12 @@ export default function LikeJokboList() {
 					label={`좋아요한 족보가 없어요.\n내가 좋아하는 족보를 찾아볼까요?`}
 				/>
 			)}
-			<div className='grid grid-cols-1 gap-4 '>
+			<div className='grid grid-cols-1 gap-4'>
 				{status === 'success' &&
 					data.pages.map((group) => (
 						<>
-							{group.favoriteJokbos.map((shop) => (
+							{group.favoriteJokbos.map((shop: any) => (
 								<DeletableItem
-									deleteBtnPosition='jokbo'
 									key={shop.favoriteJokboId}
 									itemId={shop.favoriteJokboId}
 								>

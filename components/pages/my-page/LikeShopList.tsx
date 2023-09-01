@@ -25,8 +25,8 @@ import { deleteAtom } from '@/atoms/delete';
 export default function LikeShopList() {
 	const queryClient = useQueryClient();
 
-	const userIndex = JSON.parse(localStorage.getItem('recoil-persist')).user
-		.userId;
+	const userIndex = JSON.parse(localStorage.getItem('recoil-persist') || '')
+		.user.userId;
 
 	const getShopList = ({ pageParam = null }) =>
 		axios
@@ -72,7 +72,7 @@ export default function LikeShopList() {
 	} = useInfiniteQuery(
 		// 밑줄인 키가 없으면 사이드 이펙트 발생
 		// REFACTOR: 쿼리키 수정
-		['likeShop'],
+		['shop'],
 		getShopList,
 		{
 			getNextPageParam: ({ hasNext, favoriteStores }) => {
@@ -91,7 +91,8 @@ export default function LikeShopList() {
 		}
 	);
 
-	const onIntersect = ([entry]) => entry.isIntersecting && fetchNextPage();
+	const onIntersect = ([entry]: IntersectionObserverEntry[]) =>
+		entry.isIntersecting && fetchNextPage();
 
 	useObserver({
 		target: bottom,
@@ -100,7 +101,7 @@ export default function LikeShopList() {
 
 	const DeletableItem = useDelete({
 		query: deleteLikeShop,
-		queryKey: ['likeShop'],
+		queryKey: ['shop'],
 	});
 
 	console.log(data);
@@ -130,7 +131,7 @@ export default function LikeShopList() {
 				{status === 'success' &&
 					data.pages.map((group, i) => (
 						<>
-							{group.favoriteStores.map((shop) => (
+							{group.favoriteStores.map((shop: any) => (
 								<>
 									<DeletableItem
 										itemId={shop.favoriteStoreId}

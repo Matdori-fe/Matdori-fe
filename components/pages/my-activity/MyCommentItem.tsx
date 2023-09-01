@@ -28,11 +28,13 @@ export default function MyCommentItem({
 	const [deleteMode, setDeleteMode] = useRecoilState(deleteAtom);
 	const router = useRouter();
 
+	const onClick = () => {
+		if (!deleteMode) () => router.push(`/jokbo/detail/${jokboId}`);
+	};
+
 	return (
 		<div
-			onClick={
-				deleteMode ? null : () => router.push(`/jokbo/detail/${jokboId}`)
-			}
+			onClick={onClick}
 			className='flex flex-col w-full py-[16px] border-b-lightGray border-b-[1px]'
 		>
 			<Text

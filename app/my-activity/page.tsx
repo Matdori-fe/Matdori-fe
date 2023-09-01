@@ -1,3 +1,5 @@
+'use client';
+
 import MyCommentList from '@/components/pages/my-activity/MyCommentList';
 import MyJokboList from '@/components/pages/my-activity/MyJokboList';
 import LikeJokboList from '@/components/pages/my-page/LikeJokboList';

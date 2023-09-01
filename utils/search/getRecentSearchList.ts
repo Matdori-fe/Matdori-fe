@@ -1,7 +1,11 @@
 export function getRecentSearchList() {
-	const resentSearchList = JSON.parse(
-		localStorage.getItem('recent-search-list')
-	);
+	let resentSearchList;
+
+	if (typeof window !== 'undefined') {
+		resentSearchList = JSON.parse(
+			localStorage.getItem('recent-search-list') || ''
+		);
+	}
 
 	return resentSearchList ? resentSearchList : [];
 }

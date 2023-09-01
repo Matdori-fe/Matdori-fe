@@ -11,11 +11,11 @@ interface IDeletable {
 
 export const deletable: IDeletable = {
 	likes: {
-		shop: 'likeShop',
-		jokbo: 'likeJokbo',
+		shop: 'shop',
+		jokbo: 'jokbo',
 	},
 	activity: {
-		myjokbo: 'myJokbo',
-		mycomment: 'myComment',
+		myjokbo: 'myjokbo',
+		mycomment: 'mycomment',
 	},
 };

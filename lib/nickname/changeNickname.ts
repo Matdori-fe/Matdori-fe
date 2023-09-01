@@ -1,3 +1,5 @@
+'use client';
+
 import { getUserIndex } from '@/hooks/my-likes/useDelete';
 import { axios } from '../axios';
 import { AxiosError } from 'axios';
@@ -30,7 +32,7 @@ export async function changeNickname(
 
 		const newNickname = response.data.result.nickname;
 
-		const storedData = JSON.parse(localStorage.getItem('recoil-persist')); // 로컬 스토리지에서 데이터 가져오기
+		const storedData = JSON.parse(localStorage.getItem('recoil-persist') || ''); // 로컬 스토리지에서 데이터 가져오기
 		storedData.user.nickname = newNickname; // 닉네임 수정
 
 		localStorage.setItem('recoil-persist', JSON.stringify(storedData)); // 수정된 데이터 로컬 스토리지에 저장

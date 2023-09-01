@@ -5,9 +5,7 @@ export const deleteAtom = atom<boolean>({
 	default: false,
 });
 
-export type TDeleteListItem = number | [number, number];
-
-export const deleteListAtom = atom<Set<TDeleteListItem>>({
+export const deleteListAtom = atom<Set<number>>({
 	key: 'deleteListAtom',
 	default: new Set(),
 });

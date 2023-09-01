@@ -36,7 +36,7 @@ const JokboInfo: React.FC<JokboInfoType> = ({
 						}
 						color='54A3FF'
 					/>
-					{count < 10000 ? (
+					{parseInt(count.toString()) < 10000 ? (
 						<p className='font-Regular text-[12px] mt-[2px] ml-[1px] text-darkGray'>
 							{count}
 						</p>

@@ -32,7 +32,7 @@ export default function RecentSearchListSection() {
 
 			{recentSearchList.length !== 0 ? (
 				<div className='flex flex-wrap gap-[7px]'>
-					{recentSearchList.map((item) => (
+					{recentSearchList.map((item: any) => (
 						<RecentSearchItem label={item} />
 					))}
 				</div>
