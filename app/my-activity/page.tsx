@@ -9,7 +9,7 @@ type Props = {
 	searchParams: { section: 'myjokbo' | 'mycomment' };
 };
 
-export default function MyLikes({ searchParams }: Props) {
+export default function MyArticles({ searchParams }: Props) {
 	const section = searchParams?.section;
 
 	return (
