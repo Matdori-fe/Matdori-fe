@@ -35,7 +35,7 @@ const rightIcons = {
 	more: <RiMore2Fill size='20' />,
 	roundButton: (
 		<Link href='/edit-my-profile'>
-			<RoundButton label='내 정보 수정하기' />
+			<RoundButton label='내 정보 수정하기' variant='normal' />
 		</Link>
 	),
 };
