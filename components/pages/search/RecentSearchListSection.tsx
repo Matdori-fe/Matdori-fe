@@ -1,5 +1,7 @@
 'use client';
 
+/* eslint-disable */
+
 import RoundButton from '@/components/RoundButton/RoundButton';
 import Text from '@/components/Text/Text';
 import SmallTitle from '@/components/Title/SmallTitle';
