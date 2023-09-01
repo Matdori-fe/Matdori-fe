@@ -7,5 +7,5 @@ export function getRecentSearchList() {
 		);
 	}
 
-	return resentSearchList ? resentSearchList : [];
+	return resentSearchList !== '' ? resentSearchList : [];
 }
