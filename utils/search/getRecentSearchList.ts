@@ -1,11 +1,12 @@
 export function getRecentSearchList() {
-	let resentSearchList = [];
+	let list = [];
 
 	if (typeof window !== 'undefined') {
-		resentSearchList =
-			localStorage.getItem('recent-search-list') === null &&
-			JSON.parse(localStorage.getItem('recent-search-list') as string);
+		list =
+			localStorage.getItem('recent-search-list') === null
+				? []
+				: JSON.parse(localStorage.getItem('recent-search-list') as string);
 	}
 
-	return resentSearchList as string[];
+	return list;
 }
