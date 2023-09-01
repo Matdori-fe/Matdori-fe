@@ -2,31 +2,22 @@
 
 import JokboBox from '@/app/store/[storeIndex]/component/JokboBox';
 import { checkedListAtom, deleteAtom, deleteListAtom } from '@/atoms/delete';
-import DeleteButton from '@/components/DeleteButton/DeleteButton';
 import ErrorPpok from '@/components/Error/ErrorPpok';
-import ErrorPPok from '@/components/Error/ErrorPpok';
 import Loading from '@/components/Loading/Loading';
 import PageNotification from '@/components/PageNotification/PageNotification';
 import ShopItem from '@/components/pages/shop-list/ShopItem';
 import { deleteMyJokbo } from '@/hooks/my-activity/delete';
-import {
-	deleteLikeJokbo,
-	deleteLikeShop,
-	useDelete,
-} from '@/hooks/my-likes/useDelete';
+import { useDelete } from '@/hooks/my-likes/useDelete';
 import { useDeleteList } from '@/hooks/my-likes/useDeleteList';
-
-import { useFetcher } from '@/hooks/my-likes/useFetcher';
 import { useObserver } from '@/hooks/useObserver';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { useInfiniteQuery, useMutation, useQueryClient } from 'react-query';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 // FIXME: +swif
 export default function MyJokboList() {
-	const queryClient = useQueryClient();
+	console.log('jokbo');
 
 	const userIndex = JSON.parse(localStorage.getItem('recoil-persist') || '')
 		.user.userId;
@@ -89,7 +80,7 @@ export default function MyJokboList() {
 
 	const DeletableItem = useDelete({
 		query: deleteMyJokbo,
-		queryKey: ['myJokbo'],
+		queryKey: ['myjokbo'],
 	});
 
 	console.log(data);
@@ -106,7 +97,7 @@ export default function MyJokboList() {
 	}, []);
 
 	return (
-		<div className='mt-[110px]'>
+		<div className='mt-[130px]'>
 			{status === 'loading' && <Loading />}
 			{status === 'error' && <ErrorPpok />}
 			{status === 'success' && data?.pages[0].jokbos.length === 0 && (

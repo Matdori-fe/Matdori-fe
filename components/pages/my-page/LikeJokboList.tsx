@@ -89,7 +89,7 @@ export default function LikeJokboList() {
 	}, []);
 
 	return (
-		<div className='mt-[110px]'>
+		<div className='mt-[130px]'>
 			{status === 'loading' && <Loading />}
 			{status === 'error' && <ErrorPpok />}
 			{status === 'success' && data?.pages[0].favoriteJokbos.length === 0 && (

@@ -72,7 +72,7 @@ export default function MyCommentList() {
 
 	const DeletableItem = useDelete({
 		query: deleteMyCommentList,
-		queryKey: ['myComment'],
+		queryKey: ['mycomment'],
 	});
 
 	const [deleteMode, setDeleteMode] = useRecoilState(deleteAtom);
@@ -88,7 +88,7 @@ export default function MyCommentList() {
 	}, []);
 
 	return (
-		<div className='mt-[110px]'>
+		<div className='mt-[130px]'>
 			{status === 'loading' && <Loading />}
 			{status === 'error' && <ErrorPpok />}
 			{status === 'success' && data?.pages[0].comments.length === 0 && (
