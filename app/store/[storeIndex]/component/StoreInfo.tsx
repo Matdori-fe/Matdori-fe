@@ -66,7 +66,7 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
 					<div className='w-full min-w-[295px] mt-[20px] flex mx-4 justify-between'>
 						<ImageBox size='large' url={storeData?.imgUrl} />
 
-						<div className='flex flex-col flex-wrap justify-between w-full ml-3'>
+						<div className='flex flex-col flex-wrap justify-between w-full ml-[18px]'>
 							<div className='flex justify-around align-start'>
 								<div className='flex flex-wrap items-center justify-center h-auto'>
 									<div className='w-full text-center h-[35px] font-Medium text-[24px]'>
