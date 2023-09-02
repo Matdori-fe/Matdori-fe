@@ -12,114 +12,117 @@ import Review from '../Review/Review';
 import SmallTitle from '../Title/SmallTitle';
 import CustomSelect from '../SelectBox/CustomSelect';
 import { RiChat3Fill } from 'react-icons/ri';
+import Text from '../Text/Text';
 type JokboIndexType = {
-  jokboIndex: number;
+	jokboIndex: number;
 };
 
 type InReviewType = {
-  commentIndex: number;
-  createdAt: string;
-  contents: string;
-  checkDeleted: boolean;
-  userIndex: number;
-  nickname: string;
+	commentIndex: number;
+	createdAt: string;
+	contents: string;
+	checkDeleted: boolean;
+	userIndex: number;
+	nickname: string;
 };
 
 export default function CommentList({ jokboIndex }: JokboIndexType) {
-  const [kind, setKind] = useState('최신순');
-  const [commentCount, setCommentCount] = useState(0);
-  const [loading, setLoading] = useState(false);
+	const [kind, setKind] = useState('최신순');
+	const [commentCount, setCommentCount] = useState(0);
+	const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    console.log(loading);
-  }, [loading]);
+	useEffect(() => {
+		console.log(loading);
+	}, [loading]);
 
-  // REFACTOR: 함수 분리
-  const getCommentList = ({ pageParam = null }) =>
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/jokbos/${jokboIndex}/comments`, {
-        params: {
-          cursor: pageParam,
-          order: kind,
-        },
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log('댓글', res.data);
-        setCommentCount(res.data.result.commentCnt);
-        setLoading(true);
-        return res?.data.result;
-      })
-      .catch((error) => {
-        setLoading(true);
-      });
+	// REFACTOR: 함수 분리
+	const getCommentList = ({ pageParam = null }) =>
+		axios
+			.get(`${process.env.NEXT_PUBLIC_API}/jokbos/${jokboIndex}/comments`, {
+				params: {
+					cursor: pageParam,
+					order: kind,
+				},
+				withCredentials: true,
+			})
+			.then((res) => {
+				console.log('댓글', res.data);
+				setCommentCount(res.data.result.commentCnt);
+				setLoading(true);
+				return res?.data.result;
+			})
+			.catch((error) => {
+				setLoading(true);
+			});
 
-  let bottom = useRef(null);
+	let bottom = useRef(null);
 
-  const { data, fetchNextPage, isFetchingNextPage, status } = useInfiniteQuery(
-    [`commentList-${jokboIndex}`],
-    getCommentList,
-    {
-      getNextPageParam: ({ hasNext, commentList }) => {
-        if (!hasNext) return undefined;
+	const { data, fetchNextPage, isFetchingNextPage, status } = useInfiniteQuery(
+		[`commentList-${jokboIndex}`],
+		getCommentList,
+		{
+			getNextPageParam: ({ hasNext, commentList }) => {
+				if (!hasNext) return undefined;
 
-        const finalCommentId = commentList[commentList.length - 1].commentIndex;
-        return finalCommentId;
-      },
-      keepPreviousData: true,
-    }
-  );
+				const finalCommentId = commentList[commentList.length - 1].commentIndex;
+				return finalCommentId;
+			},
+			keepPreviousData: true,
+		}
+	);
 
-  const onIntersect = ([entry]: any) => entry.isIntersecting && fetchNextPage();
+	const onIntersect = ([entry]: any) => entry.isIntersecting && fetchNextPage();
 
-  useObserver({
-    target: bottom,
-    onIntersect,
-  });
+	useObserver({
+		target: bottom,
+		onIntersect,
+	});
 
-  return (
-    <div className="w-full">
-      <SmallTitle sideComponent={<CustomSelect onSelectChange={setKind} />}>
-        <div className="flex">
-          <RiChat3Fill className="w-[14px] text-blue mt-0.5 mr-1" />
-          댓글 {commentCount}개
-        </div>
-      </SmallTitle>
-      <div className="border-b-[1.5px] border-lightGray mt-2" />
+	return (
+		<div className='w-full'>
+			<SmallTitle sideComponent={<CustomSelect onSelectChange={setKind} />}>
+				<div className='flex items-center py-[8px]'>
+					<RiChat3Fill className='w-[14px] text-blue mr-1' />
+					<Text size='sm' fontWeight='semibold'>
+						댓글 {commentCount}개
+					</Text>
+				</div>
+			</SmallTitle>
+			<div className='border-b-[1.5px] border-lightGray mt-2' />
 
-      {status === 'error' && (
-        <ErrorPpok errorMessage="serverError" variant="normal" />
-      )}
-      {status === 'success' &&
-        loading === true &&
-        data?.pages[0].commentList.length === 0 && (
-          <PageNotification
-            label={`작성한 댓글이 없어요.\n족보에 댓글을 작성해보세요.`}
-          />
-        )}
-      <div className="grid grid-cols-1">
-        {loading === false && <Loading />}
-        {status === 'success' &&
-          loading === true &&
-          data.pages.map((group) => (
-            <>
-              {group.commentList.map((comment: InReviewType, idx: number) => (
-                <Review
-                  key={idx}
-                  content={comment.contents}
-                  heartCount={5}
-                  title={comment.nickname}
-                  writeDay={comment.createdAt}
-                />
-              ))}
-            </>
-          ))}
-      </div>
-      <div ref={bottom} />
-      {/* {hasNextPage ? <div ref={bottom}></div> : <p>끝</p>} */}
-      {status === 'loading' || (isFetchingNextPage && <Loading />)}
+			{status === 'error' && (
+				<ErrorPpok errorMessage='serverError' variant='normal' />
+			)}
+			{status === 'success' &&
+				loading === true &&
+				data?.pages[0].commentList.length === 0 && (
+					<PageNotification
+						label={`작성한 댓글이 없어요.\n족보에 댓글을 작성해보세요.`}
+					/>
+				)}
+			<div className='grid grid-cols-1'>
+				{loading === false && <Loading />}
+				{status === 'success' &&
+					loading === true &&
+					data.pages.map((group) => (
+						<>
+							{group.commentList.map((comment: InReviewType, idx: number) => (
+								<Review
+									key={idx}
+									content={comment.contents}
+									heartCount={5}
+									title={comment.nickname}
+									writeDay={comment.createdAt}
+								/>
+							))}
+						</>
+					))}
+			</div>
+			<div ref={bottom} />
+			{/* {hasNextPage ? <div ref={bottom}></div> : <p>끝</p>} */}
+			{status === 'loading' || (isFetchingNextPage && <Loading />)}
 
-      <div className="mt-[60px]" />
-    </div>
-  );
+			<div className='mt-[60px]' />
+		</div>
+	);
 }

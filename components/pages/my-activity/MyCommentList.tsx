@@ -88,7 +88,7 @@ export default function MyCommentList() {
 	}, []);
 
 	return (
-		<div className='mt-[130px]'>
+		<div className='mt-[110px]'>
 			{status === 'loading' && <Loading />}
 			{status === 'error' && <ErrorPpok />}
 			{status === 'success' && data?.pages[0].comments.length === 0 && (

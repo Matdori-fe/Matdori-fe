@@ -90,7 +90,7 @@ export default function Page({ params }: { params: { searchString: string } }) {
 									shopId={shop.storeId}
 									key={shop.name}
 									name={shop.name}
-									score={shop.totalRating.toFixed(1)}
+									score={shop.totalRating}
 									jokboCnt={shop.jokboCnt}
 									img={shop.imgUrl}
 									category={shop.category}

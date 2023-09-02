@@ -61,7 +61,7 @@ const ChoicePhoto: React.FC<ImageArrType> = ({ setImageArr }) => {
 			>
 				사진 첨부하기
 			</SmallTitle>
-			<div className='flex w-auto mt-3 overflow-x-scroll flex-nowrap scrollbar-hide'>
+			<div className='flex justify-start w-auto mt-3 overflow-x-scroll flex-nowrap scrollbar-hide gap-[10px]'>
 				{Array.from({ length: numToShow }).map((_, index) => {
 					if (index < imageSrcList.length) {
 						const src = imageSrcList[index];
@@ -79,7 +79,7 @@ const ChoicePhoto: React.FC<ImageArrType> = ({ setImageArr }) => {
 						return (
 							<label
 								key={index}
-								className='bg-lightGray w-[100px] h-[100px] min-w-[100px] min-h-[100px] rounded-[15px] object-cover mx-2 flex justify-center items-center'
+								className='bg-lightGray w-[100px] h-[100px] min-w-[100px] min-h-[100px] rounded-[15px] object-cover flex justify-center items-center'
 							>
 								<input
 									accept='image/*'

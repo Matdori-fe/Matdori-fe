@@ -83,18 +83,19 @@ const JokboDetailComponent: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
 			/>
 
 			<BigTitle>{detailInfo?.title}</BigTitle>
-			<div className='text-[10px] font-Regular text-gray mt-2'>
-				{formatDate(detailInfo?.createdAt)} | {detailInfo?.nickname}
+			<div className='text-[10px] font-Regular text-gray mt-[6px]'>
+				{formatDate(detailInfo?.createdAt)} <span className='mr-[6px]' />|
+				<span className='mr-[6px]' /> {detailInfo?.nickname}
 			</div>
 
 			<div className='w-full text-[12px] font-Regular text-darkGray mt-4'>
 				{detailInfo?.contents}
 			</div>
-			<div className='flex w-full mt-4 mb-6 overflow-x-scroll flex-nowrap scrollbar-hide'>
+			<div className='flex w-full mt-4 mb-6 overflow-x-scroll flex-nowrap scrollbar-hide gap-[10px]'>
 				{detailInfo?.jokboImgUrlList.map((element, i) => (
 					<ImageBox
 						key={i}
-						className='w-[70px] h-[70px] min-w-[70px] min-h-[70px] mx-1'
+						className='w-[70px] h-[70px] min-w-[70px] min-h-[70px]'
 						url={element}
 					/>
 				))}

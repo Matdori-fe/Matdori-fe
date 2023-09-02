@@ -1,6 +1,8 @@
+import ErrorImg from '@/components/ErrorImg/ErrorImg';
 import ImageBox from '@/components/ImageBox/ImageBox';
 import JokboInfo from '@/components/JokboInfo/JokboInfo';
 import StatusBar from '@/components/StatusBar/StatusBar';
+import Image from 'next/image';
 
 type StoreSummaryInfo = {
 	storeImgUrl: string;
@@ -21,10 +23,19 @@ const StoreSummary = ({
 }: StoreSummaryInfo) => {
 	return (
 		<>
-			<div className='w-full h-[80px] rounded-basic border-[1px] border-lightGray flex items-center min-w-[270px] px-2'>
-				<ImageBox size='small' url={storeImgUrl} />
-				<div className='flex justify-between w-full mx-2'>
-					<div className='flex flex-wrap justify-center h-auto w-fit'>
+			<div className='px-[10px] w-full h-[80px] rounded-basic border-[1px] border-lightGray flex items-center min-w-[270px]'>
+				<div>
+					<Image
+						alt='storeImg'
+						src={storeImgUrl}
+						width='58'
+						height='58'
+						className='min-w-[58px] min-h-[58px] bg-gray max-w-[58px] max-h-[58px] rounded-basic border-lightGray border'
+						onError={ErrorImg}
+					/>
+				</div>
+				<div className='flex justify-between w-full pl-[10px]'>
+					<div className='flex flex-col flex-wrap justify-center h-auto w-fit gap-[4px]'>
 						<div className='w-full text-[14px] font-SemiBold text-black text-center line-clamp-1'>
 							{storeName}
 						</div>

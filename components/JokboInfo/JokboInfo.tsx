@@ -13,7 +13,7 @@ type Size = 'small' | 'large';
 
 type JokboInfoType = {
 	kind: iconKind;
-	count: number | string;
+	count: number;
 	className?: string;
 	size?: 'small' | 'large';
 };
@@ -52,7 +52,7 @@ const JokboInfo: React.FC<JokboInfoType> = ({
 				<>
 					<RiStarFill className='w-[12px] h-[12px]' color='FFD600' />
 					<p className='font-Regular text-[12px] text-darkGray mt-[2px] ml-[2px]'>
-						{count}
+						{count.toFixed(1)}
 					</p>
 				</>
 			);

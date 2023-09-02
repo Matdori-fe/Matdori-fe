@@ -12,6 +12,7 @@ import axios from 'axios';
 import { useObserver } from '@/hooks/useObserver';
 import Loading from '@/components/Loading/Loading';
 import { selectedSort } from '@/atoms/shop-list/selectedSort';
+import ErrorPpok from '@/components/Error/ErrorPpok';
 
 export default function Page({ params }: { params: { category: string } }) {
 	const sort = useRecoilValue(selectedSort);
@@ -87,9 +88,10 @@ export default function Page({ params }: { params: { category: string } }) {
 	// TODO: 불러오는중, 에러 인 경우 두 가지 다른 컴포넌트 띄우기
 	return (
 		<>
+			{status === 'loading' && <Loading />}
+			{status === 'error' && <ErrorPpok />}
+
 			<div className='grid grid-cols-2 gap-4'>
-				{status === 'loading' && <p>불러오는 중</p>}
-				{status === 'error' && <p>에러</p>}
 				{status === 'success' &&
 					data.pages.map((group) => (
 						<>
@@ -98,7 +100,7 @@ export default function Page({ params }: { params: { category: string } }) {
 									shopId={shop.storeId}
 									key={shop.name}
 									name={shop.name}
-									score={shop.totalRating.toFixed(1)}
+									score={shop.totalRating}
 									jokboCnt={shop.jokboCnt}
 									img={shop.imgUrl}
 									category={shop.category}

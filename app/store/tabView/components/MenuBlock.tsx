@@ -19,7 +19,7 @@ const MenuBlock = ({ name, menus, firstShow }: MenuBlockType) => {
 		<>
 			{isShow ? (
 				<>
-					<div className='flex justify-between w-full mx-4 my-3'>
+					<div className='flex justify-between w-full my-3'>
 						<Text fontWeight='semibold' size='sm' color='black'>
 							{name}
 						</Text>
@@ -30,8 +30,8 @@ const MenuBlock = ({ name, menus, firstShow }: MenuBlockType) => {
 							}}
 						/>
 					</div>
-					<HorizonBar className='mx-1 mb-2' />
-					<div className='flex flex-wrap justify-center w-full mx-4'>
+					<HorizonBar className='mb-2' />
+					<div className='flex flex-wrap justify-center w-full'>
 						{menus.map(({ name, price, imgUrl }) => {
 							return (
 								<MenuComponent
@@ -47,7 +47,7 @@ const MenuBlock = ({ name, menus, firstShow }: MenuBlockType) => {
 			) : (
 				<>
 					{' '}
-					<div className='flex justify-between w-full mx-4 my-3'>
+					<div className='flex justify-between w-full my-3'>
 						<Text fontWeight='semibold' size='sm' color='black'>
 							{name}
 						</Text>
@@ -58,7 +58,7 @@ const MenuBlock = ({ name, menus, firstShow }: MenuBlockType) => {
 							}}
 						/>
 					</div>
-					<HorizonBar className='mx-1 mb-2' />
+					<HorizonBar className='mb-2' />
 				</>
 			)}
 		</>

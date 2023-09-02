@@ -16,63 +16,61 @@ import CommentList from '@/components/ListComponent/CommentList';
 
 //컴포넌트에서 쓰일 ReviewType
 type ReviewType = {
-  title: string;
-  content: string;
-  writeDay: string;
-  heartCount: number;
+	title: string;
+	content: string;
+	writeDay: string;
+	heartCount: number;
 };
 
 interface JokboDetailProps {
-  jokboIndex: number;
+	jokboIndex: number;
 }
 
 type ResponseType = {
-  response: number | string | undefined;
+	response: number | string | undefined;
 };
 
 const JokboReview: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
-  const user = useRecoilValue(UserAtom);
+	const user = useRecoilValue(UserAtom);
 
-  //댓글 쓰는 로직
-  const [writeReview, setWriteReview] = useState('');
+	//댓글 쓰는 로직
+	const [writeReview, setWriteReview] = useState('');
 
-  const handleReviewChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setWriteReview(e.target.value);
-  };
+	const handleReviewChange = (e: ChangeEvent<HTMLInputElement>) => {
+		setWriteReview(e.target.value);
+	};
 
-  //댓글 함수
-  async function ClickWriteReview() {
-    const response: ResponseType = await WriteFun({
-      jokboIndex: jokboIndex,
-      contents: writeReview,
-      userIndex: user.userId,
-    });
-    if (response.response === 200) {
-      Toast('댓글 작성에 성공하였습니다.');
-      setWriteReview('');
-      window.location.reload();
-    } else {
-      Toast('댓글 작성에 실패하였습니다.');
-    }
-  }
+	//댓글 함수
+	async function ClickWriteReview() {
+		const response: ResponseType = await WriteFun({
+			jokboIndex: jokboIndex,
+			contents: writeReview,
+			userIndex: user.userId,
+		});
+		if (response.response === 200) {
+			Toast('댓글 작성에 성공하였습니다.');
+			setWriteReview('');
+			window.location.reload();
+		} else {
+			Toast('댓글 작성에 실패하였습니다.');
+		}
+	}
 
-  return (
-    <>
-      <CommentList jokboIndex={jokboIndex} />
-      <div className="flex justify-center items-center">
-        <div className="w-10/12 max-w-[350px] fixed bottom-4 mx-[20px]">
-          <Input
-            inputSize="small"
-            inputmode="text"
-            value={writeReview}
-            onChange={handleReviewChange}
-            placeHolder="댓글을 입력하세요."
-            right="redArrow"
-            rightOnClick={ClickWriteReview}
-          />
-        </div>
-      </div>
-    </>
-  );
+	return (
+		<>
+			<CommentList jokboIndex={jokboIndex} />
+			<div className='fixed bottom-0 flex justify-center w-[calc(100%-40px)] sm:w-[calc(412px-40px)] bg-white pb-[20px] pt-[8px]'>
+				<Input
+					inputSize='small'
+					inputmode='text'
+					value={writeReview}
+					onChange={handleReviewChange}
+					placeHolder='댓글을 입력하세요.'
+					right='redArrow'
+					rightOnClick={ClickWriteReview}
+				/>
+			</div>
+		</>
+	);
 };
 export default JokboReview;

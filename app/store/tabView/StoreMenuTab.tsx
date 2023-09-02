@@ -59,7 +59,7 @@ const StoreMenuTab = ({ storeIndex }: StoreIndexIn) => {
 				</div>
 
 				<div
-					className={`w-full mx-4 flex flex-wrap justify-center ${
+					className={`w-full px-[20px] flex flex-wrap justify-center ${
 						isFixed ? 'mt-[49px]' : ''
 					}`}
 				>
@@ -84,8 +84,8 @@ const StoreMenuTab = ({ storeIndex }: StoreIndexIn) => {
 						);
 					})}
 				</div>
-				<div className='w-full mx-4 mt-6'>
-					<div className='justify-center py-3 bg-white border rounded-2xl border-lightGray'>
+				<div className='w-full px-[20px] mt-6'>
+					<div className='justify-center w-full py-3 bg-white border rounded-basic border-lightGray'>
 						<div className='font-Regular text-[12px] text-darkGray text-center'>
 							※ 메뉴 항목과 가격은 상단에 기재된 내용과 다를 수 있습니다.
 						</div>
