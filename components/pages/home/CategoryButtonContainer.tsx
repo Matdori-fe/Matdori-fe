@@ -20,7 +20,7 @@ export default function CategoryButtonContainer() {
           key={name}
           onClick={() => {
             if (writeStore) {
-              router.push(`/shop-list/${name}/?writeStore=true`);
+              router.replace(`/shop-list/${name}/?writeStore=true`);
             } else {
               router.push(`/shop-list/${name}`);
             }
