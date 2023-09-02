@@ -121,7 +121,7 @@ export default function MenuModal() {
 													</Text>
 													<JokboInfo
 														kind='starScore'
-														count={menu.totalRating.toFixed(1)}
+														count={menu.totalRating}
 													/>
 												</div>
 											</div>
