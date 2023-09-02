@@ -29,6 +29,7 @@ const JokboIntroPage = ({ storeIndex }: StoreIndexType) => {
 
   const userInfo = useRecoilValue(UserAtom);
   useEffect(() => {
+    console.log(storeIndex);
     const fetchData = async () => {
       try {
         const result = await axios.get(
@@ -37,6 +38,7 @@ const JokboIntroPage = ({ storeIndex }: StoreIndexType) => {
             withCredentials: true,
           }
         );
+        console.log(result);
         setStoreInformation(result.data.result.storeInformationHeader);
         setInFavoriteId(result.data.result.favoriteStoreIndex);
       } catch (error) {

@@ -21,7 +21,7 @@ export const options = [
   {
     name: 'FAQ',
     icon: <RiCustomerServiceLine />,
-    href: '/faq',
+    href: '/qna',
   },
   {
     name: '친구 초대',

@@ -1,19 +1,6 @@
-'use client';
-import HorizonBar from '@/components/HorizonBar/HorizonBar';
-import SmallTitle from '@/components/Title/SmallTitle';
-import CustomSelect from '@/components/SelectBox/CustomSelect';
-
-import { useState, useEffect } from 'react';
-import { useInView } from 'react-intersection-observer';
-import axios from 'axios';
-import Input from '@/components/Input/Input';
-import { ChangeEvent } from 'react';
-import WriteFun from './WriteFun';
-import { useRecoilValue } from 'recoil';
-import { UserAtom } from '@/atoms/UserAtom';
-import Toast from '@/components/Toast/Toast';
 import CommentList from '@/components/ListComponent/CommentList';
 
+<<<<<<< HEAD
 //컴포넌트에서 쓰일 ReviewType
 type ReviewType = {
 	title: string;
@@ -22,10 +9,13 @@ type ReviewType = {
 	heartCount: number;
 };
 
+=======
+>>>>>>> 82cb524 ([MATDORI-68] chore:rebase전 변경사항 commit)
 interface JokboDetailProps {
 	jokboIndex: number;
 }
 
+<<<<<<< HEAD
 type ResponseType = {
 	response: number | string | undefined;
 };
@@ -72,5 +62,13 @@ const JokboReview: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
 			</div>
 		</>
 	);
+=======
+const JokboReview: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
+  return (
+    <>
+      <CommentList jokboIndex={jokboIndex} />
+    </>
+  );
+>>>>>>> 82cb524 ([MATDORI-68] chore:rebase전 변경사항 commit)
 };
 export default JokboReview;
