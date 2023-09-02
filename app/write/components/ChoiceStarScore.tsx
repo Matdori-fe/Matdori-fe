@@ -28,18 +28,19 @@ const ChoiceStarScore: React.FC<ChoiceStarScoreProps> = ({
 
   const [isDragging, setIsDragging] = useState(false);
 
-  const handleMouseDown = () => {
+  const handleTouchStart = (event: React.TouchEvent) => {
     setIsDragging(true);
+    handleTouchMove(event); // 초기 터치 위치에서도 별점을 변경하기 위해 호출
   };
 
-  const handleMouseUp = () => {
+  const handleTouchEnd = () => {
     setIsDragging(false);
   };
 
-  const handleMouseMove = (event: any) => {
+  const handleTouchMove = (event: React.TouchEvent) => {
     if (isDragging) {
       const rect = event.currentTarget.getBoundingClientRect();
-      const offsetX = event.clientX - rect.left;
+      const offsetX = event.touches[0].clientX - rect.left; // 첫 번째 터치 위치 사용
       const maxScore = 5; // 최대 별점
       const newScore = (offsetX / rect.width) * maxScore;
       setScore(newScore);
@@ -67,9 +68,9 @@ const ChoiceStarScore: React.FC<ChoiceStarScoreProps> = ({
         precision={0.1}
         icon={<FilledStarIcon />}
         emptyIcon={<UnFilledStarIcon />}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onTouchMove={handleTouchMove}
       />
     </div>
   );
