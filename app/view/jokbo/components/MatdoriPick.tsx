@@ -20,7 +20,6 @@ const MatdoriPick = () => {
           `${process.env.NEXT_PUBLIC_API}/stores/matdori-pick`
         );
         setList(result.data.result);
-        console.log('맛도리픽', result.data.result);
         setLoading(false);
       } catch (error) {
         Toast('Server Error');

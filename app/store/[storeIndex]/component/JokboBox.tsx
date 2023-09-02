@@ -1,11 +1,8 @@
 import Text from '@/components/Text/Text';
-import Link from 'next/link';
 import StarRate from '@/components/StarRate/StarRate';
 import JokboInfo from '@/components/JokboInfo/JokboInfo';
 import ImageBox from '@/components/ImageBox/ImageBox';
-import HorizonBar from '@/components/HorizonBar/HorizonBar';
-import { url } from 'inspector';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { deleteAtom } from '@/atoms/delete';
 import { useRouter } from 'next/navigation';
 
@@ -71,7 +68,7 @@ const JokboBox = ({
               <JokboInfo kind="chatScore" count={commentCnt} />
             </div>
           </div>
-          <ImageBox size="medium" url={imgUrl} />
+          {imgUrl !== null ? <ImageBox size="medium" url={imgUrl} /> : <></>}
         </div>
       </div>
     </>
