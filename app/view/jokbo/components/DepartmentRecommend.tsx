@@ -72,7 +72,7 @@ const DepartMentRecommened: React.FC = () => {
         ) : (
           <>
             <div
-              className={`w-full flex flex-nowrap overflow-x-scroll scrollbar-hide ${
+              className={`w-full flex flex-nowrap overflow-x-scroll scrollbar-hide gap-[10px] ${
                 list.length <= 3 ? 'justify-between' : ''
               }`}
             >
