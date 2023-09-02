@@ -64,7 +64,7 @@ const JokboIntroPage = ({ storeIndex }: StoreIndexType) => {
           imgUrl: storeInformation?.imgUrl,
         }}
       />
-      <StoreInfo storeIndex={storeIndex} />
+      {storeIndex !== 0 && <StoreInfo storeIndex={storeIndex} />}
       <Button
         label="나만의 족보 작성하기"
         variant="active"

@@ -27,23 +27,27 @@ function Map({ address }: MapProps) {
 
         // Use Kakao's Geocoder to convert the address to coordinates
         const geocoder = new window.kakao.maps.services.Geocoder();
-        geocoder.addressSearch(address, (result: any, status: any) => {
-          if (status === window.kakao.maps.services.Status.OK) {
-            const markerPosition = new window.kakao.maps.LatLng(
-              result[0].y,
-              result[0].x
-            );
+        if (address) {
+          geocoder.addressSearch(address, (result: any, status: any) => {
+            if (status === window.kakao.maps.services.Status.OK) {
+              const markerPosition = new window.kakao.maps.LatLng(
+                result[0].y,
+                result[0].x
+              );
 
-            // Create a marker at the specified coordinates
-            const marker = new window.kakao.maps.Marker({
-              map: map,
-              position: markerPosition,
-            });
+              // Create a marker at the specified coordinates
+              const marker = new window.kakao.maps.Marker({
+                map: map,
+                position: markerPosition,
+              });
 
-            // Move the map center to the marker position
-            map.setCenter(markerPosition);
-          }
-        });
+              // Move the map center to the marker position
+              map.setCenter(markerPosition);
+            }
+          });
+        } else {
+          console.log('Empty Address');
+        }
       });
     });
 

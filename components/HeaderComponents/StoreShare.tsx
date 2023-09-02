@@ -40,16 +40,20 @@ const StoreShare: React.FC<StoreShareType> = ({
 
   const onClick = () => {
     if (isKakaoLoaded) {
-      Kakao.Link.sendScrap({
-        requestUrl: location.href,
-        templateId: 97765,
-        templateArgs: {
-          storeIndex: storeIndex,
-          imageUrl: imgUrl ? imgUrl : '',
-          storeName: storeName,
-          storeContent: storeContent,
-        },
-      });
+      try {
+        Kakao.Link.sendScrap({
+          requestUrl: location.href,
+          templateId: 97765,
+          templateArgs: {
+            storeIndex: storeIndex,
+            imageUrl: imgUrl ? imgUrl : '',
+            storeName: storeName,
+            storeContent: storeContent,
+          },
+        });
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 

@@ -114,13 +114,14 @@ const StoreInfoTab = ({ storeIndex }: StoreIndexIn) => {
               </Text>
             }
           />
-
-          <div
-            id="map"
-            className="w-full mt-[20px] h-[242px] rounded-basic border-lightGray border-[1px] relative z-0"
-          >
-            <Map address={storeInfo.address} />
-          </div>
+          {storeInfo.address !== '' && (
+            <div
+              id="map"
+              className="w-full mt-[20px] h-[242px] rounded-basic border-lightGray border-[1px] relative z-0"
+            >
+              <Map address={storeInfo.address} />
+            </div>
+          )}
         </div>
       </div>
     </>
