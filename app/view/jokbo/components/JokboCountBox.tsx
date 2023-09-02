@@ -16,7 +16,7 @@ const JokboCountBox: React.FC = () => {
         setCount(response.data.result.count);
       })
       .catch((error) => {
-        Toast(error);
+        Toast('Server Error');
       });
   }, []);
 

@@ -20,7 +20,6 @@ const Search = () => {
         <>
           <RecentSearchListSection />
           {!writeStore && <RecommendButtonsSection />}
-
           <CategorySection />
         </>
       ) : (

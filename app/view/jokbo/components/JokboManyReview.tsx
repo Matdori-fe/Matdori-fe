@@ -5,8 +5,7 @@ import SmallStoreComponent from './StoreCompoents/SmallStoreComponent';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import SmallStoreSkeleton from '@/app/Skeleton/SmallStoreSkeleton';
-
-// FIXME - 백엔드 값 없어서 더미 데이터 넣어놓음.
+import Toast from '@/components/Toast/Toast';
 
 const JokboManyReview = () => {
   const [list, setList] = useState([]);
@@ -20,7 +19,7 @@ const JokboManyReview = () => {
         setList(result.data.result);
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        Toast('Server Error');
         setLoading(false);
       }
     };
