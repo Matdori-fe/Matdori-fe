@@ -24,7 +24,7 @@ const NavigationBar: React.FC = () => {
 
 	return (
 		<>
-			<div className='w-full sm:w-[412px] h-[65px] flex justify-around border-t border-x border-lightGray pt-[10px] fixed bottom-0 bg-white'>
+			<div className='z-20 w-full sm:w-[412px] h-[65px] flex justify-around border-t border-x border-lightGray pt-[10px] fixed bottom-0 bg-white'>
 				<>
 					{/*홈 컴포넌트*/}
 					<Link
