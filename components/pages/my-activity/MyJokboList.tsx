@@ -97,41 +97,43 @@ export default function MyJokboList() {
 	}, []);
 
 	return (
-		<div className='mt-[130px]'>
+		<>
 			{status === 'loading' && <Loading />}
 			{status === 'error' && <ErrorPpok />}
-			{status === 'success' && data?.pages[0].jokbos.length === 0 && (
-				<PageNotification
-					label={`작성한 족보가 없어요.\n족보를 작성하러 가볼까요?`}
-				/>
-			)}
-			<div className='grid grid-cols-1 gap-4 '>
-				{status === 'success' &&
-					data.pages.map((group, i) => (
-						<>
-							{group.jokbos.map((shop: any) => (
-								<>
-									<DeletableItem itemId={shop.jokboId} key={shop.jokboId}>
-										<JokboBox
-											contents={shop.contents}
-											imgUrl={shop.imgUrl}
-											title={shop.title}
-											totalRating={shop.totalRating}
-											jokboId={shop.jokboId}
-											favoriteCnt={shop.favoriteCnt}
-											commentCnt={shop.commentCnt}
-										/>
-									</DeletableItem>
-								</>
-							))}
-						</>
-					))}
-			</div>
-			<div ref={bottom} />
-			{/* {hasNextPage ? <div ref={bottom}></div> : <p>끝</p>} */}
-			{isFetchingNextPage && <Loading />}
+			<div className='mt-[130px]'>
+				{status === 'success' && data?.pages[0].jokbos.length === 0 && (
+					<PageNotification
+						label={`작성한 족보가 없어요.\n족보를 작성하러 가볼까요?`}
+					/>
+				)}
+				<div className='grid grid-cols-1 gap-4 '>
+					{status === 'success' &&
+						data.pages.map((group, i) => (
+							<>
+								{group.jokbos.map((shop: any) => (
+									<>
+										<DeletableItem itemId={shop.jokboId} key={shop.jokboId}>
+											<JokboBox
+												contents={shop.contents}
+												imgUrl={shop.imgUrl}
+												title={shop.title}
+												totalRating={shop.totalRating}
+												jokboId={shop.jokboId}
+												favoriteCnt={shop.favoriteCnt}
+												commentCnt={shop.commentCnt}
+											/>
+										</DeletableItem>
+									</>
+								))}
+							</>
+						))}
+				</div>
+				<div ref={bottom} />
+				{/* {hasNextPage ? <div ref={bottom}></div> : <p>끝</p>} */}
+				{isFetchingNextPage && <Loading />}
 
-			<div className='mt-[60px]' />
-		</div>
+				<div className='mt-[60px]' />
+			</div>
+		</>
 	);
 }
