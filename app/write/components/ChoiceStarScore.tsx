@@ -30,7 +30,7 @@ const ChoiceStarScore: React.FC<ChoiceStarScoreProps> = ({
 
   const handleTouchStart = (event: React.TouchEvent) => {
     setIsDragging(true);
-    handleTouchMove(event); // 초기 터치 위치에서도 별점을 변경하기 위해 호출
+    handleTouchMove(event);
   };
 
   const handleTouchEnd = () => {
@@ -40,9 +40,12 @@ const ChoiceStarScore: React.FC<ChoiceStarScoreProps> = ({
   const handleTouchMove = (event: React.TouchEvent) => {
     if (isDragging) {
       const rect = event.currentTarget.getBoundingClientRect();
-      const offsetX = event.touches[0].clientX - rect.left; // 첫 번째 터치 위치 사용
+      const offsetX = event.touches[0].clientX - rect.left;
       const maxScore = 5; // 최대 별점
-      const newScore = (offsetX / rect.width) * maxScore;
+      const newScore = Math.min(
+        Math.max((offsetX / rect.width) * maxScore, 0),
+        maxScore
+      );
       setScore(newScore);
     }
   };

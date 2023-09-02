@@ -92,7 +92,11 @@ const StoreInfo = ({ storeIndex }: { storeIndex: number }) => {
               <div className="bg-white rounded-2xl border border-lightGray w-full flex py-[6px] pl-2">
                 <RiAwardFill className="w-[12px] text-100 mx-1 mr-2 mt-[0.5px]" />
                 <Text fontWeight="medium" size="xs" className="line-clamp-1">
-                  {storeContent}
+                  {storeContent === null ? (
+                    <>아직 데이터가 없어요</>
+                  ) : (
+                    <>{storeContent}</>
+                  )}
                 </Text>
               </div>
             </div>
