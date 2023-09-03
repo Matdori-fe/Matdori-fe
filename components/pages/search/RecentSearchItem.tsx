@@ -9,31 +9,31 @@ import { useSetRecoilState } from 'recoil';
 import { useSearchParams } from 'next/navigation';
 
 export default function RecentSearchItem({ label }: { label: string }) {
-	const { deleteItem, handleSearchItem } = useSearchItem();
-	const router = useRouter();
-	const setSearchString = useSetRecoilState(searchAtom);
+  const { deleteItem, handleSearchItem } = useSearchItem();
+  const router = useRouter();
+  const setSearchString = useSetRecoilState(searchAtom);
 
-	const searchParams = useSearchParams();
-	const writeStore: string = searchParams.get('writeStore') || 'undefined';
+  const searchParams = useSearchParams();
+  const writeStore: string = searchParams.get('writeStore') || 'undefined';
 
-	return (
-		<div className='gap-[10px] border flex items-center border-lightGray rounded-basic px-[10px] py-[4px] w-fit'>
-			<div
-				onClick={() => {
-					router.push(
-						writeStore === 'true'
-							? `/search/${label}/?writeStore=true`
-							: `/search/${label}`
-					);
+  return (
+    <div className="gap-[10px] border flex items-center border-lightGray rounded-basic px-[10px] py-[4px] w-fit">
+      <div
+        onClick={() => {
+          router.replace(
+            writeStore === 'true'
+              ? `/search/${label}/?writeStore=true`
+              : `/search/${label}`
+          );
 
-					handleSearchItem(label);
-				}}
-			>
-				<Text size='xs' color='darkGray'>
-					{label}
-				</Text>
-			</div>
-			<RiCloseFill size='14' onClick={() => deleteItem(label)} />
-		</div>
-	);
+          handleSearchItem(label);
+        }}
+      >
+        <Text size="xs" color="darkGray">
+          {label}
+        </Text>
+      </div>
+      <RiCloseFill size="14" onClick={() => deleteItem(label)} />
+    </div>
+  );
 }

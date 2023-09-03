@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useRecoilValue } from 'recoil';
 import { UserAtom } from '@/atoms/UserAtom';
 import Button from '@/components/Button/Button';
+import { useRouter } from 'next/navigation';
 
 interface StoreIndexType {
   storeIndex: number;
@@ -23,12 +24,14 @@ type StoreInformationType = {
 };
 
 const JokboIntroPage = ({ storeIndex }: StoreIndexType) => {
+  const router = useRouter();
   const [inFavoriteId, setInFavoriteId] = useState(null);
   const [storeInformation, setStoreInformation] =
     useState<StoreInformationType>();
 
   const userInfo = useRecoilValue(UserAtom);
   useEffect(() => {
+    console.log(storeIndex);
     const fetchData = async () => {
       try {
         const result = await axios.get(
@@ -37,6 +40,7 @@ const JokboIntroPage = ({ storeIndex }: StoreIndexType) => {
             withCredentials: true,
           }
         );
+        console.log(result);
         setStoreInformation(result.data.result.storeInformationHeader);
         setInFavoriteId(result.data.result.favoriteStoreIndex);
       } catch (error) {
@@ -62,13 +66,14 @@ const JokboIntroPage = ({ storeIndex }: StoreIndexType) => {
           imgUrl: storeInformation?.imgUrl,
         }}
       />
-      <StoreInfo storeIndex={storeIndex} />
+      {storeIndex !== 0 && <StoreInfo storeIndex={storeIndex} />}
       <Button
         label="나만의 족보 작성하기"
         variant="active"
         modal={false}
-        onClick={() => {}}
-        href={`/write/${storeIndex}`}
+        onClick={() => {
+          router.push(`/write/${storeIndex}`);
+        }}
       />
     </>
   );

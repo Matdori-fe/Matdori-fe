@@ -1,7 +1,5 @@
 'use client';
-import { RiShareBoxLine } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
-import { StoreShareType } from './type/HeaderComponentsType';
 
 declare global {
   interface Window {
@@ -9,12 +7,7 @@ declare global {
   }
 }
 
-const StoreShare: React.FC<StoreShareType> = ({
-  storeIndex,
-  imgUrl,
-  storeName,
-  storeContent,
-}) => {
+const ShareFriend = () => {
   const [isKakaoLoaded, setIsKakaoLoaded] = useState(false);
   const { Kakao, location } = window;
 
@@ -40,26 +33,17 @@ const StoreShare: React.FC<StoreShareType> = ({
 
   const onClick = () => {
     if (isKakaoLoaded) {
-      try {
-        Kakao.Link.sendScrap({
-          requestUrl: location.href,
-          templateId: 97765,
-          templateArgs: {
-            storeIndex: storeIndex,
-            imageUrl: imgUrl ? imgUrl : '',
-            storeName: storeName,
-            storeContent: storeContent,
-          },
-        });
-      } catch (e) {
-        console.log(e);
-      }
+      Kakao.Link.sendScrap({
+        requestUrl: location.href,
+        templateId: 97992,
+        templateArgs: {},
+      });
     }
   };
 
-  const StoreShareBtn = () => <RiShareBoxLine size="20" onClick={onClick} />;
+  const ShareFriendBtn = () => <div onClick={onClick}>친구초대</div>;
 
-  return <StoreShareBtn />;
+  return <ShareFriendBtn />;
 };
 
-export default StoreShare;
+export default ShareFriend;

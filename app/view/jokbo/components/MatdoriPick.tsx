@@ -7,6 +7,7 @@ import { useRecoilValue } from 'recoil';
 import { UserAtom } from '@/atoms/UserAtom';
 import axios from 'axios';
 import SmallStoreSkeleton from '@/app/Skeleton/SmallStoreSkeleton';
+import Toast from '@/components/Toast/Toast';
 
 const MatdoriPick = () => {
   const [list, setList] = useState([]);
@@ -16,19 +17,18 @@ const MatdoriPick = () => {
     const fetchData = async () => {
       try {
         const result = await axios.get(
-          `${process.env.NEXT_PUBLIC_API}/stores/matdori-pick?department=${myDepartMent}`
+          `${process.env.NEXT_PUBLIC_API}/stores/matdori-pick`
         );
         setList(result.data.result);
-        console.log('맛도리픽', result.data.result);
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        Toast('Server Error');
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [myDepartMent]);
+  }, []);
 
   return (
     <>

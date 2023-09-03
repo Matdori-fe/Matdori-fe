@@ -10,9 +10,9 @@ type ImageBoxType = {
 };
 
 const ImageBox: React.FC<ImageBoxType> = ({ url, size, className }) => {
-  if (url === null) {
-    url = '/logo.svg';
-  }
+  // if (url === null) {
+  //   url = '/logo.svg';
+  // }
   //size없이 테일 원드로 크기 지정할 경우
   if (!size) {
     return (

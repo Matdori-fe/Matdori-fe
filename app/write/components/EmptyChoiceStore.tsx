@@ -1,9 +1,13 @@
 import Text from '@/components/Text/Text';
 import { RiImage2Line } from 'react-icons/ri';
+import Link from 'next/link';
 
 const EmptyChoiceStore = () => {
   return (
-    <div className="w-full h-[80px] border-[1px] border-lightGray rounded-basic mt-[15px] flex px-4 items-center">
+    <Link
+      href={'/search/?writeStore=true'}
+      className="w-full h-[80px] border-[1px] border-lightGray rounded-basic mt-[15px] flex px-4 items-center"
+    >
       <div className="w-[60px] h-[60px] rounded-basic bg-lightGray flex justify-center items-center">
         <RiImage2Line className="text-[30px] text-gray" />
       </div>
@@ -26,7 +30,7 @@ const EmptyChoiceStore = () => {
           스토어 카테고리
         </Text>
       </div>
-    </div>
+    </Link>
   );
 };
 
