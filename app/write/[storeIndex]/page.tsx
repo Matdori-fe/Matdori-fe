@@ -115,7 +115,7 @@ const WritePage = ({ params }: { params: { storeIndex: any } }) => {
           <>
             <div
               onClick={() => {
-                window.location.href = '/search/?writeStore=true';
+                router.push('/search/?writeStore=true');
               }}
             >
               <div className="px-[10px] py-[3px] bg-white rounded-2xl border border-lightGray justify-center items-center inline-flex">

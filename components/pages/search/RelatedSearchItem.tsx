@@ -26,7 +26,7 @@ export default function RelatedSearchItem({
         if (writeStore === 'true') {
           router.replace(`/search/${name}/?writeStore=true`);
         } else {
-          router.replace(`/search/${name}`);
+          router.push(`/search/${name}`);
         }
         handleSearchItem(name);
         setSearchString(name);
