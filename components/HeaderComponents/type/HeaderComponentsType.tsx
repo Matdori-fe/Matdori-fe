@@ -12,3 +12,12 @@ export type JokboShareType = {
   jokboTitle: string | undefined;
   storeName: string | undefined;
 };
+
+export type DeleteKindType = {
+  kind: 'reivew' | 'jokbo' | undefined;
+};
+
+export type DeleteType = {
+  id: number | undefined;
+  kind: DeleteKindType;
+};
