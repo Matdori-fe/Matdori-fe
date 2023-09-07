@@ -27,7 +27,11 @@ import {
 // TODO: button의 onClick수정하기.
 // FIXME: 원래는 RoundButton을 밖으로 뺴서 받아왔는데, 그렇게하니까 onClick을 못받음. 만약 이걸 사용하는 곳이 많아진다면 어떻게 해결해야하지? 지금은 하드코딩으로 해두었다.
 const rightIcons = {
-	search: <RiSearch2Line onClick={moveToBack} size='24' />,
+	search: (
+		<Link href='/search'>
+			<RiSearch2Line size='24' />
+		</Link>
+	),
 	share: <RiShareBoxLine size='20' />,
 	like: <Like kind='store' id={165} />,
 	trashCan: <TrashCan />,
