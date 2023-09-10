@@ -14,10 +14,10 @@ export type JokboShareType = {
 };
 
 export type DeleteKindType = {
-  kind: 'reivew' | 'jokbo' | undefined;
+  kind: 'comment' | 'jokbo' | undefined;
 };
 
 export type DeleteType = {
   id: number | undefined;
-  kind: DeleteKindType;
+  kind: 'comment' | 'jokbo' | undefined;
 };

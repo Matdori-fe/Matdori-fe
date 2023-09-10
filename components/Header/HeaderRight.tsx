@@ -47,7 +47,7 @@ const rightIcons = {
   ),
 };
 
-type LikeKind = 'store' | 'jokbo' | 'review';
+type LikeKind = 'store' | 'jokbo' | 'comment';
 
 interface HeaderRightProps {
   right: Right[] | Right;
@@ -113,7 +113,7 @@ export default function HeaderRight({
           } else if (icon === 'more') {
             return (
               <>
-                <More id={id} kind={kind as DeleteKindType} />
+                <More id={id} kind={kind} />
               </>
             );
           } else {
