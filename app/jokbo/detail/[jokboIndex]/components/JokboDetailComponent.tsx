@@ -79,7 +79,7 @@ const JokboDetailComponent: React.FC<JokboDetailProps> = ({ jokboIndex }) => {
     };
 
     fetchData();
-  }, []);
+  }, [jokboIndex]);
 
   const handleImageClick = (index: number) => {
     setGalleryOpen(true);

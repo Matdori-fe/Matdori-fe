@@ -7,14 +7,14 @@ import { FiDownload } from 'react-icons/fi';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
-
+import axios from 'axios';
 type ImgUrlListType = {
   imgUrlList: string[];
   galleryOpen: boolean;
   setGalleryOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const JokboImageSwiper = ({
+const JokboImageSwiper = async ({
   imgUrlList,
   galleryOpen,
   setGalleryOpen,
@@ -25,38 +25,6 @@ const JokboImageSwiper = ({
   const handleGalleryClose = () => {
     setGalleryOpen(false);
     setCurrentImageIndex(0);
-  };
-
-  const downloadImage = () => {
-    const currentImageSrc = imgUrlList[currentImageIndex];
-
-    if (currentImageSrc) {
-      // Fetch the image data
-      fetch(currentImageSrc)
-        .then((response) => response.blob())
-        .then((blob) => {
-          // Create a blob URL for the image
-          const blobUrl = window.URL.createObjectURL(blob);
-
-          // Create an invisible link element
-          const link = document.createElement('a');
-          link.href = blobUrl;
-          link.download = `image_${currentImageIndex + 1}.jpg`;
-          link.target = '_blank'; // Open in a new tab (optional)
-          document.body.appendChild(link);
-
-          // Simulate a click event to trigger the download
-          link.click();
-          console.log('사진 다운로드');
-
-          // Clean up the link element and blob URL
-          document.body.removeChild(link);
-          window.URL.revokeObjectURL(blobUrl);
-        })
-        .catch((error) => {
-          console.error('다운로드 에러:', error);
-        });
-    }
   };
 
   return (
@@ -73,10 +41,8 @@ const JokboImageSwiper = ({
           <div className="w-fit font-regular text-24px text-white">
             {`${currentImageIndex + 1} / ${imgUrlList.length}`}
           </div>
-          <FiDownload
-            className="text-white text-[20px]"
-            onClick={downloadImage}
-          />
+
+          <FiDownload className="text-white text-[20px] cursor-pointer" />
         </div>
         <div className="relative w-[80%] h-[80%] max-w-[800px] max-h-[800px] flex">
           <Swiper

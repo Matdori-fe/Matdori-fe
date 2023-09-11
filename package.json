@@ -29,6 +29,7 @@
 		"D": "^1.0.0",
 		"eslint": "8.45.0",
 		"eslint-config-next": "13.4.10",
+		"file-saver": "^2.0.5",
 		"framer-motion": "^10.15.0",
 		"less": "^2.7.3",
 		"next": "^13.4.20-canary.16",
