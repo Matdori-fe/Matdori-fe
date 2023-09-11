@@ -7,14 +7,13 @@ import { FiDownload } from 'react-icons/fi';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
-import axios from 'axios';
 type ImgUrlListType = {
   imgUrlList: string[];
   galleryOpen: boolean;
   setGalleryOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const JokboImageSwiper = async ({
+const JokboImageSwiper = ({
   imgUrlList,
   galleryOpen,
   setGalleryOpen,
