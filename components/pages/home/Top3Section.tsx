@@ -24,7 +24,7 @@ export default function Top3Section() {
 	// TODO: unknown 형식?
 	return (
 		<div>
-			<div className='flex items-center justify-between mb-[12px]'>
+			<div className='flex items-center justify-between'>
 				<BigTitle>맛도리 TOP 3</BigTitle>
 				<SortWrapper />
 			</div>

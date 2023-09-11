@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { RiStackFill, RiStarFill } from 'react-icons/ri';
 import { Top3Item } from '@/atoms/home/top3SortAtom';
 import Link from 'next/link';
+import ErrorImg from '@/components/ErrorImg/ErrorImg';
 
 interface AddIdOnTop3Item extends Top3Item {
 	id: number;
@@ -39,13 +40,16 @@ export default function Top3Item({
 							{id + 1}
 						</Text>
 						<div className='w-[30px] h-[50px] bg-100 absolute rotate-45 top-[-18px] left-[-8px]' />
-						<Image
-							alt='shopImage'
-							src={imgUrl}
-							width={50}
-							height={50}
-							className='h-[50px] min-w-[50px] bg-white'
-						/>
+						<div>
+							<Image
+								alt='storeImg'
+								src={imgUrl}
+								width='50'
+								height='50'
+								className='bg-gray max-w-[50px] max-h-[50px]  min-w-[50px] min-h-[50px]'
+								onError={ErrorImg}
+							/>
+						</div>
 					</div>
 					<Text
 						size='base'
@@ -56,7 +60,7 @@ export default function Top3Item({
 					</Text>
 				</div>
 				<div className='flex items-center gap-[16px]'>
-					<div className='flex items-center min-w-max'>
+					<div className='flex items-center min-w-max w-[43px]'>
 						<RiStarFill className='fill-yellow gap-[2px] mr-[4px]' size={14} />
 						<Text size='base' fontWeight='medium' color='darkGray'>
 							{totalRating.toFixed(1)}
