@@ -16,14 +16,14 @@ import { useModal } from '@/hooks/useModal';
 
 interface ModalLayoutProps {
 	children: React.ReactNode;
-	title: string;
-	variant?: 'normal' | 'large';
+	title?: string;
+	variant?: 'normal' | 'large' | 'small';
 	onClose: () => void;
 }
 // Modal Layout
 export default function ModalLayout({
 	children,
-	title,
+	title = '',
 	variant = 'normal',
 	onClose,
 }: ModalLayoutProps) {
@@ -70,12 +70,6 @@ export default function ModalLayout({
 		};
 	}, []);
 
-	useEffect(() => {
-		console.log('ji');
-
-		return () => console.log('bi');
-	}, []);
-
 	// 이동량이 많을 경우 이동
 	const handleDragEnd = () => {
 		const end = y.get();
@@ -83,6 +77,12 @@ export default function ModalLayout({
 		if (end - start >= 100) {
 			onClose();
 		}
+	};
+
+	const modalSize = {
+		large: 514,
+		normal: 400,
+		small: 210,
 	};
 
 	// FIXME: refactoring
@@ -103,15 +103,11 @@ export default function ModalLayout({
 				onDragEnd={handleDragEnd}
 				dragMomentum={false}
 				// 자식으로 전파 방지
-				className={`relative w-full bg-white rounded-t-basic pt-[11px] flex flex-col items-center justify-start w-full`}
+				className={`relative bg-white rounded-t-basic pt-[11px] flex flex-col items-center justify-start w-full`}
 				transition={{ duration: 0.5, ease: 'easeInOut' }}
-				initial={variant === 'large' ? { y: 800 } : { y: 400 }}
-				animate={
-					variant === 'large'
-						? { y: 0, height: '514px' }
-						: { y: 0, height: '410px' }
-				}
-				exit={variant === 'large' ? { y: 514 } : { y: 400 }}
+				initial={{ y: modalSize[variant] }}
+				animate={{ y: 0, height: `${modalSize[variant]}px` }}
+				exit={{ y: modalSize[variant] }}
 				// FIXME: 다시 추천받기를 누르면 모션이 이상함
 			>
 				<RiCloseFill
