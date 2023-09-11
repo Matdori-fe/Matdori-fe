@@ -20,6 +20,7 @@ import {
 } from '@/lib/shop/getRecommendedShop';
 import { useFetcher } from '@/hooks/useFetcher';
 import StarRate from '../StarRate/StarRate';
+import ErrorImg from '../ErrorImg/ErrorImg';
 
 export default function ShopModal() {
 	const router = useRouter();
@@ -116,13 +117,17 @@ export default function ShopModal() {
 										variants={InnerAnimation}
 										className='[&>img]:h-[100px] w-[100px]'
 									>
-										<Image
-											src={shop.imgUrl}
-											height='100'
-											width='100'
-											alt='logo'
-											className='rounded-basic mb-[10px]'
-										/>
+										<div>
+											<Image
+												alt='storeImg'
+												src={shop.imgUrl}
+												height='100'
+												width='100'
+												className='bg-gray max-w-[100px] max-h-[100px] rounded-basic border-lightGray border min-w-[100px] min-h-[100px]'
+												onError={ErrorImg}
+											/>
+										</div>
+
 										<div className='w-full flex p-[6px] flex-col items-center justify-center'>
 											<Text
 												fontWeight='semibold'
