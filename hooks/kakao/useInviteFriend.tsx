@@ -1,13 +1,6 @@
-'use client';
 import { useEffect, useState } from 'react';
 
-declare global {
-	interface Window {
-		Kakao: any;
-	}
-}
-
-const ShareFriend = ({ children }: { children: React.ReactNode }) => {
+export const useInviteFriend = () => {
 	const [isKakaoLoaded, setIsKakaoLoaded] = useState(false);
 	const { Kakao, location } = window;
 
@@ -31,7 +24,7 @@ const ShareFriend = ({ children }: { children: React.ReactNode }) => {
 		}
 	}, [isKakaoLoaded]);
 
-	const onClick = () => {
+	const inviteFriend = () => {
 		if (isKakaoLoaded) {
 			Kakao.Link.sendScrap({
 				requestUrl: location.href,
@@ -41,7 +34,5 @@ const ShareFriend = ({ children }: { children: React.ReactNode }) => {
 		}
 	};
 
-	return <div onClick={onClick}>{children}</div>;
+	return inviteFriend;
 };
-
-export default ShareFriend;

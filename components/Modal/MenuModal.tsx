@@ -18,6 +18,7 @@ import {
 	getRecommendedMenuList,
 } from '@/lib/shop/getRecommendedMenu';
 import { useFetcher } from '@/hooks/useFetcher';
+import ErrorImg from '../ErrorImg/ErrorImg';
 
 export default function MenuModal() {
 	const router = useRouter();
@@ -79,7 +80,7 @@ export default function MenuModal() {
 							initial='start'
 							animate='end'
 							variants={BoxAnimation}
-							className='flex flex-col justify-between w-full gap-[17px] w-full'
+							className='flex flex-col justify-between gap-[17px] w-full'
 						>
 							<Wrapper>
 								{data &&
@@ -95,13 +96,17 @@ export default function MenuModal() {
 												)
 											}
 										>
-											<Image
-												src={menu.imgUrl}
-												width='75'
-												height='75'
-												alt='logo'
-												className='rounded-basic'
-											/>
+											<div>
+												<Image
+													alt='storeImg'
+													src={menu.imgUrl}
+													width='75'
+													height='75'
+													className='bg-gray max-w-[75px] max-h-[75px] rounded-basic border-lightGray border min-w-[75px] min-h-[75px]'
+													onError={ErrorImg}
+												/>
+											</div>
+
 											<div className='w-[calc(100%-60px)] p-[12px] px-[17px] flex flex-col gap-[8px]'>
 												<Text
 													color='100'

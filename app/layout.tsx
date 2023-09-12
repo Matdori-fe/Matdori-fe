@@ -7,6 +7,7 @@ import StyledComponentsRegistry from '@/assets/style';
 import Head from 'next/head';
 import { Suspense } from 'react';
 import QueryWrapper from '@/utils/QueryWrapper';
+import SessionCheck from '@/components/SessionCheck/SessionCheck';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -32,7 +33,9 @@ export default function RootLayout({
 						<div className='flex justify-center'>
 							{/*전체 크기 개발 이후에 변경 필요*/}
 							<div className='relative inset-0 sm:w-[412px] w-full overflow-y-scroll overflow-x-hidden scrollbar-hide'>
-								<StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+								<StyledComponentsRegistry>
+									<SessionCheck>{children}</SessionCheck>
+								</StyledComponentsRegistry>
 							</div>
 						</div>
 					</RecoilRootWrapper>

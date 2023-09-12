@@ -11,6 +11,7 @@ export async function logout() {
 	try {
 		const data = await logoutAxios();
 
+		localStorage.removeItem('recoil-persist');
 		console.log(data);
 		Toast('로그아웃 되었습니다.');
 		// 로그인으로 이동
