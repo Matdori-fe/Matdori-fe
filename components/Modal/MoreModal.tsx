@@ -3,7 +3,6 @@
 import ModalLayout from './ModalLayout';
 import { useModal } from '@/hooks/useModal';
 import Text from '../Text/Text';
-import { useEffect } from 'react';
 import axios from 'axios';
 import { useRecoilValue } from 'recoil';
 import { UserAtom } from '@/atoms/UserAtom';
@@ -89,5 +88,3 @@ export default function MoreModal() {
     </ModalLayout>
   );
 }
-
-// FIXME: a 태그 속 a 구조가 문제같음.
