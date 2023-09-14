@@ -1,18 +1,15 @@
 'use client';
-import Input from '@/components/Input/Input';
-import SmallTitle from '@/components/Title/SmallTitle';
 import Button from '@/components/Button/Button';
-import RoundButton from '@/components/RoundButton/RoundButton';
 import { useState } from 'react';
 import Link from 'next/link';
-import { AiOutlineArrowRight } from 'react-icons/ai';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { UserAtom } from '@/atoms/UserAtom';
 import { useRouter } from 'next/navigation';
 import Toast from '@/components/Toast/Toast';
 import { ChangeEvent } from 'react';
-import CheckNotification from '@/components/CheckNotification/CheckNotification';
+import LoginInput from './LoginInput';
+import Text from '@/components/Text/Text';
 
 const pattern = /(inha\.edu|inha\.ac\.kr)$/;
 
@@ -82,70 +79,49 @@ const LoginBox: React.FC = () => {
 
   return (
     <>
-      <SmallTitle className="mb-3">학번 이메일</SmallTitle>
-
-      <Input
-        inputSize="small"
+      <LoginInput
         placeHolder="학번 이메일을 입력해주세요."
-        right="cancel"
-        type="email"
-        value={id}
         onChange={handleIdChange}
+        inputmode="email"
+        type="text"
       />
-      <div className="w-full mt-2">
-        {checkEmail ? (
-          <CheckNotification
-            label="이메일 형식에 적합합니다."
-            variant="valid"
-          />
-        ) : (
-          <CheckNotification
-            label="@inha.ac.kr 또는 @inha.edu 메일 형식을 입력해주세요."
-            variant="invalid"
-          />
-        )}
-      </div>
-
-      <SmallTitle
-        className="mt-3 mb-3"
-        sideComponent={
-          <Link href={'/help/find-password'}>
-            <RoundButton label="비밀번호 찾기" onClick={() => {}} />
-          </Link>
-        }
-      >
-        비밀번호
-      </SmallTitle>
-      <Input
-        inputSize="small"
-        value={password}
+      <div className="w-full h-[10px]" />
+      <LoginInput
         placeHolder="비밀번호를 입력해주세요."
-        right="cancel"
-        type="password"
         onChange={handlePasswordChange}
+        inputmode="text"
+        type="password"
       />
 
-      <div className="flex mt-20 mb-12">
-        <p className="font-Regular text-[12px] text-darkGray mr-3">
-          아직 회원이 아니신가요?
-        </p>
-        <Link
-          href={'/signup/email'}
-          className="font-Regular text-[12px] text-100 flex"
-        >
-          회원가입
-          <AiOutlineArrowRight className="text-[14px] mt-[1.5px] ml-[1px]" />
-        </Link>
-      </div>
-
-      <Button
-        label="로그인"
+      <div className="w-full h-[10px]" />
+      <button
+        className="bg-100 w-full h-[50px] w-[calc(100%-40px)] justify-center items-center rounded-basic inline-flex my-[15px]"
         onClick={() => {
           loginFun();
         }}
-        variant="active"
-        modal={false}
-      />
+      >
+        <Text color="white" fontWeight="bold" size="lg">
+          로그인
+        </Text>
+      </button>
+      <div className="w-full flex justify-center">
+        <div className="w-full flex justify-between max-w-[140px]">
+          <Link
+            href={'/signup/email'}
+            className="font-Medium text-[12px] text-gray"
+          >
+            회원가입
+          </Link>
+          <div className="text-[12px] text-lightGray mb-3">|</div>
+
+          <Link
+            href={'/help/find-password'}
+            className="font-Medium text-[12px] text-gray"
+          >
+            비밀번호 찾기
+          </Link>
+        </div>
+      </div>
     </>
   );
 };

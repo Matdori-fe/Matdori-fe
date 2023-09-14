@@ -20,7 +20,8 @@ export default function JokboList({ storeIndex }: StoreIndexType) {
       .get(`${process.env.NEXT_PUBLIC_API}/stores/${storeIndex}/jokbos`, {
         params: {
           cursor: pageParam,
-          order: '최신순',
+          sortingType: '최신순',
+          jobkoIndex: 1,
         },
         withCredentials: true,
       })

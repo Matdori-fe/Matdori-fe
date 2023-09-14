@@ -44,6 +44,9 @@ type InReviewType = {
   checkDeleted: boolean;
   userIndex: number;
   nickname: string;
+  commentFavoriteId: number;
+  writtenBy: boolean;
+  commentFavoriteCnt: number;
 };
 
 export default function CommentList({ jokboIndex }: JokboIndexType) {
@@ -88,6 +91,9 @@ export default function CommentList({ jokboIndex }: JokboIndexType) {
           cursor: pageParam,
           order: kind,
         },
+        headers: {
+          userIndex: user.userId,
+        },
         withCredentials: true,
       })
       .then((res) => {
@@ -97,6 +103,7 @@ export default function CommentList({ jokboIndex }: JokboIndexType) {
         return res?.data.result;
       })
       .catch((error) => {
+        console.log(error);
         setLoading(true);
       });
 
@@ -155,9 +162,12 @@ export default function CommentList({ jokboIndex }: JokboIndexType) {
                 <Review
                   key={idx}
                   content={comment.contents}
-                  heartCount={5}
+                  heartCount={comment.commentFavoriteCnt}
                   title={comment.nickname}
                   writeDay={comment.createdAt}
+                  commentId={comment.commentIndex}
+                  commentFavoriteId={comment.commentFavoriteId}
+                  writtenBy={comment.writtenBy}
                 />
               ))}
             </>

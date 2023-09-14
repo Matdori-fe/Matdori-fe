@@ -10,7 +10,7 @@ const QnaDetail = ({ params }: { params: { qnaIndex: number } }) => {
   const selectedQna = qnaArr[params.qnaIndex];
 
   const handleContactSupport = () => {
-    const emailAddress = 'sean2337@naver.com';
+    const emailAddress = 'inha_matdori@naver.com';
     const subject = 'Madtori 고객센터 상담하기';
     const body =
       '저희 맛도리를 이용해주셔서 정말 감사합니다. \n상담할 내용을 자세히 적어주시면 빠른 시일내에 답변 드리곘습니다.';

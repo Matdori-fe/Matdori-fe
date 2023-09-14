@@ -95,7 +95,12 @@ const WritePage = ({ params }: { params: { storeIndex: any } }) => {
           console.log(response);
           if (response.status === 200) {
             Toast('족보 작성이 완료되었습니다.');
-            window.location.href = `/store/${storeIndex}/?tab=shop&section=jokbo`;
+            router.back();
+
+            setTimeout(() => {
+              console.log('지남');
+              router.replace(`/store/${storeIndex}/?tab=shop&section=jokbo`);
+            }, 50);
           } else if (response.status === 401) {
             Toast('세션이 만료되었습니다. 로그인을 다시 진행해 주세요.');
             window.location.href = '/login';

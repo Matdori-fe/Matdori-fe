@@ -12,3 +12,12 @@ export type JokboShareType = {
   jokboTitle: string | undefined;
   storeName: string | undefined;
 };
+
+export type DeleteKindType = {
+  kind: 'comment' | 'jokbo' | undefined;
+};
+
+export type DeleteType = {
+  id: number | undefined;
+  kind: 'comment' | 'jokbo' | undefined;
+};

@@ -7,7 +7,7 @@ import { useRecoilValue } from 'recoil';
 import { UserAtom } from '@/atoms/UserAtom';
 import Toast from '../Toast/Toast';
 
-type LikeKind = 'store' | 'jokbo' | 'review';
+type LikeKind = 'store' | 'jokbo' | 'comment';
 
 // 족보 좋아요 누르기
 ///users/{userIndex}/favorite-jokbo
@@ -27,9 +27,10 @@ type LikeInputProps = {
   //가게, 족보, 리뷰에 대한 개별 Index
   id?: number;
   inFavoriteId?: favoriteIdType;
+  setFunc?: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const Like = ({ kind, size, id, inFavoriteId }: LikeInputProps) => {
+const Like = ({ kind, size, id, inFavoriteId, setFunc }: LikeInputProps) => {
   const [isClick, setIsClick] = useState(false);
   const user = useRecoilValue(UserAtom);
   const heartSize = size ? size : 'text-[20px]';
@@ -65,24 +66,40 @@ const Like = ({ kind, size, id, inFavoriteId }: LikeInputProps) => {
           setFavoriteId(response.data.result.favoriteStoreIndex);
         } else if (kind === 'jokbo') {
           setFavoriteId(response.data.result.favoriteJokboIndex);
-        } else {
+        } else if (kind === 'comment') {
+          setFavoriteId(response.data.result.favoriteCommentId);
         }
         setIsClick(true);
+        if (setFunc) {
+          setFunc((prev) => prev + 1);
+        }
         console.log('좋아요 성공');
         Toast('좋아요 완료했습니다.');
       }
       // 좋아요 눌러있을때 => 좋아요 취소
       else {
-        const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API}/users/${user.userId}/favorite-${kind}s`,
-          {
-            favoriteJokbosId: [favoriteId],
-          },
-          {
-            withCredentials: true,
-          }
-        );
+        if (kind === 'comment') {
+          const response = await axios.delete(
+            `${process.env.NEXT_PUBLIC_API}/users/${user.userId}/favorite-comment/${favoriteId}`,
+            {
+              withCredentials: true,
+            }
+          );
+        } else {
+          const response = await axios.post(
+            `${process.env.NEXT_PUBLIC_API}/users/${user.userId}/favorite-${kind}s`,
+            {
+              favoriteJokbosId: [favoriteId],
+            },
+            {
+              withCredentials: true,
+            }
+          );
+        }
         setIsClick(false);
+        if (setFunc) {
+          setFunc((prev) => prev - 1);
+        }
         console.log('좋아요 취소');
         Toast('좋아요 취소했습니다.');
       }
