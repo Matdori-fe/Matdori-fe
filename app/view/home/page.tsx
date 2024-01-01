@@ -15,9 +15,7 @@ export default function Home() {
 	return (
 		<div className='flex flex-col gap-[30px]'>
 			<CarouselSection />
-
 			<RecommendButtonsSection />
-
 			<CategorySection />
 			<Top3Section />
 			<div className='mb-[100px]' />
